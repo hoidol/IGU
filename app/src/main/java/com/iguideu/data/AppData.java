@@ -187,4 +187,8 @@ public class AppData extends AppCompatActivity {
         storageRef = storage.getReferenceFromUrl("gs://iguideu-4befb.appspot.com/");
     }
 
+    public static void Test(){
+        String s = "제발 되라";
+    }
+
 }
