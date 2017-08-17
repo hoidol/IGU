@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:background="@color/Color_Layout_Background">
+
+<ImageView
+    android:layout_width="97.33dp"
+    android:layout_height="65.33dp"
+    android:layout_marginTop="263.33dp"
+    android:layout_marginLeft="238.67dp"
+    android:src="@mipmap/bag_xx"
+    android:id="@+id/logo_icon"
+    android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="13.67dp"
+        android:src="@mipmap/public_xx"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17.7dp"
+        android:layout_marginLeft="141dp"/>
+
+</RelativeLayout>

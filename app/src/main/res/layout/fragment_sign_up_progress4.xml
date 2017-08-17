@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_Layout_Background"
+    tools:context="com.iguideu.signup.SignUpProgress4">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_height="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@drawable/progress_bar"
+            android:layout_weight="2"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@color/Color_Layout_Background"
+            android:layout_weight="8"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/LoginProgress4_MainText"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="@dimen/LoginProgressTextSize_Main_Text"
+        android:id="@+id/pg4_text"
+        android:layout_marginTop="112dp"/>
+    <EditText
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#d8d8d8"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:id="@+id/edit_pg4_pass"
+        android:hint="@string/LoginProgress4_Pass"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="@dimen/All_Text_Size_Primary"
+        android:paddingLeft="15dp"
+        android:layout_below="@id/pg4_text"
+        android:layout_marginTop="120.3dp"/>
+    <EditText
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#d8d8d8"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:id="@+id/edit_pg4_pass_check"
+        android:hint="@string/LoginProgress4_Pass_Check"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="@dimen/All_Text_Size_Primary"
+        android:paddingLeft="15dp"
+        android:layout_below="@id/edit_pg4_pass"
+        android:layout_marginTop="49.3dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:background="@mipmap/okbt"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:text="@string/LoginProgress_Next"
+        android:id="@+id/btn_pg4_next"
+        android:onClick="Progress4Clock"
+        android:textSize="@dimen/LoginProgressTextSize_Next_In_Button"/>
+
+</RelativeLayout>

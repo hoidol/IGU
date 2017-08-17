@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.iguideu.signup.SignUpProgress5">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_height="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@drawable/progress_bar"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/LoginProgress5_MainText"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="@dimen/LoginProgressTextSize_Main_Text"
+        android:id="@+id/pg5_text"
+        android:layout_marginTop="112dp"/>
+
+    <com.iguideu.custom_view.RoundedImageView
+        android:layout_width="115.7dp"
+        android:layout_height="115.7dp"
+        android:layout_below="@id/pg5_text"
+        android:layout_marginTop="78dp"
+        android:id="@+id/add_profile_Btn"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/group"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:background="@mipmap/okbt"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:text="@string/LoginProgress_Next"
+        android:id="@+id/btn_pg5_next"
+        android:onClick="Progress5Clock"
+        android:textSize="@dimen/LoginProgressTextSize_Next_In_Button"/>
+</RelativeLayout>

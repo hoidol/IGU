@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "813884767528",
+    "firebase_url": "https://iguideu-4befb.firebaseio.com",
+    "project_id": "iguideu-4befb",
+    "storage_bucket": "iguideu-4befb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813884767528:android:8c57fcc9717d2f39",
+        "android_client_info": {
+          "package_name": "com.iguideu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813884767528-7uu52lun34uh62j3or280h3oevsvra0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iguideu",
+            "certificate_hash": "0b106850676eaeab15a7e0513b21bd252fdf28cf"
+          }
+        },
+        {
+          "client_id": "813884767528-6j81t0ed5tlkljri90ulrv0oaett5blu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVSlD7QAAPkX3n1R_14FLH3UpueztJuXo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813884767528-6j81t0ed5tlkljri90ulrv0oaett5blu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_Layout_Background"
+    tools:context="com.iguideu.signup.SignUpProgress6">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:background="@mipmap/okbt"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:text="@string/LoginProgress_Check"
+        android:id="@+id/btn_pg6_next"
+        android:onClick="Progress6Clock"
+        android:textSize="@dimen/LoginProgressTextSize_Next_In_Button"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/LoginProgress6_MainText"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="@dimen/LoginProgressTextSize_Main_Text"
+        android:id="@+id/pg5_text"
+        android:layout_marginTop="230.7dp"/>
+
+
+</RelativeLayout>

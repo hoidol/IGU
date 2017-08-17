@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_White">
+    <include
+    layout="@layout/toolbar_layout"
+    android:id="@+id/setting_Toolbar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="65.7dp"
+        android:layout_below="@id/setting_Toolbar"
+        android:id="@+id/setting_KR_Btn"
+        android:layout_marginTop="69dp"
+        android:background="@color/Color_White"
+        android:text="@string/InitSetting_KR"
+        android:textColor="@color/Color_Setting_Text"
+        android:gravity="center_vertical"
+        android:textSize="18.3sp"
+        android:letterSpacing="0.2"
+        android:paddingLeft="27.7dp"
+        android:onClick="InitClick"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="65.7dp"
+        android:layout_below="@id/setting_KR_Btn"
+        android:id="@+id/setting_EN_Btn"
+        android:background="@color/Color_White"
+        android:text="@string/InitSetting_EN"
+        android:textColor="@color/Color_Setting_Text"
+        android:gravity="center_vertical"
+        android:textSize="18.3sp"
+        android:letterSpacing="0.2"
+        android:paddingLeft="27.7dp"
+        android:onClick="InitClick"
+        style="?android:attr/borderlessButtonStyle"/>
+
+
+
+</RelativeLayout>

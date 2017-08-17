@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/feed_Toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/route_detail_ScrollView"
+        android:layout_below="@+id/feed_Toolbar"
+        android:layout_above="@+id/route_detail_Btn_1"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/route_Image_Container"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp">
+                <com.iguideu.custom_view.SquareImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/profile_image_test"/>
+                <com.iguideu.custom_view.SquareRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:layout_width="32.6dp"
+                        android:layout_height="30.4dp"
+                        android:background="@mipmap/favorite_icon"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="12.3dp"
+                        android:layout_marginRight="15.8dp"/>
+
+                </com.iguideu.custom_view.SquareRelativeLayout>
+            </FrameLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/route_detail_Container"
+                android:layout_below="@+id/route_Image_Container"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9.3dp"
+                    android:id="@+id/route_title_TextView"
+                    android:textSize="16.7sp"
+                    android:text="제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 "/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.7dp"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/route_title_TextView"
+                    android:id="@+id/rating_Container"
+                    >
+
+                    <ImageView
+                        android:layout_width="21.6dp"
+                        android:layout_height="20.6dp"
+                        android:layout_marginRight="17.1dp"
+                        android:background="@mipmap/star_solid"
+                        android:id="@+id/rating_star_0"
+                        />
+                    <ImageView
+                        android:layout_width="21.6dp"
+                        android:layout_height="20.6dp"
+                        android:layout_marginRight="17.1dp"
+                        android:background="@mipmap/star_solid"
+                        android:id="@+id/rating_star_1"
+                        />
+                    <ImageView
+                        android:layout_width="21.6dp"
+                        android:layout_height="20.6dp"
+                        android:layout_marginRight="17.1dp"
+                        android:background="@mipmap/star_solid"
+                        android:id="@+id/rating_star_2"
+                        />
+                    <ImageView
+                        android:layout_width="21.6dp"
+                        android:layout_height="20.6dp"
+                        android:layout_marginRight="17.1dp"
+                        android:background="@mipmap/star_blank"
+                        android:id="@+id/rating_star_3"
+                        />
+                    <ImageView
+                        android:layout_width="21.6dp"
+                        android:layout_height="20.6dp"
+                        android:background="@mipmap/star_blank"
+                        android:id="@+id/rating_star_4"
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/rating_Container"
+                    android:layout_marginTop="16.7dp"
+                    android:id="@+id/horizontal_view0"
+                    />
+
+                <com.iguideu.custom_view.RoundedImageView
+                    android:layout_width="55.5dp"
+                    android:layout_height="55.5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/horizontal_view0"
+                    android:id="@+id/route_profile_image"
+                    app:srcCompat="@mipmap/profile_image_test"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="12.3dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="닉네임"
+                    android:layout_marginTop="4.8dp"
+                    android:layout_below="@+id/route_profile_image"
+                    android:id="@+id/route_profile_name"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/route_profile_name"
+                    android:layout_marginTop="11.7dp"
+                    android:id="@+id/horizontal_view1"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="가이드 여부"
+                    android:layout_marginTop="12.3dp"
+                    android:layout_below="@+id/horizontal_view1"
+                    android:id="@+id/route_guide_possibility_Static"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="Yes"
+                    android:layout_marginTop="9dp"
+                    android:layout_below="@+id/route_guide_possibility_Static"
+                    android:id="@+id/route_guide_possibility_Text"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/route_guide_possibility_Text"
+                    android:layout_marginTop="16.7dp"
+                    android:id="@+id/horizontal_view2"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="여행시간"
+                    android:layout_marginTop="12.3dp"
+                    android:layout_below="@+id/horizontal_view2"
+                    android:id="@+id/route_guide_time_Static"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="2:00PM ~6:40PM"
+                    android:layout_marginTop="9dp"
+                    android:layout_below="@+id/route_guide_time_Static"
+                    android:id="@+id/route_guide_time_Text"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/route_guide_time_Text"
+                    android:layout_marginTop="16.7dp"
+                    android:id="@+id/horizontal_view3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="수용인원"
+                    android:layout_marginTop="12.3dp"
+                    android:layout_below="@+id/horizontal_view3"
+                    android:id="@+id/route_guide_guestNum_Static"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="11.7dp"
+                    android:text="4명"
+                    android:layout_marginTop="9dp"
+                    android:layout_below="@+id/route_guide_guestNum_Static"
+                    android:id="@+id/route_guide_guestNum_Text"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/route_guide_guestNum_Text"
+                    android:layout_marginTop="11.7dp"
+                    android:id="@+id/horizontal_view4"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/route_detail_map_Container"
+                android:layout_below="@+id/route_detail_Container"
+                android:layout_marginTop="12.3dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:layout_marginBottom="13.3dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/route_Map_Static"
+                    android:text="여행루트"/>
+
+                <!-- 맵 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="216.7dp"
+                    android:layout_below="@+id/route_Map_Static"
+                    android:layout_marginBottom="16.7dp"
+                    android:id="@+id/map_Container">
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="com.google.android.gms.maps.MapFragment"
+                        android:id="@+id/map"/>
+                    <ImageView
+                        android:id="@+id/marker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_close_light"/>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/route_detail_Content_Container"
+                android:layout_below="@+id/route_detail_map_Container"
+                android:layout_marginTop="12.3dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp">
+                <!-- 맵리스트 -->
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:id="@+id/route_Map_Image"
+                    android:layout_above="@+id/route_detail_Container_Includer"
+                    android:background="#000000"
+                    />
+
+                <include
+                    layout="@layout/route_detail_content"
+                    android:id="@+id/route_detail_Container_Includer"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/Color_All_Primary_Text"
+                    android:layout_below="@+id/route_detail_Container_Includer"
+                    android:layout_marginTop="11.7dp"
+                    android:id="@+id/horizontal_view5"
+                    />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/route_detail_Content_Container"
+                android:layout_width="match_parent"
+                android:layout_height="160.6dp"
+                android:layout_marginTop="12.3dp"
+                android:layout_marginBottom="16.3dp"
+                android:id="@+id/nother_route_Container">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="17.3dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/route_taged_feed_Static"
+                    android:text="태그된 피드"/>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_below="@+id/route_taged_feed_Static"
+                    android:layout_marginTop="13.3dp"
+                    android:layout_marginLeft="26.7dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.iguideu.custom_view.SquareImageView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:background="#000000"
+                            android:layout_marginRight="16dp"
+                            app:srcCompat="@mipmap/profile_image_test"/>
+                        <com.iguideu.custom_view.SquareImageView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:background="#000000"
+                            android:layout_marginRight="16dp"
+                            app:srcCompat="@mipmap/profile_image_test"/>
+                        <com.iguideu.custom_view.SquareImageView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:background="#000000"
+                            android:layout_marginRight="16dp"
+                            app:srcCompat="@mipmap/profile_image_test"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="51.8dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/IGU_Point_Color"
+        android:text="예약하기"
+        android:textSize="18.3sp"
+        android:textColor="@color/Color_White"
+        android:id="@+id/route_detail_Btn_1"/>
+</RelativeLayout>

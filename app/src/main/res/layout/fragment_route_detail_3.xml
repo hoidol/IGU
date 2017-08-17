@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Color_White"
+        android:layout_above="@+id/route_detail_Btn_3"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/route_detail_Cur_Time_TextView"
+            android:text="2017년 8월 31일"
+            android:textSize="18.3sp"
+            android:textColor="@color/Color_All_Primary_Text"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/route_detail_Cur_Time_TextView"
+            android:id="@+id/route_detail_Complete_Commnet_Text"
+            android:text="@string/complete_comment_kr"
+            android:textSize="18.3sp"
+            android:textColor="@color/Color_All_Primary_Text"
+            android:gravity="center_horizontal"/>
+
+    </RelativeLayout>
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="51.8dp"
+        android:id="@+id/route_detail_Btn_3"
+        android:layout_alignParentBottom="true"
+        android:background="@color/IGU_Point_Color"
+        android:text="확인"
+        android:textSize="18.3sp"
+        android:textColor="@color/Color_White"/>
+
+</RelativeLayout>

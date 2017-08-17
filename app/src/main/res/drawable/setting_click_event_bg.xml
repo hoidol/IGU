@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"
+        android:drawable="@color/IGU_Point_Color"
+        /> <!-- pressed -->
+    <item android:drawable="@color/Color_Init_Btn_Focus_text"/> <!-- default -->
+</selector>

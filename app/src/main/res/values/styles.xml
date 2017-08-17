@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/IGU_Point_Color</item>
+        <item name="colorPrimaryDark">@color/IGU_Point_Color</item>
+        <item name="colorAccent">#b0e6dc</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+
+    <style name="HomeFragment_TabLayout" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="tabPaddingStart">3dp</item>
+        <item name="tabPaddingEnd">3dp</item>
+
+    </style>
+</resources>

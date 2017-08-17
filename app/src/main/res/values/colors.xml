@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#d8d8d8</color>
+    <color name="IGU_Point_Color">#b0e6dc</color>
+    <color name="Color_Init_Btn_Focus_text">#ffffff</color>
+    <color name="Color_Init_Btn_Focus_none_Text">#b0b2b2</color>
+    <color name="IGU_Point2_Color">#fbbaba</color>
+
+    <!-- All Activity Primary Background Color-->
+    <color name="Color_Layout_Background">#f3f6f6</color>
+    <color name="Color_Login_Button_Background">#b0e6dc</color>
+    <color name="Color_All_Primary_Text">#b0b2b2</color>
+    <color name="Color_White">#ffffff</color>
+    <color name="Color_EditText_Line">#d8d8d8</color>
+    <color name="Backgorund_InVisible">#00000000</color>
+    <color name="Color_BTN_Background">#b0e6dc</color>
+
+    <!-- LoginActivity Text Color-->
+    <color name="Color_Login_EditText">#b0b2b2</color>
+    <color name="Color_Login_Find_Pass">#99b0b2b2</color>
+    <color name="Color_Login_Go_To_SignUp">#99b0b2b2</color>
+    <color name="Color_Login_Error">#f45d5d</color>
+
+    <!--LoginActivity Button Background Color-->
+    <color name="Color_Login_AutoLogin_CheckBox">#fbbaba</color>
+    <color name="Color_Login_Spinner">#b0e6dc</color>
+    <color name="Color_Login_Profile_Button_Background">#b0e6db</color>
+    <color name="Color_Black">#000000</color>
+    <color name="Color_Gray">#8c8c8c</color>
+    <color name="Color_Setting_Text">#626060</color>
+    <color name="Main_Tab_Background">#f3f6f6</color>
+    <color name="Route_Title_Color">#4a4a4a</color>
+
+    <!--RouteActivity Route PinPoint Color-->
+    <color name="Route_PinPoint_Color_1">#b0e6dc</color>
+    <color name="Route_PinPoint_Color_2">#b0cfe6</color>
+    <color name="Route_PinPoint_Color_3">#c6bafb</color>
+    <color name="Route_PinPoint_Color_4">#fbbaba</color>
+    <color name="Route_PinPoint_Color_5">#fbf5ba</color>
+
+    <!--Guide Route Add Activity-->
+    <color name="Color_Route_Add_Activity_Text">#000000</color>
+    <color name="Color_Route_Add_Image_Blank">#d8d8d8</color>
+    <color name="Color_Route_Add_Text_Point">#b0e6db</color>
+    <color name="Color_Route_Add_Text_Normal">#b0b2b2</color>
+
+</resources>

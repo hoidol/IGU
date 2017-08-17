@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- All Primary Values-->
+    <dimen name="All_Text_Size_Primary">11.7sp</dimen>
+
+    <!-- LoginActivity Text Size-->
+    <dimen name="LoginTextSize_Login_In_Button">18.3sp</dimen>
+
+    <!-- LoginProgress Text Size-->
+    <dimen name="LoginProgressTextSize_Main_Text">18.3sp</dimen>
+    <dimen name="LoginProgressTextSize_Next_In_Button">18.3sp</dimen>
+
+    <dimen name="Setting_Title">16.7sp</dimen>
+    <dimen name="history_Title">18.3sp</dimen>
+    <dimen name="history_data_Text">11.7sp</dimen>
+</resources>

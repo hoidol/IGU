@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/setting_Toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27.7dp"
+        android:layout_marginTop="48dp"
+        android:text="알람"
+        android:textSize="11.7sp"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:id="@+id/setting_alarm_title"
+        android:layout_below="@+id/setting_Toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65.7dp"
+        android:layout_marginTop="3.7dp"
+        android:layout_below="@+id/setting_alarm_title">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="27.7dp"
+            android:textSize="16.7dp"
+            android:textColor="@color/Color_All_Primary_Text"
+            android:gravity="center_vertical"
+            android:text="푸쉬 알람"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/setting_alarm_Switch"
+            android:gravity="center_vertical"
+            android:layout_marginRight="19.3dp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

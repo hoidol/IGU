@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/feed_Toolbar"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/feed_Toolbar"
+        android:id="@+id/route_Calendar_Container"
+        android:layout_above="@+id/route_detail_Btn_2"
+        android:background="@color/Color_White"
+        android:gravity="center_vertical">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/route_detail_CalendarView"
+            app:mcv_showOtherDates="all"
+            app:mcv_selectionColor="@color/IGU_Point_Color"
+            app:mcv_calendarMode="month"
+            app:mcv_titleAnimationOrientation="horizontal"
+            app:mcv_firstDayOfWeek="monday"
+
+            />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="51.8dp"
+        android:id="@+id/route_detail_Btn_2"
+        android:layout_alignParentBottom="true"
+        android:background="@color/IGU_Point_Color"
+        android:text="예약하기"
+        android:textSize="18.3sp"
+        android:textColor="@color/Color_White"/>
+
+</RelativeLayout>

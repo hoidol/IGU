@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+    <RelativeLayout
+        android:layout_width="280.3dp"
+        android:layout_height="228.7dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dialog_check_route_bg">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="71.7dp"
+            android:id="@+id/dialog_check_TextView"
+            android:textSize="18.3sp"
+            android:text="2017년 8월 31일로\n설정해드릴까요?"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="51.8dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/IGU_Point_Color"
+            android:text="@string/dialog_check_kr"
+            android:textSize="18.3dp"
+            android:textColor="@color/Color_White"
+            android:id="@+id/dialog_check_Btn"/>
+    </RelativeLayout>
+
+</RelativeLayout>

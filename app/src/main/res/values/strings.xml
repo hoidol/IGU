@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">IGuideU</string>
+    <string name="recommend_kr_word">추천</string>
+    <string name="route_kr_word">루트</string>
+    <string name="guide_kr_word">가이드</string>
+    <string name="toolbar_inf_kr_word">위치 날짜로 검색하기</string>
+    <string name="landmark_kr_word">명소</string>
+    <string name="favorite_route_kr">인기 루트</string>
+    <string name="favorite_guide_kr">인기 가이드</string>
+    <string name="setting_change_guide_kr">가이드 모드로 전환</string>
+    <string name="setting_change_tourist_kr">여행자 모드로 전환</string>
+    <string name="setting_language_kr">언어</string>
+    <string name="setting_envir_kr">환경설정</string>
+    <string name="setting_logout_kr">로그아웃</string>
+
+    <!--About Route_Detail -->
+    <string name="route_Detail_taged_route_kr">태그된 피드</string>
+
+    <!--Login2Activity Text-->
+    <string name="Login2_xml_email">이메일</string>
+    <string name="Login2_xml_pass">비밀번호</string>
+    <string name="Login2_xml_find_pass">비밀번호 찾기</string>
+    <string name="Login2_xml_Sign_Up">회원가입</string>
+    <string name="Login2_xml_Login_In_Btn">로 그 인</string>
+    <string name="Login2_xml_Auto_Login">자동 로그인</string>
+    <string name="Login2_xml_Error">입력하신 정보가 일치하지 않습니다.</string>
+
+    <!--InitSetting Text-->
+    <string name="InitSetting_KR">한 국 어</string>
+    <string name="InitSetting_EN">ENGLISH</string>
+    <string name="InitSetting_Check">확 인</string>
+
+    <!--LoginProgress Text-->
+    <string name="LoginProgress1_MainText">이름을 입력하세요.</string>
+    <string name="LoginProgress2_MainText">연락처를 입력하세요.</string>
+    <string name="LoginProgress3_MainText">이메일을 입력하세요.</string>
+    <string name="LoginProgress4_MainText">비밀번호를 입력하세요.</string>
+    <string name="LoginProgress5_MainText">프로필 사진을 입력하세요.</string>
+    <string name="LoginProgress6_MainText">W E L C O M E !</string>
+    <string name="LoginProgress_Next">다 음</string>
+    <string name="LoginProgress_Check">확 인</string>
+
+    <!--LoginProgress1 Text-->
+    <string name="LoginProgress1_First_Name">성</string>
+    <string name="LoginProgress1_Last_Name">이 름</string>
+
+    <!--LoginProgress3 Text-->
+    <string name="LoginProgress3_Email">이메일</string>
+
+    <!--LoginProgress4 Text-->
+    <string name="LoginProgress4_Pass">비밀번호</string>
+    <string name="LoginProgress4_Pass_Check">재입력</string>
+
+    <!-- About Inbox -->
+    <string name="inbox_title_kr">메시지함</string>
+
+    <!-- route detail 3 -->
+    <string name="complete_comment_kr">가이드님에게 가이드 요청을 하였습니다. \n 가이드님께서 연락하실거에요 :)</string>
+
+    <!-- Dialog check -->
+    <string name="dialog_check_comment_kr">로 \n 설정해드릴까요?"</string>
+    <string name="dialog_check_kr">확인</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- schedule -->
+    <string name="dialog_check_schedule_comment_kr">예약 비활성화할까요?</string>
+</resources>
