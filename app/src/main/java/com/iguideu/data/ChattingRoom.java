@@ -16,9 +16,7 @@ public class ChattingRoom {
     public String Created_Time_Chatting_Room;
     public List<ChattingData> Chatting_Datas;
 
-    public ChattingRoom(){
 
-    }
 
     public ChattingRoom(String ChattingRoom_Index,User Cur_User,User Other_User,String Created_Time_Chatting_Room,List<ChattingData> Chatting_Datas){
         this.ChattingRoom_Index = ChattingRoom_Index;
