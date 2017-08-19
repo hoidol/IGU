@@ -69,12 +69,7 @@ public class FavoriteFragment extends Fragment {
 
 
 
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL1_List,"최고의 여행지 등촌역","솰라쏼라","08 PM ~ 12PM",3,2,5,true));
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL2_List,"홍대 맛집 Tour","솰라쏼라","08 PM ~ 12PM",3,2,4,true));
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL3_List,"Do you want to be happy?","솰라쏼라","08 PM ~ 12PM",3,2,2,true));
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL1_List,"최고의 여행지 등촌역","솰라쏼라","08 PM ~ 12PM",3,2,0,true));
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL2_List,"홍대 맛집 Tour","솰라쏼라","08 PM ~ 12PM",3,2,1,true));
-        list.add(new Route_Data("qkrghdud0"+ AppData.getCurTime(),"qkrghdud0","박호영",null, AppData.getCurTime(),null,null,Route_Photo_URL3_List,"Do you want to be happy?","솰라쏼라","08 PM ~ 12PM",3,2,3,true));
+
 
         RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,list);
         recyclerView.setAdapter(adapter);
