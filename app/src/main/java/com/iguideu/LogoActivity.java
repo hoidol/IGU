@@ -41,7 +41,6 @@ public class LogoActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("AppData", MODE_PRIVATE);
         AppData.setPreferences(preferences);
 
-
         AppData.SetFirebase();
 
         AppData.mAuth.signOut();
@@ -86,6 +85,7 @@ public class LogoActivity extends AppCompatActivity {
 
     void AppCheckPermission_LOCATION(){
 
+
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -98,6 +98,7 @@ public class LogoActivity extends AppCompatActivity {
         }else{
             AppData.setApp_Permission_Location(true);
             AppCheckPermission_STORAGE();
+            Log.d(AppData.LOG_INDICATOR, "Test1");
         }
     }
     void AppCheckPermission_STORAGE(){
@@ -113,7 +114,7 @@ public class LogoActivity extends AppCompatActivity {
             }
         }else{
             AppData.setApp_Permission_Storage(true);
-
+            Log.d(AppData.LOG_INDICATOR, "Test2");
 
             CheckUserLogin();
         }
@@ -152,7 +153,7 @@ public class LogoActivity extends AppCompatActivity {
 
         if(mAuthStateListener != null)
             return;
-
+        Log.d(AppData.LOG_INDICATOR, "Test3");
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

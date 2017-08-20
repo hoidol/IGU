@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.iguideu.R;
+import com.iguideu.data.AppData;
 import com.iguideu.guide_mode.Write_Activity.RouteAddActivity;
 
 import java.io.IOException;
@@ -91,8 +92,8 @@ public class Giude_Route_Add extends AppCompatActivity {
                 no.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
                 guideAble=false;
                 break;
-
         }
+
     }
 
     public void InitAbleBtn()
