@@ -87,7 +87,6 @@ public class RecommendFragment extends Fragment {
 
 
 
-
         Recommend_RouteRecyclerAdapter adapter = new Recommend_RouteRecyclerAdapter(m_Context,list);
         route_RecyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, false);
