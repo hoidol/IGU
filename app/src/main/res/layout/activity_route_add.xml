@@ -5,5 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.iguideu.guide_mode.Write_Activity.RouteAddActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map_route_add"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/map_mark_0"
+            android:layout_centerInParent="true"
+            android:id="@+id/marker_resource"
+            />
+    </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52.7dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/Color_BTN_Background"
+            android:text="추 가"
+            android:textSize="18.3sp"
+            android:textColor="@color/Color_White"
+            android:id="@+id/btn_route_add_check"
+            android:onClick="RouteSaveClick"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/Color_BTN_Background"
+            android:text="완 료"
+            android:textSize="18.3sp"
+            android:textColor="@color/Color_White"
+            android:id="@+id/btn_route_add_saved"
+            android:onClick="RouteSaveClick"
+            />
+    </LinearLayout>
 </RelativeLayout>

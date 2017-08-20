@@ -44,6 +44,7 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
         Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.route_ImageView);
         holder.route_title_TextView.setText(data.Route_Main_Title);
+
         int cur_Rating = data.Route_Rating_Num;
 
 /*        List<String> list = AppData.getCur_User().getUser_Route_Favorites();

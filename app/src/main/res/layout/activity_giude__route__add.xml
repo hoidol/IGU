@@ -5,250 +5,247 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".guide_mode.Route_Add_Activity.Giude_Route_Add">
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="11.3dp"
-    android:paddingRight="11.3dp"
-    android:gravity="left">
-    <EditText
-        android:layout_width="344.7dp"
-        android:layout_height="wrap_content"
-        android:hint="제 목"
-        android:textSize="16.7sp"
-        android:id="@+id/edit_route_add_title"
-        android:textColorHint="@color/Color_All_Primary_Text"
-        android:inputType="text"
-        android:layout_marginTop="13.3dp"
-        android:layout_alignParentTop="true"
-        android:backgroundTint="@color/Backgorund_InVisible"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사진업로드 ( 최대 5장 )"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_image_upload"
-        android:layout_below="@id/edit_route_add_title"
-        android:layout_marginTop="23.3dp"
-        />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_route_add_image_button"
-        android:orientation="horizontal"
-        android:layout_below="@id/text_route_add_image_upload"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="1.3dp"
-        android:layout_marginTop="14.7dp">
-        <Button
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@mipmap/add_image"
-            android:id="@+id/btn_route_add_image_upload"
-            android:onClick="ImageUpLoadClick"
-            />
-        <Button
-            android:layout_width="49.6dp"
-            android:layout_height="49.6dp"
-            android:background="@color/Color_Route_Add_Image_Blank"
-            android:id="@+id/btn_route_add_image_1"
-            android:layout_marginLeft="7.7dp"
-            android:onClick="ImageUpLoadClick" />
-        <Button
-            android:layout_width="49.6dp"
-            android:layout_height="49.6dp"
-            android:background="@color/Color_Route_Add_Image_Blank"
-            android:id="@+id/btn_route_add_image_2"
-            android:layout_marginLeft="11.4dp"
-            android:onClick="ImageUpLoadClick" />
-        <Button
-            android:layout_width="49.6dp"
-            android:layout_height="49.6dp"
-            android:background="@color/Color_Route_Add_Image_Blank"
-            android:id="@+id/btn_route_add_image_3"
-            android:layout_marginLeft="11.4dp"
-            android:onClick="ImageUpLoadClick" />
-        <Button
-            android:layout_width="49.6dp"
-            android:layout_height="49.6dp"
-            android:background="@color/Color_Route_Add_Image_Blank"
-            android:id="@+id/btn_route_add_image_4"
-            android:layout_marginLeft="11.4dp"
-            android:onClick="ImageUpLoadClick" />
-        <Button
-            android:layout_width="49.6dp"
-            android:layout_height="49.6dp"
-            android:background="@color/Color_Route_Add_Image_Blank"
-            android:id="@+id/btn_route_add_image_5"
-            android:layout_marginLeft="11.4dp"
-            android:onClick="ImageUpLoadClick" />
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="가이드 여부"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_guide_able"
-        android:layout_below="@id/layout_route_add_image_button"
-        android:layout_marginTop="23.3dp"
-        />
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="11.3dp"
+            android:paddingRight="11.3dp"
+            android:id="@+id/main_relative"
+            android:gravity="left">
+
+            <EditText
+                android:layout_width="344.7dp"
+                android:layout_height="wrap_content"
+                android:hint="제 목"
+                android:textSize="16.7sp"
+                android:id="@+id/edit_route_add_title"
+                android:textColorHint="@color/Color_All_Primary_Text"
+                android:inputType="text"
+                android:layout_marginTop="13.3dp"
+                android:layout_alignParentTop="true"
+                android:backgroundTint="@color/Backgorund_InVisible"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진업로드 ( 최대 5장 )"
+                android:textColor="@color/Color_Route_Add_Activity_Text"
+                android:textSize="16.7sp"
+                android:id="@+id/text_route_add_image_upload"
+                android:layout_below="@id/edit_route_add_title"
+                android:layout_marginTop="23.3dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_route_add_image_button"
+                android:orientation="horizontal"
+                android:layout_below="@id/text_route_add_image_upload"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="14.7dp">
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@mipmap/add_image"
+                    android:id="@+id/btn_route_add_image_upload"
+                    android:onClick="ImageUpLoadClick"
+                    />
+                <Button
+                    android:layout_width="49.6dp"
+                    android:layout_height="49.6dp"
+                    android:background="@color/Color_Route_Add_Image_Blank"
+                    android:id="@+id/btn_route_add_image_1"
+                    android:layout_marginLeft="7.7dp"
+                    android:onClick="ImageUpLoadClick" />
+                <Button
+                    android:layout_width="49.6dp"
+                    android:layout_height="49.6dp"
+                    android:background="@color/Color_Route_Add_Image_Blank"
+                    android:id="@+id/btn_route_add_image_2"
+                    android:layout_marginLeft="11.4dp"
+                    android:onClick="ImageUpLoadClick" />
+                <Button
+                    android:layout_width="49.6dp"
+                    android:layout_height="49.6dp"
+                    android:background="@color/Color_Route_Add_Image_Blank"
+                    android:id="@+id/btn_route_add_image_3"
+                    android:layout_marginLeft="11.4dp"
+                    android:onClick="ImageUpLoadClick" />
+                <Button
+                    android:layout_width="49.6dp"
+                    android:layout_height="49.6dp"
+                    android:background="@color/Color_Route_Add_Image_Blank"
+                    android:id="@+id/btn_route_add_image_4"
+                    android:layout_marginLeft="11.4dp"
+                    android:onClick="ImageUpLoadClick" />
+                <Button
+                    android:layout_width="49.6dp"
+                    android:layout_height="49.6dp"
+                    android:background="@color/Color_Route_Add_Image_Blank"
+                    android:id="@+id/btn_route_add_image_5"
+                    android:layout_marginLeft="11.4dp"
+                    android:onClick="ImageUpLoadClick" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가이드 여부"
+                android:textColor="@color/Color_Route_Add_Activity_Text"
+                android:textSize="16.7sp"
+                android:id="@+id/text_route_add_guide_able"
+                android:layout_below="@id/layout_route_add_image_button"
+                android:layout_marginTop="23.3dp"
+                />
+            <Button
+                android:layout_width="41.3dp"
+                android:layout_height="24.7dp"
+                android:layout_marginLeft="20.3dp"
+                android:layout_marginTop="10.1dp"
+                android:textColor="@color/Color_Route_Add_Text_Point"
+                android:textSize="16.7sp"
+                android:text="Y e s"
+                android:background="@color/Backgorund_InVisible"
+                android:onClick="GuideAbleClick"
+                android:layout_below="@id/text_route_add_guide_able"
+                android:id="@+id/btn_route_add_able_yes"
+                />
+            <Button
+                android:layout_width="41.3dp"
+                android:layout_height="24.7dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="10.1dp"
+                android:textColor="@color/Color_Route_Add_Text_Normal"
+                android:textSize="16.7sp"
+                android:text="N O"
+                android:background="@color/Backgorund_InVisible"
+                android:onClick="GuideAbleClick"
+                android:layout_below="@id/text_route_add_guide_able"
+                android:id="@+id/btn_route_add_able_No"
+                android:layout_toRightOf="@id/btn_route_add_able_yes"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여행 시간"
+                android:textColor="@color/Color_Route_Add_Activity_Text"
+                android:textSize="16.7sp"
+                android:id="@+id/text_route_add_guide_time"
+                android:layout_below="@id/btn_route_add_able_yes"
+                android:layout_marginTop="23.3dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/text_route_add_guide_time"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20.3dp"
+                android:id="@+id/layout_route_add_time_spinner"
+                android:gravity="center_vertical"
+                >
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/Color_Route_Add_Text_Normal"
+                    android:id="@+id/spinner_route_add_am_pm"
+                    android:textAlignment="center"
+                    android:entries="@array/route_add_spinner_am_pm"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/Color_Route_Add_Text_Normal"
+                    android:id="@+id/spinner_route_add_start_time"
+                    android:entries="@array/route_add_spinner_time"
+                    android:layout_marginLeft="30.3dp"
+                    android:textAlignment="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="~"
+                    android:textSize="16.7sp"
+                    android:textColor="@color/Color_Route_Add_Text_Normal"
+                    android:layout_marginLeft="23dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/Color_Route_Add_Text_Normal"
+                    android:id="@+id/spinner_route_add_finish_time"
+                    android:entries="@array/route_add_spinner_time"
+                    android:layout_marginLeft="15.7dp"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수용 가능 인원"
+                android:textColor="@color/Color_Route_Add_Activity_Text"
+                android:textSize="16.7sp"
+                android:id="@+id/text_route_add_posible_people"
+                android:layout_below="@id/layout_route_add_time_spinner"
+                android:layout_marginTop="23.3dp"
+                />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Color_Route_Add_Text_Normal"
+                android:id="@+id/spinner_route_add_people"
+                android:entries="@array/route_add_people_count"
+                android:layout_marginLeft="20.3dp"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/text_route_add_posible_people"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여행루트 소개"
+                android:textColor="@color/Color_Route_Add_Activity_Text"
+                android:textSize="16.7sp"
+                android:id="@+id/text_route_add_route_info"
+                android:layout_below="@id/spinner_route_add_people"
+                android:layout_marginTop="23.3dp"
+                />
+            <Button
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:id="@+id/btn_route_add"
+                android:layout_below="@id/text_route_add_route_info"
+                android:layout_marginTop="42.7dp"
+                android:background="@mipmap/route_add_btn"
+                android:onClick="RouteAddClick"
+                android:layout_centerHorizontal="true"/>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_route_add_info"
+                android:layout_below="@id/btn_route_add"
+                android:layout_marginTop="14.7dp"
+                android:divider="@color/Color_Layout_Background">
+
+            </ListView>
+
+        </RelativeLayout>
+
+    </ScrollView>
     <Button
-    android:layout_width="41.3dp"
-    android:layout_height="24.7dp"
-    android:layout_marginLeft="20.3dp"
-    android:layout_marginTop="10.1dp"
-    android:textColor="@color/Color_Route_Add_Text_Point"
-    android:textSize="16.7sp"
-    android:text="Y e s"
-    android:background="@color/Backgorund_InVisible"
-    android:onClick="GuideAbleClick"
-    android:layout_below="@id/text_route_add_guide_able"
-        android:id="@+id/btn_route_add_able_yes"
-    />
-    <Button
-        android:layout_width="41.3dp"
-        android:layout_height="24.7dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="10.1dp"
-        android:textColor="@color/Color_Route_Add_Text_Normal"
-        android:textSize="16.7sp"
-        android:text="N O"
-        android:background="@color/Backgorund_InVisible"
-        android:onClick="GuideAbleClick"
-        android:layout_below="@id/text_route_add_guide_able"
-        android:id="@+id/btn_route_add_able_No"
-        android:layout_toRightOf="@id/btn_route_add_able_yes"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여행 시간"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_guide_time"
-        android:layout_below="@id/btn_route_add_able_yes"
-        android:layout_marginTop="23.3dp"
-        />
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/text_route_add_guide_time"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="20.3dp"
-        android:id="@+id/layout_route_add_time_spinner"
-        android:gravity="center_vertical"
-        >
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/Color_Route_Add_Text_Normal"
-            android:id="@+id/spinner_route_add_am_pm"
-            android:textAlignment="center"
-            android:entries="@array/route_add_spinner_am_pm"
-           />
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/Color_Route_Add_Text_Normal"
-            android:id="@+id/spinner_route_add_start_time"
-            android:entries="@array/route_add_spinner_time"
-            android:layout_marginLeft="30.3dp"
-            android:textAlignment="center"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="~"
-            android:textSize="16.7sp"
-            android:textColor="@color/Color_Route_Add_Text_Normal"
-            android:layout_marginLeft="23dp"/>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/Color_Route_Add_Text_Normal"
-            android:id="@+id/spinner_route_add_finish_time"
-            android:entries="@array/route_add_spinner_time"
-            android:layout_marginLeft="15.7dp"
-            android:textAlignment="center"
-            />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="수용 가능 인원"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_posible_people"
-        android:layout_below="@id/layout_route_add_time_spinner"
-        android:layout_marginTop="23.3dp"
+        android:layout_height="51.8dp"
+        android:background="@color/Color_BTN_Background"
+        android:text="저 장"
+        android:layout_alignParentBottom="true"
+        android:textColor="#ffffff"
+        android:textSize="18.3sp"
+        android:onClick="SaveRouteAddClick"
+        android:id="@+id/btn_route_add_save"
         />
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/Color_Route_Add_Text_Normal"
-        android:id="@+id/spinner_route_add_people"
-        android:entries="@array/route_add_people_count"
-        android:layout_marginLeft="20.3dp"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/text_route_add_posible_people"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여행 루트"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_route"
-        android:layout_below="@id/spinner_route_add_people"
-        android:layout_marginTop="23.3dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="장소 추가"
-        android:textColor="@color/Color_Route_Add_Text_Normal"
-        android:textSize="16.7sp"
-        android:id="@+id/textbtn_route_add"
-        android:layout_below="@id/text_route_add_route"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20.3dp"
-        android:onClick="AddRouteClick"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여행 루트 소개"
-        android:textColor="@color/Color_Route_Add_Activity_Text"
-        android:textSize="16.7sp"
-        android:id="@+id/text_route_add_route_info"
-        android:layout_below="@id/textbtn_route_add"
-        android:layout_marginTop="23.3dp"
-        />
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/list_route_add_info"
-        android:layout_below="@id/text_route_add_route_info"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="14.7dp"/>
-</RelativeLayout>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="51.8dp"
-    android:background="@color/Color_BTN_Background"
-    android:text="저 장"
-    android:layout_alignParentBottom="true"
-    android:textColor="#ffffff"
-    android:textSize="18.3sp"
-    android:onClick="SaveRouteAddClick"
-    android:id="@+id/btn_route_add_save"
-    />
 </RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="13.3dp">
+
+    <ImageView
+        android:layout_width="18.7dp"
+        android:layout_height="18.7dp"
+        android:src="@mipmap/marker_1"
+        android:layout_marginLeft="29.3dp"
+        android:id="@+id/custom_list_marker"
+        />
+    <EditText
+        android:layout_width="85.3dp"
+        android:layout_height="24.7dp"
+        android:hint="장소 이름"
+        android:textSize="16.7sp"
+        android:textColorHint="@color/colorAccent"
+        android:layout_toRightOf="@id/custom_list_marker"
+        android:layout_marginLeft="13.3dp"
+        android:inputType="text"
+        android:id="@+id/edit_route_add_place_name"
+        />
+    <Button
+        android:layout_width="71dp"
+        android:layout_height="36.8dp"
+        android:text="수 정"
+        android:textColor="@color/Color_White"
+        android:textSize="16.7sp"
+        android:background="@color/Color_BTN_Background"
+        android:layout_toRightOf="@id/edit_route_add_place_name"
+        android:id="@+id/btn_route_add_list_eidt"
+        android:visibility="invisible"
+        android:onClick="RouteListEditClick"
+        android:layout_marginLeft="72.3dp"/>
+    <Button
+        android:layout_width="71dp"
+        android:layout_height="36.8dp"
+        android:text="삭 제"
+        android:textColor="@color/Color_White"
+        android:textSize="16.7sp"
+        android:background="@color/Color_BTN_Background"
+        android:onClick="RouteListEditClick"
+        android:visibility="invisible"
+        android:layout_toRightOf="@id/btn_route_add_list_eidt"
+        android:id="@+id/btn_route_add_list_remove"/>
+    <EditText
+        android:layout_width="293dp"
+        android:layout_height="34.7dp"
+        android:inputType="text"
+        android:hint="상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="11.7sp"
+        android:layout_below="@id/edit_route_add_place_name"
+        android:id="@+id/edit_route_add_place_detail"
+        android:layout_marginTop="15.3dp"
+        android:layout_marginLeft="32dp"/>
+</RelativeLayout>

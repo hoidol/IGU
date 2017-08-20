@@ -66,6 +66,7 @@ public class RouteFragment extends Fragment {
         List<Route_Data> list = new ArrayList<>();
 
 
+
         RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,list);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
