@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.data.AppData;
+import com.iguideu.data.Feed_Data;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -27,33 +28,39 @@ public class FeedDetailActivity extends AppCompatActivity{
 
     Context m_Context;
 
-    String User_ID;
-    String User_Name;
-    String User_Profile_URL;
-    String Feed_Image_URL;
-    String Feed_Content;
+    Feed_Data Cur_Feed_Data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_detail);
-        setReceivedData();
-        setlayout_Data();
+
+        Cur_Feed_Data = setReceivedData();
+        setlayout_Data(Cur_Feed_Data);
 
     }
 
-    void setlayout_Data(){
+
+
+    Feed_Data setReceivedData(){
+        Intent receivedIntent = getIntent();
+
+        int position = receivedIntent.getIntExtra("Feed_Position",0);
+        return AppData.Feed_Data_List.get(position);
+    }
+
+    void setlayout_Data(Feed_Data feed_data){
+
         ImageView progile_ImageView = (ImageView)findViewById(R.id.user_Profile_ImageView);
-        Picasso.with(m_Context).load(User_Profile_URL).placeholder(R.mipmap.default_profile_icon).into(progile_ImageView);
+        Picasso.with(m_Context).load(feed_data.User_Profile_URL).placeholder(R.mipmap.default_profile_icon).into(progile_ImageView);
         TextView ID_TextView = (TextView)findViewById(R.id.user_Profile_Name);
-        ID_TextView.setText(User_Name);
+        ID_TextView.setText(feed_data.User_Name);
 
         ImageView feed_ImageView = (ImageView)findViewById(R.id.feed_ImageView);
-        Picasso.with(m_Context).load(Feed_Image_URL).into(feed_ImageView);
+        Picasso.with(m_Context).load(feed_data.Feed_Image_URL).into(feed_ImageView);
 
         TextView Content_TextView = (TextView)findViewById(R.id.feed_Content_Text);
-        Content_TextView.setText(Feed_Content);
-
+        Content_TextView.setText(feed_data.Feed_Contents);
 
         ImageView back_ImageView = (ImageView)findViewById(R.id.toolbar_back_ImagmeView);
         back_ImageView.setOnClickListener(new View.OnClickListener() {
@@ -62,16 +69,6 @@ public class FeedDetailActivity extends AppCompatActivity{
                 finish();
             }
         });
-    }
-    void setReceivedData(){
-
-        Intent receivedIntent = getIntent();
-
-        this.User_ID = receivedIntent.getStringExtra("User_ID");
-        this.User_Name = receivedIntent.getStringExtra("User_Name");
-        this.User_Profile_URL = receivedIntent.getStringExtra("User_Profile_URL");
-        this.Feed_Image_URL = receivedIntent.getStringExtra("Feed_Image_URL");
-        this.Feed_Content = receivedIntent.getStringExtra("Feed_Content");
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.iguideu.R;
+import com.iguideu.data.Route_Data;
 import com.iguideu.dialog.CheckRouteDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -30,6 +31,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
     Fragment Cur_Fragment;
+    Route_Data Cur_Route_Data;
 
     CalendarDay cur_Selected_Date;
 
@@ -44,9 +46,12 @@ public class Route_Detail_Fragment_2 extends Fragment{
         // Required empty public constructor
     }
 
-    public void setFragmentMgr(Route_Detail_Fragment_2 Cur_Fragment){
+    public void setFragmentData(Route_Detail_Fragment_2 Cur_Fragment, Route_Data route_data){
         this.Cur_Fragment = Cur_Fragment;
+        Cur_Route_Data = route_data;
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -61,8 +66,9 @@ public class Route_Detail_Fragment_2 extends Fragment{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment();
-
+                if(cur_Selected_Date != null){
+                    setNextFragment();
+                }
 
             }
         });
@@ -70,18 +76,9 @@ public class Route_Detail_Fragment_2 extends Fragment{
         setToolbar(view);
         setCalendarView(view);
 
-
-
     }
     void setCalendarView(View view){
         MaterialCalendarView calendarView = (MaterialCalendarView)view.findViewById(R.id.route_detail_CalendarView);
-        /*try {
-
-            calendarView.selectRange(CalendarDay.from(2017,7,1), CalendarDay.from(2017,7,15));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -118,6 +115,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
         toolbar_title_TextView.setText("날짜 설정하기");
 
         ImageButton toolbar_back_ImagmeView = (ImageButton)view.findViewById(R.id.toolbar_back_ImagmeView);
+
         toolbar_back_ImagmeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +125,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
             }
         });
     }
-    void setFragment(){
+    void setNextFragment(){
 
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();

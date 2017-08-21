@@ -2,6 +2,7 @@ package com.iguideu.tourist_mode.tourist_home.route;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.route_detail.Route_Detail_Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,14 +66,26 @@ public class RouteFragment extends Fragment {
     void setRecycler(View view){
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
 
-        List<Route_Data> list = new ArrayList<>();
+
+        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context);
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+
+                        Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
+                        intent.putExtra("Cur_Route_Position", position);
+                        getContext().startActivity(intent);
+
+                    }
+                })
+        );
 
 
-
-        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,list);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
+
 
     }
 }

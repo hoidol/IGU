@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.User;
 import com.squareup.picasso.Picasso;
 
@@ -20,12 +21,10 @@ import java.util.List;
 public class Recommend_GuideRecyclerAdapter extends  RecyclerView.Adapter<Recommend_GuideRecyclerAdapter.Recommend_Recycler_ViewHolder>  {
 
     Context mContext;
-    List<User> User_Data_List;
 
 
-    public Recommend_GuideRecyclerAdapter(Context context, List<User> list){
+    public Recommend_GuideRecyclerAdapter(Context context){
         this.mContext = context;
-        User_Data_List = list;
     }
 
     @Override
@@ -36,13 +35,15 @@ public class Recommend_GuideRecyclerAdapter extends  RecyclerView.Adapter<Recomm
 
     @Override
     public void onBindViewHolder(Recommend_Recycler_ViewHolder holder, int position) {
-        Picasso.with(mContext).load(User_Data_List.get(position).User_Profile_URL).into(holder.recommend_ImageView);
+        User data = AppData.Recommend_Guider_List.get(position);
+        Picasso.with(mContext).load(data.User_Profile_URL).into(holder.recommend_ImageView);
 
     }
 
     @Override
     public int getItemCount() {
-        return User_Data_List.size();
+        int List_size = AppData.Recommend_Guider_List.size();
+        return (List_size <= 10) ? List_size:10;
     }
 
     class Recommend_Recycler_ViewHolder extends RecyclerView.ViewHolder{

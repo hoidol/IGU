@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,27 +18,22 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
+import com.iguideu.data.Route_Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +52,10 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     private  GoogleMap googleMap;
     private MapFragment mapView;
     private boolean mapsSupported = true;
+    MapFragment mapFragment;
+    ScrollView scrollView;
+
+    private Route_Data Cur_Route_Data;
 
     @Override
     public void onAttach(Context context) {
@@ -98,14 +98,26 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         });
 
 
-        setToolbar(view);
-        setMap(view, savedInstanceState);
+
+
+        if(Cur_Route_Data != null){
+            setToolbar(view);
+            setImage(view);
+            setMap(view, savedInstanceState);
+        }
+
+
     }
 
+    void setImage(View view){
+        ViewPager viewPager = (ViewPager)view.findViewById(R.id.route_image_ViewPager);
+        Route_Image_PagerAdapter adapter = new Route_Image_PagerAdapter(getContext(),getActivity().getLayoutInflater(),Cur_Route_Data.Route_Photo_URLs);
+        viewPager.setAdapter(adapter);
+    }
 
-    MapFragment mapFragment;
-    ScrollView scrollView;
-
+    void SetRoute_Data(Route_Data route_data){
+        Cur_Route_Data = route_data;
+    }
 
 
     void setMap(View view,Bundle savedInstanceState){
@@ -204,7 +216,7 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
         Route_Detail_Fragment_2 fragment = new Route_Detail_Fragment_2();
-        fragment.setFragmentMgr(fragment);
+        fragment.setFragmentData(fragment,Cur_Route_Data);
         fragmentTransaction.add(R.id.route_detail_FrameLayout,fragment);
         fragmentTransaction.commit();
     }

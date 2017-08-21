@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.squareup.picasso.Picasso;
 
@@ -20,12 +21,10 @@ import java.util.List;
 public class Recommend_RouteRecyclerAdapter extends  RecyclerView.Adapter<Recommend_RouteRecyclerAdapter.Recommend_Recycler_ViewHolder>  {
 
     Context mContext;
-    List<Route_Data> Recommend_Data_List;
 
 
-    public Recommend_RouteRecyclerAdapter(Context context, List<Route_Data> list){
+    public Recommend_RouteRecyclerAdapter(Context context){
         this.mContext = context;
-        Recommend_Data_List = list;
     }
 
     @Override
@@ -37,13 +36,15 @@ public class Recommend_RouteRecyclerAdapter extends  RecyclerView.Adapter<Recomm
     @Override
     public void onBindViewHolder(Recommend_Recycler_ViewHolder holder, int position) {
 
-        Picasso.with(mContext).load(Recommend_Data_List.get(position).Route_Photo_URLs.get(0)).into(holder.recommend_ImageView);
+        Route_Data data = AppData.Recommend_Route_List.get(position);
+        Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.recommend_ImageView);
 
     }
 
     @Override
     public int getItemCount() {
-        return Recommend_Data_List.size();
+        int List_size = AppData.Recommend_Route_List.size();
+        return (List_size <= 10) ? List_size:10;
     }
 
     class Recommend_Recycler_ViewHolder extends RecyclerView.ViewHolder{

@@ -57,10 +57,14 @@ public class AppData extends AppCompatActivity {
     private static Boolean app_Permission_Storage;
 
     // 데이터 관련
-    List<Route_Data> Route_Data_List;
-    List<Feed_Data> Feed_Data_List;
-    List<User> Guider_Data_List;
+    public static List<Route_Data> Route_Data_List;
+    public static List<Feed_Data> Feed_Data_List;
+    public static List<User> Guider_Data_List;
     public static ArrayList<LatLng> PinPointData =new ArrayList<>();
+
+    public static List<Route_Data> Attraction_Route_List;
+    public static List<Route_Data> Recommend_Route_List;
+    public static List<User> Recommend_Guider_List;
 
     //Firebase 관련
     public static FirebaseAuth mAuth;
