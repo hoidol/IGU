@@ -71,7 +71,7 @@ public class RecommendFragment extends Fragment {
         List<Route_Data> list = new ArrayList<>();
 
 
-        Recommend_RouteRecyclerAdapter adapter = new Recommend_RouteRecyclerAdapter(m_Context,list);
+        Recommend_RouteRecyclerAdapter adapter = new Recommend_RouteRecyclerAdapter(m_Context);
         route_RecyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, false);
         route_RecyclerView.setLayoutManager(layoutManager);
@@ -82,7 +82,7 @@ public class RecommendFragment extends Fragment {
 
         List<User> list = new ArrayList<>();
 
-        Recommend_GuideRecyclerAdapter adapter = new Recommend_GuideRecyclerAdapter(m_Context,list);
+        Recommend_GuideRecyclerAdapter adapter = new Recommend_GuideRecyclerAdapter(m_Context);
         guide_RecyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, true);
         guide_RecyclerView.setLayoutManager(layoutManager);

@@ -136,7 +136,7 @@ public class LoginActivity2 extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        myRef.addListenerForSingleValueEvent(listener);
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
 
     void shakeUI(final TextView textView, final boolean result, final String commnet)

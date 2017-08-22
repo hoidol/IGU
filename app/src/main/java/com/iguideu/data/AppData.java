@@ -61,8 +61,9 @@ public class AppData extends AppCompatActivity {
     public static List<Route_Data> Route_Data_List;
     public static List<Feed_Data> Feed_Data_List;
     public static List<User> Guider_Data_List;
-    public static List<Request_Data> Request_Data;
+    public static List<Request_Data> Request_Data_List;
     public static ArrayList<LatLng> PinPointData =new ArrayList<>();
+    public static List<ChattingRoom> ChattingRoom_Data_List;
 
     public static List<Route_Data> Attraction_Route_List;
     public static List<Route_Data> Recommend_Route_List;
@@ -74,6 +75,7 @@ public class AppData extends AppCompatActivity {
     public static DatabaseReference myRef;
     public static FirebaseStorage storage;
     public static StorageReference storageRef;
+    public static FirebaseAuth.AuthStateListener mAuthStateListener;
 
 
     public static String getCurTime(){
