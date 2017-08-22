@@ -15,7 +15,7 @@ import static com.iguideu.data.AppData.LOG_INDICATOR;
 @IgnoreExtraProperties
 public class Feed_Data  {
 
-    public String Feed_Index; // User_ID_Key + Feed_Time_Of_Write
+    public String Feed_Index; // 요청 시간(Feed_Time_Of_Write) + 작성자 아이디
     public String User_ID;
     public String User_Name;
     public String User_Profile_URL;

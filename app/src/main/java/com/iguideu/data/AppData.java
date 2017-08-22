@@ -2,6 +2,7 @@ package com.iguideu.data;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -60,6 +61,7 @@ public class AppData extends AppCompatActivity {
     public static List<Route_Data> Route_Data_List;
     public static List<Feed_Data> Feed_Data_List;
     public static List<User> Guider_Data_List;
+    public static List<Request_Data> Request_Data;
     public static ArrayList<LatLng> PinPointData =new ArrayList<>();
 
     public static List<Route_Data> Attraction_Route_List;
@@ -197,5 +199,7 @@ public class AppData extends AppCompatActivity {
     public static void Test(){
         String s = "제발 되라";
     }
+
+
 
 }

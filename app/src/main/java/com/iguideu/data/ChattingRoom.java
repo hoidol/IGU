@@ -10,7 +10,7 @@ import java.util.List;
 @IgnoreExtraProperties
 public class ChattingRoom {
 
-    public String ChattingRoom_Index;
+    public String ChattingRoom_Index; // Created_Time_Chatting_Room + Cur_User.User_ID(ID)
     public User Cur_User;
     public User Other_User;
     public String Created_Time_Chatting_Room;

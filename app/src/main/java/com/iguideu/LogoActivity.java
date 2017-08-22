@@ -17,12 +17,16 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.iguideu.Login.LoginActivity;
+import com.iguideu.aboutSort.Guider_Descending;
+import com.iguideu.aboutSort.Route_Data_Descending;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
+import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -55,6 +59,11 @@ public class LogoActivity extends AppCompatActivity {
         setRouteData();
         setFeedData();
         setGuiderData();
+        setRequestData();
+
+        sort_Rating_Route();
+        sort_Rating_Guider();
+
 
         AppData.setApp_Permission_Storage(false);
         AppData.setApp_Permission_Location(false);
@@ -109,11 +118,40 @@ public class LogoActivity extends AppCompatActivity {
     }
 
     void setGuiderData(){
+
+        List<String> Favorites_Route_List = new ArrayList<>();
+        List<String> ChattingRooms_List = new ArrayList<>();
+        List<String> MyRoute_Route_List = new ArrayList<>();
+        List<String> Request_Data_List = new ArrayList<>();
         List<User> list = new ArrayList<>();
+        list.add(new User("qkrghdud@naver.com","pass","박호영","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrPark",4,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","고길동","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrKim",1,"자기 소개를 합니다. 자기 소개를 합니다자기 소개를 합니다쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","둘리","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"Nicon",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","또치","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"AAAMM",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","마이콜","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"QQWW",4,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","마징가","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"RRREE",3,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","짱짱맨","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MMPPII",2,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
         AppData.Guider_Data_List = list;
     }
 
-    void setSort_
+    void setRequestData(){
+        List<Request_Data> list = new ArrayList<>();
+
+        AppData.Request_Data = list;
+    }
+
+    void sort_Rating_Route(){
+        AppData.Recommend_Route_List = AppData.Route_Data_List;
+        Route_Data_Descending descending = new Route_Data_Descending();
+        Collections.sort(AppData.Recommend_Route_List,descending);
+    }
+
+    void sort_Rating_Guider(){
+        AppData.Recommend_Guider_List = AppData.Guider_Data_List;
+        Guider_Descending descending = new Guider_Descending();
+        Collections.sort(AppData.Recommend_Guider_List,descending);
+
+    }
 
     void delay_startActivity(final Intent intent){
         Handler myHandler=new Handler(){
@@ -243,3 +281,7 @@ public class LogoActivity extends AppCompatActivity {
 
 
 }
+
+
+
+
