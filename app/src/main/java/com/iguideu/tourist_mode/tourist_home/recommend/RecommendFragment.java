@@ -50,9 +50,9 @@ public class RecommendFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setAttractionRecycler(view);
-        setRouteRecycler(view);
-        setGuideRecycler(view);
+        //setAttractionRecycler(view);
+        //setRouteRecycler(view);
+        //setGuideRecycler(view);
     }
 
     void setAttractionRecycler(View view){

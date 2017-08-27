@@ -56,7 +56,8 @@ dependencies {
     //Realm
     compile 'io.realm:realm-android:0.87.4'
 
-
+    // Swipe Recycler
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.2'
 
 }
 apply plugin: 'com.google.gms.google-services'

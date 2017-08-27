@@ -12,7 +12,7 @@
         android:background="@mipmap/add"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
         android:layout_marginTop="39dp"
         android:layout_below="@+id/add_route_Btn"
         android:layout_width="match_parent"

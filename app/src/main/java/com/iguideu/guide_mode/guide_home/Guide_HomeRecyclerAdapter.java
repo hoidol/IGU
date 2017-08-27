@@ -32,7 +32,7 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
     Context mContext;
     List<Route_Data> Route_Data_List;
 
-    public Guide_HomeRecyclerAdapter(Context context, List<Route_Data> list, FragmentManager fm){
+    public Guide_HomeRecyclerAdapter(Context context, List<Route_Data> list){
         this.mContext = context;
         Route_Data_List = list;
 
@@ -62,13 +62,8 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
             }
         }*/
 
-        holder.route_Container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, Route_Detail_Activity.class);
-                mContext.startActivity(intent);
-            }
-        });
+
+
         setStar(holder, cur_Rating);
     }
 

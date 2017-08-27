@@ -55,7 +55,7 @@ public class LogoActivity extends AppCompatActivity {
 
 
         AppData.SetFirebase();
-        AppData.mAuth.signOut();
+       // AppData.mAuth.signOut();
         if(AppData.getApp_AutoLogin() == false){
 
         }
