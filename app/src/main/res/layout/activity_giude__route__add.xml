@@ -55,35 +55,35 @@
                     android:id="@+id/btn_route_add_image_upload"
                     android:onClick="ImageUpLoadClick"
                     />
-                <Button
+                <ImageView
                     android:layout_width="49.6dp"
                     android:layout_height="49.6dp"
                     android:background="@color/Color_Route_Add_Image_Blank"
                     android:id="@+id/btn_route_add_image_1"
                     android:layout_marginLeft="7.7dp"
                     android:onClick="ImageUpLoadClick" />
-                <Button
+                <ImageView
                     android:layout_width="49.6dp"
                     android:layout_height="49.6dp"
                     android:background="@color/Color_Route_Add_Image_Blank"
                     android:id="@+id/btn_route_add_image_2"
                     android:layout_marginLeft="11.4dp"
                     android:onClick="ImageUpLoadClick" />
-                <Button
+                <ImageView
                     android:layout_width="49.6dp"
                     android:layout_height="49.6dp"
                     android:background="@color/Color_Route_Add_Image_Blank"
                     android:id="@+id/btn_route_add_image_3"
                     android:layout_marginLeft="11.4dp"
                     android:onClick="ImageUpLoadClick" />
-                <Button
+                <ImageView
                     android:layout_width="49.6dp"
                     android:layout_height="49.6dp"
                     android:background="@color/Color_Route_Add_Image_Blank"
                     android:id="@+id/btn_route_add_image_4"
                     android:layout_marginLeft="11.4dp"
                     android:onClick="ImageUpLoadClick" />
-                <Button
+                <ImageView
                     android:layout_width="49.6dp"
                     android:layout_height="49.6dp"
                     android:background="@color/Color_Route_Add_Image_Blank"

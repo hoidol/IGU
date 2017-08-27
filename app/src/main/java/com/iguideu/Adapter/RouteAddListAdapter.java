@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.iguideu.R;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class RouteAddListAdapter extends BaseAdapter {
     private ArrayList<RouteAdapterItem> data = new ArrayList<>();
     public  EditText placename;
     public  EditText placedetail;
+    public ArrayList<EditText> DataDetailId=new ArrayList<>();
+    public ArrayList<EditText> DataNameId=new ArrayList<>();
     @Override
     public int getCount() {
         return data.size();
@@ -77,6 +80,9 @@ public class RouteAddListAdapter extends BaseAdapter {
                 marker.setImageResource(R.mipmap.marker_5);
                 break;
         }
+        AppData.ListEditId.add(placename);
+        DataDetailId.add(placedetail);
+
         return convertView;
     }
 
@@ -90,5 +96,4 @@ public class RouteAddListAdapter extends BaseAdapter {
 
         data.add(item);
     }
-
 }

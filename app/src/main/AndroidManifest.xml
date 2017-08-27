@@ -36,13 +36,13 @@
 
         <activity android:name=".Login.LoginActivity2"
             android:screenOrientation="portrait"/>
-        <activity android:name=".guide_mode.Route_Add_Activity.Giude_Route_Add"
+        <activity android:name=".LogoActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Login.LoginActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".LogoActivity"
+        <activity android:name=".guide_mode.Route_Add_Activity.Giude_Route_Add"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
