@@ -36,12 +36,6 @@
 
         <activity android:name=".Login.LoginActivity2"
             android:screenOrientation="portrait"/>
-        <activity android:name=".guide_mode.Route_Add_Activity.Giude_Route_Add"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".Login.LoginActivity"
-            android:screenOrientation="portrait"/>
-
         <activity android:name=".LogoActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -49,6 +43,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".guide_mode.Route_Add_Activity.Giude_Route_Add"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".route_detail.Route_Detail_Activity"

@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +69,7 @@ public class AppData extends AppCompatActivity {
     public static List<Route_Data> Attraction_Route_List;
     public static List<Route_Data> Recommend_Route_List;
     public static List<User> Recommend_Guider_List;
-
+    public static ArrayList<EditText> ListEditId=new ArrayList<>();
     //Firebase 관련
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase database;

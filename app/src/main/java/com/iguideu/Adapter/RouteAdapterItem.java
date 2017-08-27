@@ -1,6 +1,12 @@
 package com.iguideu.Adapter;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.iguideu.R;
 
 /**
  * Created by Yuchan on 2017-08-13.
@@ -10,7 +16,6 @@ public class RouteAdapterItem {
 
 
     int MarkerPosition ;
-
     String PlaceName , PlaceDetail;
 
     public void setMarkerPosition(int position)
@@ -37,5 +42,6 @@ public class RouteAdapterItem {
     {
         return PlaceDetail;
     }
+
 
 }

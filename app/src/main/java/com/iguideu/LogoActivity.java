@@ -100,12 +100,6 @@ public class LogoActivity extends AppCompatActivity {
 
         List<Route_Data> list = new ArrayList<>();
 
-        list.add(new Route_Data("201708120516ID","qkrghdud0@naver.com","호이돌0","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,false,"4PM ~ 6PM",1,6,null,5));
-        list.add(new Route_Data("201708120612ID","qkrghdud1@naver.com","호이돌1","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,true,"2PM ~ 6PM",5,2,null,1));
-        list.add(new Route_Data("201708130512ID","qkrghdud2@naver.com","호이돌2","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,true,"1PM ~ 6PM",4,4,null,2));
-        list.add(new Route_Data("201412110512ID","qkrghdud3@naver.com","호이돌3","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,true,"4AM ~ 1PM",2,2,null,4));
-        list.add(new Route_Data("201612110512ID","qkrghdud4@naver.com","호이돌4","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,false,"6AM ~ 6PM",2,0,null,3));
-        list.add(new Route_Data("201112110512ID","qkrghdud5@naver.com","호이돌5","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,true,"12AM ~ 6PM",3,0,null,2));
 
         AppData.Route_Data_List = list;
 
