@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.squareup.picasso.Picasso;
 
@@ -41,7 +42,8 @@ public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<R
 
     @Override
     public int getItemCount() {
-        return Recommend_Data_List.size();
+        int List_size = AppData.Attraction_Route_List.size();
+        return (List_size <= 10) ? List_size:10;
     }
 
     class Recommend_Recycler_ViewHolder extends RecyclerView.ViewHolder{

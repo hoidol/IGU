@@ -26,10 +26,10 @@
                 android:id="@+id/route_Image_Container"
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp">
-                <com.iguideu.custom_view.SquareImageView
+                <android.support.v4.view.ViewPager
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/profile_image_test"/>
+                    android:id="@+id/route_image_ViewPager"/>
                 <com.iguideu.custom_view.SquareRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

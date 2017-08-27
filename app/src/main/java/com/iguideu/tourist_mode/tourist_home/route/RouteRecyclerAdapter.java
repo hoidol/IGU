@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.route_detail.Route_Detail_Activity;
 import com.squareup.picasso.Picasso;
@@ -25,11 +26,9 @@ import java.util.List;
 public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAdapter.Route_Recycler_ViewHolder> {
 
     Context mContext;
-    List<Route_Data> Route_Data_List;
 
-    public RouteRecyclerAdapter(Context context, List<Route_Data> list){
+    public RouteRecyclerAdapter(Context context){
         this.mContext = context;
-        Route_Data_List = list;
     }
 
     @Override
@@ -40,10 +39,11 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
     @Override
     public void onBindViewHolder(Route_Recycler_ViewHolder holder, int position) {
-        Route_Data data = Route_Data_List.get(position);
+        Route_Data data = AppData.Route_Data_List.get(position);
 
         Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.route_ImageView);
-        holder.route_title_TextView.setText("test");
+        holder.route_title_TextView.setText(data.Route_Main_Title);
+
         int cur_Rating = data.Route_Rating_Num;
 
 /*        List<String> list = AppData.getCur_User().getUser_Route_Favorites();
@@ -56,13 +56,7 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
             }
         }*/
 
-        holder.route_Container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, Route_Detail_Activity.class);
-                mContext.startActivity(intent);
-            }
-        });
+
         setStar(holder, cur_Rating);
 
     }
@@ -79,7 +73,7 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
     @Override
     public int getItemCount() {
-        return Route_Data_List.size();
+        return AppData.Route_Data_List.size();
     }
 
     class Route_Recycler_ViewHolder extends RecyclerView.ViewHolder{

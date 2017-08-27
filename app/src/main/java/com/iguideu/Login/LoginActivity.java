@@ -2,6 +2,8 @@ package com.iguideu.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
         AppData.mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,13 +145,26 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                                     String user_key = AppData.StringReplace(acct.getEmail());
                                    long count = dataSnapshot.child("users").child(user_key).getChildrenCount();
+
                                     if(count == 0){
                                         //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
-
                                         User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,"",new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>());
 
                                         AppData.myRef.child("users").child(user_key).setValue(user_inf);
                                         AppData.setCur_User(user_inf);
+
+                                        //메인으로 이동
+                                        Handler myHandler=new Handler(){
+                                            public void handleMessage(Message msg) {
+                                                super.handleMessage(msg);
+                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        };
+                                        myHandler.sendEmptyMessage(0);
+
+
                                     }
                                 }
 
@@ -159,10 +175,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             AppData.myRef.addListenerForSingleValueEvent(listener);
                             AppData.setApp_AutoLogin(true);
 
-                            //메인으로 이동
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+
                         }else{
 
                         }

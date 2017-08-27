@@ -1,4 +1,4 @@
-package com.iguideu.guide_mode.guide_schedule;
+package com.iguideu.ClickListener;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

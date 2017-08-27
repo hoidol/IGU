@@ -17,7 +17,7 @@ import static com.iguideu.data.AppData.LOG_INDICATOR;
 @IgnoreExtraProperties
 public class Route_Data {
 
-    public String Route_Index;
+    public String Route_Index; // 요청 시간(Route_Time_Of_Write) + 작성자 아이디
     public String User_ID;
     public String User_Name;
     public String User_Profile_URL;

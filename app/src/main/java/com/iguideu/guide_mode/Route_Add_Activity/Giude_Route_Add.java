@@ -104,8 +104,8 @@ public class Giude_Route_Add extends AppCompatActivity {
                 no.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
                 guideAble=false;
                 break;
-
         }
+
     }
 
     public void InitAbleBtn()

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.iguideu.R;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
 import com.iguideu.feed_detail.FeedDetailActivity;
 import com.squareup.picasso.Picasso;
@@ -29,11 +30,9 @@ import static com.iguideu.data.AppData.LOG_INDICATOR;
 public class FeedRecyclerAdapter extends  RecyclerView.Adapter<FeedRecyclerAdapter.Feed_Recycler_ViewHolder>{
 
     Context mContext;
-    List<Feed_Data> feed_Data_List;
 
-    public FeedRecyclerAdapter(Context context, List<Feed_Data> list, FragmentManager fm){
+    public FeedRecyclerAdapter(Context context){
         this.mContext = context;
-        feed_Data_List = list;
 
     }
 
@@ -45,31 +44,15 @@ public class FeedRecyclerAdapter extends  RecyclerView.Adapter<FeedRecyclerAdapt
 
     @Override
     public void onBindViewHolder(Feed_Recycler_ViewHolder holder, int position) {
-        final Feed_Data feed_data = feed_Data_List.get(position);
+        final Feed_Data feed_data = AppData.Feed_Data_List.get(position);
 
         Picasso.with(mContext).load(feed_data.Feed_Image_URL).into(holder.Feed_thumbnail_ImageView);
 
-        holder.Feed_thumbnail_ImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(mContext, FeedDetailActivity.class);
-                // startCount 값을 넣어줍니다.
-
-                intent.putExtra("User_ID", feed_data.User_ID);
-                intent.putExtra("User_Name", feed_data.User_Name);
-                intent.putExtra("User_Profile_URL", feed_data.User_Profile_URL);
-                intent.putExtra("Feed_Image_URL", feed_data.Feed_Image_URL);
-                intent.putExtra("Feed_Content", feed_data.Feed_Contents);
-
-                mContext.startActivity(intent);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return feed_Data_List.size();
+        return AppData.Feed_Data_List.size();
     }
 
 

@@ -2,6 +2,7 @@ package com.iguideu.tourist_mode.tourist_home.route;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.route_detail.Route_Detail_Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,28 +66,26 @@ public class RouteFragment extends Fragment {
     void setRecycler(View view){
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
 
-        List<Route_Data> list = new ArrayList<>();
 
-        List<String> Route_Photo_URL1_List = new ArrayList<>();
-        Route_Photo_URL1_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        Route_Photo_URL1_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
+        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context);
 
-        List<String> Route_Photo_URL2_List = new ArrayList<>();
-        Route_Photo_URL2_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        Route_Photo_URL2_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
 
+                        Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
+                        intent.putExtra("Cur_Route_Position", position);
+                        getContext().startActivity(intent);
 
-        List<String> Route_Photo_URL3_List = new ArrayList<>();
-        Route_Photo_URL3_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-        Route_Photo_URL3_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
-
-
+                    }
+                })
+        );
 
 
-        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,list);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
+
 
     }
 }

@@ -54,24 +54,8 @@ public class FavoriteFragment extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.favorite_RecyclerView);
         List<Route_Data> list = new ArrayList<>();
 
-        List<String> Route_Photo_URL1_List = new ArrayList<>();
-        Route_Photo_URL1_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        Route_Photo_URL1_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
 
-        List<String> Route_Photo_URL2_List = new ArrayList<>();
-        Route_Photo_URL2_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        Route_Photo_URL2_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
-
-
-        List<String> Route_Photo_URL3_List = new ArrayList<>();
-        Route_Photo_URL3_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-        Route_Photo_URL3_List.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/1.jpg?alt=media&token=676b9807-fbb3-4ffb-b35b-05f9790517d3");
-
-
-
-
-
-        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,list);
+        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
