@@ -139,9 +139,6 @@ public class SignUpProgress5 extends Fragment {
                 break;
 
             case R.id.btn_pg5_next:
-
-
-
                 if(photoInfo != null){
                     uploadURL();
                 }else{
@@ -225,12 +222,9 @@ public class SignUpProgress5 extends Fragment {
             boolean muti = false;
             muti = false;
 
-           /* if (mRbSingleSelect.isChecked()) {
-
-            } if() { // 여러개 지정
+           /* // 여러개 지정
                 muti = true;
                 if (TextUtils.isEmpty(mEtMaxSize.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "请输入MaxSize", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 int maxSize = Integer.parseInt(mEtMaxSize.getText().toString());
@@ -250,7 +244,7 @@ public class SignUpProgress5 extends Fragment {
             functionConfigBuilder.setForceCrop(true);
             functionConfigBuilder.setForceCropEdit(true);
 
-            functionConfigBuilder.setEnableCamera(true);
+            functionConfigBuilder.setEnableCamera(false);
             functionConfigBuilder.setEnablePreview(true);
 
 
@@ -274,10 +268,13 @@ public class SignUpProgress5 extends Fragment {
             if (resultList != null) {
                 mPhotoList.addAll(resultList);
                 photoInfo = mPhotoList.get(0);
+
                 DisplayImageOptions options = new DisplayImageOptions.Builder()
                         .showImageOnFail(R.drawable.ic_gf_default_photo)
                         .showImageForEmptyUri(R.drawable.ic_gf_default_photo)
                         .showImageOnLoading(R.drawable.ic_gf_default_photo).build();
+
+
                 add_profile_Btn.setScaleType(ImageView.ScaleType.FIT_XY);
 
                 com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage("file:/" + photoInfo.getPhotoPath(), add_profile_Btn, options);
@@ -306,6 +303,7 @@ public class SignUpProgress5 extends Fragment {
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config.build());
     }
+
     private void initFresco() {
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(context)
                 .setBitmapsConfig(Bitmap.Config.ARGB_8888)
