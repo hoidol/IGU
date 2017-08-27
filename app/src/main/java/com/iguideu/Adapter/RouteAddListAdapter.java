@@ -22,7 +22,8 @@ import java.util.ArrayList;
 
 public class RouteAddListAdapter extends BaseAdapter {
     private ArrayList<RouteAdapterItem> data = new ArrayList<>();
-
+    public  EditText placename;
+    public  EditText placedetail;
     @Override
     public int getCount() {
         return data.size();
@@ -41,15 +42,16 @@ public class RouteAddListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Context context=parent.getContext();
 
+
         if(convertView==null)
         {
             LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.guide_route_add_list,parent,false);
         }
 
-        ImageView marker=(ImageView)convertView.findViewById(R.id.marker_resource);
-        EditText placename=(EditText)convertView.findViewById(R.id.edit_route_add_place_name);
-        EditText placedetail=(EditText)convertView.findViewById(R.id.edit_route_add_place_detail);
+        ImageView marker=(ImageView)convertView.findViewById(R.id.custom_list_marker);
+        placename=(EditText)convertView.findViewById(R.id.edit_route_add_place_name);
+        placedetail=(EditText)convertView.findViewById(R.id.edit_route_add_place_detail);
 
         RouteAdapterItem mitem=data.get(position);
 
@@ -58,7 +60,23 @@ public class RouteAddListAdapter extends BaseAdapter {
 
         placename.getBackground().setColorFilter(convertView.getResources().getColor(R.color.Color_Layout_Background), PorterDuff.Mode.SRC_IN);
         placedetail.getBackground().setColorFilter(convertView.getResources().getColor(R.color.Color_Layout_Background), PorterDuff.Mode.SRC_IN);
-
+        switch (position) {
+            case 0:
+                marker.setImageResource(R.mipmap.marker_1);
+                break;
+            case 1:
+                marker.setImageResource(R.mipmap.marker_2);
+                break;
+            case 2:
+                marker.setImageResource(R.mipmap.marker_3);
+                break;
+            case 3:
+                marker.setImageResource(R.mipmap.marker_4);
+                break;
+            case 4:
+                marker.setImageResource(R.mipmap.marker_5);
+                break;
+        }
         return convertView;
     }
 
@@ -72,4 +90,5 @@ public class RouteAddListAdapter extends BaseAdapter {
 
         data.add(item);
     }
+
 }

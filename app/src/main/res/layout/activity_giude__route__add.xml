@@ -222,7 +222,7 @@
                 android:layout_below="@id/text_route_add_route_info"
                 android:layout_marginTop="42.7dp"
                 android:background="@mipmap/route_add_btn"
-                android:onClick="RouteAddClick"
+                android:onClick="SaveRouteAddClick"
                 android:layout_centerHorizontal="true"/>
             <ListView
                 android:layout_width="match_parent"

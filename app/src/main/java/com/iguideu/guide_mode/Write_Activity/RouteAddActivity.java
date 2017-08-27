@@ -96,8 +96,8 @@ public class RouteAddActivity extends FragmentActivity implements OnMapReadyCall
                 {
                     Intent intent=new Intent();
                     setResult(0);
-
                 }
+                finish();
                 break;
         }
     }
