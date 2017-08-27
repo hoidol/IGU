@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,13 +26,21 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.iguideu.Adapter.RouteAddListAdapter;
 import com.iguideu.R;
 import com.iguideu.aboutBringGallery.PicassoImageLoader;
 import com.iguideu.aboutBringGallery.PicassoPauseOnScrollListener;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.data.Route_Pin_Data;
+import com.iguideu.data.User;
 import com.iguideu.guide_mode.Write_Activity.RouteAddActivity;
+import com.iguideu.signup.SignUpProgress6;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -39,6 +48,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,15 +79,22 @@ public class Giude_Route_Add extends AppCompatActivity {
     EditText RouteTitle;
     Spinner AM_PM,StartTiem,EndTime,Member;
     //Route_Data route=Route_Data();
-    String Title,AmPm,Start,End,member;
+    String Title,AmPm,Start,End;
+    String member;
+
     EditText[] PlaceName,PlaceDetail;
     ArrayList<String> textPlaceName,textPlaceDetail;
     private List<PhotoInfo> mPhotoList;
-    PhotoInfo[] photoInfo=new PhotoInfo[5];
+
     View view;
-    ImageView[] route_image=new ImageView[5];
+    List<ImageView> route_image=new ArrayList<>();
 
     boolean guideAble=true;
+
+
+
+    List<String> Route_Photo_URLs = new ArrayList<>();// Route Detail에서 보여줄 사진들의 URL
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,11 +110,11 @@ public class Giude_Route_Add extends AppCompatActivity {
         EndTime=(Spinner)findViewById(R.id.spinner_route_add_finish_time);
         Member=(Spinner)findViewById(R.id.spinner_route_add_people);
 
-        route_image[0]=(ImageView)findViewById(R.id.btn_route_add_image_1);
-        route_image[1]=(ImageView)findViewById(R.id.btn_route_add_image_2);
-        route_image[2]=(ImageView)findViewById(R.id.btn_route_add_image_3);
-        route_image[3] =(ImageView)findViewById(R.id.btn_route_add_image_4);
-        route_image[4]=(ImageView)findViewById(R.id.btn_route_add_image_5);
+        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_1));
+        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_2));
+        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_3));
+        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_4));
+        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_5));
 
         AM_PM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -262,14 +279,13 @@ public class Giude_Route_Add extends AppCompatActivity {
 
                 for(int i=0;i<mPhotoList.size();i++)
                 {
-                    photoInfo[i] = mPhotoList.get(i);
                     DisplayImageOptions options = new DisplayImageOptions.Builder()
                             .showImageOnFail(R.drawable.ic_gf_default_photo)
                             .showImageForEmptyUri(R.drawable.ic_gf_default_photo)
                             .showImageOnLoading(R.drawable.ic_gf_default_photo).build();
-                    route_image[i].setScaleType(ImageView.ScaleType.FIT_XY);
+                    route_image.get(i).setScaleType(ImageView.ScaleType.FIT_XY);
 
-                    com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage("file:/" + photoInfo[i].getPhotoPath(), route_image[i], options);
+                    com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage("file:/" + mPhotoList.get(i).getPhotoPath(), route_image.get(i), options);
 
                 }
 
@@ -311,8 +327,8 @@ public class Giude_Route_Add extends AppCompatActivity {
                 startActivityForResult(intent,RESULT_OK);
                 break;
             case R.id.btn_route_add_save:
-                Title=RouteTitle.getText().toString();
                 getData();
+                PostRouteData();
                 break;
         }
     }
@@ -417,4 +433,92 @@ public class Giude_Route_Add extends AppCompatActivity {
                 .build();
         Fresco.initialize(this, config);
     }
+    private void PostRouteData()
+    {
+
+
+
+        User user= AppData.getCur_User();
+        String Route_Index=AppData.getCurTime() + AppData.StringReplace(user.User_ID); // 요청 시간(Route_Time_Of_Write) + 작성자 아이디
+        uploadURL(Route_Index);
+
+    }
+    int i;
+    void uploadURL(final String Route_Index){
+
+        for(i = 0; i < mPhotoList.size(); i++){
+            StorageReference mountainsRef = AppData.storageRef.child("routes").child(Route_Index).child(Route_Index+mPhotoList.get(i).getPhotoPath() + ".jpg");
+            route_image.get(i).setDrawingCacheEnabled(true);
+            route_image.get(i).buildDrawingCache();
+            Bitmap bitmap = route_image.get(i).getDrawingCache();
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            UploadTask uploadTask = mountainsRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    Route_Photo_URLs.add(downloadUrl.toString());
+
+                    if(i == Route_Photo_URLs.size()){
+                        User user= AppData.getCur_User();
+
+                        String User_ID;
+                        String User_Name;
+                        String User_Profile_URL;
+
+                        User_ID= user.User_ID;
+                        User_Name=user.User_Name;
+                        User_Profile_URL=user.User_Profile_URL;
+
+
+                        int memParse;
+                        String Route_Time_Of_Write=AppData.getCurTime();
+
+                        String Route_Main_Title;
+
+                        Boolean Route_Possibility;
+                        String Route_Available_Time;
+                        String Route_Start_Time;
+                        String Route_End_Time;
+
+                        int Route_Tourist_Num;
+                        List<LatLng> Route_Locations; //목적지만 표시
+                        int Route_Rating_Num=0;
+
+                        memParse=Integer.parseInt(member);
+
+
+                        Route_Main_Title=RouteTitle.getText().toString();
+                        Route_Possibility=guideAble;
+                        Route_Available_Time=AmPm;
+                        Route_Start_Time=Start;
+                        Route_End_Time=End;
+                        Route_Tourist_Num=memParse;
+                        Route_Locations=AppData.PinPointData;
+
+                        Route_Data route_data=new Route_Data(Route_Index,User_ID,User_Name,User_Profile_URL
+                                ,Route_Time_Of_Write,Route_Main_Title,Route_Photo_URLs,Route_Possibility,Route_Available_Time,Route_Start_Time,Route_End_Time
+                                ,Route_Tourist_Num,Route_Locations,Route_Rating_Num);
+
+                        AppData.myRef.child("routes").child(Route_Index).setValue(route_data);
+
+                    }
+                }
+            });
+        }
+
+
+
+    }
+
 }

@@ -158,6 +158,7 @@ public class SignUpProgress5 extends Fragment {
     }
 
     void uploadURL(){
+
         String user_key = AppData.StringReplace(cur_User.User_ID);
         StorageReference mountainsRef = AppData.storageRef.child("users").child(user_key).child("profile_image.jpg");
         add_profile_Btn.setDrawingCacheEnabled(true);
