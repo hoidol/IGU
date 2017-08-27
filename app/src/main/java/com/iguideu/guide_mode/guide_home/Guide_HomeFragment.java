@@ -112,9 +112,6 @@ public class Guide_HomeFragment extends Fragment {
         image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
 
 
-        mDataList.add(new Route_Data("201708120516ID","qkrghdud0@naver.com","호이돌0","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,false,"4PM ~ 6PM",1,6,null,5));
-        mDataList.add(new Route_Data("201708120612ID","qkrghdud1@naver.com","호이돌1","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"타이틀입니다,",image_URL,true,"2PM ~ 6PM",5,2,null,1));
-
 
     }
     OnItemMoveListener mItemMoveListener = new OnItemMoveListener() {
