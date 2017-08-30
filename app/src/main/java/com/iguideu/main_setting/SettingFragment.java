@@ -52,6 +52,7 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         toGuide_Btn =(Button)view.findViewById(R.id.setting_toGuide);
         setTouchEvent(toGuide_Btn);
         fm = getFragmentManager();

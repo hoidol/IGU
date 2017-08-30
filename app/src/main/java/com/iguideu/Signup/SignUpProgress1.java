@@ -1,4 +1,4 @@
-package com.iguideu.signup;
+package com.iguideu.Signup;
 
 import android.app.Fragment;
 import android.app.FragmentManager;

@@ -23,7 +23,7 @@ import com.iguideu.MainActivity;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.User;
-import com.iguideu.signup.SignUpActivity;
+import com.iguideu.Signup.SignUpActivity;
 
 public class LoginActivity2 extends AppCompatActivity {
 

@@ -76,7 +76,7 @@
             android:name=".custom_view.CustomDialog"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".Signup.SignUpActivity"
             android:screenOrientation="portrait" />
     </application>
 

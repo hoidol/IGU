@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.ExifInterface;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,19 +34,15 @@ import com.iguideu.aboutBringGallery.PicassoImageLoader;
 import com.iguideu.aboutBringGallery.PicassoPauseOnScrollListener;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
-import com.iguideu.data.Route_Pin_Data;
 import com.iguideu.data.User;
 import com.iguideu.guide_mode.Write_Activity.RouteAddActivity;
-import com.iguideu.signup.SignUpProgress6;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,9 +53,6 @@ import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
-
-import static com.iguideu.R.id.btn_route_add_image_upload;
-import static com.iguideu.R.id.test;
 
 public class Giude_Route_Add extends AppCompatActivity {
 

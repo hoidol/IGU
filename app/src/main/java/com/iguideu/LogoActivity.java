@@ -55,9 +55,9 @@ public class LogoActivity extends AppCompatActivity {
 
 
         AppData.SetFirebase();
-       // AppData.mAuth.signOut();
-        if(AppData.getApp_AutoLogin() == false){
 
+        if(AppData.getApp_AutoLogin() == false){
+            //AppData.mAuth.signOut();
         }
 
         setRouteData();
@@ -65,24 +65,14 @@ public class LogoActivity extends AppCompatActivity {
         setGuiderData();
         setChattingRoom();
         setRequestData();
-
+        setTouristHistoryData();
+        setGuiderHistoryData();
         sort_Rating_Route();
         sort_Rating_Guider();
 
-        AppData.setApp_Permission_Location(false);
-        AppData.setApp_Permission_Storage(false);
+        AppData.setApp_Mode(0);
 
-        boolean Location_bool = AppData.getApp_Permission_Location();
-        if(!Location_bool){
-            AppCheckPermission_LOCATION();
-        }else{
-            boolean Store_bool = AppData.getApp_Permission_Storage();
-            if(!Store_bool){
-                AppCheckPermission_STORAGE();
-            }else{
-                CheckUserLogin();
-            }
-        }
+        AppCheckPermission_LOCATION();
 
 
         // LOCATION -> STORAGE -> LOGIN 순서로 검사함
@@ -201,15 +191,17 @@ public class LogoActivity extends AppCompatActivity {
         List<String> ChattingRooms_List = new ArrayList<>();
         List<String> MyRoute_Route_List = new ArrayList<>();
         List<String> Request_Data_List = new ArrayList<>();
+        List<String> Tourist_History_Data_List = new ArrayList<>();
+        List<String> Guider_History_Data_List = new ArrayList<>();
 
         List<User> list = new ArrayList<>();
-        list.add(new User("qkrghdud@naver.com","pass","박호영","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrPark",4,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","고길동","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrKim",1,"자기 소개를 합니다. 자기 소개를 합니다자기 소개를 합니다쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","둘리","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"Nicon",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","또치","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"AAAMM",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","마이콜","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"QQWW",4,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","마징가","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"RRREE",3,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","짱짱맨","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MMPPII",2,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","박호영","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrPark",4,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","고길동","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrKim",1,"자기 소개를 합니다. 자기 소개를 합니다자기 소개를 합니다쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","둘리","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"Nicon",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","또치","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"AAAMM",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","마이콜","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"QQWW",4,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","마징가","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"RRREE",3,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
+        list.add(new User("qkrghdud@naver.com","pass","짱짱맨","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MMPPII",2,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
         AppData.Guider_Data_List = list;
 
       /*  ValueEventListener listener = new ValueEventListener() {
@@ -226,8 +218,6 @@ public class LogoActivity extends AppCompatActivity {
                         list.add(cur_Snapshot.getValue(User.class));
                     }
                 }
-
-
                 AppData.Guider_Data_List = list;
             }
             @Override
@@ -272,6 +262,12 @@ public class LogoActivity extends AppCompatActivity {
     void setAttraction_Route(){
 
     }
+    void setTouristHistoryData(){
+
+    }
+    void setGuiderHistoryData(){
+
+    }
     void sort_Rating_Route(){
         AppData.Recommend_Route_List = AppData.Route_Data_List;
         Route_Data_Descending descending = new Route_Data_Descending();
@@ -309,10 +305,10 @@ public class LogoActivity extends AppCompatActivity {
                         AppData.MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
         }else{
-            AppData.setApp_Permission_Location(true);
             AppCheckPermission_STORAGE();
         }
     }
+
     void AppCheckPermission_STORAGE(){
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -325,7 +321,6 @@ public class LogoActivity extends AppCompatActivity {
                         AppData.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             }
         }else{
-            AppData.setApp_Permission_Storage(true);
             CheckUserLogin();
         }
     }
@@ -336,11 +331,8 @@ public class LogoActivity extends AppCompatActivity {
             case AppData.MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    AppData.setApp_Permission_Location(true);
-                    AppCheckPermission_STORAGE();
+                    AppCheckPermission_STORAGE();// 수락 했을 때
                 }else{
-                    AppData.setApp_Permission_Location(false);
                     AppCheckPermission_STORAGE();
                 }
                 break;
@@ -348,10 +340,8 @@ public class LogoActivity extends AppCompatActivity {
             case AppData.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0  && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    AppData.setApp_Permission_Storage(true);
-                    CheckUserLogin();
+                    CheckUserLogin(); // 수락 했을 때
                 }else{
-                    AppData.setApp_Permission_Storage(false);
                     CheckUserLogin();
                 }
                 break;

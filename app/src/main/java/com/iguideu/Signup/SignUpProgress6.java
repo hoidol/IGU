@@ -1,26 +1,18 @@
-package com.iguideu.signup;
+package com.iguideu.Signup;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.iguideu.MainActivity;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.User;
@@ -79,7 +71,7 @@ public class SignUpProgress6 extends Fragment {
                 //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
 
                 String user_key = AppData.StringReplace(cur_User.User_ID);
-                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,null,null,null,null,null);
+                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,null,null,null,null,null,null,null);
 
                 AppData.myRef.child("users").child(user_key).setValue(user_inf);
                 AppData.setCur_User(user_inf);
