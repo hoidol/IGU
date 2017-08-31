@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/rating_route_Toolbar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95.3dp"
+        android:layout_below="@id/rating_route_Toolbar"
+        android:gravity="center"
+        android:id="@+id/route_rating_comment"
+        android:text="여행어떠셨나요?"
+        android:textSize="18.3sp"/>
+
+    <LinearLayout
+        android:id="@+id/rating_route_Container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27.7dp"
+        android:layout_marginBottom="48.4dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/route_rating_comment">
+
+        <ImageView
+            android:id="@+id/rating_route_star_0"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_route_star_1"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_route_star_2"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_route_star_3"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_route_star_4"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95.3dp"
+        android:layout_below="@id/rating_route_Container"
+        android:gravity="center"
+        android:id="@+id/guider_rating_comment"
+        android:text="가이드님은 어떠셨나요?"
+        android:textSize="18.3sp"/>
+
+    <LinearLayout
+        android:id="@+id/rating_guider_Container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27.7dp"
+        android:layout_marginBottom="48.4dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/guider_rating_comment">
+        <ImageView
+            android:id="@+id/rating_guider_star_0"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_guider_star_1"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_guider_star_2"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_guider_star_3"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+
+        <ImageView
+            android:id="@+id/rating_guider_star_4"
+            android:layout_width="12.3dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="9.7dp"
+            android:background="@mipmap/star_solid" />
+    </LinearLayout>
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="51.8dp"
+        android:background="@color/IGU_Point_Color"
+        android:text="완료"
+        android:textSize="18.3sp"
+        android:textColor="@color/Color_White"
+        android:textStyle="bold"
+        android:letterSpacing="0.2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

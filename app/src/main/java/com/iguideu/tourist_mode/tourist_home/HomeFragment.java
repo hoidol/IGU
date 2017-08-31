@@ -5,17 +5,22 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.data.AppData;
+import com.iguideu.search.SearchActivity;
 import com.iguideu.tourist_mode.tourist_home.guide.GuideFragment;
 import com.iguideu.tourist_mode.tourist_home.recommend.RecommendFragment;
 import com.iguideu.tourist_mode.tourist_home.route.RouteFragment;
@@ -34,6 +39,13 @@ public class HomeFragment extends Fragment {
     Context m_Context;
 
     TextView[] tab_TextView = new TextView[3];
+
+    AppBarLayout home_AppBarLayout;
+    RelativeLayout init_route_search_Container;
+    RelativeLayout exten_route_search_Container;
+    RelativeLayout search_keyword_Container;
+    RelativeLayout search_date_Container;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -60,10 +72,13 @@ public class HomeFragment extends Fragment {
         fragmentTransaction.commit();
 
         setTabLayout(view);
+        setSearchContainer(view);
+
 
 
         Log.d(AppData.LOG_INDICATOR, AppData.getCurTime());
     }
+
 
     void setTabLayout(View view){
 
@@ -130,6 +145,60 @@ public class HomeFragment extends Fragment {
 
     }
 
+    void setSearchContainer(final View view){
+
+        home_AppBarLayout = (AppBarLayout) view.findViewById(R.id.home_AppBarLayout);
+        init_route_search_Container = (RelativeLayout)view.findViewById(R.id.init_route_search_Container);
+        exten_route_search_Container = (RelativeLayout)view.findViewById(R.id.exten_route_search_Container);
+
+        search_keyword_Container = (RelativeLayout) view.findViewById(R.id.search_keyword_Container);
+        search_date_Container = (RelativeLayout) view.findViewById(R.id.search_date_Container);
+
+        home_AppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset == 0)
+                {
+                    // Collapsed
+                    // 열려있을 때 (내렸을 때) - 처음 상태임
+                }
+                else
+                {
+                    // Not collapsed
+                    //닫혀 있을 떄 위로 올렷을 때
+                    init_route_search_Container.setVisibility(View.VISIBLE);
+                    exten_route_search_Container.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        init_route_search_Container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                init_route_search_Container.setVisibility(View.GONE);
+                exten_route_search_Container.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        search_keyword_Container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra("search_index", 0);
+                startActivity(intent);
+            }
+        });
+
+        search_date_Container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra("search_index", 1);
+                startActivity(intent);
+            }
+        });
+    }
 
     void setTab_TextColor(int position){
         for(int i =0;i<tab_TextView.length;i++){

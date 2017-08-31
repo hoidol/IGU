@@ -61,9 +61,6 @@
             android:name=".Route_Write_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUpActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".feed_detail.FeedDetailActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -76,7 +73,10 @@
             android:name=".custom_view.CustomDialog"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Signup.SignUpActivity"
+        android:name=".Signup.SignUpActivity"
+        android:screenOrientation="portrait" />
+        <activity
+            android:name=".search.SearchActivity"
             android:screenOrientation="portrait" />
     </application>
 
