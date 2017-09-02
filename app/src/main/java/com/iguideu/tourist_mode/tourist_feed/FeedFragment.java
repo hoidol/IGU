@@ -7,17 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
-import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
-import com.iguideu.feed_detail.FeedDetailActivity;
-import com.iguideu.route_detail.Route_Detail_Activity;
+import com.iguideu.Feed_Detail.FeedDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;

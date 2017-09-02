@@ -46,4 +46,6 @@
     <color name="Color_Route_Add_Text_Point">#b0e6db</color>
     <color name="Color_Route_Add_Text_Normal">#b0b2b2</color>
 
+    <color name="divider_color">#FFB7B2B2</color>
+
 </resources>

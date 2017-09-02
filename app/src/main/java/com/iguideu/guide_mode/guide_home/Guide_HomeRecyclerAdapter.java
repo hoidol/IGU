@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
@@ -45,7 +47,7 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
     }
 
     @Override
-    public void onBindViewHolder(Guide_Home_Recycler_ViewHolder holder, int position) {
+    public void onBindViewHolder(Guide_Home_Recycler_ViewHolder holder, final int position) {
         Route_Data data = Route_Data_List.get(position);
 
         Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.profile_ImageView);
@@ -61,8 +63,13 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
                 holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.favorite_icon));
             }
         }*/
-
-
+        holder.route_delete_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Data_List.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
         setStar(holder, cur_Rating);
     }
@@ -87,6 +94,7 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
         public RoundedImageView profile_ImageView;
         public TextView route_title_TextView;
         public ImageView[] rating_star_ImageView = new ImageView[5];
+        public Button route_delete_Btn;
 
 
         public Guide_Home_Recycler_ViewHolder(View itemView) {
@@ -99,6 +107,8 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
             rating_star_ImageView[2] = (ImageView)itemView.findViewById(R.id.rating_star_2);
             rating_star_ImageView[3] = (ImageView)itemView.findViewById(R.id.rating_star_3);
             rating_star_ImageView[4] = (ImageView)itemView.findViewById(R.id.rating_star_4);
+
+            route_delete_Btn = (Button)itemView.findViewById(R.id.route_delete_Btn);
         }
     }
 }

@@ -61,7 +61,7 @@
             android:name=".Route_Write_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feed_detail.FeedDetailActivity"
+            android:name=".Feed_Detail.FeedDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
@@ -77,6 +77,9 @@
         android:screenOrientation="portrait" />
         <activity
             android:name=".search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Feed_Write.Feed_Write_Activity"
             android:screenOrientation="portrait" />
     </application>
 
