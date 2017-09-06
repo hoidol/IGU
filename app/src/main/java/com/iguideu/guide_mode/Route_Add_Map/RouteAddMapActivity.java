@@ -1,9 +1,7 @@
-package com.iguideu.guide_mode.Write_Activity;
+package com.iguideu.guide_mode.Route_Add_Map;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +18,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
-import com.iguideu.data.Route_Data;
 import com.iguideu.data.Route_Pin_Data;
 
-import java.util.ArrayList;
-
-public class RouteAddActivity extends FragmentActivity implements OnMapReadyCallback {
+public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
     GoogleMap gmap;
@@ -44,7 +39,7 @@ public class RouteAddActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_add);
+        setContentView(R.layout.activity_route_add_map);
 
 
         SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map_route_add);
@@ -71,30 +66,34 @@ public class RouteAddActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 
-
     public void RouteSaveClick(View v)
     {
         switch(v.getId())
         {
             case R.id.btn_route_add_check:
                 LatLng point=new LatLng(locationLatLng.latitude,locationLatLng.longitude);
-                AppData.PinPointData.add(point);
+
+                AppData.PinPointData.add(new Route_Pin_Data("키워드","설명 작성해주세요.",point));
                 MarkerOptions options=new MarkerOptions();
                 options.position(point).icon(getMarker(MarkerCount));
+
                 gmap.addMarker(options);
 
                 MarkerCount++;
                 setMarkerResource(MarkerCount);
+
                 if(MarkerCount==5)
                 {
                     RouteAddBtn.setBackgroundResource(R.color.Color_Login_Error);
                     RouteAddBtn.setClickable(false);
                 }
+
                 break;
             case R.id.btn_route_add_saved:
                 if(checkDataEnable)
                 {
                     Intent intent=new Intent();
+
                     setResult(0);
                 }
                 finish();

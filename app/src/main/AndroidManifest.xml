@@ -34,9 +34,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".Login.LoginActivity2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LogoActivity"
+        <activity
+            android:name=".Login.LoginActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LogoActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,13 +46,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.LoginActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".guide_mode.Route_Add_Activity.Giude_Route_Add"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".guide_mode.Route_Add_Activity.Guide_Route_Add_Fragment"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".route_detail.Route_Detail_Activity"
             android:screenOrientation="portrait" />
@@ -68,9 +69,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".guide_mode.Write_Activity.RouteAddActivity"
+            android:name=".guide_mode.Route_Add_Map.RouteAddMapActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".custom_view.CustomDialog"
@@ -78,6 +79,7 @@
         <activity
             android:name=".signup.SignUpActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".guide_mode.Route_Add_Activity.Guide_Route_Add_Activity"></activity>
     </application>
 
 </manifest>

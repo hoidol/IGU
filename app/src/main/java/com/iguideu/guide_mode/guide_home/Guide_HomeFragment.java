@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,10 +14,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.iguideu.R;
-import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
-import com.iguideu.guide_mode.Route_Add_Activity.Giude_Route_Add;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
+import com.iguideu.guide_mode.Route_Add_Activity.Guide_Route_Add_Activity;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
@@ -66,7 +63,7 @@ public class Guide_HomeFragment extends Fragment {
         add_route_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Giude_Route_Add.class);
+                Intent intent = new Intent(getContext(), Guide_Route_Add_Activity.class);
                 startActivity(intent);
             }
         });

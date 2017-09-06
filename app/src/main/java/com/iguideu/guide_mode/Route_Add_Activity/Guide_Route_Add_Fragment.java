@@ -1,36 +1,36 @@
 package com.iguideu.guide_mode.Route_Add_Activity;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.ExifInterface;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.iguideu.Adapter.RouteAdapterItem;
 import com.iguideu.Adapter.RouteAddListAdapter;
 import com.iguideu.R;
 import com.iguideu.aboutBringGallery.PicassoImageLoader;
@@ -39,17 +39,13 @@ import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.Route_Pin_Data;
 import com.iguideu.data.User;
-import com.iguideu.guide_mode.Write_Activity.RouteAddActivity;
-import com.iguideu.signup.SignUpProgress6;
+import com.iguideu.guide_mode.Route_Add_Map.RouteAddMapActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,66 +56,128 @@ import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import cn.finalteam.toolsfinal.io.stream.ByteArrayOutputStream;
 
-import static com.iguideu.R.id.btn_route_add_image_upload;
-import static com.iguideu.R.id.test;
+public class Guide_Route_Add_Fragment extends Fragment  {
 
-public class Giude_Route_Add extends AppCompatActivity {
-
+    Context mContext;
 
     public static final int RESULT_OK=0;
     public static final int RESULT_FAIL=1;
 
-    Button yes;
-    Button no;
-    String result;
+    Button b_Yes,b_No,b_Add,b_Save,b_AddPicture;
+    String s_Result;
 
-    ListView list;
+    RecyclerView recyclerView;
     RouteAddListAdapter listAdapter;
-    EditText RouteTitle;
-    Spinner AM_PM,StartTiem,EndTime,Member;
-    //Route_Data route=Route_Data();
-    String Title,AmPm,Start,End;
-    String member;
+    EditText e_RouteTitle;
+    Spinner AMPM,StartTime,EndTime,Member;
+    String s_Title, s_AmPm,s_StartTime,s_EndTime,s_Member;
 
-    EditText[] PlaceName,PlaceDetail;
-    ArrayList<String> textPlaceName,textPlaceDetail;
     private List<PhotoInfo> mPhotoList;
-
-    View view;
+    View v;
     List<ImageView> route_image=new ArrayList<>();
+    boolean Guideable=true;
 
-    boolean guideAble=true;
+    List<String> Route_Photo_URLs=new ArrayList<>();
+    List<Route_Pin_Data> Pin_Data_List=new ArrayList<>();
+    ArrayList<RouteAdapterItem> routeAdapterItems = new ArrayList<>();
+    ArrayList<RouteAddListAdapter.ViewHolder> RouteView=new ArrayList<>();
 
-
-
-    List<String> Route_Photo_URLs = new ArrayList<>();// Route Detail에서 보여줄 사진들의 URL
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_giude__route__add);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext=context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_guide_route_add,container,false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         SetAboutGellay();
-        yes=(Button)findViewById(R.id.btn_route_add_able_yes);
-        no=(Button)findViewById(R.id.btn_route_add_able_No);
-        list=(ListView)findViewById(R.id.list_route_add_info);
-        listAdapter=new RouteAddListAdapter();
-        RouteTitle=(EditText)findViewById(R.id.edit_route_add_title);
-        AM_PM=(Spinner)findViewById(R.id.spinner_route_add_am_pm);
-        StartTiem=(Spinner)findViewById(R.id.spinner_route_add_start_time);
-        EndTime=(Spinner)findViewById(R.id.spinner_route_add_finish_time);
-        Member=(Spinner)findViewById(R.id.spinner_route_add_people);
+        b_Yes=(Button)view.findViewById(R.id.btn_route_add_able_yes);
+        b_Yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InitAbleBtn();
+                b_Yes.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
+                Guideable=true;
 
-        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_1));
-        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_2));
-        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_3));
-        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_4));
-        route_image.add((ImageView)findViewById(R.id.btn_route_add_image_5));
+            }
+        });
 
-        AM_PM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        b_No=(Button)view.findViewById(R.id.btn_route_add_able_No);
+        b_No.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InitAbleBtn();
+                b_No.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
+                Guideable=false;
+            }
+        });
+        b_AddPicture=(Button)view.findViewById(R.id.btn_route_add_image_upload);
+
+        recyclerView=(RecyclerView)view.findViewById(R.id.list_route_add_info);
+        listAdapter = new RouteAddListAdapter(mContext.getApplicationContext());
+        recyclerView.setAdapter(listAdapter);
+
+        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
+
+
+        e_RouteTitle=(EditText)view.findViewById(R.id.edit_route_add_title);
+        AMPM=(Spinner)view.findViewById(R.id.spinner_route_add_am_pm);
+        StartTime=(Spinner)view.findViewById(R.id.spinner_route_add_start_time);
+        EndTime=(Spinner)view.findViewById(R.id.spinner_route_add_finish_time);
+        Member=(Spinner)view.findViewById(R.id.spinner_route_add_people);
+        route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_1));
+        route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_2));
+        route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_3));
+        route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_4));
+        route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_5));
+        b_Add=(Button)view.findViewById(R.id.btn_route_add);
+        b_Save=(Button)view.findViewById(R.id.btn_route_add_save);
+
+        b_Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext,RouteAddMapActivity.class);
+                startActivityForResult(intent,RESULT_OK);
+            }
+        });
+
+        b_AddPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGallery();
+            }
+        });
+        b_Save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RouteView=listAdapter.getViewHolder();
+                s_Title=e_RouteTitle.getText().toString();
+
+
+
+                  for(int i =0;i<AppData.PinPointData.size();i++){
+                      AppData.PinPointData.get(i).Route_Title = RouteView.get(i).Route_Title.getText().toString();
+                      AppData.PinPointData.get(i).Route_Content = RouteView.get(i).Route_Detail.getText().toString();
+                }
+        PostRouteData();
+
+            }
+        });
+
+        AMPM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                 AmPm=(String)AM_PM.getAdapter().getItem(AM_PM.getSelectedItemPosition());
+                s_AmPm=(String)AMPM.getAdapter().getItem(AMPM.getSelectedItemPosition());
             }
 
             @Override
@@ -127,10 +185,10 @@ public class Giude_Route_Add extends AppCompatActivity {
 
             }
         });
-        StartTiem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        StartTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Start=(String)StartTiem.getAdapter().getItem(StartTiem.getSelectedItemPosition());
+                s_StartTime=(String)StartTime.getAdapter().getItem(StartTime.getSelectedItemPosition());
             }
 
             @Override
@@ -141,7 +199,7 @@ public class Giude_Route_Add extends AppCompatActivity {
         EndTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                End=(String)EndTime.getAdapter().getItem(EndTime.getSelectedItemPosition());
+                s_EndTime=(String)EndTime.getAdapter().getItem(EndTime.getSelectedItemPosition());
             }
 
             @Override
@@ -153,7 +211,7 @@ public class Giude_Route_Add extends AppCompatActivity {
         Member.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                member=(String)Member.getAdapter().getItem(Member.getSelectedItemPosition());
+                s_Member=(String)Member.getAdapter().getItem(Member.getSelectedItemPosition());
             }
 
             @Override
@@ -166,41 +224,11 @@ public class Giude_Route_Add extends AppCompatActivity {
     void SetAboutGellay(){
         mPhotoList = new ArrayList<>();
 
-        initImageLoader(this);
+        initImageLoader(mContext);
         initFresco();
-        x.Ext.init(getApplication());
+        x.Ext.init(getActivity().getApplication());
     }
-    public void ImageUpLoadClick(View v)
-    {
-        switch(v.getId())
-        {
-            case R.id.btn_route_add_image_upload:
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
-                builder.setTitle("사진 선택")
-                        .setMessage("사진을 업로드 할 방법을 선택해주세요.")
-                        .setPositiveButton("갤러리", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                OpenGallery();
 
-                            }
-                        })
-                        .setNegativeButton("사진 촬영", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .setNeutralButton("취소", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog dialog=builder.create();
-                dialog.show();
-                break;
-        }
-    }
     void OpenGallery(){
 
         ThemeConfig themeConfig = null;
@@ -258,11 +286,11 @@ public class Giude_Route_Add extends AppCompatActivity {
         functionConfigBuilder.setEnablePreview(true);
 
 
-        functionConfigBuilder.setSelected(mPhotoList);//添加过滤集合
+        functionConfigBuilder.setSelected(mPhotoList);
         final FunctionConfig functionConfig = functionConfigBuilder.build();
 
 
-        CoreConfig coreConfig = new CoreConfig.Builder(this, imageLoader, themeConfig)
+        CoreConfig coreConfig = new CoreConfig.Builder(mContext, imageLoader, themeConfig)
                 .setFunctionConfig(functionConfig)
                 .setPauseOnScrollListener(pauseOnScrollListener)
                 .setNoAnimcation(false)
@@ -295,122 +323,49 @@ public class Giude_Route_Add extends AppCompatActivity {
         public void onHanlderFailure(int requestCode, String errorMsg) {
         }
     };
-    public void GuideAbleClick(View v)
-    {
-        switch(v.getId())
-        {
-            case R.id.btn_route_add_able_yes:
-                InitAbleBtn();
-                yes.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
-                guideAble=true;
-                break;
-            case R.id.btn_route_add_able_No:
-                InitAbleBtn();
-                no.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Point));
-                guideAble=false;
-                break;
-        }
-
-    }
 
     public void InitAbleBtn()
     {
-        yes.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Normal));
-        no.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Normal));
-    }
-    public void SaveRouteAddClick(View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.btn_route_add:
-                Intent intent=new Intent(this,RouteAddActivity.class);
-                startActivityForResult(intent,RESULT_OK);
-                break;
-            case R.id.btn_route_add_save:
-                getData();
-                PostRouteData();
-                break;
-        }
+        b_Yes.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Normal));
+        b_No.setTextColor(getResources().getColor(R.color.Color_Route_Add_Text_Normal));
     }
 
 
     //Data값 넘어가는지 체크하기 위함.
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         int positions=0;
 
         if(requestCode == RESULT_OK)
         {
+
             if(AppData.PinPointData.size()==0){
-                Toast.makeText(this, "This Device Don't Have a Log Data", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(mContext, "This Device Don't Have a Log Data", Toast.LENGTH_SHORT).show();
+
             }else{
-                 positions= AppData.PinPointData.size();
-                Toast.makeText(this, "Make a " + positions + "data", Toast.LENGTH_SHORT).show();
+
+                positions= AppData.PinPointData.size();
+
+                Toast.makeText(mContext, "Make a " + positions + "data", Toast.LENGTH_SHORT).show();
+
                 for(int i=0;i<positions;i++)
                 {
-                    listAdapter.addItem(i,"장소의 이름을 작성해 주세요","장소의 상세 설명을 작성해주세요");
 
+                    routeAdapterItems.add(new RouteAdapterItem(i,"장소명을 입력해주세요","장소의 상세내용을 입력해주세요"));
                 }
-                list.setAdapter(listAdapter);
-                setListViewHeightBasedOnChildren(list);
+
+                //list.setAdapter(listAdapter);
+
+                // setListViewHeightBasedOnChildren(list);
 
             }
         }
     }
 
-    //ListView ScrollView안에서도 스크롤링 가능하도록 하는 함수.
-    public static void setListViewHeightBasedOnChildren(ListView list)
-    {
-        ListAdapter listAdapter=list.getAdapter();
 
-        if(listAdapter==null)
-        {
-            return ;
-        }
-        int totalheight=0;
-        int addHeight=0;
-        double measuerHeight=0;
 
-        addHeight=listAdapter.getCount();
-
-        if(addHeight<3 && addHeight>0)
-        {
-            measuerHeight=0.5;
-        }
-        if(addHeight>=3 && addHeight<6)
-        {
-            measuerHeight=0.2;
-        }
-        for(int i=0; i <listAdapter.getCount();i++)
-        {
-            View listitem=listAdapter.getView(i,null,list);
-            listitem.measure(0,0);
-            totalheight +=listitem.getMeasuredHeight()+(listitem.getMeasuredHeight()*measuerHeight);
-
-        }
-
-        ViewGroup.LayoutParams params=list.getLayoutParams();
-        params.height=totalheight+(list.getDividerHeight()*(listAdapter.getCount()-1));
-        list.setLayoutParams(params);
-        list.requestLayout();
-    }
-    public void getData()
-    {
-        int count=listAdapter.getCount();
-        PlaceName=new EditText[listAdapter.getCount()];
-        PlaceDetail=new EditText[listAdapter.getCount()];
-
-        for(int i=0;i<count;i++)
-        {
-            PlaceName[i]=(EditText)findViewById(AppData.ListEditId.get(i).getId());
-            PlaceDetail[i]=(EditText)findViewById(AppData.ListEditId.get(i).getId());
-
-            textPlaceName.add(PlaceName[i].getText().toString());
-            textPlaceDetail.add(PlaceDetail[i].getText().toString());
-
-        }
-    }
     private void initImageLoader(Context context) {
         // This configuration tuning is custom. You can tune every option, you may tune some of them,
         // or you can create default configuration by
@@ -428,10 +383,10 @@ public class Giude_Route_Add extends AppCompatActivity {
         ImageLoader.getInstance().init(config.build());
     }
     private void initFresco() {
-        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(mContext)
                 .setBitmapsConfig(Bitmap.Config.ARGB_8888)
                 .build();
-        Fresco.initialize(this, config);
+        Fresco.initialize(mContext, config);
     }
     private void PostRouteData()
     {
@@ -475,13 +430,13 @@ public class Giude_Route_Add extends AppCompatActivity {
                         String User_ID;
                         String User_Name;
                         String User_Profile_URL;
+                        int memParse;
 
                         User_ID= user.User_ID;
                         User_Name=user.User_Name;
                         User_Profile_URL=user.User_Profile_URL;
 
 
-                        int memParse;
                         String Route_Time_Of_Write=AppData.getCurTime();
 
                         String Route_Main_Title;
@@ -492,19 +447,19 @@ public class Giude_Route_Add extends AppCompatActivity {
                         String Route_End_Time;
 
                         int Route_Tourist_Num;
-                        List<LatLng> Route_Locations; //목적지만 표시
+                        List<Route_Pin_Data> Route_Locations; //목적지만 표시
                         int Route_Rating_Num=0;
 
-                        memParse=Integer.parseInt(member);
+                        memParse=Integer.parseInt(s_Member);
 
 
-                        Route_Main_Title=RouteTitle.getText().toString();
-                        Route_Possibility=guideAble;
-                        Route_Available_Time=AmPm;
-                        Route_Start_Time=Start;
-                        Route_End_Time=End;
+                        Route_Main_Title=s_Title;
+                        Route_Possibility=Guideable;
+                        Route_Available_Time=s_AmPm;
+                        Route_Start_Time=s_StartTime;
+                        Route_End_Time=s_EndTime;
                         Route_Tourist_Num=memParse;
-                        Route_Locations=AppData.PinPointData;
+                        Route_Locations = AppData.PinPointData;
 
                         Route_Data route_data=new Route_Data(Route_Index,User_ID,User_Name,User_Profile_URL
                                 ,Route_Time_Of_Write,Route_Main_Title,Route_Photo_URLs,Route_Possibility,Route_Available_Time,Route_Start_Time,Route_End_Time
@@ -521,4 +476,13 @@ public class Giude_Route_Add extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(AppData.LOG_INDICATOR,"onResume");
+        if(listAdapter != null){
+            listAdapter.notifyDataSetChanged();
+        }
+    }
 }
+

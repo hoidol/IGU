@@ -3,6 +3,10 @@ package com.iguideu.Adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,86 +18,88 @@ import com.google.android.gms.maps.model.LatLng;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.data.Route_Pin_Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Yuchan on 2017-08-13.
  */
 
-public class RouteAddListAdapter extends BaseAdapter {
-    private ArrayList<RouteAdapterItem> data = new ArrayList<>();
-    public  EditText placename;
-    public  EditText placedetail;
-    public ArrayList<EditText> DataDetailId=new ArrayList<>();
-    public ArrayList<EditText> DataNameId=new ArrayList<>();
-    @Override
-    public int getCount() {
-        return data.size();
-    }
-    @Override
-    public Object getItem(int position) {
-        return data.get(position);
+public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapter.ViewHolder> {
+
+    Context mContext;
+    View v;
+    ArrayList<RouteAddListAdapter.ViewHolder> Route_List_Holder=new ArrayList<>();
+    public RouteAddListAdapter(Context context){
+        this.mContext = context;
+
     }
 
     @Override
-    public long getItemId(int position) {
-        return 0;
+    public RouteAddListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        v=LayoutInflater.from(parent.getContext()).inflate(R.layout.guide_route_add_list,parent,false);
+        return new ViewHolder(v);
+    }
+
+    public View getView()
+    {
+        return v;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Context context=parent.getContext();
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Route_Pin_Data itemData = AppData.PinPointData.get(position);
 
-
-        if(convertView==null)
+        switch(position)
         {
-            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView=inflater.inflate(R.layout.guide_route_add_list,parent,false);
-        }
-
-        ImageView marker=(ImageView)convertView.findViewById(R.id.custom_list_marker);
-        placename=(EditText)convertView.findViewById(R.id.edit_route_add_place_name);
-        placedetail=(EditText)convertView.findViewById(R.id.edit_route_add_place_detail);
-
-        RouteAdapterItem mitem=data.get(position);
-
-        placename.setHint(mitem.getPlaceName());
-        placedetail.setHint(mitem.getPlaceDetail());
-
-        placename.getBackground().setColorFilter(convertView.getResources().getColor(R.color.Color_Layout_Background), PorterDuff.Mode.SRC_IN);
-        placedetail.getBackground().setColorFilter(convertView.getResources().getColor(R.color.Color_Layout_Background), PorterDuff.Mode.SRC_IN);
-        switch (position) {
             case 0:
-                marker.setImageResource(R.mipmap.marker_1);
+                holder.Marker.setImageResource(R.mipmap.marker_1);
                 break;
             case 1:
-                marker.setImageResource(R.mipmap.marker_2);
+                holder.Marker.setImageResource(R.mipmap.marker_2);
                 break;
             case 2:
-                marker.setImageResource(R.mipmap.marker_3);
+                holder.Marker.setImageResource(R.mipmap.marker_3);
                 break;
             case 3:
-                marker.setImageResource(R.mipmap.marker_4);
+                holder.Marker.setImageResource(R.mipmap.marker_4);
                 break;
             case 4:
-                marker.setImageResource(R.mipmap.marker_5);
+                holder.Marker.setImageResource(R.mipmap.marker_5);
                 break;
         }
-        AppData.ListEditId.add(placename);
-        DataDetailId.add(placedetail);
 
-        return convertView;
+        holder.Route_Title.setHint(itemData.Route_Title);
+        holder.Route_Detail.setHint(itemData.Route_Content);
+
+        Route_List_Holder.add(holder);
     }
 
-    public void addItem(int position,String hint,String hint2){
+    public ArrayList<RouteAddListAdapter.ViewHolder> getViewHolder()
+    {
+        return Route_List_Holder;
+    }
 
-        RouteAdapterItem item=new RouteAdapterItem();
+    @Override
+    public int getItemCount() {
+        Log.d(AppData.LOG_INDICATOR,"현재 아이템 사이즈 : " +AppData.PinPointData.size());
+        return AppData.PinPointData.size();
+    }
 
-        item.setMarkerPosition(position);
-        item.setPlaceName(hint);
-        item.setPlaceDetail(hint2);
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        data.add(item);
+        public ImageView Marker;
+        public EditText Route_Title,Route_Detail;
+
+        public  ViewHolder(View v)
+        {
+            super(v);
+            Marker=(ImageView)v.findViewById(R.id.custom_list_marker);
+            Route_Title=(EditText)v.findViewById(R.id.edit_route_add_place_name);
+            Route_Detail=(EditText)v.findViewById(R.id.edit_route_add_place_detail);
+
+        }
     }
 }

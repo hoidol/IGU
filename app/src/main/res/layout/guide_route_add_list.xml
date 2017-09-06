@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="13.3dp">
+    android:layout_height="wrap_content"
+    android:paddingTop="13.3dp"
+    android:paddingBottom="13.3dp">
 
     <ImageView
         android:layout_width="18.7dp"
@@ -14,7 +15,7 @@
         />
     <EditText
         android:layout_width="100.3dp"
-        android:layout_height="30.7dp"
+        android:layout_height="40.7dp"
         android:hint="장소 이름"
         android:textSize="16.7sp"
         android:textColorHint="@color/colorAccent"
@@ -35,6 +36,7 @@
         android:visibility="invisible"
         android:onClick="RouteListEditClick"
         android:layout_marginLeft="72.3dp"/>
+
     <Button
         android:layout_width="71dp"
         android:layout_height="36dp"
@@ -46,6 +48,7 @@
         android:visibility="invisible"
         android:layout_toRightOf="@id/btn_route_add_list_eidt"
         android:id="@+id/btn_route_add_list_remove"/>
+
     <EditText
         android:layout_width="293dp"
         android:layout_height="34.7dp"
