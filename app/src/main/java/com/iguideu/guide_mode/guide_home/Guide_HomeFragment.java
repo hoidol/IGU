@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,11 +17,9 @@ import android.widget.Toast;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
-import com.iguideu.guide_mode.Route_Add_Activity.Giude_Route_Add;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
+import com.iguideu.guide_mode.Route_Add_Activity.Guide_Route_Add_Activity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -60,7 +56,7 @@ public class Guide_HomeFragment extends Fragment{
         add_route_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Giude_Route_Add.class);
+                Intent intent = new Intent(getContext(), Guide_Route_Add_Activity.class);
                 startActivity(intent);
             }
         });
@@ -92,7 +88,7 @@ public class Guide_HomeFragment extends Fragment{
         mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
                 ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
         mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
-                ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
+                , AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
 
     }
 

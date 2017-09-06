@@ -32,12 +32,12 @@ public class Route_Data {
     public String Route_Start_Time;
     public String Route_End_Time;
     public int Route_Tourist_Num;
-    public List<LatLng> Route_Locations; //목적지만 표시
+    public List<Route_Pin_Data> Route_Locations; //목적지만 표시
 
     public int Route_Rating_Num;
 
     public Route_Data(String Route_Index, String User_ID, String User_Name, String User_Profile_URL,String Route_Time_Of_Write, String Route_Main_Title, List<String> Route_Photo_URLs,
-                      Boolean Route_Possibility,String Route_Available_Time,String Route_Start_Time,String Route_End_Time, int Route_Tourist_Num, List<LatLng> Route_Locations,int Route_Rating_Num
+                      Boolean Route_Possibility,String Route_Available_Time,String Route_Start_Time,String Route_End_Time, int Route_Tourist_Num, List<Route_Pin_Data> Route_Locations,int Route_Rating_Num
     ){
         this.Route_Index = Route_Index;
         this.User_ID = User_ID;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".guide_mode.Route_Add_Activity.Giude_Route_Add">
+    tools:context=".guide_mode.Route_Add_Activity.Guide_Route_Add_Fragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -224,15 +224,14 @@
                 android:background="@mipmap/route_add_btn"
                 android:onClick="SaveRouteAddClick"
                 android:layout_centerHorizontal="true"/>
-            <ListView
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/list_route_add_info"
                 android:layout_below="@id/btn_route_add"
                 android:layout_marginTop="14.7dp"
                 android:divider="@color/Color_Layout_Background">
-
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
 

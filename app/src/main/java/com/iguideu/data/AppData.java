@@ -60,7 +60,7 @@ public class AppData extends AppCompatActivity {
     public static List<Feed_Data> Feed_Data_List;
     public static List<User> Guider_Data_List;
     public static List<Request_Data> Request_Data_List;
-    public static ArrayList<LatLng> PinPointData =new ArrayList<>();
+    public static ArrayList<Route_Pin_Data> PinPointData = new ArrayList<>();
     public static List<ChattingRoom> ChattingRoom_Data_List;
 
     public static List<Route_Data> Attraction_Route_List;

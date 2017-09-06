@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.iguideu.R;
@@ -14,34 +15,13 @@ import com.iguideu.R;
 
 public class RouteAdapterItem {
 
+    int Marker;
+    String Route_Title,Route_Detail;
 
-    int MarkerPosition ;
-    String PlaceName , PlaceDetail;
-
-    public void setMarkerPosition(int position)
+     public  RouteAdapterItem(int marker, String Route_Title,String Route_Detail)
     {
-        this.MarkerPosition=position;
+        this.Marker=marker;
+        this.Route_Title=Route_Title;
+        this.Route_Detail=Route_Detail;
     }
-    public void setPlaceName(String name)
-    {
-        this.PlaceName=name;
-    }
-    public void setPlaceDetail(String detail)
-    {
-        this.PlaceDetail=detail;
-    }
-    public int getMarkerPosition()
-    {
-        return MarkerPosition;
-    }
-    public String getPlaceName()
-    {
-        return PlaceName;
-    }
-    public String getPlaceDetail()
-    {
-        return PlaceDetail;
-    }
-
-
 }

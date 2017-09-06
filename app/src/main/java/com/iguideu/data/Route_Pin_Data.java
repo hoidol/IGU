@@ -13,12 +13,12 @@ public class Route_Pin_Data {
     public String Route_Content;
     public LatLng Route_Pin_Point;
 
-    public Route_Pin_Data(String Route_Title,String Route_Content  ){
+
+    public Route_Pin_Data(String Route_Title,String Route_Content,LatLng Route_Pin_Point){
         this.Route_Title = Route_Title;
         this.Route_Content = Route_Content;
-    }
-    public void setLatLngData(LatLng Route_Pin_Point)
-    {
         this.Route_Pin_Point = Route_Pin_Point;
     }
+
+
 }

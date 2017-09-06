@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.iguideu.guide_mode.Write_Activity.RouteAddActivity">
+    tools:context="com.iguideu.guide_mode.Route_Add_Map.RouteAddMapActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
