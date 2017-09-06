@@ -48,8 +48,9 @@ public class Guide_HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.history_RecyclerView);
-        List<Route_Data> list = new ArrayList<>();
-        HistoryRecyclerAdapter adapter = new HistoryRecyclerAdapter(m_Context,list);
+
+
+        HistoryRecyclerAdapter adapter = new HistoryRecyclerAdapter(m_Context);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

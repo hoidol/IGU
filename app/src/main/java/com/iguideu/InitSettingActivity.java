@@ -24,11 +24,10 @@ public class InitSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppData.setApp_Language("NULL");
         setContentView(R.layout.activity_initsetting);
+        AppData.setApp_Language("NULL");
         Korean=(Button)findViewById(R.id.init_btn_korean);
         English=(Button)findViewById(R.id.init_btn_English);
-
     }
     public void InitClick(View v)
     {

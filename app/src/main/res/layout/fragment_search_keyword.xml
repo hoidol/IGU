@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/IGU_Point_Color">
+    <include
+        layout="@layout/toolbar_layout2"
+        android:id="@+id/toolbar2"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar2">
+        
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:hint="어디로 가세요?"
+            android:textSize="16.7sp"
+            android:backgroundTint="@color/Color_White"
+            android:id="@+id/search_keyword_EditText"
+            android:textColorHint="@color/Color_White"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="코멘트 자동 검색"
+            android:id="@+id/auto_search_comment"
+            android:textColor="@color/Color_White"
+            android:layout_below="@+id/search_keyword_EditText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="23.3dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="13.3dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/search_auto_keyword_RecyclerView"
+            android:layout_below="@+id/auto_search_comment">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

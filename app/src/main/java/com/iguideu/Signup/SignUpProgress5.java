@@ -1,4 +1,4 @@
-package com.iguideu.signup;
+package com.iguideu.Signup;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,26 +11,19 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.iguideu.R;
-import com.iguideu.aboutBringGallery.ChoosePhotoListAdapter;
 import com.iguideu.aboutBringGallery.PicassoImageLoader;
 import com.iguideu.aboutBringGallery.PicassoPauseOnScrollListener;
 import com.iguideu.custom_view.RoundedImageView;

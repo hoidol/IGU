@@ -1,13 +1,7 @@
 package com.iguideu.tourist_mode.tourist_feed;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +10,7 @@ import android.widget.ImageView;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
-import com.iguideu.feed_detail.FeedDetailActivity;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-import static com.iguideu.data.AppData.LOG_INDICATOR;
 
 /**
  * Created by Hoyoung on 2017-07-19.

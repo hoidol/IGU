@@ -54,9 +54,6 @@ public class AppData extends AppCompatActivity {
     private static Boolean app_Alarm = true; // 알람 설정 true - 알람 울림[디폴트] false - 알람 안울림
     //private static Boolean app_OnAuth = false; // 자동 로그인과 로그아웃 차이를 확실히하기
 
-    // 권한 관련
-    private static Boolean app_Permission_Location;
-    private static Boolean app_Permission_Storage;
 
     // 데이터 관련
     public static List<Route_Data> Route_Data_List;
@@ -70,6 +67,9 @@ public class AppData extends AppCompatActivity {
     public static List<Route_Data> Recommend_Route_List;
     public static List<User> Recommend_Guider_List;
     public static ArrayList<EditText> ListEditId=new ArrayList<>();
+    public static List<HistoryData> Tourist_History_List;
+    public static List<HistoryData> Guider_History_List;
+
     //Firebase 관련
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase database;
@@ -165,26 +165,6 @@ public class AppData extends AppCompatActivity {
         Pattern pattern= Pattern.compile("\\w+[@]\\w+\\.\\w+");
         Matcher match=pattern.matcher(email);
         return match.find();
-    }
-    public static Boolean getApp_Permission_Location() {
-        boolean app_Permission_Location = AppData.preferences.getBoolean("app_Permission_Location",false);
-        return app_Permission_Location;
-    }
-    public static void setApp_Permission_Location(Boolean app_Permission_Location) {
-        SharedPreferences.Editor editor = AppData.preferences.edit();
-        editor.putBoolean("app_Permission_Location",app_Permission_Location);
-        editor.commit();
-        AppData.app_Permission_Location = app_Permission_Location;
-    }
-    public static Boolean getApp_Permission_Storage() {
-        boolean app_Permission_Storage = AppData.preferences.getBoolean("app_Permission_Storage",false);
-        return app_Permission_Storage;
-    }
-    public static void setApp_Permission_Storage(Boolean app_Permission_Storage) {
-        SharedPreferences.Editor editor = AppData.preferences.edit();
-        editor.putBoolean("app_Permission_Storage",app_Permission_Storage);
-        editor.commit();
-        AppData.app_Permission_Storage = app_Permission_Storage;
     }
 
     void SetAppData(){

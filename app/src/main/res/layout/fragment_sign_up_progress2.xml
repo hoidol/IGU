@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/Color_Layout_Background"
     android:layout_height="match_parent"
-    tools:context="com.iguideu.signup.SignUpProgress2">
+    tools:context="com.iguideu.Signup.SignUpProgress2">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"

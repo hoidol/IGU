@@ -25,11 +25,9 @@ import java.util.List;
 public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecyclerAdapter.History_Recycler_ViewHolder> {
 
     Context mContext;
-    List<Route_Data> Route_Data_List;
 
-    public HistoryRecyclerAdapter(Context context, List<Route_Data> list){
+    public HistoryRecyclerAdapter(Context context){
         this.mContext = context;
-        Route_Data_List = list;
     }
 
     @Override
@@ -40,15 +38,12 @@ public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecycle
 
     @Override
     public void onBindViewHolder(History_Recycler_ViewHolder holder, int position) {
-        if(Route_Data_List == null)
-            return;
 
-        Route_Data data = Route_Data_List.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return Route_Data_List.size();
+        return 0;
     }
 
     class History_Recycler_ViewHolder extends RecyclerView.ViewHolder{

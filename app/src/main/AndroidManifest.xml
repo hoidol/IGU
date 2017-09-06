@@ -62,10 +62,7 @@
             android:name=".Route_Write_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feed_detail.FeedDetailActivity"
+            android:name=".Feed_Detail.FeedDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
@@ -77,7 +74,13 @@
             android:name=".custom_view.CustomDialog"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".signup.SignUpActivity"
+        android:name=".Signup.SignUpActivity"
+        android:screenOrientation="portrait" />
+        <activity
+            android:name=".search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Feed_Write.Feed_Write_Activity"
             android:screenOrientation="portrait" />
         <activity android:name=".guide_mode.Route_Add_Activity.Guide_Route_Add_Activity"></activity>
     </application>

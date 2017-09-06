@@ -16,4 +16,6 @@
     <dimen name="history_data_Text">11.7sp</dimen>
 
     <dimen name="dp_70">70dp</dimen>
+    
+    <dimen name="sp_16_7">16.7sp</dimen>
 </resources>

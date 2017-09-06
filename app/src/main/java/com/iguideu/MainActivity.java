@@ -16,7 +16,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.TextView;
-import com.iguideu.tourist_mode.tourist_favorite.FavoriteFragment;
+import com.iguideu.tourist_mode.tourist_tour.TourFragment;
 import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
 import com.iguideu.main_inbox.InboxFragment;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     int[] inactivity_tab_GuideMode_icons = {R.mipmap.home_gray,R.mipmap.schedule_gray,R.mipmap.history_gray,R.mipmap.message_gray,R.mipmap.profile_gray};
 
 
-    String[] TouristMode_Title = {"홈","즐겨찾기","피드","메세지", "프로필"};
+    String[] TouristMode_Title = {"홈","여행","피드","메세지", "프로필"};
     String[] GuideMode_Title = {"홈","스케줄","히스토리","메세지", "프로필"};
 
 
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         if(App_Mode == 0) {
-                            fragment = new FavoriteFragment();
+                            fragment = new TourFragment();
                             setTouristTabIcon(1);
                         }else if(App_Mode == 1){
                             fragment = new Guide_ScheduleFragment();

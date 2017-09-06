@@ -12,16 +12,18 @@ public class Request_Data {
     public String Route_Index;
 
     public String Request_Write_Time;
-    public String Requester_ID; //요청자 아이디
+    public String Guider_User_ID;
+    public String Tourist_User_ID; //요청자 아이디
     public String Request_Data;
 
 
-    public Request_Data(String Request_Index, String Route_Index,String Request_Write_Time,String Requester_ID,String Request_Data){
+    public Request_Data(String Request_Index, String Route_Index,String Request_Write_Time, String Guider_User_ID,String Tourist_User_ID,String Request_Data){
         this.Request_Index = Request_Index;
         this.Route_Index = Route_Index;
 
         this.Request_Write_Time =Request_Write_Time;
-        this.Requester_ID = Requester_ID;
+        this.Guider_User_ID =Guider_User_ID;
+        this.Tourist_User_ID = Tourist_User_ID;
         this.Request_Data =Request_Data;
     }
 
