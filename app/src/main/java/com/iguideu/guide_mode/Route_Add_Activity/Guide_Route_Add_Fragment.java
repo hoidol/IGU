@@ -400,7 +400,6 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     }
     int i;
     void uploadURL(final String Route_Index){
-
         for(i = 0; i < mPhotoList.size(); i++){
             StorageReference mountainsRef = AppData.storageRef.child("routes").child(Route_Index).child(Route_Index+mPhotoList.get(i).getPhotoPath() + ".jpg");
             route_image.get(i).setDrawingCacheEnabled(true);
