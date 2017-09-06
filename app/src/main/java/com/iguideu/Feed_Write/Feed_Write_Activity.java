@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.iguideu.R;
-import com.iguideu.tourist_mode.tourist_tour.Rating_Route.RatingRouteMainFragment;
 
 /**
  * Created by Hoyoung on 2017-07-16.
@@ -27,7 +26,7 @@ public class Feed_Write_Activity extends AppCompatActivity {
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
 
-        fragmentTransaction.add(R.id.feed_write_Fragment,new RatingRouteMainFragment());
+        fragmentTransaction.add(R.id.feed_write_Fragment,new Feed_Write_Photo_Fragment());
         fragmentTransaction.commit();
 
     }

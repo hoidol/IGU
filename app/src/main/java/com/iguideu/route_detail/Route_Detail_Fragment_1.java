@@ -97,9 +97,6 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
             }
         });
 
-
-
-
         if(Cur_Route_Data != null){
             setToolbar(view);
             setImage(view);
@@ -207,7 +204,7 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         toolbar_back_ImagmeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.finish();;
+                activity.finish();
             }
         });
     }

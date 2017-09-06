@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <com.steelkiwi.cropiwa.CropIwaView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:adjustViewBounds="false"
+        android:scaleType="fitCenter"
+        android:id="@+id/feed_photo_ImageView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/feed_photo_ImageView"
+        android:id="@+id/feed_photo_Recycler"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,14 +1,18 @@
 package com.iguideu.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.security.acl.Owner;
 
 /**
  * Created by Hoyoung on 2017-08-01.
  */
 @IgnoreExtraProperties
-public class ChattingData {
+public class ChattingData implements Serializable {
 
     public String Owner_ID;
     public String Contents;

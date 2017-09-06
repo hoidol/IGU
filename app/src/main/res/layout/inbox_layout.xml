@@ -19,26 +19,32 @@
             android:layout_marginLeft="29.3dp"
             android:gravity="center_vertical"
             app:srcCompat="@mipmap/profile_image_test"/>
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:text="이름"
             android:layout_toRightOf="@+id/profile_imageView"
-            android:layout_toLeftOf="@+id/inbox_Date_TextView"
-            android:id="@+id/profile_Name_TextView"
-            android:layout_marginLeft="16.8dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/Color_All_Primary_Text"/>
-        <TextView
-            android:id="@+id/inbox_Date_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="39dp"
-            android:text="2017년 8월 1일"
-            android:textColor="@color/Color_All_Primary_Text"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="23.7dp"
-            />
+            android:id="@+id/inbox_content_Container">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="이름"
+                android:layout_toLeftOf="@+id/inbox_Date_TextView"
+                android:id="@+id/profile_Name_TextView"
+                android:layout_marginLeft="16.8dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/Color_All_Primary_Text"/>
+            <TextView
+                android:id="@+id/inbox_Date_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2017년 8월 1일"
+                android:textColor="@color/Color_All_Primary_Text"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="23.7dp"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

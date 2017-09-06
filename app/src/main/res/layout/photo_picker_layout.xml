@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:layout_margin="0.2dp">
+
+        <com.iguideu.custom_view.SquareImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/photo_picker_ImageView"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:id="@+id/photo_picker_Checker"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:background="@mipmap/nonchecked_icon"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

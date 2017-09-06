@@ -2,6 +2,7 @@ package com.iguideu.data;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,16 +15,19 @@ public class ChattingRoom {
     public User Cur_User;
     public User Other_User;
     public String Created_Time_Chatting_Room;
-    public List<ChattingData> Chatting_Datas;
+    public ArrayList<ChattingData> Chatting_Datas;
+    public boolean IsRead;
 
 
 
-    public ChattingRoom(String ChattingRoom_Index,User Cur_User,User Other_User,String Created_Time_Chatting_Room,List<ChattingData> Chatting_Datas){
+
+    public ChattingRoom(String ChattingRoom_Index,User Cur_User,User Other_User,String Created_Time_Chatting_Room,ArrayList<ChattingData> Chatting_Datas, boolean IsRead){
         this.ChattingRoom_Index = ChattingRoom_Index;
         this.Cur_User = Cur_User;
         this.Other_User =Other_User;
         this.Created_Time_Chatting_Room = Created_Time_Chatting_Room;
         this.Chatting_Datas = Chatting_Datas;
+        this.IsRead = IsRead;
 
     }
 

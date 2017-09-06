@@ -123,16 +123,6 @@ public class AppData extends AppCompatActivity {
         int app_Mode = AppData.preferences.getInt("app_Mode",0);
         return app_Mode;
     }
-    /* public static Boolean getApp_OnAuth() {
-         boolean app_OnAuth = AppData.preferences.getBoolean("app_OnAuth",false);
-         return app_OnAuth;
-     }
-     public static void setApp_OnAuth(Boolean app_OnAuth) {
-         SharedPreferences.Editor editor = AppData.preferences.edit();
-         editor.putBoolean("app_OnAuth",app_OnAuth);
-         editor.commit();
-         AppData.app_OnAuth = app_OnAuth;
-     }*/
     public static void setCur_User(User user){
         Cur_User = user;
     }
@@ -177,10 +167,6 @@ public class AppData extends AppCompatActivity {
         myRef = database.getReference();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://iguideu-4befb.appspot.com/");
-    }
-
-    public static void Test(){
-        String s = "제발 되라";
     }
 
 
