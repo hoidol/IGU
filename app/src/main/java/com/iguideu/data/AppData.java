@@ -64,6 +64,9 @@ public class AppData extends AppCompatActivity {
     public static List<ChattingRoom> ChattingRoom_Data_List;
 
     public static List<Route_Data> Attraction_Route_List;
+    public static List<String> Attraction_Image_URL_List;
+    public static List<KeywordData> Attraction_Keyword_List;
+
     public static List<Route_Data> Recommend_Route_List;
     public static List<User> Recommend_Guider_List;
     public static ArrayList<EditText> ListEditId=new ArrayList<>();

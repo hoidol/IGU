@@ -26,7 +26,6 @@ public class User {
     public String User_Nick;
     public int User_Guide_Rating;
     public String User_Guide_Introduction;
-    public List<String> User_My_Route_List;
     public List<String> Request_Data_List;
 
     public List<String> Tourist_History_Data_List;
@@ -54,7 +53,7 @@ public class User {
     }
 
 
-    public User(String User_ID,String User_Password, String User_Name, String User_Profile_URL,Boolean User_Guide,String User_Nick,int User_Guide_Rating,String User_Guide_Introduction,List<String> User_Favorites_Route_List,List<String> User_ChattingRooms_List,List<String> User_My_Route_List,List<String> Request_Data_List,List<String> Tourist_History_Data_List, List<String> Guider_History_Data_List){
+    public User(String User_ID,String User_Password, String User_Name, String User_Profile_URL,Boolean User_Guide,String User_Nick,int User_Guide_Rating,String User_Guide_Introduction,List<String> User_Favorites_Route_List,List<String> User_ChattingRooms_List,List<String> Request_Data_List,List<String> Tourist_History_Data_List, List<String> Guider_History_Data_List){
         this.User_ID = User_ID;
         this.User_Password = User_Password;
         this.User_Name= User_Name;
@@ -66,7 +65,6 @@ public class User {
 
         this.User_Favorites_Route_List= User_Favorites_Route_List;
         this.User_ChattingRooms_List = User_ChattingRooms_List;
-        this.User_My_Route_List = User_My_Route_List;
         this.Request_Data_List = Request_Data_List;
         this.Tourist_History_Data_List = Tourist_History_Data_List;
         this.Guider_History_Data_List = Guider_History_Data_List;

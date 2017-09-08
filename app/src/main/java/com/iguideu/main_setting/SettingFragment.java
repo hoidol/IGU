@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.google.android.gms.vision.text.Text;
 import com.iguideu.MainActivity;
 import com.iguideu.R;
+import com.iguideu.Signup_Guider.SignUpGuiderActivity;
 import com.iguideu.data.AppData;
 import com.iguideu.route_detail.Route_Detail_Fragment_2;
 
@@ -53,9 +55,10 @@ public class SettingFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        fm = getFragmentManager();
+
         toGuide_Btn =(Button)view.findViewById(R.id.setting_toGuide);
         setTouchEvent(toGuide_Btn);
-        fm = getFragmentManager();
 
         toGuide_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,22 +101,30 @@ public class SettingFragment extends Fragment {
         {
             case R.id.setting_toGuide:
 
-                int mode = AppData.getApp_Mode();
+                boolean Is_User_Guider = AppData.getCur_User().User_Guide;
 
-                switch (mode){
-                    case 0:
-                        // 0 -> 1로 바꾸기
-                        AppData.setApp_Mode(1);
-                        mainActivity.changeMode(1);
-                        toGuide_Btn.setText(getString(R.string.setting_change_tourist_kr));
 
-                        break;
-                    case 1:
-                        // 1 -> 0로 바꾸기
-                        AppData.setApp_Mode(0);
-                        mainActivity.changeMode(0);
-                        toGuide_Btn.setText(getString(R.string.setting_change_guide_kr));
-                        break;
+                if(Is_User_Guider == true){
+                    int mode = AppData.getApp_Mode();
+
+                    switch (mode){
+                        case 0:
+                            // 0 -> 1로 바꾸기
+                            AppData.setApp_Mode(1);
+                            mainActivity.changeMode(1);
+                            toGuide_Btn.setText(getString(R.string.setting_change_tourist_kr));
+
+                            break;
+                        case 1:
+                            // 1 -> 0로 바꾸기
+                            AppData.setApp_Mode(0);
+                            mainActivity.changeMode(0);
+                            toGuide_Btn.setText(getString(R.string.setting_change_guide_kr));
+                            break;
+                    }
+                }else{
+                    Intent intent = new Intent(getContext(), SignUpGuiderActivity.class);
+                    getContext().startActivity(intent);
                 }
                 break;
             case R.id.setting_Language:

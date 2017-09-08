@@ -20,16 +20,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nick_Comment"
-        android:id="@+id/guider_nick_EditText"
+        android:id="@+id/signup_nick_EditText"
         android:layout_marginTop="105dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:gravity="center"
         android:textSize="18.3sp"
+        android:lines="1"
+        android:inputType="text"
+        android:singleLine="true"
+
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="51.8dp"
+        android:id="@+id/signup_nick_Btn"
         android:background="@color/IGU_Point_Color"
         android:text="다음"
         android:textColor="@color/Color_White"

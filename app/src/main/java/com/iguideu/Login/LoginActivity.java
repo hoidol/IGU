@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                                     if(count == 0){
                                         //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
-                                        User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,"",new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>() ,new ArrayList<String>());
+                                        User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,"",new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>() ,new ArrayList<String>());
 
                                         AppData.myRef.child("users").child(user_key).setValue(user_inf);
                                         AppData.setCur_User(user_inf);

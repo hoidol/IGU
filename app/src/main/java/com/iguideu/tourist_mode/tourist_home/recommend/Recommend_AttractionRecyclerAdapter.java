@@ -1,15 +1,20 @@
 package com.iguideu.tourist_mode.tourist_home.recommend;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.tourist_mode.tourist_home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,13 +25,12 @@ import java.util.List;
 
 public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<Recommend_AttractionRecyclerAdapter.Recommend_Recycler_ViewHolder>  {
 
+
     Context mContext;
-    List<Route_Data> Recommend_Data_List;
 
 
-    public Recommend_AttractionRecyclerAdapter(Context context, List<Route_Data> list){
+    public Recommend_AttractionRecyclerAdapter(Context context){
         this.mContext = context;
-        Recommend_Data_List = list;
     }
 
     @Override
@@ -37,22 +41,27 @@ public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<R
 
     @Override
     public void onBindViewHolder(Recommend_Recycler_ViewHolder holder, int position) {
-        Picasso.with(mContext).load(Recommend_Data_List.get(position).Route_Photo_URLs.get(0)).into(holder.recommend_ImageView);
+        Picasso.with(mContext).load(AppData.Attraction_Image_URL_List.get(position)).into(holder.recommend_ImageView);
+        holder.recommend_title_TextView.setText(AppData.Attraction_Keyword_List.get(position).Keyword);
+
+
     }
 
     @Override
     public int getItemCount() {
-        int List_size = AppData.Attraction_Route_List.size();
+        int List_size = AppData.Attraction_Keyword_List.size();
         return (List_size <= 10) ? List_size:10;
     }
 
     class Recommend_Recycler_ViewHolder extends RecyclerView.ViewHolder{
         public SquareImageView recommend_ImageView;
+        public TextView recommend_title_TextView;
 
 
         public Recommend_Recycler_ViewHolder(View itemView) {
             super(itemView);
             recommend_ImageView = (SquareImageView)itemView.findViewById(R.id.recommend_ImageView);
+            recommend_title_TextView = (TextView)itemView.findViewById(R.id.recommend_title_TextView);
         }
     }
 }

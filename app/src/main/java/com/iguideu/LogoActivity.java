@@ -22,10 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.iguideu.Login.LoginActivity;
 import com.iguideu.Login.LoginActivity2;
 import com.iguideu.aboutSort.Guider_Descending;
+import com.iguideu.aboutSort.Keyword_Descending;
 import com.iguideu.aboutSort.Route_Data_Descending;
 import com.iguideu.data.AppData;
 import com.iguideu.data.ChattingRoom;
 import com.iguideu.data.Feed_Data;
+import com.iguideu.data.KeywordData;
 import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.User;
@@ -52,12 +54,12 @@ public class LogoActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("AppData", MODE_PRIVATE);
         AppData.setPreferences(preferences);
 
-
-
+;
         AppData.SetFirebase();
 
+        AppData.mAuth.signOut();
         if(AppData.getApp_AutoLogin() == false){
-            //AppData.mAuth.signOut();
+            //
         }
 
         setRouteData();
@@ -80,24 +82,11 @@ public class LogoActivity extends AppCompatActivity {
     }
 
     void setRouteData(){
-        List<String> image_URL = new ArrayList<>();
-
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/2.jpg?alt=media&token=99010d45-e81a-41ca-a913-01e4a4ad4183");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-
-        List<Route_Data> list = new ArrayList<>();
-
-
-        AppData.Route_Data_List = list;
-
-        /* ValueEventListener listener = new ValueEventListener() {
+         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("feeds").getChildren();
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
 
                 List<Route_Data> list = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
@@ -107,14 +96,12 @@ public class LogoActivity extends AppCompatActivity {
 
                 }
                 AppData.Route_Data_List= list;
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
     void setFeedData(){
 
@@ -186,25 +173,7 @@ public class LogoActivity extends AppCompatActivity {
         AppData.myRef.addListenerForSingleValueEvent(listener);*/
     }
     void setGuiderData(){
-
-        List<String> Favorites_Route_List = new ArrayList<>();
-        List<String> ChattingRooms_List = new ArrayList<>();
-        List<String> MyRoute_Route_List = new ArrayList<>();
-        List<String> Request_Data_List = new ArrayList<>();
-        List<String> Tourist_History_Data_List = new ArrayList<>();
-        List<String> Guider_History_Data_List = new ArrayList<>();
-
-        List<User> list = new ArrayList<>();
-        list.add(new User("qkrghdud@naver.com","pass","박호영","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrPark",4,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","고길동","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MrKim",1,"자기 소개를 합니다. 자기 소개를 합니다자기 소개를 합니다쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","둘리","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"Nicon",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","또치","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"AAAMM",5,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","마이콜","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"QQWW",4,"자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","마징가","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"RRREE",3,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        list.add(new User("qkrghdud@naver.com","pass","짱짱맨","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",true,"MMPPII",2,"자기 소개를 합니다. 쩜쩜쩜...",Favorites_Route_List,ChattingRooms_List,MyRoute_Route_List,Request_Data_List,Tourist_History_Data_List,Guider_History_Data_List));
-        AppData.Guider_Data_List = list;
-
-      /*  ValueEventListener listener = new ValueEventListener() {
+        ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
@@ -224,7 +193,7 @@ public class LogoActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
     void setRequestData(){
         List<Request_Data> list = new ArrayList<>();
@@ -259,8 +228,59 @@ public class LogoActivity extends AppCompatActivity {
         AppData.myRef.addListenerForSingleValueEvent(listener);*/
     }
 
+    List<KeywordData> KeywordData_List = new ArrayList<>();
     void setAttraction_Route(){
 
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+
+                //키워드량 비교
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    KeywordData data =  cur_Snapshot.getValue(KeywordData.class);
+                    KeywordData_List.add(data);
+                }
+
+                Keyword_Descending data_descending = new Keyword_Descending();
+                Collections.sort(KeywordData_List,data_descending);
+
+                AppData.Attraction_Keyword_List = KeywordData_List;
+
+                // 루트 가져오기
+                iterable = dataSnapshot.child("routes").getChildren();
+                int KeywordData_size = KeywordData_List.size();
+                KeywordData_size = ((KeywordData_size<=10)? KeywordData_size:10);
+
+                List<String> Attraction_Image_URL_List = new ArrayList<>();
+
+                for(int i = 0; i<KeywordData_size;i++){
+                    while (iterable.iterator().hasNext()){
+                        DataSnapshot cur_Snapshot = iterable.iterator().next();
+                        Route_Data data =  cur_Snapshot.getValue(Route_Data.class);
+
+                        boolean IsSearched = false;
+                        for(int j=0; j< data.Route_Locations.size();j++){
+                            if(data.Route_Locations.get(j).Route_Title.equals(KeywordData_List.get(i).Keyword)){
+                                Attraction_Image_URL_List.add(data.Route_Photo_URLs.get(0));
+                                IsSearched = true;
+                                break;
+                            }
+                        }
+
+                        if(IsSearched == true){
+                            break;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
     void setTouristHistoryData(){
 
@@ -358,14 +378,31 @@ public class LogoActivity extends AppCompatActivity {
         AppData.mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
                     //Main으로
                     if(AppData.getApp_AutoLogin() == true){
-                        User cur_User = new User(user.getEmail(), null,user.getDisplayName(),user.getPhotoUrl().toString());
-                        AppData.setCur_User(cur_User);
+                        ValueEventListener postListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                // Get Post object and use the values to update the UI
+                                User cur_user = dataSnapshot.child("users").child(AppData.StringReplace(user.getEmail())).getValue(User.class);
+                                AppData.setCur_User(cur_user);
 
-                        delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
+                                delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                // Getting Post failed, log a message
+                                // ...
+                            }
+                        };
+
+                        AppData.myRef.addListenerForSingleValueEvent(postListener);
+
+
+
                     }else{
                         if(AppData.getApp_Language().equals("NULL")){
                             delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));

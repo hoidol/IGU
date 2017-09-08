@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.route_detail.Route_Detail_Activity;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,9 @@ import java.util.List;
 public class RouteFragment extends Fragment {
 
     Context m_Context;
+
+    String Searched_Keyword;
+    CalendarDay Searched_Date;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -50,8 +55,25 @@ public class RouteFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if(!Searched_Keyword.equals("")){
+            // 검색된 키워드가 있을때
+        }
+
+        if(!Searched_Date.toString().equals("")){
+            // 검색한 날짜가 있을 때
+            Toast.makeText(getContext(),"Searched_Date.toString() : " + Searched_Date.toString(),Toast.LENGTH_SHORT).show();
+        }
+
         setSpinner(view);
         setRecycler(view);
+    }
+
+    public void setFilterKeyword(String Keyword){
+        Searched_Keyword = Keyword;
+    }
+
+    public void setFilterDate(CalendarDay date){
+        Searched_Date = date;
     }
 
     void setSpinner(View view){

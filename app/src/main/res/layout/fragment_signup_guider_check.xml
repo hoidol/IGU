@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가이드로 등록하시겠습니까?"
+        android:textSize="18.3sp"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/signup_guider_check_comment"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="112dp"
+        />
+    <Button
+        android:layout_width="213.3dp"
+        android:layout_height="49.9dp"
+        android:background="@drawable/check_btn_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signup_guider_check_comment"
+        android:id="@+id/signup_Yes_Btn"
+        android:text="예"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="16.7sp"
+        android:layout_marginTop="93.7dp"/>
+    <Button
+        android:layout_width="213.3dp"
+        android:layout_height="49.9dp"
+        android:background="@drawable/check_btn_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signup_Yes_Btn"
+        android:id="@+id/signup_No_Btn"
+        android:text="아니요"
+        android:textColor="@color/Color_All_Primary_Text"
+        android:textSize="16.7sp"
+        android:layout_marginTop="26.1dp"/>
 
-</LinearLayout>
+</RelativeLayout>
