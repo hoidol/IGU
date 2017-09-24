@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".guide_mode.Route_Add_Activity.Guide_Route_Add_Fragment">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="0.7">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -238,7 +240,8 @@
     </ScrollView>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="51.8dp"
+        android:layout_height="match_parent"
+        android:layout_weight="9.3"
         android:background="@color/Color_BTN_Background"
         android:text="저 장"
         android:layout_alignParentBottom="true"
@@ -247,4 +250,4 @@
         android:onClick="SaveRouteAddClick"
         android:id="@+id/btn_route_add_save"
         />
-</RelativeLayout>
+</LinearLayout>
