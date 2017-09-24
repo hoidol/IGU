@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -23,7 +24,7 @@ import com.google.firebase.storage.StorageReference;
  * Created by Hoyoung on 2017-07-19.
  */
 
-public class AppData extends AppCompatActivity {
+public class AppData  {
 
     private static AppData instance;
 
@@ -64,6 +65,9 @@ public class AppData extends AppCompatActivity {
     public static List<ChattingRoom> ChattingRoom_Data_List;
 
     public static List<Route_Data> Attraction_Route_List;
+    public static List<String> Attraction_Image_URL_List;
+    public static List<KeywordData> Attraction_Keyword_List;
+
     public static List<Route_Data> Recommend_Route_List;
     public static List<User> Recommend_Guider_List;
     public static ArrayList<EditText> ListEditId=new ArrayList<>();
@@ -98,7 +102,13 @@ public class AppData extends AppCompatActivity {
         return app_Language;
     }
     public static void setApp_Language(String language){
+        if(AppData.preferences == null){
+            Log.d(AppData.LOG_INDICATOR,"이거 없다고??");
+        }
+
         SharedPreferences.Editor editor = AppData.preferences.edit();
+
+
         editor.putString("app_Language",language);
         editor.commit();
         app_Language = language;
@@ -123,16 +133,6 @@ public class AppData extends AppCompatActivity {
         int app_Mode = AppData.preferences.getInt("app_Mode",0);
         return app_Mode;
     }
-    /* public static Boolean getApp_OnAuth() {
-         boolean app_OnAuth = AppData.preferences.getBoolean("app_OnAuth",false);
-         return app_OnAuth;
-     }
-     public static void setApp_OnAuth(Boolean app_OnAuth) {
-         SharedPreferences.Editor editor = AppData.preferences.edit();
-         editor.putBoolean("app_OnAuth",app_OnAuth);
-         editor.commit();
-         AppData.app_OnAuth = app_OnAuth;
-     }*/
     public static void setCur_User(User user){
         Cur_User = user;
     }
@@ -177,10 +177,6 @@ public class AppData extends AppCompatActivity {
         myRef = database.getReference();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://iguideu-4befb.appspot.com/");
-    }
-
-    public static void Test(){
-        String s = "제발 되라";
     }
 
 

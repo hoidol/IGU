@@ -1,6 +1,8 @@
 package com.iguideu.tourist_mode.tourist_home.recommend;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.User;
+import com.iguideu.tourist_mode.tourist_home.route.RouteFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,9 @@ public class RecommendFragment extends Fragment {
     RecyclerView route_RecyclerView;
     RecyclerView guide_RecyclerView;
 
+
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     public void onAttach(Context context) {
@@ -58,11 +66,24 @@ public class RecommendFragment extends Fragment {
     void setAttractionRecycler(View view){
         attraction_RecyclerView = (RecyclerView)view.findViewById(R.id.recommend_attraction_RecyclerView);
 
-        List<Route_Data> list = new ArrayList<>();
-        Recommend_AttractionRecyclerAdapter adapter = new Recommend_AttractionRecyclerAdapter(m_Context,list);
+        Recommend_AttractionRecyclerAdapter adapter = new Recommend_AttractionRecyclerAdapter(m_Context);
         attraction_RecyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, true);
         attraction_RecyclerView.setLayoutManager(layoutManager);
+
+
+        attraction_RecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(),"position : " + position +"번째를 누름",Toast.LENGTH_SHORT).show();
+
+                RouteFragment fragment = new RouteFragment();
+                fragment.setFilterKeyword(AppData.Attraction_Keyword_List.get(position).Keyword);
+                fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.home_FragmLayout, fragment);
+                fragmentTransaction.commit();
+            }
+        }));
     }
 
     void setRouteRecycler(View view){

@@ -16,6 +16,9 @@ public class Request_Data {
     public String Tourist_User_ID; //요청자 아이디
     public String Request_Data;
 
+    public Request_Data(){
+
+    }
 
     public Request_Data(String Request_Index, String Route_Index,String Request_Write_Time, String Guider_User_ID,String Tourist_User_ID,String Request_Data){
         this.Request_Index = Request_Index;

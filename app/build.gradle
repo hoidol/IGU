@@ -57,14 +57,24 @@ dependencies {
     compile 'org.xutils:xutils:3.1.22'
     compile 'com.android.support:support-annotations:24.2.0'
     compile 'io.realm:realm-android:0.87.4'
+<<<<<<< HEAD
 
     compile 'com.yanzhenjie:recyclerview-swipe:1.1.2'
     testCompile 'junit:junit:4.12'
 
+=======
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.2'
+    testCompile 'junit:junit:4.12'
+>>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 
     // Swipe Recycler
     compile 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
 
+<<<<<<< HEAD
+=======
+    //Cropper
+    compile 'com.steelkiwi:cropiwa:1.0.3'
+>>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 
 }
 apply plugin: 'com.google.gms.google-services'

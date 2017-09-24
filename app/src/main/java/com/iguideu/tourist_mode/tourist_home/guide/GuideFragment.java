@@ -2,6 +2,7 @@ package com.iguideu.tourist_mode.tourist_home.guide;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.iguideu.ClickListener.RecyclerItemClickListener;
+import com.iguideu.ProfileActivity;
 import com.iguideu.R;
 import com.iguideu.data.User;
 
@@ -45,38 +48,19 @@ public class GuideFragment extends Fragment{
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.guide_RecyclerView);
 
-        List<User> list = new ArrayList<>();
 
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "호이돌",4,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "피카추",1,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "파이리",2,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "돈까스",3,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "Hoidol",5,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "LimYCh",5,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "KGE",4,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "PHY",0,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "zzzzz",1,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "ddddd",2,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "qqqqq",3,null,null,null,null,null,null,null));
-        list.add(new User("qkrghdud0@gmail.com","password",null,"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072",true,
-                "qwqw",0,null,null,null,null,null,null,null));
-
-
-        GuideRecyclerAdapter adapter = new GuideRecyclerAdapter(getContext(), list, getFragmentManager());
+        GuideRecyclerAdapter adapter = new GuideRecyclerAdapter(getContext());
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                getContext().startActivity(intent);
+            }
+        }));
+
 
 
     }

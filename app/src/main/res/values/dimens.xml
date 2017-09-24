@@ -18,4 +18,6 @@
     <dimen name="dp_70">70dp</dimen>
     
     <dimen name="sp_16_7">16.7sp</dimen>
+
+    <dimen name="message_width">232dp</dimen>
 </resources>

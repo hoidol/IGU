@@ -10,8 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
+import com.iguideu.Feed_Write.Feed_Write_Activity;
 import com.iguideu.R;
 import com.iguideu.data.Feed_Data;
 import com.iguideu.Feed_Detail.FeedDetailActivity;
@@ -27,7 +29,7 @@ public class FeedFragment extends Fragment {
 
     Context m_Context;
     RecyclerView recyclerView;
-
+    ImageButton add_feed_write_Btn;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -48,8 +50,17 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         setRecycler(view);
 
+        add_feed_write_Btn = (ImageButton)view.findViewById(R.id.add_feed_write_Btn);
+        add_feed_write_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Feed_Write_Activity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

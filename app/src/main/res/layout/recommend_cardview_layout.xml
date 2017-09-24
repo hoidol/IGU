@@ -5,11 +5,14 @@
     android:layout_width="130dp"
     android:layout_height="149dp"
     android:layout_marginRight="16dp"
-    app:cardElevation="0dp">
+    app:cardElevation="0dp"
+
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/recommend_Container">
 
         <com.iguideu.custom_view.SquareImageView
             android:id="@+id/recommend_ImageView"

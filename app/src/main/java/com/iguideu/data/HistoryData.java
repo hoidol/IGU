@@ -18,6 +18,9 @@ public class HistoryData {
 
     int History_State; // 0 - 아무것도 없음(가이드용), 1 - 대기, 2 - 수락, 3 - 거절, 4 - 별점주기 5 - 완료
 
+    public HistoryData(){
+
+    }
     public HistoryData(String HistroyIndex,String Route_Index,String Guider_User_ID,String Tourist_User_ID,String Route_Data,int History_State){
         this.HistroyIndex= HistroyIndex;
         this.Route_Index = Route_Index;

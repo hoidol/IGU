@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iguideu.R;
 import com.iguideu.data.Route_Data;
@@ -84,6 +85,9 @@ public class Route_Detail_Fragment_2 extends Fragment{
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 cur_Selected_Date = date;
+
+                Toast.makeText(getContext(),"CalendarDay 클래스 toString() : " + cur_Selected_Date.toString(), Toast.LENGTH_SHORT).show();
+
                 final CheckRouteDialog check_dialog = new CheckRouteDialog(getContext());
                 check_dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override

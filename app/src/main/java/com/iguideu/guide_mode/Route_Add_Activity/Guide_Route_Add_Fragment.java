@@ -1,6 +1,8 @@
 package com.iguideu.guide_mode.Route_Add_Activity;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.os.Handler;
+import android.os.Message;
+>>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -29,14 +36,19 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.iguideu.Adapter.RouteAdapterItem;
 import com.iguideu.Adapter.RouteAddListAdapter;
 import com.iguideu.R;
+import com.iguideu.Signup_Guider.SignUpGuider_Complete_Fragment;
 import com.iguideu.aboutBringGallery.PicassoImageLoader;
 import com.iguideu.aboutBringGallery.PicassoPauseOnScrollListener;
 import com.iguideu.data.AppData;
+import com.iguideu.data.KeywordData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.Route_Pin_Data;
 import com.iguideu.data.User;
@@ -47,8 +59,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+<<<<<<< HEAD
 
 import java.io.ByteArrayOutputStream;
+=======
+import java.lang.reflect.Array;
+>>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,10 +77,16 @@ import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 public class Guide_Route_Add_Fragment extends Fragment  {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 
     Context mContext;
+
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
 
     public static final int RESULT_OK=0;
     public static final int RESULT_FAIL=1;
@@ -88,6 +110,11 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     ArrayList<RouteAdapterItem> routeAdapterItems = new ArrayList<>();
     ArrayList<RouteAddListAdapter.ViewHolder> RouteView=new ArrayList<>();
 
+    boolean IsFirstGuide = false;
+
+    public void SetIsFirstGuide(boolean IsFirstGuide){
+        this.IsFirstGuide =IsFirstGuide;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -394,90 +421,126 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     }
     private void PostRouteData()
     {
-
-
-
         User user= AppData.getCur_User();
         String Route_Index=AppData.getCurTime() + AppData.StringReplace(user.User_ID); // 요청 시간(Route_Time_Of_Write) + 작성자 아이디
         uploadURL(Route_Index);
-
     }
     int i;
     void uploadURL(final String Route_Index){
 
-        for(i = 0; i < mPhotoList.size(); i++){
-            StorageReference mountainsRef = AppData.storageRef.child("routes").child(Route_Index).child(Route_Index+mPhotoList.get(i).getPhotoPath() + ".jpg");
-            route_image.get(i).setDrawingCacheEnabled(true);
-            route_image.get(i).buildDrawingCache();
-            Bitmap bitmap = route_image.get(i).getDrawingCache();
+                for(i = 0; i < mPhotoList.size(); i++){
+                    StorageReference mountainsRef = AppData.storageRef.child("routes").child(Route_Index).child(Route_Index+mPhotoList.get(i).getPhotoPath() + ".jpg");
+                    route_image.get(i).setDrawingCacheEnabled(true);
+                    route_image.get(i).buildDrawingCache();
+                    Bitmap bitmap = route_image.get(i).getDrawingCache();
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] data = baos.toByteArray();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] data = baos.toByteArray();
 
-            UploadTask uploadTask = mountainsRef.putBytes(data);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
+                    UploadTask uploadTask = mountainsRef.putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            Route_Photo_URLs.add(downloadUrl.toString());
+
+                            if(i == Route_Photo_URLs.size()){
+                                User user= AppData.getCur_User();
+
+                                String User_ID= user.User_ID;
+                                String User_Name=user.User_Name;
+                                String User_Profile_URL=user.User_Profile_URL;
+
+                                String Route_Time_Of_Write=AppData.getCurTime();
+
+
+                                int Route_Rating_Num=0;
+
+                                String Route_Main_Title=s_Title;
+                                Boolean Route_Possibility=Guideable;
+                                String Route_Available_Time=s_AmPm;
+                                String Route_Start_Time=s_StartTime;
+                                String Route_End_Time=s_EndTime;
+                                int Route_Tourist_Num=Integer.parseInt(s_Member);;
+                                List<Route_Pin_Data> Route_Locations = AppData.PinPointData; //목적지만 표시
+
+                                Route_Data route_data=new Route_Data(Route_Index,User_ID,User_Name,User_Profile_URL
+                                        ,Route_Time_Of_Write,Route_Main_Title,Route_Photo_URLs,Route_Possibility,Route_Available_Time,Route_Start_Time,Route_End_Time
+                                        ,Route_Tourist_Num,Route_Locations,Route_Rating_Num);
+
+
+                                AppData.myRef.child("routes").child(Route_Index).setValue(route_data); //★
+
+
+                                saveKeyWord(Route_Locations); // 키워드 데이터 저장
+
+                            }
+                        }
+                    });
                 }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    Route_Photo_URLs.add(downloadUrl.toString());
+    }
 
-                    if(i == Route_Photo_URLs.size()){
-                        User user= AppData.getCur_User();
+    void saveKeyWord(final List<Route_Pin_Data> Route_Locations){
 
-                        String User_ID;
-                        String User_Name;
-                        String User_Profile_URL;
-                        int memParse;
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
 
-                        User_ID= user.User_ID;
-                        User_Name=user.User_Name;
-                        User_Profile_URL=user.User_Profile_URL;
+                boolean IsExist[] = new boolean[Route_Locations.size()];
+                for (boolean exist:IsExist) {
+                    exist = false;
+                }
 
-
-                        String Route_Time_Of_Write=AppData.getCurTime();
-
-                        String Route_Main_Title;
-
-                        Boolean Route_Possibility;
-                        String Route_Available_Time;
-                        String Route_Start_Time;
-                        String Route_End_Time;
-
-                        int Route_Tourist_Num;
-                        List<Route_Pin_Data> Route_Locations; //목적지만 표시
-                        int Route_Rating_Num=0;
-
-                        memParse=Integer.parseInt(s_Member);
-
-
-                        Route_Main_Title=s_Title;
-                        Route_Possibility=Guideable;
-                        Route_Available_Time=s_AmPm;
-                        Route_Start_Time=s_StartTime;
-                        Route_End_Time=s_EndTime;
-                        Route_Tourist_Num=memParse;
-                        Route_Locations = AppData.PinPointData;
-
-                        Route_Data route_data=new Route_Data(Route_Index,User_ID,User_Name,User_Profile_URL
-                                ,Route_Time_Of_Write,Route_Main_Title,Route_Photo_URLs,Route_Possibility,Route_Available_Time,Route_Start_Time,Route_End_Time
-                                ,Route_Tourist_Num,Route_Locations,Route_Rating_Num);
-
-                        AppData.myRef.child("routes").child(Route_Index).setValue(route_data);
-
+                for(int i =0 ; i<Route_Locations.size();i++){
+                    while (iterable.iterator().hasNext()) {
+                        DataSnapshot cur_Snapshot = iterable.iterator().next();
+                        String Keyword = cur_Snapshot.child("Keyword").getValue().toString();
+                        if (Keyword == Route_Locations.get(i).Route_Title) {
+                            int amount_Used = cur_Snapshot.child("Keyword_Amount_Used").getValue(Integer.class);
+                            ++amount_Used;
+                            AppData.myRef.child("keywords").child(Keyword).child("Keyword_Amount_Used").setValue(amount_Used);
+                            IsExist[i] = true;
+                        }
+                    }
+                    // 기존에 등록되었을 키워드가 없음.
+                    if(IsExist[i] == false){
+                        KeywordData keywordData = new KeywordData(Route_Locations.get(i).Route_Title,1);
+                        AppData.myRef.child("keywords").child(keywordData.Keyword).setValue(keywordData);
                     }
                 }
-            });
-        }
 
 
 
+                //여기에 화면 넘어가는거 하기
+                fm=getFragmentManager();
+                fragmentTransaction = fm.beginTransaction();
+
+                SignUpGuider_Complete_Fragment fragment=new SignUpGuider_Complete_Fragment();
+
+                if(IsFirstGuide){
+                    fragmentTransaction.replace(R.id.signup_guider_FrameLayout,fragment);
+                    fragmentTransaction.commit();
+                }else{
+                    fragmentTransaction.replace(R.id.route_add_frame,fragment);
+                    fragmentTransaction.commit();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
 
     @Override
