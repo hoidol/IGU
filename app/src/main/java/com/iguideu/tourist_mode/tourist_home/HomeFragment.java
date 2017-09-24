@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
 
         tab_TextView[0] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.home_custom_tab, null);
         tab_TextView[0].setText("추천");
-        tab_TextView[0].setTextColor(getResources().getColor(R.color.IGU_Point2_Color));
+        tab_TextView[0].setTextColor(getResources().getColor(R.color.IGU_Point_Color));
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[0]));
 
         tab_TextView[1] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.home_custom_tab, null);
@@ -201,7 +201,7 @@ public class HomeFragment extends Fragment {
     void setTab_TextColor(int position){
         for(int i =0;i<tab_TextView.length;i++){
             if(position == i){
-                tab_TextView[i].setTextColor(getResources().getColor(R.color.IGU_Point2_Color));
+                tab_TextView[i].setTextColor(getResources().getColor(R.color.IGU_Point_Color));
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }else{
                 tab_TextView[i].setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));

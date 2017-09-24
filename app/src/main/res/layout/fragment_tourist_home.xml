@@ -133,8 +133,8 @@
             android:background="#ffffff"
 
             app:tabTextAppearance="@style/HomeFragment_TabLayout"
-            app:tabIndicatorColor="#fbbaba"
-            app:tabSelectedTextColor="@color/IGU_Point2_Color"
+            app:tabIndicatorColor="@color/IGU_Point_Color"
+            app:tabSelectedTextColor="@color/IGU_Point_Color"
             app:tabTextColor="#4a4a4a"
             app:tabMode="scrollable"
             app:tabGravity="center"

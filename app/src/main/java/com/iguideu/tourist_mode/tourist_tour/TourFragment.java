@@ -107,12 +107,12 @@ public class TourFragment extends Fragment {
     void setBtnBackground(Button btn){
         for(int i =0; i<Tour_Btns.length;i++){
             if(Tour_Btns[i] == btn){
-                Tour_Btns[i].setBackground(getResources().getDrawable(R.drawable.check_solid));
+                Tour_Btns[i].setBackground(getResources().getDrawable(R.drawable.main_btn_down_bg));
                 Tour_Btns[i].setTextColor(getResources().getColor(R.color.Color_White));
                 Tour_Btns[i].setEnabled(false);
             }else{
-                Tour_Btns[i].setBackground(getResources().getDrawable(R.drawable.noncheck_solid));
-                Tour_Btns[i].setTextColor(getResources().getColor(R.color.Color_Black));
+                Tour_Btns[i].setBackground(getResources().getDrawable(R.drawable.main_btn_bg));
+                Tour_Btns[i].setTextColor(getResources().getColor(R.color.IGU_Point_Color));
                 Tour_Btns[i].setEnabled(true);
             }
         }

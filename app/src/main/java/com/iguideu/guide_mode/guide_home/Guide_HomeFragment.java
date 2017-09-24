@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-<<<<<<< HEAD
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
-=======
->>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,18 +18,6 @@ import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.guide_mode.Route_Add_Activity.Guide_Route_Add_Activity;
-<<<<<<< HEAD
-import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
-import com.yanzhenjie.recyclerview.swipe.touch.OnItemMoveListener;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
-=======
->>>>>>> 3a36a3455adca42104daf80e28935b4f41de0ce8
 
 import java.util.ArrayList;
 import java.util.List;

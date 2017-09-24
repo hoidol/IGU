@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,8 +34,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.iguideu.R;
+import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.data.Route_Pin_Data;
+import com.iguideu.tourist_mode.tourist_home.guide.GuideRecyclerAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +94,6 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         Button button = (Button)view.findViewById(R.id.route_detail_Btn_1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +105,9 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         if(Cur_Route_Data != null){
             setToolbar(view);
             setImage(view);
+            setContents(view);
             setMap(view, savedInstanceState);
+            Toast.makeText(getContext(),"Cur_Route_Data is not null " + Cur_Route_Data.Route_Main_Title,Toast.LENGTH_SHORT).show();
         }
 
 
@@ -162,37 +169,22 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
 
     private GoogleApiClient mGoogleApiClient;
 
+    int[] map_mark_Res = {R.mipmap.marker_1,R.mipmap.marker_2,R.mipmap.marker_3,R.mipmap.marker_4,R.mipmap.marker_5};
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         this.googleMap = googleMap;
-        LatLng seoul_citihole = new LatLng(37.566734,126.978395);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul_citihole, 13));
+        LatLng Init_Location = new LatLng(37.566679,126.978406);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Init_Location, 13));
 
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.map_mark_1); //마커에 사용될 아이콘 설정
+        List<Route_Pin_Data> Locations = Cur_Route_Data.Route_Locations;
 
-        googleMap.addMarker(new MarkerOptions().position(seoul_citihole).icon(icon)); //마커 등록
-        List<LatLng> list  = new ArrayList<>();
-        PolylineOptions rectOptions = new PolylineOptions()
-                .add(new LatLng(37.566734,126.978395))
-                .add(new LatLng(37.566734,126.978495))  // North of the previous point, but at the same longitude
-                .add(new LatLng(37.566754,126.978495))  // Same latitude, and 30km to the west
-                .add(new LatLng(37.566754,126.978395))  // Same longitude, and 16km to the south
-                .add(new LatLng(37.566734,126.978395));
-
-        Polyline polyline = googleMap.addPolyline(rectOptions);
-
-        googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-            @Override
-            public void onCameraChange(CameraPosition arg0) {
-                LatLng location_center = arg0.target;
-                Log.d(AppData.LOG_INDICATOR,"위도 : " + location_center.latitude + " 경도 : " + location_center.longitude);
-
-
-            }
-        });
-
-
+        for(int i =0; i < Locations.size();i++){
+            LatLng temp_LatLng = new LatLng(Locations.get(i).Route_Pin_Point_lat,Locations.get(i).Route_Pin_Point_long);
+            BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(map_mark_Res[i]); //마커에 사용될 아이콘 설정
+            googleMap.addMarker(new MarkerOptions().position(temp_LatLng).icon(icon)); //마커 등록
+        }
 
     }
 
@@ -207,6 +199,68 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
                 activity.finish();
             }
         });
+    }
+
+    TextView route_title_TextView;
+    public ImageView[] rating_star_ImageView = new ImageView[5];
+    RoundedImageView route_profile_image;
+    TextView route_profile_name;
+    TextView route_guide_possibility_Text;
+    TextView route_guide_time_Text;
+    TextView route_guide_guestNum_Text;
+
+    void setContents(View view){
+        // 메인 제목
+        route_title_TextView = (TextView)view.findViewById(R.id.route_title_TextView);
+        route_title_TextView.setText(Cur_Route_Data.Route_Main_Title);
+
+        // 별점
+        rating_star_ImageView[0] = (ImageView)view.findViewById(R.id.rating_star_0);
+        rating_star_ImageView[1] = (ImageView)view.findViewById(R.id.rating_star_1);
+        rating_star_ImageView[2] = (ImageView)view.findViewById(R.id.rating_star_2);
+        rating_star_ImageView[3] = (ImageView)view.findViewById(R.id.rating_star_3);
+        rating_star_ImageView[4] = (ImageView)view.findViewById(R.id.rating_star_4);
+
+        int cur_Rating = Cur_Route_Data.Route_Rating_Num;
+        setStar(cur_Rating);
+
+        //프로필 사진
+
+        route_profile_image = (RoundedImageView)view.findViewById(R.id.route_profile_image);
+        Picasso.with(getContext()).load(Cur_Route_Data.User_Profile_URL).into(route_profile_image);
+
+        //가이드 닉네임 *수정 필요
+        route_profile_name = (TextView)view.findViewById(R.id.route_profile_name);
+        route_profile_name.setText(Cur_Route_Data.User_Name);
+
+        //가이드 여부
+        route_guide_possibility_Text = (TextView)view.findViewById(R.id.route_guide_possibility_Text);
+        if(Cur_Route_Data.Route_Possibility){
+            route_guide_possibility_Text.setText("Yes");
+        }else{
+            route_guide_possibility_Text.setText("No");
+        }
+
+        //가이드 가능 시간
+        route_guide_time_Text = (TextView)view.findViewById(R.id.route_guide_time_Text);
+        route_guide_time_Text.setText(Cur_Route_Data.Route_Start_Time + " ~ " + Cur_Route_Data.Route_End_Time);
+
+        // 수용 인원
+        route_guide_guestNum_Text = (TextView)view.findViewById(R.id.route_guide_guestNum_Text);
+        route_guide_guestNum_Text.setText(Cur_Route_Data.Route_Tourist_Num + "명");
+
+        //
+
+    }
+
+    void setStar(int cur_Rating){
+        for(int i =0;i<5;i++){
+            if(i<cur_Rating) {
+                rating_star_ImageView[i].setBackground(getContext().getDrawable(R.mipmap.star_solid));
+            }else{
+                rating_star_ImageView[i].setBackground(getContext().getDrawable(R.mipmap.star_blank));
+            }
+        }
     }
 
     void changeFragment(){

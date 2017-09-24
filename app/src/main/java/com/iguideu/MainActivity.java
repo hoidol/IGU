@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         App_Mode = AppData.getApp_Mode();
         setTabLayout();
 
-
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.main_Fragment,new HomeFragment());
@@ -255,11 +254,12 @@ public class MainActivity extends AppCompatActivity {
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
 
-                    //Route_Data route_data = cur_Snapshot.getValue(Route_Data.class);
-                    //sort_Rating_Route();
+                    Route_Data route_data = cur_Snapshot.getValue(Route_Data.class);
+                    list.add(route_data);
+
                 }
                 AppData.Route_Data_List= list;
-
+                sort_Rating_Route();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

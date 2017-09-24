@@ -54,16 +54,6 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
         int cur_Rating = data.Route_Rating_Num;
 
-/*      List<String> list = AppData.getCur_User().getUser_Route_Favorites();
-
-        holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.no_favorite_icon));
-
-        for(int i =0; i < list.size(); i++){
-            if(data.getRoute_Index() == list.get(i)){
-                holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.favorite_icon));
-            }
-        }*/
-
 
         setStar(holder, cur_Rating);
 

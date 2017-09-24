@@ -254,12 +254,6 @@
                         android:layout_height="match_parent"
                         android:name="com.google.android.gms.maps.MapFragment"
                         android:id="@+id/map"/>
-                    <ImageView
-                        android:id="@+id/marker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_close_light"/>
                 </RelativeLayout>
 
 
@@ -279,19 +273,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
                     android:id="@+id/route_Map_Image"
-                    android:layout_above="@+id/route_detail_Container_Includer"
+                    android:layout_above="@+id/route_detail_Container_RecyclerView"
                     android:background="#000000"
                     />
-
-                <include
-                    layout="@layout/route_detail_content"
-                    android:id="@+id/route_detail_Container_Includer"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/route_detail_Container_RecyclerView"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="@color/Color_All_Primary_Text"
-                    android:layout_below="@+id/route_detail_Container_Includer"
+                    android:layout_below="@+id/route_detail_Container_RecyclerView"
                     android:layout_marginTop="11.7dp"
                     android:id="@+id/horizontal_view5"
                     />

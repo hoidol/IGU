@@ -94,7 +94,6 @@ public class RouteFragment extends Fragment {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-
                         Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
                         intent.putExtra("Cur_Route_Position", position);
                         getContext().startActivity(intent);

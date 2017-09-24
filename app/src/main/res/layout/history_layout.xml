@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="75.5dp"
+    android:layout_marginBottom="24.7dp"
     app:cardElevation="0dp"
     >
 
@@ -13,11 +14,13 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical">
 
-        <ImageView
+        <com.iguideu.custom_view.RoundedImageView
             android:id="@+id/history_node_ImageView"
             android:layout_width="24.7dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="13.3dp" />
+            android:layout_height="24.7dp"
+            android:layout_marginLeft="13.3dp"
+            android:layout_centerVertical="true"
+            android:background="@color/IGU_Point_Color"/>
 
         <com.iguideu.custom_view.RoundedImageView
             android:id="@+id/profile_ImageView"

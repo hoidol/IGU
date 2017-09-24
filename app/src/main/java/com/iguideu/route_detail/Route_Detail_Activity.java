@@ -15,6 +15,8 @@ import com.iguideu.data.Route_Data;
  */
 
 public class Route_Detail_Activity extends AppCompatActivity {
+
+    public Route_Data Cur_Route_Data;
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
 
@@ -25,7 +27,7 @@ public class Route_Detail_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_detail);
 
-        Route_Data Cur_Route_Data = ReceiveData();
+        Cur_Route_Data = ReceiveData();
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
         Route_Detail_Fragment_1 fragment = new Route_Detail_Fragment_1();
