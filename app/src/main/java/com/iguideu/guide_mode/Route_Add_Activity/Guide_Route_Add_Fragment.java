@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-<<<<<<< HEAD:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Guide_Route_Add_Fragment.java
 import android.os.Bundle;
-=======
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Giude_Route_Add.java
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,22 +38,17 @@ import com.iguideu.aboutBringGallery.PicassoImageLoader;
 import com.iguideu.aboutBringGallery.PicassoPauseOnScrollListener;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
+import com.iguideu.data.Route_Pin_Data;
 import com.iguideu.data.User;
-<<<<<<< HEAD:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Guide_Route_Add_Fragment.java
 import com.iguideu.guide_mode.Route_Add_Map.RouteAddMapActivity;
-=======
-import com.iguideu.guide_mode.Write_Activity.RouteAddActivity;
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Giude_Route_Add.java
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
-<<<<<<< HEAD:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Guide_Route_Add_Fragment.java
-=======
+
 import java.io.ByteArrayOutputStream;
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Giude_Route_Add.java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,13 +59,10 @@ import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
-import cn.finalteam.toolsfinal.io.stream.ByteArrayOutputStream;
 
-<<<<<<< HEAD:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Guide_Route_Add_Fragment.java
 public class Guide_Route_Add_Fragment extends Fragment  {
-=======
-public class Giude_Route_Add extends AppCompatActivity {
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc:app/src/main/java/com/iguideu/guide_mode/Route_Add_Activity/Giude_Route_Add.java
+
+
 
     Context mContext;
 
@@ -499,4 +489,6 @@ public class Giude_Route_Add extends AppCompatActivity {
         }
     }
 }
+
+
 

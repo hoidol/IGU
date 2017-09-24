@@ -6,11 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-<<<<<<< HEAD
-=======
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,8 +17,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.iguideu.R;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
-<<<<<<< HEAD
 import com.iguideu.guide_mode.Route_Add_Activity.Guide_Route_Add_Activity;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -31,10 +28,7 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.yanzhenjie.recyclerview.swipe.touch.OnItemMoveListener;
-=======
-import com.iguideu.guide_mode.Route_Add_Activity.Giude_Route_Add;
 import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
->>>>>>> cda21f7f889793b3f46c7721008a52e05af383dc
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,7 +100,7 @@ public class Guide_HomeFragment extends Fragment{
         mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
                 ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
         mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
-                ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
+                , AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
 
     }
 

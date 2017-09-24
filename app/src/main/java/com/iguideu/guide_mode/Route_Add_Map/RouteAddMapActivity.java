@@ -72,8 +72,10 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
         {
             case R.id.btn_route_add_check:
                 LatLng point=new LatLng(locationLatLng.latitude,locationLatLng.longitude);
-
-                AppData.PinPointData.add(new Route_Pin_Data("키워드","설명 작성해주세요.",point));
+                Double Point_Lat,Point_Long;
+                Point_Lat=point.latitude;
+                Point_Long=point.longitude;
+                AppData.PinPointData.add(new Route_Pin_Data("키워드","설명 작성해주세요.",Point_Lat,Point_Long));
                 MarkerOptions options=new MarkerOptions();
                 options.position(point).icon(getMarker(MarkerCount));
 
