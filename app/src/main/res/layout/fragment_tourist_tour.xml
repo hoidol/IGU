@@ -7,25 +7,27 @@
         android:layout_width="match_parent"
         android:layout_height="52.7dp"
         android:id="@+id/Tour_Btn_Container"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical|center_horizontal">
 
         <Button
-            android:layout_width="131.3dp"
-            android:layout_height="27.3dp"
+            android:layout_width="156.7dp"
+            android:layout_height="35.5dp"
             android:id="@+id/Tour_History_Btn"
             android:text="일정"
+            android:textSize="18.3sp"
             android:textColor="@color/Color_White"
-            android:background="@drawable/check_solid"
-            android:layout_marginLeft="43dp"/>
+            android:background="@drawable/main_btn_down_bg"
+            />
 
         <Button
-            android:layout_width="131.3dp"
-            android:layout_height="27.3dp"
+            android:layout_width="156.7dp"
+            android:layout_height="35.5dp"
             android:id="@+id/Tour_Favorite_Btn"
             android:layout_toRightOf="@+id/Tour_History_Btn"
             android:text="좋아요"
-            android:layout_marginLeft="11.3dp"
-            android:background="@drawable/noncheck_solid"/>
+            android:textSize="18.3sp"
+            android:layout_marginLeft="13.7dp"
+            android:background="@drawable/main_btn_bg"/>
 
 
     </RelativeLayout>
