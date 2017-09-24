@@ -23,6 +23,9 @@ public class Feed_Data  {
     public String Feed_Image_URL;
     public String Feed_Contents;
 
+    public Feed_Data(){
+
+    }
 
     public Feed_Data(String Feed_Index, String User_ID, String User_Name, String User_Profile_URL, String Feed_Time_Of_Write, String Feed_Image_URL, String Feed_Contents){
         this.Feed_Index = Feed_Index;

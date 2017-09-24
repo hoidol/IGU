@@ -19,7 +19,9 @@ public class ChattingRoom {
     public boolean IsRead;
 
 
+    public ChattingRoom(){
 
+    }
 
     public ChattingRoom(String ChattingRoom_Index,User Cur_User,User Other_User,String Created_Time_Chatting_Room,ArrayList<ChattingData> Chatting_Datas, boolean IsRead){
         this.ChattingRoom_Index = ChattingRoom_Index;

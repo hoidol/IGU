@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#d8d8d8</color>
-    <color name="IGU_Point_Color">#b0e6dc</color>
+    <color name="IGU_Point_Color">#4a90e2</color>
     <color name="Color_Init_Btn_Focus_text">#ffffff</color>
     <color name="Color_Init_Btn_Focus_none_Text">#b0b2b2</color>
     <color name="IGU_Point2_Color">#fbbaba</color>

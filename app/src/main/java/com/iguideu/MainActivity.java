@@ -5,7 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.iguideu.aboutSort.Guider_Descending;
+import com.iguideu.aboutSort.Keyword_Descending;
+import com.iguideu.aboutSort.Route_Data_Descending;
 import com.iguideu.data.AppData;
+import com.iguideu.data.Feed_Data;
+import com.iguideu.data.KeywordData;
+import com.iguideu.data.Request_Data;
+import com.iguideu.data.Route_Data;
+import com.iguideu.data.Route_Pin_Data;
+import com.iguideu.data.User;
 import com.iguideu.guide_mode.guide_history.Guide_HistoryFragment;
 import com.iguideu.guide_mode.guide_home.Guide_HomeFragment;
 import com.iguideu.guide_mode.guide_schedule.Guide_ScheduleFragment;
@@ -14,11 +26,16 @@ import com.iguideu.tourist_mode.tourist_home.HomeFragment;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 import com.iguideu.tourist_mode.tourist_tour.TourFragment;
 import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
 import com.iguideu.main_inbox.InboxFragment;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
@@ -56,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.main_Fragment,new HomeFragment());
         fragmentTransaction.commit();
 
+        setDatas();
     }
 
     void setTabLayout(){
@@ -214,4 +232,248 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    void setDatas(){
+        setRouteData();
+        setFeedData();
+        setGuiderData();
+        setChattingRoom();
+        setRequestData();
+       // setAttraction_Route();
+
+        setTouristHistoryData();
+        setGuiderHistoryData();
+    }
+
+    void setRouteData(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
+                List<Route_Data> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+
+                    //Route_Data route_data = cur_Snapshot.getValue(Route_Data.class);
+                    //sort_Rating_Route();
+                }
+                AppData.Route_Data_List= list;
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);
+    }
+    void setFeedData(){
+
+        List<Feed_Data> list = new ArrayList<>();
+        list.add(new Feed_Data("201708120516ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708120612ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708120112ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708120912ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708130512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708170512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201702120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201708120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201711120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201712110512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201601120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+        list.add(new Feed_Data("201705120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
+
+
+        AppData.Feed_Data_List = list;
+
+        /* ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("feeds").getChildren();
+
+                List<Feed_Data> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    Feed_Data feed_data =  cur_Snapshot.getValue(Feed_Data.class);
+                    list.add(feed_data);
+
+                }
+                AppData.Feed_Data_List= list;
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+    }
+    void setChattingRoom(){
+       /* ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
+
+                List<ChattingRoom> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    User cur_user =  cur_Snapshot.child("Cur_User").getValue(User.class);
+                    if(AppData.getCur_User().User_ID == cur_user.User_ID){
+                        list.add(cur_Snapshot.getValue(ChattingRoom.class));
+                    }
+
+                }
+                AppData.ChattingRoom_Data_List = list;
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+    }
+
+    void setGuiderData(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+
+                Log.d(AppData.LOG_INDICATOR,"데이터가 바꿔서 setGuiderData(), 의 리스너 호출됨");
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("users").getChildren();
+
+                List<User> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    boolean IsGuider =  (boolean)cur_Snapshot.child("User_Guide").getValue();
+                    if(IsGuider == true){
+                        list.add(cur_Snapshot.getValue(User.class));
+                    }
+                }
+                AppData.Guider_Data_List = list;
+                sort_Rating_Guider();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void setRequestData(){
+        List<Request_Data> list = new ArrayList<>();
+
+        AppData.Request_Data_List = list;
+
+        /*ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("requests").getChildren();
+
+                List<Request_Data> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+
+                    String Requester_ID =  cur_Snapshot.child("Requester_ID").getValue().toString();
+
+                    if(AppData.getCur_User().User_ID == Requester_ID){
+                        list.add( cur_Snapshot.getValue(Request_Data.class));
+                    }
+
+                }
+                AppData.Request_Data_List = list;
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+    }
+
+    List<KeywordData> KeywordData_List = new ArrayList<>();
+    void setAttraction_Route(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+
+                //키워드량 비교
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    KeywordData data =  cur_Snapshot.getValue(KeywordData.class);
+                    KeywordData_List.add(data);
+                }
+
+                Keyword_Descending data_descending = new Keyword_Descending();
+                Collections.sort(KeywordData_List,data_descending);
+
+                AppData.Attraction_Keyword_List = KeywordData_List;
+
+                // 루트 가져오기
+                iterable = dataSnapshot.child("routes").getChildren();
+                int KeywordData_size = KeywordData_List.size();
+                KeywordData_size = ((KeywordData_size<=10)? KeywordData_size:10);
+
+                List<String> Attraction_Image_URL_List = new ArrayList<>();
+
+                for(int i = 0; i<KeywordData_size;i++){
+                    while (iterable.iterator().hasNext()){
+                        DataSnapshot cur_Snapshot = iterable.iterator().next();
+                        Route_Data data =  cur_Snapshot.getValue(Route_Data.class);
+
+                        boolean IsSearched = false;
+                        for(int j=0; j< data.Route_Locations.size();j++){
+                            if(data.Route_Locations.get(j).Route_Title.equals(KeywordData_List.get(i).Keyword)){
+                                Attraction_Image_URL_List.add(data.Route_Photo_URLs.get(0));
+                                IsSearched = true;
+                                break;
+                            }
+                        }
+
+                        if(IsSearched == true){
+                            break;
+                        }
+                    }
+                }
+
+               AppData.Attraction_Image_URL_List = Attraction_Image_URL_List;
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void setTouristHistoryData(){
+
+    }
+    void setGuiderHistoryData(){
+
+    }
+    void sort_Rating_Route(){
+        AppData.Recommend_Route_List = AppData.Route_Data_List;
+
+        if(AppData.Recommend_Route_List == null)
+            return;
+
+        Route_Data_Descending descending = new Route_Data_Descending();
+        Collections.sort(AppData.Recommend_Route_List,descending);
+    }
+    void sort_Rating_Guider(){
+        AppData.Recommend_Guider_List = AppData.Guider_Data_List;
+
+        if(AppData.Recommend_Guider_List == null)
+            return;
+
+        Guider_Descending descending = new Guider_Descending();
+        Collections.sort(AppData.Recommend_Guider_List,descending);
+
+    }
+
 }

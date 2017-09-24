@@ -18,6 +18,10 @@ public class ChattingData implements Serializable {
     public String Contents;
     public String Writed_Time;
 
+    public ChattingData(){
+
+    }
+
     public ChattingData(String Owner_ID, String Contents, String Writed_Time){
         this.Owner_ID = Owner_ID;
         this.Contents = Contents;

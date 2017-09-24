@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
 import com.iguideu.data.AppData;
@@ -17,6 +21,7 @@ import com.iguideu.data.Route_Data;
 import com.iguideu.route_detail.Route_Detail_Activity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,14 +44,17 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
     @Override
     public void onBindViewHolder(Route_Recycler_ViewHolder holder, int position) {
+
         Route_Data data = AppData.Route_Data_List.get(position);
+        if(data == null)
+            return;
 
         Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.route_ImageView);
         holder.route_title_TextView.setText(data.Route_Main_Title);
 
         int cur_Rating = data.Route_Rating_Num;
 
-/*        List<String> list = AppData.getCur_User().getUser_Route_Favorites();
+/*      List<String> list = AppData.getCur_User().getUser_Route_Favorites();
 
         holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.no_favorite_icon));
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.User;
 import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
 import com.squareup.picasso.Picasso;
@@ -24,12 +25,10 @@ import java.util.List;
 public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAdapter.Guide_Recycler_ViewHolder>{
 
     Context mContext;
-    List<User> User_List;
     FragmentManager fm;
 
-    public GuideRecyclerAdapter(Context context, List<User> list, FragmentManager fm){
+    public GuideRecyclerAdapter(Context context){
         this.mContext = context;
-        User_List = list;
         this.fm = fm;
 
     }
@@ -43,7 +42,7 @@ public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAda
     @Override
     public void onBindViewHolder(Guide_Recycler_ViewHolder holder, int position) {
 
-        User data = User_List.get(position);
+        User data = AppData.Guider_Data_List.get(position);
 
         Picasso.with(mContext).load(data.User_Profile_URL).into(holder.profile_ImageView);
         holder.profile_Nick_TextView.setText(data.User_Nick);
@@ -54,7 +53,7 @@ public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAda
 
     @Override
     public int getItemCount() {
-        return User_List.size();
+        return AppData.Guider_Data_List.size();
     }
 
     void setStar(GuideRecyclerAdapter.Guide_Recycler_ViewHolder holder, int cur_Rating){

@@ -32,8 +32,8 @@ public class RouteFragment extends Fragment {
 
     Context m_Context;
 
-    String Searched_Keyword;
-    CalendarDay Searched_Date;
+    String Searched_Keyword = "";
+    CalendarDay Searched_Date = null;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -59,7 +59,7 @@ public class RouteFragment extends Fragment {
             // 검색된 키워드가 있을때
         }
 
-        if(!Searched_Date.toString().equals("")){
+        if(Searched_Date != null){
             // 검색한 날짜가 있을 때
             Toast.makeText(getContext(),"Searched_Date.toString() : " + Searched_Date.toString(),Toast.LENGTH_SHORT).show();
         }

@@ -71,7 +71,7 @@ public class SignUpProgress6 extends Fragment {
                 //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
 
                 String user_key = AppData.StringReplace(cur_User.User_ID);
-                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,null,null,null,null,null,null,null);
+                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,null,null,null,null,null,null);
 
                 AppData.myRef.child("users").child(user_key).setValue(user_inf);
                 AppData.setCur_User(user_inf);

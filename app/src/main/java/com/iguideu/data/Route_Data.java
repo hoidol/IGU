@@ -7,11 +7,14 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.nearby.connection.Connections;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Hoyoung on 2017-07-22.
@@ -22,8 +25,6 @@ public class Route_Data {
     public String User_ID;
     public String User_Name;
     public String User_Profile_URL;
-
-
     public String Route_Time_Of_Write;
     public String Route_Main_Title;
     public List<String> Route_Photo_URLs; // Route Detail에서 보여줄 사진들의 URL
@@ -35,6 +36,10 @@ public class Route_Data {
     public List<Route_Pin_Data> Route_Locations; //목적지만 표시
 
     public int Route_Rating_Num;
+
+    public Route_Data(){
+
+    }
 
     public Route_Data(String Route_Index, String User_ID, String User_Name, String User_Profile_URL,String Route_Time_Of_Write, String Route_Main_Title, List<String> Route_Photo_URLs,
                       Boolean Route_Possibility,String Route_Available_Time,String Route_Start_Time,String Route_End_Time, int Route_Tourist_Num, List<Route_Pin_Data> Route_Locations,int Route_Rating_Num
@@ -53,5 +58,28 @@ public class Route_Data {
         this.Route_Tourist_Num = Route_Tourist_Num;
         this.Route_Locations = Route_Locations;
         this.Route_Rating_Num = Route_Rating_Num;
+    }
+
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("Route_Index", Route_Index);
+        result.put("User_ID", User_ID);
+        result.put("User_Name", User_Name);
+        result.put("User_Profile_URL", User_Profile_URL);
+        result.put("Route_Time_Of_Write", Route_Time_Of_Write);
+        result.put("Route_Main_Title", Route_Main_Title);
+
+        result.put("Route_Photo_URLs", Route_Photo_URLs);
+        result.put("Route_Possibility", Route_Possibility);
+        result.put("Route_Available_Time", Route_Available_Time);
+        result.put("Route_Start_Time", Route_Start_Time);
+        result.put("Route_End_Time", Route_End_Time);
+        result.put("Route_Tourist_Num", Route_Tourist_Num);
+        result.put("Route_Locations", Route_Locations);
+        result.put("Route_Rating_Num", Route_Rating_Num);
+
+        return result;
     }
 }

@@ -44,7 +44,7 @@ public class InboxFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.inbox_RecyclerView);
 
-        AppData.setCur_User( new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null,null));
+        AppData.setCur_User( new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null));
 
         ArrayList<ChattingData> Chat_Data_List1 = new ArrayList<ChattingData>();
         Chat_Data_List1.add(new ChattingData("my_id","안녕하세요. 나1  안녕하세요. 나1  안녕하세요. 나1  안녕하세요. 나1  ",AppData.getCurTime()));
@@ -105,20 +105,20 @@ public class InboxFragment extends Fragment {
         ArrayList<ChattingRoom> list = new ArrayList<>();
 
         list.add(new ChattingRoom("chattingroom_index1",
-                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null,null)
-                , new User("other_Id1", "pass","other_Id1","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List1,false));
+                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null)
+                , new User("other_Id1", "pass","other_Id1","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List1,false));
 
         list.add(new ChattingRoom("chattingroom_index2",
-                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null,null)
-                , new User("other_Id2", "pass","other_Id2","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List2,true));
+                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null)
+                , new User("other_Id2", "pass","other_Id2","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List2,true));
 
         list.add(new ChattingRoom("chattingroom_index3",
-                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null,null)
-                , new User("other_Id3", "pass","other_Id3","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List3,true));
+                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null)
+                , new User("other_Id3", "pass","other_Id3","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List3,true));
 
         list.add(new ChattingRoom("chattingroom_index4",
-                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null,null)
-                , new User("other_Id4", "pass","other_Id4","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List4,false));
+                new User("my_id", "pass","my_id","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",false,null,0,null,null,null,null,null,null)
+                , new User("other_Id4", "pass","other_Id4","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/8.jpg?alt=media&token=9a81748f-c736-4253-8f6a-8ac125d53580",false,null,0,null,null,null,null,null,null), AppData.getCurTime(),Chat_Data_List4,false));
 
 
         InboxRecyclerAdapter adapter = new InboxRecyclerAdapter(getContext(),list);

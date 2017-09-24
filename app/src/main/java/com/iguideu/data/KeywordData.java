@@ -10,6 +10,9 @@ public class KeywordData {
     public String Keyword;
     public int Keyword_Amount_Used;
 
+    public KeywordData(){
+
+    }
     public KeywordData(String Keyword, int keyword_Amount_Used){
         this.Keyword = Keyword;
         this.Keyword_Amount_Used = keyword_Amount_Used;
