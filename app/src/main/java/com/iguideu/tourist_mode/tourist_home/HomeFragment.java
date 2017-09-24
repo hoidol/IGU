@@ -74,8 +74,6 @@ public class HomeFragment extends Fragment {
         setTabLayout(view);
         setSearchContainer(view);
 
-
-
         Log.d(AppData.LOG_INDICATOR, AppData.getCurTime());
     }
 
