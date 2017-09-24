@@ -2,7 +2,7 @@
 <resources>
 
     <!-- All Primary Values-->
-    <dimen name="All_Text_Size_Primary">11.7sp</dimen>
+    <dimen name="All_Text_Size_Primary">16.7sp</dimen>
 
     <!-- LoginActivity Text Size-->
     <dimen name="LoginTextSize_Login_In_Button">18.3sp</dimen>

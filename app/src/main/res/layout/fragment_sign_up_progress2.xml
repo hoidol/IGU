@@ -3,25 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/Color_Layout_Background"
+    android:background="@color/Color_Base_Point"
     android:layout_height="match_parent"
     tools:context="com.iguideu.Signup.SignUpProgress2">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_height="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@drawable/progress_bar"
-            android:layout_weight="6"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@color/Color_Layout_Background"
-            android:layout_weight="4"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
 
 
     <TextView
@@ -29,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/LoginProgress2_MainText"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:textSize="@dimen/LoginProgressTextSize_Main_Text"
         android:id="@+id/pg2_text"
         android:layout_marginTop="112dp"/>
@@ -50,14 +34,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:backgroundTint="#d8d8d8"
+                android:backgroundTint="@color/Color_White"
                 android:id="@+id/pg2_spinner_number" />
             <EditText
                 android:layout_width="203dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/Color_Layout_Background"
+                android:backgroundTint="@color/Backgorund_InVisible"
                 android:inputType="number"
                 android:gravity="center_horizontal"
+                android:textColor="@color/Color_White"
                 android:id="@+id/edit_pg2_number"
                 android:layout_toEndOf="@+id/pg2_spinner_number"/>
         </RelativeLayout>
@@ -72,11 +57,13 @@
 
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:background="@mipmap/okbt"
+        android:layout_width="325.7dp"
+        android:layout_height="51.8dp"
+        android:textColor="@color/Color_White"
+        android:background="@drawable/base_btn"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14.5dp"
+        android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:text="@string/LoginProgress_Next"
         android:id="@+id/btn_progress2_next"

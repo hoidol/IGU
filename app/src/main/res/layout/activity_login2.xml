@@ -5,23 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.iguideu.Login.LoginActivity2"
-    android:background="@color/Color_Layout_Background">
+    android:background="@color/Color_Base_Point">
+
+
 
     <ImageView
-        android:layout_width="58dp"
-        android:layout_height="42.1dp"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/baglogo"
-        android:id="@+id/login_bag"
-        android:layout_marginTop="132dp"/>
-
-    <ImageView
-        android:layout_width="170dp"
-        android:layout_height="17.3dp"
+        android:layout_width="85.7dp"
+        android:layout_height="118.7dp"
         android:src="@mipmap/textlogo"
-        android:layout_marginTop="11.7dp"
+        android:layout_marginTop="81.3dp"
         android:id="@+id/login_text_logo"
-        android:layout_below="@+id/login_bag"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -32,24 +25,26 @@
         android:inputType="textEmailAddress"
         android:hint="@string/Login2_xml_email"
         android:textSize="@dimen/All_Text_Size_Primary"
+        android:textColor="@color/Color_White"
         android:paddingLeft="7dp"
         android:layout_below="@id/login_text_logo"
         android:layout_marginTop="52dp"
-        android:backgroundTint="@color/Color_EditText_Line"
-        android:textColorHint="@color/Color_All_Primary_Text"/>
+        android:backgroundTint="@color/Color_White"
+        android:textColorHint="@color/Color_White"/>
     <EditText
         android:id="@+id/edit_login_pass"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:inputType="textPassword"
+        android:textColor="@color/Color_White"
         android:hint="@string/Login2_xml_pass"
         android:textSize="@dimen/All_Text_Size_Primary"
         android:paddingLeft="7dp"
         android:layout_below="@id/edit_login_id"
         android:layout_marginTop="23dp"
-        android:backgroundTint="@color/Color_EditText_Line"
-        android:textColorHint="@color/Color_All_Primary_Text"/>
+        android:backgroundTint="@color/Color_White"
+        android:textColorHint="@color/Color_White"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,15 +68,17 @@
         android:layout_alignEnd="@+id/text_login_find_pass" />
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="51.7dp"
+        android:layout_width="325.7dp"
+        android:layout_height="51.8dp"
         android:textColor="@color/Color_White"
-        android:background="#b0e6dc"
+        android:background="@drawable/base_btn"
         android:layout_alignParentBottom="true"
         android:textAlignment="center"
         android:text="@string/Login2_xml_Login_In_Btn"
         android:id="@+id/btn_login_check"
         android:onClick="Login2Click"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14.5dp"
         android:textSize="16sp"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -93,7 +90,7 @@
     <Button
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:background="@mipmap/checkboxblank"
+        android:background="@drawable/base_btn"
         android:onClick="Login2Click"
         android:id="@+id/btn_login_pref_check"/>
     <TextView
@@ -103,7 +100,7 @@
         android:layout_toRightOf="@id/btn_login_pref_check"
         android:gravity="center_vertical"
         android:textSize="@dimen/All_Text_Size_Primary"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:layout_marginLeft="6dp"/>
     </RelativeLayout>
 

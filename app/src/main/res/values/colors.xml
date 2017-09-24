@@ -16,6 +16,7 @@
     <color name="Color_EditText_Line">#d8d8d8</color>
     <color name="Backgorund_InVisible">#00000000</color>
     <color name="Color_BTN_Background">#4a90e2</color>
+    <color name="Color_Base_Point">#4a90e2</color>
 
     <!-- LoginActivity Text Color-->
     <color name="Color_Login_EditText">#b0b2b2</color>

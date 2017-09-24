@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Color_Base_Point">
     <include
         layout="@layout/toolbar_layout2"
         android:id="@+id/toolbar"/>
@@ -10,9 +11,9 @@
         android:layout_height="wrap_content" 
         android:text="닉네임을 설정하세요."
         android:layout_below="@+id/toolbar"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="172dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:textSize="18.3sp"
         android:id="@+id/nick_Comment"/>
 
@@ -21,10 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nick_Comment"
         android:id="@+id/signup_nick_EditText"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="105.7dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:gravity="center"
+        android:backgroundTint="@color/Color_White"
         android:textSize="18.3sp"
         android:lines="1"
         android:inputType="text"
@@ -32,14 +34,16 @@
 
         />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="325.7dp"
         android:layout_height="51.8dp"
         android:id="@+id/signup_nick_Btn"
-        android:background="@color/IGU_Point_Color"
+        android:background="@drawable/base_btn"
         android:text="다음"
         android:textColor="@color/Color_White"
         android:textSize="18.3sp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14.5dp"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

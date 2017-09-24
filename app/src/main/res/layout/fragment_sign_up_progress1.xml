@@ -4,30 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Color_Layout_Background"
+    android:background="@color/Color_Base_Point"
     tools:context="com.iguideu.Signup.SignUpProgress1">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_height="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@drawable/progress_bar"
-            android:layout_weight="8"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@color/Color_Layout_Background"
-            android:layout_weight="2"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="325.7dp"
+        android:layout_height="51.8dp"
         android:textColor="@color/Color_White"
-        android:background="@mipmap/okbt"
+        android:background="@drawable/base_btn"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14.5dp"
+        android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:text="@string/LoginProgress_Next"
         android:id="@+id/btn_progress1_next"
@@ -39,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/LoginProgress1_MainText"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:textSize="@dimen/LoginProgressTextSize_Main_Text"
         android:id="@+id/progress1_text"
         android:layout_marginTop="112dp"/>
@@ -47,14 +34,15 @@
     <EditText
         android:layout_width="258dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:hint="@string/LoginProgress1_First_Name"
         android:textSize="@dimen/All_Text_Size_Primary"
         android:paddingLeft="15dp"
-        android:backgroundTint="#d8d8d8"
+        android:backgroundTint="@color/Color_White"
         android:layout_below="@id/progress1_text"
         android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"
+        android:textColorHint="@color/Color_White"
         android:id="@+id/edit_progress1_firstname"
         android:inputType="text"
         />
@@ -62,13 +50,14 @@
     <EditText
         android:layout_width="258dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:hint="@string/LoginProgress1_Last_Name"
         android:textSize="@dimen/All_Text_Size_Primary"
         android:paddingLeft="15dp"
-        android:backgroundTint="@color/Color_EditText_Line"
+        android:backgroundTint="@color/Color_White"
         android:layout_below="@id/edit_progress1_firstname"
         android:layout_marginTop="49.3dp"
+        android:textColorHint="@color/Color_White"
         android:id="@+id/edit_progress1_secondname"
         android:layout_centerHorizontal="true"
         android:inputType="text"
