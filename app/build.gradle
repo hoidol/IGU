@@ -61,6 +61,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
 
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.2'
+    testCompile 'junit:junit:4.12'
+
+
     // Swipe Recycler
     compile 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
 

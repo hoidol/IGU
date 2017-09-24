@@ -22,6 +22,7 @@
         android:layout_toRightOf="@id/custom_list_marker"
         android:layout_marginLeft="13.3dp"
         android:inputType="text"
+        android:backgroundTint="@color/Color_EditText_Line"
         android:id="@+id/edit_route_add_place_name"
         />
     <Button
@@ -41,9 +42,9 @@
         android:layout_width="71dp"
         android:layout_height="36dp"
         android:text="삭 제"
-        android:textColor="@color/Color_White"
+        android:textColor="@color/Color_BTN_Background"
         android:textSize="16.7sp"
-        android:background="@color/Color_BTN_Background"
+        android:background="@color/Backgorund_InVisible"
         android:onClick="RouteListEditClick"
         android:visibility="invisible"
         android:layout_toRightOf="@id/btn_route_add_list_eidt"
@@ -53,11 +54,12 @@
         android:layout_width="293dp"
         android:layout_height="34.7dp"
         android:inputType="text"
-        android:hint="상세내용상세내용상세내용상세내용상세내용상세내용상세내용상세"
+        android:hint="상세내용"
         android:textColorHint="@color/colorAccent"
         android:textSize="11.7sp"
         android:layout_below="@id/edit_route_add_place_name"
         android:id="@+id/edit_route_add_place_detail"
         android:layout_marginTop="15.3dp"
+        android:backgroundTint="@color/Color_EditText_Line"
         android:layout_marginLeft="32dp"/>
 </RelativeLayout>

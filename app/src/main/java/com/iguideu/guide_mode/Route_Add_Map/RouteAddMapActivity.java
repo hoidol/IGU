@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,14 +26,12 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
 
     GoogleMap gmap;
     LatLng locationLatLng;
-    boolean AddBtnEnable=true;
-    int MarkerPosition=0,bitmapMarkersPosition=0;
 
     Button RouteAddBtn;
     boolean checkDataEnable=false;
 
     BitmapDescriptor[] marker=new BitmapDescriptor[5];
-    int MarkerCount=0;
+    int MarkerCount;
 
     ImageView markerResource;
 
@@ -48,21 +47,46 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
         RouteAddBtn=(Button)findViewById(R.id.btn_route_add_check);
         markerResource=(ImageView)findViewById(R.id.marker_resource);
 
+        if(AppData.AppPinPointData.size()>0)
+        {
+            MarkerCount=AppData.AppPinPointData.size();
+            setMarkerResource(MarkerCount);
+        }
 
     }
     public void onMapReady(GoogleMap googleMap)
     {
         gmap=googleMap;
+        if(AppData.AppPinPointData.size()>0)
+        {
+            LatLng BasePoint = AppData.AppPinPointData.get(0);
+            gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(BasePoint,13));
+            gmap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                @Override
+                public void onCameraChange(CameraPosition cameraPosition) {
+                    locationLatLng = cameraPosition.target;
+                }
+            });
 
-        LatLng seoul=new LatLng(37.52487, 126.92723);
-        gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul,13));
 
-        gmap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition) {
-                locationLatLng=cameraPosition.target;
-            }
-        });
+                for (int i=0;i<AppData.AppPinPointData.size();i++) {
+                    LatLng PinPoint =AppData.AppPinPointData.get(i);
+                    MarkerOptions AppPinPointoptions=new MarkerOptions();
+                    AppPinPointoptions.position(PinPoint).icon(getMarker(i));
+                    gmap.addMarker(AppPinPointoptions);
+                }
+
+        }else {
+            LatLng seoul = new LatLng(37.52487, 126.92723);
+            gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 13));
+
+            gmap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                @Override
+                public void onCameraChange(CameraPosition cameraPosition) {
+                    locationLatLng = cameraPosition.target;
+                }
+            });
+        }
 
     }
 
@@ -72,6 +96,7 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
         {
             case R.id.btn_route_add_check:
                 LatLng point=new LatLng(locationLatLng.latitude,locationLatLng.longitude);
+                AppData.AppPinPointData.add(point);
                 Double Point_Lat,Point_Long;
                 Point_Lat=point.latitude;
                 Point_Long=point.longitude;
@@ -95,7 +120,6 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
                 if(checkDataEnable)
                 {
                     Intent intent=new Intent();
-
                     setResult(0);
                 }
                 finish();

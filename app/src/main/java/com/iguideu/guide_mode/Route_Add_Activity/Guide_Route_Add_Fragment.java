@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +59,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +116,7 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_guide_route_add,container,false);
+
     }
 
     @Override
@@ -165,8 +168,12 @@ public class Guide_Route_Add_Fragment extends Fragment  {
         b_Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext,RouteAddMapActivity.class);
-                startActivityForResult(intent,RESULT_OK);
+                if(AppData.PinPointData.size()>=5) {
+                    Toast.makeText(mContext, "지정 가능한 위치 정보를 모두 입력하셨습니다.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(mContext, RouteAddMapActivity.class);
+                    startActivityForResult(intent, RESULT_OK);
+                }
             }
         });
 

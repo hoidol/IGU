@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/map_mark_0"
+            android:src="@mipmap/marker_1"
             android:layout_centerInParent="true"
             android:id="@+id/marker_resource"
             />
