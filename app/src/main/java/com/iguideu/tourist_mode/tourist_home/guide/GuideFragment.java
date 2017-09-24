@@ -2,6 +2,7 @@ package com.iguideu.tourist_mode.tourist_home.guide;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
+import com.iguideu.ProfileActivity;
 import com.iguideu.R;
 import com.iguideu.data.User;
 
@@ -54,7 +56,8 @@ public class GuideFragment extends Fragment{
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                getContext().startActivity(intent);
             }
         }));
 

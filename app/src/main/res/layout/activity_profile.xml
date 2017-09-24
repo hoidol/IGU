@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    >
 
     <include
         layout="@layout/toolbar_layout"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/profile_Toolbar"
-        android:layout_above="@+id/show_route_Btn">
+        android:layout_above="@+id/profile_bottom_Layout">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -84,27 +84,40 @@
                     android:background="@mipmap/star_solid" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_below="@+id/profile_rating_Container"
-                android:text="자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! 자기소개!! "/>
-
-
         </RelativeLayout>
     </ScrollView>
 
-
-
-    <Button
-        android:id="@+id/show_route_Btn"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="51.8dp"
+        android:layout_height="66.3dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/IGU_Point_Color"
-        android:textColor="@color/Color_White"
-        android:textSize="18.3sp"
-        android:text="여행 정보 보기"/>
+        android:gravity="center_horizontal"
+        android:id="@+id/profile_bottom_Layout"
+        >
+
+        <Button
+            android:id="@+id/show_route_Btn"
+            android:layout_width="156.7dp"
+            android:layout_height="51.8dp"
+            android:background="@drawable/main_btn_bg"
+            android:textColor="@color/IGU_Point_Color"
+            android:textSize="18.3sp"
+            android:layout_marginRight="13.7dp"
+
+            android:text="여행 루트"/>
+
+        <Button
+            android:id="@+id/send_Message"
+            android:layout_width="156.7dp"
+            android:layout_height="51.8dp"
+            android:layout_toRightOf="@+id/show_route_Btn"
+            android:background="@drawable/main_btn_bg"
+            android:textColor="@color/IGU_Point_Color"
+            android:textSize="18.3sp"
+            android:text="메시지 보내기"/>
+
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
