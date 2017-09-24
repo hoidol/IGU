@@ -15,7 +15,7 @@
     <color name="Color_White">#ffffff</color>
     <color name="Color_EditText_Line">#d8d8d8</color>
     <color name="Backgorund_InVisible">#00000000</color>
-    <color name="Color_BTN_Background">#b0e6dc</color>
+    <color name="Color_BTN_Background">#4a90e2</color>
 
     <!-- LoginActivity Text Color-->
     <color name="Color_Login_EditText">#b0b2b2</color>
@@ -43,7 +43,7 @@
     <!--Guide Route Add Activity-->
     <color name="Color_Route_Add_Activity_Text">#000000</color>
     <color name="Color_Route_Add_Image_Blank">#d8d8d8</color>
-    <color name="Color_Route_Add_Text_Point">#b0e6db</color>
+    <color name="Color_Route_Add_Text_Point">#4a90e2</color>
     <color name="Color_Route_Add_Text_Normal">#b0b2b2</color>
 
     <color name="divider_color">#FFB7B2B2</color>
