@@ -39,6 +39,7 @@
         <activity
             android:name=".Login.LoginActivity2"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".LogoActivity"
             android:screenOrientation="portrait">

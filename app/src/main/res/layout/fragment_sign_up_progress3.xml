@@ -4,25 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Color_Layout_Background"
+    android:background="@color/Color_Base_Point"
     tools:context="com.iguideu.Signup.SignUpProgress3">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_height="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@drawable/progress_bar"
-            android:layout_weight="4"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@color/Color_Layout_Background"
-            android:layout_weight="6"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
 
 
     <TextView
@@ -30,34 +14,36 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/LoginProgress3_MainText"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColor="@color/Color_White"
         android:textSize="@dimen/LoginProgressTextSize_Main_Text"
         android:id="@+id/pg3_text"
         android:layout_marginTop="112dp"/>
     <EditText
         android:layout_width="292dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#d8d8d8"
+        android:backgroundTint="@color/Color_White"
         android:layout_centerHorizontal="true"
         android:inputType="textEmailAddress"
         android:id="@+id/edit_pg3_email"
         android:hint="@string/LoginProgress3_Email"
-        android:textColor="@color/Color_All_Primary_Text"
+        android:textColorHint="@color/Color_White"
+        android:textColor="@color/Color_White"
         android:textSize="@dimen/All_Text_Size_Primary"
         android:paddingLeft="15dp"
         android:layout_below="@id/pg3_text"
         android:layout_marginTop="120dp"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="325.7dp"
+        android:layout_height="51.8dp"
         android:textColor="@color/Color_White"
-        android:background="@mipmap/okbt"
-        android:textAlignment="center"
+        android:background="@drawable/base_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14.5dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/LoginProgress_Next"
         android:id="@+id/btn_pg3_next"
         android:onClick="Progress3Clock"
-        android:textSize="@dimen/LoginProgressTextSize_Next_In_Button"
-        android:layout_alignParentBottom="true" />
+        android:textSize="@dimen/LoginProgressTextSize_Next_In_Button" />
 
 
 </RelativeLayout>

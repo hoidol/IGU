@@ -35,15 +35,15 @@ public class InitSettingActivity extends AppCompatActivity {
         {
             case R.id.init_btn_korean:
                 InitImage();
-                Korean.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_solid));
-                Korean.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_text));
+                Korean.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
+                Korean.setTextColor(getResources().getColor(R.color.Color_Base_Point));
                 AppData.setApp_Language("KR");
                 Log.d(AppData.LOG_INDICATOR,"현재 언어 : " + AppData.getApp_Language());
                 break;
             case R.id.init_btn_English:
                 InitImage();
-                English.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_solid));
-                English.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_text));
+                English.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
+                English.setTextColor(getResources().getColor(R.color.Color_Base_Point));
                 AppData.setApp_Language("EN");
                 Log.d(AppData.LOG_INDICATOR,"현재 언어 : " + AppData.getApp_Language());
                 break;
@@ -65,10 +65,10 @@ public class InitSettingActivity extends AppCompatActivity {
 
     public void InitImage()
     {
-        Korean.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_blank));
-        Korean.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
-        English.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_blank));
-        English.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
+        Korean.setBackground(getResources().getDrawable(R.drawable.base_btn));
+        Korean.setTextColor(getResources().getColor(R.color.Color_White));
+        English.setBackground(getResources().getDrawable(R.drawable.base_btn));
+        English.setTextColor(getResources().getColor(R.color.Color_White));
     }
 
     @Override

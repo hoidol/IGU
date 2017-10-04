@@ -78,8 +78,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         {
             case R.id.login_btn_login:
                 InitImage();
-                Login.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_solid));
-                Login.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_text));
+                Login.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
+                Login.setTextColor(getResources().getColor(R.color.Color_Base_Point));
                 startActivity(new Intent(this,LoginActivity2.class));
                 finish();
                 //preference 추가해야합니다.
@@ -87,8 +87,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 break;
             case R.id.login_btn_google:
                 InitImage();
-                GoogleLogin.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_solid));
-                GoogleLogin.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_text));
+                GoogleLogin.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
+                GoogleLogin.setTextColor(getResources().getColor(R.color.Color_Base_Point));
 
                 signIn();
                 //역시 마찬가지로 preference 추가해야합니다.
@@ -99,10 +99,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     public void InitImage()
     {
-        Login.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_blank));
-        Login.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
-        GoogleLogin.setBackground(getResources().getDrawable(R.mipmap.initsetting_activity_menubox_blank));
-        GoogleLogin.setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
+        Login.setBackground(getResources().getDrawable(R.drawable.base_btn));
+        Login.setTextColor(getResources().getColor(R.color.Color_White));
+        GoogleLogin.setBackground(getResources().getDrawable(R.drawable.base_btn));
+        GoogleLogin.setTextColor(getResources().getColor(R.color.Color_White));
     }
 
     private void signIn() {
