@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Color_White"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include
         layout="@layout/toolbar_layout"
@@ -127,8 +128,9 @@
                     android:layout_height="17.3dp"
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
+                    android:textStyle="bold"
                     android:text="닉네임"
-                    android:layout_marginTop="4.8dp"
+                    android:layout_marginTop="7.2dp"
                     android:layout_below="@+id/route_profile_image"
                     android:id="@+id/route_profile_name"/>
                 <View
@@ -145,6 +147,7 @@
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
                     android:text="가이드 여부"
+                    android:textStyle="bold"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view1"
                     android:id="@+id/route_guide_possibility_Static"/>
@@ -172,6 +175,7 @@
                     android:layout_height="17.3dp"
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
+                    android:textStyle="bold"
                     android:text="여행시간"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view2"
@@ -200,6 +204,7 @@
                     android:layout_height="17.3dp"
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
+                    android:textStyle="bold"
                     android:text="수용인원"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view3"
@@ -237,6 +242,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="17.3dp"
+                    android:textSize="11.7dp"
+                    android:textStyle="bold"
                     android:layout_marginBottom="13.3dp"
                     android:gravity="center_horizontal"
                     android:id="@+id/route_Map_Static"
@@ -272,13 +279,12 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:id="@+id/route_Map_Image"
-                    android:layout_above="@+id/route_detail_Container_RecyclerView"
-                    android:background="#000000"
+                    android:id="@+id/route_map_indicator_Image"
                     />
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/route_map_indicator_Image"
                     android:id="@+id/route_detail_Container_RecyclerView"/>
 
                 <View
@@ -299,7 +305,7 @@
                 android:layout_height="160.6dp"
                 android:layout_marginTop="12.3dp"
                 android:layout_marginBottom="16.3dp"
-                android:id="@+id/nother_route_Container">
+                android:id="@+id/feeds_of_route_Container">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="17.3dp"

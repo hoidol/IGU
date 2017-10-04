@@ -1,23 +1,16 @@
 package com.iguideu.tourist_mode.tourist_home.recommend;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
 import com.iguideu.data.AppData;
-import com.iguideu.data.Route_Data;
-import com.iguideu.tourist_mode.tourist_home.HomeFragment;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-29.

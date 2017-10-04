@@ -1,6 +1,8 @@
 package com.iguideu.guide_mode.guide_schedule;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,11 +14,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iguideu.R;
+import com.iguideu.data.AppData;
+import com.iguideu.data.Request_Data;
 import com.iguideu.dialog.CheckRouteDialog;
 import com.iguideu.dialog.CheckYOrNDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-08-06.
@@ -27,8 +35,14 @@ public class Guide_ScheduleFragment extends Fragment {
     Context m_Context;
 
     MaterialCalendarView guide_schedule_CalendarView;
+
     CalendarDay cur_Selected_Date;
 
+    List<Request_Data> MyRequest_Data;
+
+    List<CalendarDay> Requested_Days;
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -47,45 +61,54 @@ public class Guide_ScheduleFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        guide_schedule_CalendarView = (MaterialCalendarView)view.findViewById(R.id.guide_schedule_CalendarView);
+        MyRequest_Data = AppData.Request_Data_List;
 
+        setRequestData(view);
         setCalendar(view);
 
     }
 
+    void setRequestData(View view){
+        int MyRequest_Data_size = MyRequest_Data.size();
+        if( MyRequest_Data_size<= 0)
+            return;
+
+        Requested_Days = new ArrayList<>();
+
+        for(int i=0; i < MyRequest_Data_size;i++){
+            // "yyyy_MM_dd_" 형태
+
+            String[] Dates = MyRequest_Data.get(i).Request_Date.split("_");
+
+            int year = Integer.parseInt(Dates[0]);
+            int month = Integer.parseInt(Dates[1]);
+            int date = Integer.parseInt(Dates[2]);
+            CalendarDay cur_Day = new CalendarDay(year,month,date);
+            guide_schedule_CalendarView.setSelectedDate(cur_Day);
+
+            Requested_Days.add(cur_Day);
+        }
+
+    }
+
     void setCalendar(View view){
-        guide_schedule_CalendarView = (MaterialCalendarView)view.findViewById(R.id.guide_schedule_CalendarView);
         guide_schedule_CalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 cur_Selected_Date = date;
-                final CheckYOrNDialog check_dialog = new CheckYOrNDialog(getContext());
-                check_dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        int year = cur_Selected_Date.getYear();
-                        int month = cur_Selected_Date.getMonth() +1;
-                        int day = cur_Selected_Date.getDay();
 
-                        check_dialog.setDialog_check_Text(year + "년 " + month+"월 " + day + "일 " + getString(R.string.dialog_check_schedule_comment_kr));
-
-
-                        check_dialog.dialog_Y_Btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // 비활성화해야함
-                                check_dialog.hide();
-                            }
-                        });
-                        check_dialog.dialog_N_Btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                check_dialog.hide();
-                            }
-                        });
+                for(int i =0;i<Requested_Days.size();i++){
+                    if(Requested_Days.get(i) == cur_Selected_Date){
+                        fragmentTransaction = fm.beginTransaction();
+                        Guide_ScheduleCheckFragment fragment = new Guide_ScheduleCheckFragment();
+                        fragment.SetCur_Date(cur_Selected_Date);
+                        fragmentTransaction.replace(R.id.main_Fragment, fragment);
+                        fragmentTransaction.commit();
+                        break;
                     }
-                });
+                }
 
-                check_dialog.show();
             }
         });
     }

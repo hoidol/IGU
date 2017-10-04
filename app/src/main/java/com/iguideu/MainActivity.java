@@ -16,19 +16,20 @@ import com.iguideu.data.Feed_Data;
 import com.iguideu.data.KeywordData;
 import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
-import com.iguideu.data.Route_Pin_Data;
 import com.iguideu.data.User;
 import com.iguideu.guide_mode.guide_history.Guide_HistoryFragment;
 import com.iguideu.guide_mode.guide_home.Guide_HomeFragment;
 import com.iguideu.guide_mode.guide_schedule.Guide_ScheduleFragment;
 import com.iguideu.main_setting.SettingFragment;
-import com.iguideu.tourist_mode.tourist_home.HomeFragment;
+
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
+
+import com.iguideu.tourist_mode.HomeFragment;
 import com.iguideu.tourist_mode.tourist_tour.TourFragment;
 import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
 import com.iguideu.main_inbox.InboxFragment;
@@ -365,9 +366,7 @@ public class MainActivity extends AppCompatActivity {
     void setRequestData(){
         List<Request_Data> list = new ArrayList<>();
 
-        AppData.Request_Data_List = list;
-
-        /*ValueEventListener listener = new ValueEventListener() {
+        ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
@@ -376,23 +375,20 @@ public class MainActivity extends AppCompatActivity {
                 List<Request_Data> list = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    Request_Data cur_request_data =  cur_Snapshot.getValue(Request_Data.class);
 
-                    String Requester_ID =  cur_Snapshot.child("Requester_ID").getValue().toString();
-
-                    if(AppData.getCur_User().User_ID == Requester_ID){
-                        list.add( cur_Snapshot.getValue(Request_Data.class));
+                    if(AppData.getCur_User().User_ID.equals(cur_request_data.Guider_User_ID)){
+                        list.add(cur_request_data);
                     }
-
                 }
                 AppData.Request_Data_List = list;
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+        AppData.myRef.addListenerForSingleValueEvent(listener);
     }
 
     List<KeywordData> KeywordData_List = new ArrayList<>();
@@ -475,5 +471,6 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(AppData.Recommend_Guider_List,descending);
 
     }
+
 
 }

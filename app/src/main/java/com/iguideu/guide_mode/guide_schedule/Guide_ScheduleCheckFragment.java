@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.Request_Data;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Guide_ScheduleCheckFragment extends Fragment {
 
     Context m_Context;
     RecyclerView recyclerView;
-
+    CalendarDay Cur_Day;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -36,6 +37,11 @@ public class Guide_ScheduleCheckFragment extends Fragment {
     public Guide_ScheduleCheckFragment() {
 
     }
+
+    public void SetCur_Date(CalendarDay date){
+        Cur_Day= date;
+    }
+
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.fragment_guide_schedulecheck, container, false);

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iguideu.R;
+import com.iguideu.data.AppData;
+import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
 import com.iguideu.dialog.CheckRouteDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -34,7 +36,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
     Fragment Cur_Fragment;
     Route_Data Cur_Route_Data;
 
-    CalendarDay cur_Selected_Date;
+    String cur_Selected_Date;
 
     @Override
     public void onAttach(Context context) {
@@ -68,7 +70,16 @@ public class Route_Detail_Fragment_2 extends Fragment{
             @Override
             public void onClick(View v) {
                 if(cur_Selected_Date != null){
+                    //요청 만들기
+
+                    String Request_Index = AppData.getCurTime() + AppData.StringReplace(AppData.getCur_User().User_ID);
+
+                    Request_Data request_data = new Request_Data(Request_Index, Cur_Route_Data.Route_Index, AppData.getCurTime(),Cur_Route_Data.User_ID,AppData.getCur_User().User_ID, cur_Selected_Date.toString(),0);
+                    AppData.myRef.child("requests").child(Request_Index).setValue(request_data);
+
                     setNextFragment();
+                }else{
+                    // 날짜를 선택해주세요.
                 }
 
             }
@@ -83,18 +94,18 @@ public class Route_Detail_Fragment_2 extends Fragment{
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                cur_Selected_Date = date;
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull final CalendarDay date, boolean selected) {
+                final int year = date.getYear();
+                final int month = date.getMonth() + 1;
+                final int day = date.getDay();
 
-                Toast.makeText(getContext(),"CalendarDay 클래스 toString() : " + cur_Selected_Date.toString(), Toast.LENGTH_SHORT).show();
+                cur_Selected_Date = year+"_"+month+"_"+day; // "yyyy_MM_dd_"
 
+                Toast.makeText(getContext(),date.toString(),Toast.LENGTH_LONG).show();
                 final CheckRouteDialog check_dialog = new CheckRouteDialog(getContext());
                 check_dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
                     public void onShow(DialogInterface dialog) {
-                        int year = cur_Selected_Date.getYear();
-                        int month = cur_Selected_Date.getMonth() + 1;
-                        int day = cur_Selected_Date.getDay();
 
                         check_dialog.setDialog_check_Text(year + "년 " + month+"월 " + day + "일 " + getString(R.string.dialog_check_comment_kr));
                         check_dialog.setDialog_check_Btn_Text(getString(R.string.dialog_check_kr));

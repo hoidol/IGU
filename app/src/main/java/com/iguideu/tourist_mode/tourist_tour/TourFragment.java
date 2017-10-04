@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.iguideu.R;
-import com.iguideu.data.Route_Data;
-import com.iguideu.guide_mode.guide_history.Guide_HistoryFragment;
-import com.iguideu.guide_mode.guide_home.Guide_HomeFragment;
-import com.iguideu.guide_mode.guide_schedule.Guide_ScheduleFragment;
-import com.iguideu.main_inbox.InboxFragment;
-import com.iguideu.main_setting.SettingFragment;
-import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
-import com.iguideu.tourist_mode.tourist_home.HomeFragment;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-16.

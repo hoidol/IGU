@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.iguideu.R;
-import com.iguideu.tourist_mode.tourist_home.HomeFragment;
 
 /**
  * Created by Hoyoung on 2017-08-30.

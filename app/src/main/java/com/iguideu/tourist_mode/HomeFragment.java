@@ -1,4 +1,4 @@
-package com.iguideu.tourist_mode.tourist_home;
+package com.iguideu.tourist_mode;
 
 
 import android.app.Fragment;

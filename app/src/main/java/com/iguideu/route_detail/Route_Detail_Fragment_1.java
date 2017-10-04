@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -175,10 +177,11 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
 
         this.googleMap = googleMap;
-        LatLng Init_Location = new LatLng(37.566679,126.978406);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Init_Location, 13));
 
         List<Route_Pin_Data> Locations = Cur_Route_Data.Route_Locations;
+
+        LatLng Init_Location = new LatLng(Locations.get(0).Route_Pin_Point_lat,Locations.get(0).Route_Pin_Point_long);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Init_Location, 13.5f));
 
         for(int i =0; i < Locations.size();i++){
             LatLng temp_LatLng = new LatLng(Locations.get(i).Route_Pin_Point_lat,Locations.get(i).Route_Pin_Point_long);
@@ -209,6 +212,10 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     TextView route_guide_time_Text;
     TextView route_guide_guestNum_Text;
 
+    ImageView route_map_indicator_Image;
+    int[] map_indicator_Res = {R.mipmap.map_indicator_0,R.mipmap.map_indicator_1,R.mipmap.map_indicator_2,R.mipmap.map_indicator_3,R.mipmap.map_indicator_4};
+    RecyclerView route_detail_Container_RecyclerView;
+
     void setContents(View view){
         // 메인 제목
         route_title_TextView = (TextView)view.findViewById(R.id.route_title_TextView);
@@ -229,7 +236,7 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         route_profile_image = (RoundedImageView)view.findViewById(R.id.route_profile_image);
         Picasso.with(getContext()).load(Cur_Route_Data.User_Profile_URL).into(route_profile_image);
 
-        //가이드 닉네임 *수정 필요
+        //가이드 닉네임
         route_profile_name = (TextView)view.findViewById(R.id.route_profile_name);
         route_profile_name.setText(Cur_Route_Data.User_Name);
 
@@ -243,13 +250,22 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
 
         //가이드 가능 시간
         route_guide_time_Text = (TextView)view.findViewById(R.id.route_guide_time_Text);
-        route_guide_time_Text.setText(Cur_Route_Data.Route_Start_Time + " ~ " + Cur_Route_Data.Route_End_Time);
+        route_guide_time_Text.setText(Cur_Route_Data.Route_Available_Time+ " " + Cur_Route_Data.Route_Start_Time + " ~ " + Cur_Route_Data.Route_End_Time);
 
         // 수용 인원
         route_guide_guestNum_Text = (TextView)view.findViewById(R.id.route_guide_guestNum_Text);
         route_guide_guestNum_Text.setText(Cur_Route_Data.Route_Tourist_Num + "명");
 
-        //
+        //route Location 개수를 통한 이미지 변경
+        route_map_indicator_Image = (ImageView)view.findViewById(R.id.route_map_indicator_Image);
+        route_map_indicator_Image.setImageDrawable(getContext().getDrawable(map_indicator_Res[Cur_Route_Data.Route_Locations.size()-1]));
+
+        //route Detail Recycycler 설정
+        route_detail_Container_RecyclerView = (RecyclerView)view.findViewById(R.id.route_detail_Container_RecyclerView);
+        Route_Detail_Contents_Adapter adapter = new Route_Detail_Contents_Adapter(getContext(),Cur_Route_Data.Route_Locations);
+        route_detail_Container_RecyclerView.setAdapter(adapter);
+        route_detail_Container_RecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
     }
 
