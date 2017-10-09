@@ -1,4 +1,4 @@
-package com.iguideu.route_detail;
+package com.iguideu.Route_Detail;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

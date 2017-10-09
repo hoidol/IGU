@@ -2,27 +2,18 @@ package com.iguideu.search;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
-import com.iguideu.route_detail.Route_Detail_Activity;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
 
 /**
  * Created by Hoyoung on 2017-08-31.

@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/IGU_Point_Color"
                 android:layout_weight="1"
-                android:text="예"
+                android:text="수락"
                 android:textSize="18.3dp"
                 android:textColor="@color/Color_White"
                 android:id="@+id/dialog_Y_Btn"/>
@@ -40,7 +40,7 @@
                 android:textSize="18.3dp"
                 android:textColor="@color/Color_White"
                 android:layout_weight="1"
-                android:text="아니요"
+                android:text="거절"
 
                 android:id="@+id/dialog_N_Btn"/>
         </LinearLayout>

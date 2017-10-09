@@ -9,7 +9,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
         <ImageButton
-            android:layout_width="22dp"
+            android:layout_width="12.7dp"
             android:layout_height="24.7dp"
             android:id="@+id/toolbar_back_ImagmeView"
             android:layout_marginLeft="13dp"

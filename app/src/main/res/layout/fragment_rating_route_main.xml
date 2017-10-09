@@ -119,6 +119,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="51.8dp"
+        android:id="@+id/complete_Btn"
         android:background="@color/IGU_Point_Color"
         android:text="완료"
         android:textSize="18.3sp"

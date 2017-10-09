@@ -74,6 +74,7 @@ public class SignUpGuider_Nick_Fragment extends Fragment {
                     //가이드로 전환 가능
 
                     AppData.myRef.child("users").child(AppData.StringReplace(AppData.getCur_User().User_ID)).child("User_Guide").setValue(true);
+                    AppData.myRef.child("users").child(AppData.StringReplace(AppData.getCur_User().User_ID)).child("User_Nick").setValue(signup_nick_EditText.getText().toString());
 
                     ValueEventListener postListener = new ValueEventListener() {
                         @Override
@@ -81,6 +82,7 @@ public class SignUpGuider_Nick_Fragment extends Fragment {
                             // Get Post object and use the values to update the UI
                             User cur_user = dataSnapshot.child("users").child(AppData.StringReplace(AppData.getCur_User().User_ID)).getValue(User.class);
                             AppData.setCur_User(cur_user);
+
                             fm = getFragmentManager();
                             fragmentTransaction = fm.beginTransaction();
                             Guide_Route_Add_Fragment fragment = new Guide_Route_Add_Fragment();
@@ -119,6 +121,9 @@ public class SignUpGuider_Nick_Fragment extends Fragment {
                 getActivity().finish();
             }
         });
+
+        TextView complete_Btn =(TextView)view.findViewById(R.id.complete_Btn);
+        complete_Btn.setVisibility(View.GONE);
 
     }
 }

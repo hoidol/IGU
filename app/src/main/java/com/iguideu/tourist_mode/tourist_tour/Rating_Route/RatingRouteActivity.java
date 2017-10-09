@@ -29,8 +29,9 @@ import java.util.List;
 
 public class RatingRouteActivity extends AppCompatActivity {
 
+    String Route_Owner_Index;
+    String Request_Index;
     String Route_Index;
-    String Guider_Index;
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
 
@@ -46,15 +47,17 @@ public class RatingRouteActivity extends AppCompatActivity {
     void setRatingData(){
         Intent receivedIntent = getIntent();
 
+        Route_Owner_Index = receivedIntent.getStringExtra("Route_Owner_Index");
+        Request_Index = receivedIntent.getStringExtra("Request_Index");
         Route_Index = receivedIntent.getStringExtra("Route_Index");
-        Guider_Index = receivedIntent.getStringExtra("Guider_Index");
     }
 
     void setFrameLayout(){
+        RatingRouteMainFragment fragment = new RatingRouteMainFragment();
+        fragment.set_Rating_Data(Route_Owner_Index, Request_Index, Route_Index);
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
-
-        fragmentTransaction.add(R.id.rating_route_FrameLayout,new RatingRouteMainFragment());
+        fragmentTransaction.add(R.id.rating_route_FrameLayout,fragment);
         fragmentTransaction.commit();
 
     }

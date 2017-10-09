@@ -1,4 +1,4 @@
-package com.iguideu.main_inbox;
+package com.iguideu.main_Inbox;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,14 +12,17 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.iguideu.main_inbox.message.MessageActivity;
-import com.iguideu.ProfileActivity;
+import com.iguideu.data.AppData;
+import com.iguideu.data.User;
+import com.iguideu.main_Inbox.message.MessageActivity;
+import com.iguideu.main_Profile.ProfileActivity;
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.ChattingRoom;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-31.
@@ -29,13 +32,11 @@ public class InboxRecyclerAdapter extends RecyclerView.Adapter<InboxRecyclerAdap
 
     Context mContext;
     ArrayList<ChattingRoom> ChattingRoom_List;
-
+    User Cur_User;
     public InboxRecyclerAdapter(Context context, ArrayList<ChattingRoom> list){
         this.mContext = context;
         ChattingRoom_List = list;
-
     }
-
 
     @Override
     public Inbox_Recycler_ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,19 +45,35 @@ public class InboxRecyclerAdapter extends RecyclerView.Adapter<InboxRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(Inbox_Recycler_ViewHolder holder, int position) {
+    public void onBindViewHolder(final Inbox_Recycler_ViewHolder holder, int position) {
         final ChattingRoom data = ChattingRoom_List.get(position);
 
-        Picasso.with(mContext).load(data.Other_User.User_Profile_URL).into( holder.profile_imageView);
+        Cur_User= AppData.getCur_User();
 
-        String time_Format = getTimeFormat(data.Created_Time_Chatting_Room); //yyyy_MM_dd_HH_mm_ss //년 월 일 시 분 초
+        if(data.Sended_User.User_ID.equals(Cur_User.User_ID)){
+            Picasso.with(mContext).load(data.Received_User.User_Profile_URL).into( holder.profile_imageView);
+        }else{
+            Picasso.with(mContext).load(data.Sended_User.User_Profile_URL).into( holder.profile_imageView);
+        }
+
+        final String time_Format = getTimeFormat(data.Created_Time_Chatting_Room); //yyyy_MM_dd_HH_mm_ss //년 월 일 시 분 초
 
         if(data.IsRead == true){
-            setTextStyle(holder.profile_Name_TextView,data.Other_User.User_Name,true);
-            setTextStyle(holder.inbox_Date_TextView,time_Format,true);
+            if(data.Sended_User.User_ID.equals(Cur_User.User_ID)){
+                setTextStyle(holder.profile_Name_TextView,data.Received_User.User_Name,true);
+                setTextStyle(holder.inbox_Date_TextView,time_Format,true);
+            }else{
+                setTextStyle(holder.profile_Name_TextView,data.Sended_User.User_Name,true);
+                setTextStyle(holder.inbox_Date_TextView,time_Format,true);
+            }
         }else{
-            setTextStyle(holder.profile_Name_TextView,data.Other_User.User_Name,false);
-            setTextStyle(holder.inbox_Date_TextView,time_Format,false);
+            if(data.Sended_User.User_ID.equals(Cur_User.User_ID)){
+                setTextStyle(holder.profile_Name_TextView,data.Received_User.User_Name,false);
+                setTextStyle(holder.inbox_Date_TextView,time_Format,false);
+            }else{
+                setTextStyle(holder.profile_Name_TextView,data.Sended_User.User_Name,false);
+                setTextStyle(holder.inbox_Date_TextView,time_Format,false);
+            }
         }
 
 
@@ -64,7 +81,13 @@ public class InboxRecyclerAdapter extends RecyclerView.Adapter<InboxRecyclerAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ProfileActivity.class);
-                intent.putExtra("User_ID",data.Other_User.User_ID);
+
+                if(data.Sended_User.User_ID.equals(Cur_User.User_ID)){
+                    intent.putExtra("User_ID",data.Received_User.User_ID);
+                }else{
+                    intent.putExtra("User_ID",data.Sended_User.User_ID);
+                }
+
                 mContext.startActivity(intent);
             }
         });
@@ -74,8 +97,13 @@ public class InboxRecyclerAdapter extends RecyclerView.Adapter<InboxRecyclerAdap
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext, MessageActivity.class);
-                intent.putExtra("ChattingRoom_Index",data.ChattingRoom_Index);
-                intent.putExtra("Chat_Data_List",data.Chatting_Datas);
+
+                if(data.Sended_User.User_ID.equals(Cur_User.User_ID)){
+                    intent.putExtra("Other_User_Id",data.Received_User.User_ID);
+                }else{
+                    intent.putExtra("Other_User_Id",data.Sended_User.User_ID);
+                }
+
                 mContext.startActivity(intent);
             }
         });

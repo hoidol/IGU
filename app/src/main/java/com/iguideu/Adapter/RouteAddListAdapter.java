@@ -84,7 +84,6 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
 
     @Override
     public int getItemCount() {
-        Log.d(AppData.LOG_INDICATOR,"현재 아이템 사이즈 : " +AppData.PinPointData.size());
         return AppData.PinPointData.size();
     }
 

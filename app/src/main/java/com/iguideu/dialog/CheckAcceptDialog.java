@@ -37,8 +37,6 @@ public class CheckAcceptDialog extends Dialog {
         dialog_Y_Btn = (Button)findViewById(R.id.dialog_Y_Btn);
         dialog_N_Btn = (Button)findViewById(R.id.dialog_N_Btn);
         message_Btn = (Button)findViewById(R.id.message_Btn);
-
-
     }
 
 
@@ -48,7 +46,6 @@ public class CheckAcceptDialog extends Dialog {
 
     public void setDialog_check_Text(String dialog_check_Text) {
         this.dialog_check_Text = dialog_check_Text;
-
         dialog_check_TextView.setText(dialog_check_Text);
     }
 

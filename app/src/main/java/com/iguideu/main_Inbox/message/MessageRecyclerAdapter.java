@@ -1,8 +1,7 @@
-package com.iguideu.main_inbox.message;
+package com.iguideu.main_Inbox.message;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.iguideu.R;
-import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.ChattingData;
-import com.iguideu.main_inbox.InboxRecyclerAdapter;
 
 import java.util.List;
 

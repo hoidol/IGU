@@ -17,6 +17,9 @@ import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignUpProgress6 extends Fragment {
 
     Context context;
@@ -71,7 +74,9 @@ public class SignUpProgress6 extends Fragment {
                 //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
 
                 String user_key = AppData.StringReplace(cur_User.User_ID);
-                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,null,null,null,null,null,null);
+                List<String> Favorite_list = new ArrayList<>();
+                Favorite_list.add("-1");
+                User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,Favorite_list);
 
                 AppData.myRef.child("users").child(user_key).setValue(user_inf);
                 AppData.setCur_User(user_inf);

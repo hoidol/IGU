@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tour_history_RecyclerView"
-        android:layout_marginLeft="16.7dp"
-        android:layout_marginRight="16.7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_marginTop="8.7dp"/>
     <TextView
         android:layout_width="match_parent"

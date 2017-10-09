@@ -22,12 +22,12 @@ public class Feed_Data  {
     public String Feed_Time_Of_Write;
     public String Feed_Image_URL;
     public String Feed_Contents;
-
+    public String Route_Index;
     public Feed_Data(){
 
     }
 
-    public Feed_Data(String Feed_Index, String User_ID, String User_Name, String User_Profile_URL, String Feed_Time_Of_Write, String Feed_Image_URL, String Feed_Contents){
+    public Feed_Data(String Feed_Index, String User_ID, String User_Name, String User_Profile_URL, String Feed_Time_Of_Write, String Feed_Image_URL, String Feed_Contents,String Route_Index){
         this.Feed_Index = Feed_Index;
         this.User_ID =User_ID;
         this.User_Name = User_Name;
@@ -35,6 +35,7 @@ public class Feed_Data  {
         this.Feed_Time_Of_Write = Feed_Time_Of_Write;
         this.Feed_Image_URL = Feed_Image_URL;
         this.Feed_Contents = Feed_Contents;
+        this.Route_Index = Route_Index;
 
     }
 }

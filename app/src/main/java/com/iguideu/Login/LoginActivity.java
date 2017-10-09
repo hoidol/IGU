@@ -40,6 +40,7 @@ import com.iguideu.data.User;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-14.
@@ -148,23 +149,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                                     if(count == 0){
                                         //★★★★★★★★★★★ Database에 유저 등록★★★★★★★★★★★
-                                        User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,"",new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>() ,new ArrayList<String>());
+                                        List<String> Favorite_list = new ArrayList<>();
+                                        Favorite_list.add("-1");
+                                        User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,Favorite_list);
 
                                         AppData.myRef.child("users").child(user_key).setValue(user_inf);
                                         AppData.setCur_User(user_inf);
-
-                                        //메인으로 이동
-                                        Handler myHandler=new Handler(){
-                                            public void handleMessage(Message msg) {
-                                                super.handleMessage(msg);
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        };
-                                        myHandler.sendEmptyMessage(0);
-
-
                                     }
                                 }
 

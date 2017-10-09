@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.iguideu.R;
 import com.iguideu.data.AppData;
+import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
 import com.iguideu.tourist_mode.tourist_feed.FeedRecyclerAdapter;
 import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
@@ -26,14 +27,9 @@ import java.util.List;
 
 public class Guide_HistoryFragment extends Fragment {
 
-    Context m_Context;
     RecyclerView recyclerView;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
 
-        this.m_Context = context;
-    }
+    List<Request_Data> list;
 
     public Guide_HistoryFragment() {
         // Required empty public constructor
@@ -48,15 +44,42 @@ public class Guide_HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.history_RecyclerView);
+        list = new ArrayList<>();
 
+        for( int i =0; i<AppData.Request_Data_ForGuide_List.size();i++){
+            Request_Data data = AppData.Request_Data_ForGuide_List.get(i);
 
-        HistoryRecyclerAdapter adapter = new HistoryRecyclerAdapter(m_Context);
+            if(data.Request_State == 0){
+                continue;
+            }
+            String[] request_Dates = data.Request_Date.split("_");
+            int request_year = Integer.parseInt(request_Dates[0]);
+            int request_month = Integer.parseInt(request_Dates[1]);
+            int request_day = Integer.parseInt(request_Dates[2]);
+
+            String[] cur_Dates = AppData.getCurTime().split("_");
+            int cur_year = Integer.parseInt(cur_Dates[0]);
+            int cur_month = Integer.parseInt(cur_Dates[1]);
+            int cur_day = Integer.parseInt(cur_Dates[2]);
+
+            if(request_year>cur_year){
+                continue;
+            }else{
+                if(request_month>cur_month){
+                    continue;
+                }else{
+                    if(request_day>cur_day){
+                        continue;
+                    }
+                }
+            }
+            list.add(data);
+        }
+
+        HistoryRecyclerAdapter adapter = new HistoryRecyclerAdapter(getContext(),list);
         recyclerView.setAdapter(adapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-
-
-
-
     }
 }

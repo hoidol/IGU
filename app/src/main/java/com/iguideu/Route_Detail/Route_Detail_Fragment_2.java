@@ -1,4 +1,4 @@
-package com.iguideu.route_detail;
+package com.iguideu.Route_Detail;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -74,7 +74,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
 
                     String Request_Index = AppData.getCurTime() + AppData.StringReplace(AppData.getCur_User().User_ID);
 
-                    Request_Data request_data = new Request_Data(Request_Index, Cur_Route_Data.Route_Index, AppData.getCurTime(),Cur_Route_Data.User_ID,AppData.getCur_User().User_ID, cur_Selected_Date.toString(),0);
+                    Request_Data request_data = new Request_Data(Request_Index, Cur_Route_Data.Route_Index ,AppData.getCurTime(),Cur_Route_Data.Route_Main_Title,Cur_Route_Data.User_ID,Cur_Route_Data.User_Profile_URL,AppData.getCur_User().User_ID, AppData.getCur_User().User_Profile_URL,AppData.getCur_User().User_Name,cur_Selected_Date.toString(),0);
                     AppData.myRef.child("requests").child(Request_Index).setValue(request_data);
 
                     setNextFragment();
@@ -96,7 +96,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull final CalendarDay date, boolean selected) {
                 final int year = date.getYear();
-                final int month = date.getMonth() + 1;
+                final int month = date.getMonth() +1;
                 final int day = date.getDay();
 
                 cur_Selected_Date = year+"_"+month+"_"+day; // "yyyy_MM_dd_"

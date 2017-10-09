@@ -12,12 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
-import com.iguideu.ProfileActivity;
+import com.iguideu.main_Profile.ProfileActivity;
 import com.iguideu.R;
-import com.iguideu.data.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-17.
@@ -39,7 +35,7 @@ public class GuideFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_guide, container, false);
+        return inflater.inflate(R.layout.fragment_tourist_home_guide, container, false);
     }
 
     @Override

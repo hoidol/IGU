@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -20,7 +20,8 @@
             android:layout_height="24.7dp"
             android:layout_marginLeft="13.3dp"
             android:layout_centerVertical="true"
-            android:background="@color/IGU_Point_Color"/>
+            android:background="@drawable/main_color_round_bg"
+            />
 
         <com.iguideu.custom_view.RoundedImageView
             android:id="@+id/profile_ImageView"
@@ -37,14 +38,13 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="26.8dp"
             android:layout_toRightOf="@+id/profile_ImageView"
+            android:id="@+id/history_contents_Container"
             android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/history_title_TextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="제목 제목!!"
@@ -54,10 +54,9 @@
 
             <TextView
                 android:id="@+id/history_date_TextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/history_title_TextView"
-                android:layout_marginTop="3.7dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="2017년 8월 8일"
@@ -77,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ffffff"
+                    android:id="@+id/history_state_Btn"
                     android:text="별점주기"
                     android:textColor="#2f2f2f"
                     android:textSize="16.7sp" />
@@ -88,4 +88,4 @@
     </RelativeLayout>
 
 
-</android.support.v7.widget.CardView>
+</RelativeLayout>

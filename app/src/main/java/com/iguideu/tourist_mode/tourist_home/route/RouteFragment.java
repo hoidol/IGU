@@ -17,12 +17,8 @@ import android.widget.Toast;
 import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
-import com.iguideu.data.Route_Data;
-import com.iguideu.route_detail.Route_Detail_Activity;
+import com.iguideu.Route_Detail.Route_Detail_Activity;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-17.
@@ -47,7 +43,7 @@ public class RouteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_tourist_route, container, false);
+        return inflater.inflate(R.layout.fragment_tourist_home_route, container, false);
     }
 
 
@@ -89,13 +85,13 @@ public class RouteFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
 
 
-        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context);
+        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,AppData.Route_Data_List);
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
-                        intent.putExtra("Cur_Route_Position", position);
+                        intent.putExtra("Route_Index", AppData.Route_Data_List.get(position).Route_Index);
                         getContext().startActivity(intent);
 
                     }

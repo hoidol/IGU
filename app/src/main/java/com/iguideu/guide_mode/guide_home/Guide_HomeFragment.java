@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
@@ -28,18 +29,11 @@ import java.util.List;
 
 public class Guide_HomeFragment extends Fragment{
 
-    Context m_Context;
     RecyclerView recyclerView;
     ImageButton add_route_Btn;
 
     List<Route_Data> mDataList = new ArrayList<>();
     Guide_HomeRecyclerAdapter adapter;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        this.m_Context = context;
-    }
 
     public Guide_HomeFragment() {
         // Required empty public constructor
@@ -62,34 +56,29 @@ public class Guide_HomeFragment extends Fragment{
         });
 
         recyclerView = (RecyclerView)view.findViewById(R.id.added_route_RecyclerView);
-        SetData();
+
+        for(int i =0;i<AppData.Route_Data_List.size();i++){
+            Route_Data data = AppData.Route_Data_List.get(i);
+            if(data.User_ID.equals(AppData.getCur_User().User_ID)){
+                mDataList.add(data);
+            }
+        }
 
 
-//        recyclerView.setOnItemMoveListener(mItemMoveListener);
-
-        adapter = new Guide_HomeRecyclerAdapter(m_Context,mDataList);
+        adapter = new Guide_HomeRecyclerAdapter(getContext(),mDataList);
 
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-    }
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
 
-    void SetData(){
-        List<String> image_URL = new ArrayList<>();
-
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/2.jpg?alt=media&token=99010d45-e81a-41ca-a913-01e4a4ad4183");
-        image_URL.add("https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914");
-
-        mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
-        ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
-        mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
-                ,AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
-        mDataList.add(new Route_Data(AppData.getCurTime() +"iD","id","pass","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/7.jpg?alt=media&token=5e5b04f7-c1d7-40f8-a042-3163704ba072"
-                , AppData.getCurTime(),"Title",image_URL,false,"2PM","gd","gd",5,null,5));
+            }
+        }));
 
     }
+
+
 
 }

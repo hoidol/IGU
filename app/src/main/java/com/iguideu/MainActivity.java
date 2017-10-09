@@ -12,6 +12,7 @@ import com.iguideu.aboutSort.Guider_Descending;
 import com.iguideu.aboutSort.Keyword_Descending;
 import com.iguideu.aboutSort.Route_Data_Descending;
 import com.iguideu.data.AppData;
+import com.iguideu.data.ChattingRoom;
 import com.iguideu.data.Feed_Data;
 import com.iguideu.data.KeywordData;
 import com.iguideu.data.Request_Data;
@@ -19,8 +20,8 @@ import com.iguideu.data.Route_Data;
 import com.iguideu.data.User;
 import com.iguideu.guide_mode.guide_history.Guide_HistoryFragment;
 import com.iguideu.guide_mode.guide_home.Guide_HomeFragment;
-import com.iguideu.guide_mode.guide_schedule.Guide_ScheduleFragment;
-import com.iguideu.main_setting.SettingFragment;
+import com.iguideu.guide_mode.guide_schedule.Guide_ScheduleCheckFragment;
+import com.iguideu.main_Setting.SettingFragment;
 
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -32,7 +33,7 @@ import android.widget.TextView;
 import com.iguideu.tourist_mode.HomeFragment;
 import com.iguideu.tourist_mode.tourist_tour.TourFragment;
 import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
-import com.iguideu.main_inbox.InboxFragment;
+import com.iguideu.main_Inbox.InboxFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new TourFragment();
                             setTouristTabIcon(1);
                         }else if(App_Mode == 1){
-                            fragment = new Guide_ScheduleFragment();
+                            fragment = new Guide_ScheduleCheckFragment();
                             setGuideTabIcon(1);
                         }
                         break;
@@ -249,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(AppData.LOG_INDICATOR,"MainActivity - setRoute_Data() 호출!!!");
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
                 List<Route_Data> list = new ArrayList<>();
@@ -259,37 +261,22 @@ public class MainActivity extends AppCompatActivity {
                     list.add(route_data);
 
                 }
-                AppData.Route_Data_List= list;
+                AppData.Route_Data_List = list;
                 sort_Rating_Route();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);
+        AppData.myRef.addValueEventListener(listener);
     }
     void setFeedData(){
 
         List<Feed_Data> list = new ArrayList<>();
-        list.add(new Feed_Data("201708120516ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708120612ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708120112ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708120912ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708130512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708170512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201702120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201708120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201711120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201712110512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201601120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-        list.add(new Feed_Data("201705120512ID","ID","Name","https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/users%2Fqkrghdud0%20gmail%20co%2Fprofile_image.jpg?alt=media&token=f3e5d663-f8a2-4db2-9adc-9622469c8828",AppData.getCurTime(),"https://firebasestorage.googleapis.com/v0/b/iguideu-4befb.appspot.com/o/5.jpg?alt=media&token=d988b3e1-6ee7-4e15-9dfb-9bc78966f914","컨텐츠!!"));
-
-
-        AppData.Feed_Data_List = list;
-
-        /* ValueEventListener listener = new ValueEventListener() {
+         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(AppData.LOG_INDICATOR,"MainActivity - setFeedData() 호출!!!");
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("feeds").getChildren();
 
@@ -298,43 +285,42 @@ public class MainActivity extends AppCompatActivity {
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
                     Feed_Data feed_data =  cur_Snapshot.getValue(Feed_Data.class);
                     list.add(feed_data);
-
                 }
                 AppData.Feed_Data_List= list;
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+        AppData.myRef.addValueEventListener(listener);
     }
     void setChattingRoom(){
-       /* ValueEventListener listener = new ValueEventListener() {
+        final User Cur_User = AppData.getCur_User();
+        ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(AppData.LOG_INDICATOR,"MainActivity - setChattingRoom() 호출!!!");
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
 
-                List<ChattingRoom> list = new ArrayList<>();
+                ArrayList<ChattingRoom> list = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    User cur_user =  cur_Snapshot.child("Cur_User").getValue(User.class);
-                    if(AppData.getCur_User().User_ID == cur_user.User_ID){
+                    User Sended_User =  cur_Snapshot.child("Sended_User").getValue(User.class);
+                    User Received_User =  cur_Snapshot.child("Received_User").getValue(User.class);
+
+                    if(Cur_User.User_ID.equals(Sended_User.User_ID) || Cur_User.equals(Received_User.User_ID)){
                         list.add(cur_Snapshot.getValue(ChattingRoom.class));
                     }
-
                 }
                 AppData.ChattingRoom_Data_List = list;
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);*/
+        AppData.myRef.addValueEventListener(listener);
     }
 
     void setGuiderData(){
@@ -343,7 +329,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
 
-                Log.d(AppData.LOG_INDICATOR,"데이터가 바꿔서 setGuiderData(), 의 리스너 호출됨");
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("users").getChildren();
 
                 List<User> list = new ArrayList<>();
@@ -363,32 +348,37 @@ public class MainActivity extends AppCompatActivity {
         };
         AppData.myRef.addValueEventListener(listener);
     }
-    void setRequestData(){
-        List<Request_Data> list = new ArrayList<>();
 
+    void setRequestData(){
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("requests").getChildren();
 
-                List<Request_Data> list = new ArrayList<>();
+                List<Request_Data> list_ForGuide = new ArrayList<>();
+                List<Request_Data> list_ForTourist = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
                     Request_Data cur_request_data =  cur_Snapshot.getValue(Request_Data.class);
 
                     if(AppData.getCur_User().User_ID.equals(cur_request_data.Guider_User_ID)){
-                        list.add(cur_request_data);
+                        list_ForGuide.add(cur_request_data);
+                    }
+
+                    if(AppData.getCur_User().User_ID.equals(cur_request_data.Tourist_User_ID)){
+                        list_ForTourist.add(cur_request_data);
                     }
                 }
-                AppData.Request_Data_List = list;
+                AppData.Request_Data_ForGuide_List = list_ForGuide;
+                AppData.Request_Data_ForTourist_List = list_ForTourist;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        AppData.myRef.addListenerForSingleValueEvent(listener);
+        AppData.myRef.addValueEventListener(listener);
     }
 
     List<KeywordData> KeywordData_List = new ArrayList<>();

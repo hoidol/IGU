@@ -18,7 +18,6 @@
         android:layout_height="match_parent"
         android:id="@+id/inbox_RecyclerView"
         android:layout_below="@+id/inbox_title_TextView"
-        android:layout_marginBottom="78.3dp"
 
         >
 

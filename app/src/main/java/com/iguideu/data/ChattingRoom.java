@@ -12,8 +12,8 @@ import java.util.List;
 public class ChattingRoom {
 
     public String ChattingRoom_Index; // Created_Time_Chatting_Room + Cur_User.User_ID(ID)
-    public User Cur_User;
-    public User Other_User;
+    public User Sended_User;
+    public User Received_User;
     public String Created_Time_Chatting_Room;
     public ArrayList<ChattingData> Chatting_Datas;
     public boolean IsRead;
@@ -23,10 +23,10 @@ public class ChattingRoom {
 
     }
 
-    public ChattingRoom(String ChattingRoom_Index,User Cur_User,User Other_User,String Created_Time_Chatting_Room,ArrayList<ChattingData> Chatting_Datas, boolean IsRead){
+    public ChattingRoom(String ChattingRoom_Index,User Sended_User,User Received_User,String Created_Time_Chatting_Room,ArrayList<ChattingData> Chatting_Datas, boolean IsRead){
         this.ChattingRoom_Index = ChattingRoom_Index;
-        this.Cur_User = Cur_User;
-        this.Other_User =Other_User;
+        this.Sended_User = Sended_User;
+        this.Received_User =Received_User;
         this.Created_Time_Chatting_Room = Created_Time_Chatting_Room;
         this.Chatting_Datas = Chatting_Datas;
         this.IsRead = IsRead;

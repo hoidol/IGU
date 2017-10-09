@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
+import com.iguideu.Route_Detail.Route_Detail_Activity;
+import com.iguideu.data.Route_Data;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -23,15 +26,16 @@ public class FeedDetailActivity extends AppCompatActivity{
     Context m_Context;
 
     Feed_Data Cur_Feed_Data;
+    Button feed_detail_Btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_detail);
 
+        setToolbar();
         Cur_Feed_Data = setReceivedData();
         setlayout_Data(Cur_Feed_Data);
-
     }
 
 
@@ -56,6 +60,31 @@ public class FeedDetailActivity extends AppCompatActivity{
         TextView Content_TextView = (TextView)findViewById(R.id.feed_Content_Text);
         Content_TextView.setText(feed_data.Feed_Contents);
 
+        feed_detail_Btn =(Button)findViewById(R.id.feed_detail_Btn);
+        if(!Cur_Feed_Data.Route_Index.equals("-1")){
+            feed_detail_Btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), Route_Detail_Activity.class);
+                    for(int i =0; i<AppData.Route_Data_List.size();i++){
+                        Route_Data data = AppData.Route_Data_List.get(i);
+                        if(Cur_Feed_Data.Route_Index.equals(data.Route_Index)){
+                            intent.putExtra("Cur_Route_Position",i);
+                            break;
+                        }
+                    }
+                    startActivity(intent);
+
+                }
+            });
+        }else{
+            feed_detail_Btn.setVisibility(View.GONE);
+        }
+
+
+    }
+
+    void setToolbar(){
         ImageView back_ImageView = (ImageView)findViewById(R.id.toolbar_back_ImagmeView);
         back_ImageView.setOnClickListener(new View.OnClickListener() {
             @Override

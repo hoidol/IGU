@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,7 @@ public class Guide_ScheduleFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         guide_schedule_CalendarView = (MaterialCalendarView)view.findViewById(R.id.guide_schedule_CalendarView);
-        MyRequest_Data = AppData.Request_Data_List;
+        MyRequest_Data = AppData.Request_Data_ForGuide_List;
 
         setRequestData(view);
         setCalendar(view);
@@ -86,7 +87,6 @@ public class Guide_ScheduleFragment extends Fragment {
             int date = Integer.parseInt(Dates[2]);
             CalendarDay cur_Day = new CalendarDay(year,month,date);
             guide_schedule_CalendarView.setSelectedDate(cur_Day);
-
             Requested_Days.add(cur_Day);
         }
 
@@ -97,13 +97,11 @@ public class Guide_ScheduleFragment extends Fragment {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 cur_Selected_Date = date;
-
                 for(int i =0;i<Requested_Days.size();i++){
-                    if(Requested_Days.get(i) == cur_Selected_Date){
+                    if(Requested_Days.get(i).toString() == cur_Selected_Date.toString()){
                         fragmentTransaction = fm.beginTransaction();
                         Guide_ScheduleCheckFragment fragment = new Guide_ScheduleCheckFragment();
-                        fragment.SetCur_Date(cur_Selected_Date);
-                        fragmentTransaction.replace(R.id.main_Fragment, fragment);
+                        fragmentTransaction.add(R.id.main_Fragment, fragment);
                         fragmentTransaction.commit();
                         break;
                     }

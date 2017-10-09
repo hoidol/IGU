@@ -1,4 +1,4 @@
-package com.iguideu.main_setting;
+package com.iguideu.main_Setting;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,14 +12,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Text;
 import com.iguideu.MainActivity;
 import com.iguideu.R;
 import com.iguideu.Signup_Guider.SignUpGuiderActivity;
 import com.iguideu.data.AppData;
-import com.iguideu.route_detail.Route_Detail_Fragment_2;
 
 /**
  * Created by Hoyoung on 2017-07-16.
@@ -32,7 +29,7 @@ public class SettingFragment extends Fragment {
     Button toGuide_Btn;
     Button Language_Btn;
     Button Envir_Btn;
-    Button Login_Btn;
+    Button Logout_Btn;
 
 
     MainActivity mainActivity;
@@ -84,14 +81,14 @@ public class SettingFragment extends Fragment {
         });
         setTouchEvent(Envir_Btn);
 
-        Login_Btn = (Button)view.findViewById(R.id.setting_Login);
-        Login_Btn.setOnClickListener(new View.OnClickListener() {
+        Logout_Btn = (Button)view.findViewById(R.id.setting_Logout);
+        Logout_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InitClick(v);
             }
         });
-        setTouchEvent(Login_Btn);
+        setTouchEvent(Logout_Btn);
 
     }
 
@@ -141,7 +138,9 @@ public class SettingFragment extends Fragment {
                 fragmentTransaction.replace(R.id.main_Fragment,fragment1);
                 fragmentTransaction.commit();
                 break;
-            case R.id.setting_Login:
+            case R.id.setting_Logout:
+                AppData.setApp_Mode(0);
+                AppData.mAuth.signOut();
                 break;
 
         }

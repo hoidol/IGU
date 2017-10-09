@@ -35,7 +35,7 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
     List<String> PhotoPath;
     CropIwaView Selected_ImageView;
 
-    int selected_index;
+    int selected_index =0;
     ImageView selected_Checker_ImageView;
     List<Bitmap> Photo_Bitmap_List = new ArrayList<>();
 
@@ -69,9 +69,6 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
             selected_Checker_ImageView.setBackground(ContextCompat.getDrawable(mContext,R.mipmap.checked_icon));
 
             Selected_ImageView.setImage(Photo_Bitmap_List.get(selected_index));
-
-
-
         }
 
         holder.photo_picker_ImageView.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +90,6 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
 
     }
 
-
-
     // 30개씩 가져오자
     @Override
     public int getItemCount() {
@@ -102,7 +97,9 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
         return ( Photo_Count> 10)? 10:Photo_Count ;
     }
 
-
+    public int getSelected_Index(){
+        return  selected_index;
+    }
 
     class PhotoPicker_Recycler_ViewHolder extends RecyclerView.ViewHolder{
         public SquareImageView photo_picker_ImageView;

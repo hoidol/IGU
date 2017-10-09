@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/profile_Toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profile_Toolbar"
+        android:layout_above="@+id/profile_bottom_Layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.iguideu.custom_view.RoundedImageView
+                android:layout_width="158dp"
+                android:layout_height="158dp"
+                android:layout_marginTop="52dp"
+                android:id="@+id/profile_ImageView"
+                app:srcCompat="@mipmap/profile_image_test"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/profile_Nick_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15.3dp"
+                android:text="닉네임"
+                android:layout_below="@+id/profile_ImageView"
+                android:layout_centerHorizontal="true"
+                android:textSize="18.3sp"
+                android:textColor="@color/cardview_dark_background"/>
+
+            <LinearLayout
+                android:id="@+id/profile_rating_Container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="27.7dp"
+                android:layout_marginBottom="48.4dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/profile_Nick_TextView">
+
+                <ImageView
+                    android:id="@+id/rating_star_0"
+                    android:layout_width="21.2dp"
+                    android:layout_height="20.6dp"
+                    android:layout_marginLeft="16.6dp"
+                    android:background="@mipmap/star_solid" />
+
+                <ImageView
+                    android:id="@+id/rating_star_1"
+                    android:layout_width="21.2dp"
+                    android:layout_height="20.6dp"
+                    android:layout_marginLeft="16.6dp"
+                    android:background="@mipmap/star_solid" />
+
+                <ImageView
+                    android:id="@+id/rating_star_2"
+                    android:layout_width="21.2dp"
+                    android:layout_height="20.6dp"
+                    android:layout_marginLeft="16.6dp"
+                    android:background="@mipmap/star_solid" />
+
+                <ImageView
+                    android:id="@+id/rating_star_3"
+                    android:layout_width="21.2dp"
+                    android:layout_height="20.6dp"
+                    android:layout_marginLeft="16.6dp"
+                    android:background="@mipmap/star_solid" />
+
+                <ImageView
+                    android:id="@+id/rating_star_4"
+                    android:layout_width="21.2dp"
+                    android:layout_height="20.6dp"
+                    android:layout_marginLeft="16.6dp"
+                    android:background="@mipmap/star_solid" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="66.3dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/profile_bottom_Layout"
+        >
+
+        <Button
+            android:id="@+id/show_route_Btn"
+            android:layout_width="156.7dp"
+            android:layout_height="51.8dp"
+            android:background="@drawable/main_btn_bg"
+            android:textColor="@color/IGU_Point_Color"
+            android:textSize="18.3sp"
+            android:layout_marginRight="13.7dp"
+
+            android:text="여행 루트"/>
+
+        <Button
+            android:id="@+id/send_Message_Btn"
+            android:layout_width="156.7dp"
+            android:layout_height="51.8dp"
+            android:layout_toRightOf="@+id/show_route_Btn"
+            android:background="@drawable/main_btn_bg"
+            android:textColor="@color/IGU_Point_Color"
+            android:textSize="18.3sp"
+            android:text="메시지 보내기"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

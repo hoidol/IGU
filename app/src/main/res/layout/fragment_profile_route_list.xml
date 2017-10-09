@@ -2,12 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/profile_Toolbar"/>
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="평점이 등록되었습니다."
-        android:textSize="18.3sp"
-        android:textColor="@color/Color_All_Primary_Text"/>
+        android:id="@+id/profile_route_list_RecyclerView"
+        android:layout_below="@+id/profile_Toolbar">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

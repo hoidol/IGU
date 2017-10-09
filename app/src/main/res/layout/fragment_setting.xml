@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/setting_Login"
+            android:id="@+id/setting_Logout"
             android:background="@color/Color_White"
             android:text="@string/setting_logout_kr"
             android:textColor="@color/Color_Setting_Text"

@@ -1,4 +1,4 @@
-package com.iguideu.route_detail;
+package com.iguideu.Route_Detail;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -6,12 +6,10 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,20 +28,15 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.Route_Pin_Data;
-import com.iguideu.tourist_mode.tourist_home.guide.GuideRecyclerAdapter;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +56,7 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     MapFragment mapFragment;
     ScrollView scrollView;
 
+    ImageView favorite_ImageView;
     private Route_Data Cur_Route_Data;
 
     @Override
@@ -97,6 +91,9 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         super.onViewCreated(view, savedInstanceState);
 
         Button button = (Button)view.findViewById(R.id.route_detail_Btn_1);
+        if(Cur_Route_Data.User_ID.equals(AppData.getCur_User().User_ID)){
+            button.setVisibility(View.GONE);
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +106,7 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
             setImage(view);
             setContents(view);
             setMap(view, savedInstanceState);
-            Toast.makeText(getContext(),"Cur_Route_Data is not null " + Cur_Route_Data.Route_Main_Title,Toast.LENGTH_SHORT).show();
+            setFavorite(view);
         }
 
 
@@ -124,7 +121,6 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
     void SetRoute_Data(Route_Data route_data){
         Cur_Route_Data = route_data;
     }
-
 
     void setMap(View view,Bundle savedInstanceState){
         scrollView = (ScrollView)view.findViewById(R.id.route_detail_ScrollView);
@@ -286,6 +282,40 @@ public class Route_Detail_Fragment_1  extends Fragment implements OnMapReadyCall
         fragment.setFragmentData(fragment,Cur_Route_Data);
         fragmentTransaction.add(R.id.route_detail_FrameLayout,fragment);
         fragmentTransaction.commit();
+    }
+
+    boolean IsFavorited = false;
+
+    void setFavorite(View view){
+        favorite_ImageView = (ImageView)view.findViewById(R.id.favorite_ImageView);
+        favorite_ImageView.setImageDrawable(getContext().getDrawable(R.mipmap.no_favorite_icon));
+
+        for(int i= 0;i<AppData.getCur_User().User_Favorites_Route_List.size();i++){
+            String index = AppData.getCur_User().User_Favorites_Route_List.get(i);
+            if(Cur_Route_Data.Route_Index.equals(index)){
+                favorite_ImageView.setImageDrawable(getContext().getDrawable(R.mipmap.favorite_icon));
+                IsFavorited = true;
+                break;
+            }
+        }
+
+        favorite_ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(IsFavorited){
+                    IsFavorited = false;
+                    favorite_ImageView.setImageDrawable(getContext().getDrawable(R.mipmap.no_favorite_icon));
+                    AppData.getCur_User().User_Favorites_Route_List.remove(Cur_Route_Data.Route_Index);
+                    AppData.myRef.child("users").child(AppData.StringReplace(AppData.getCur_User().User_ID)).setValue(AppData.getCur_User());
+                }else{
+                    IsFavorited = true;
+                    favorite_ImageView.setImageDrawable(getContext().getDrawable(R.mipmap.favorite_icon));
+                    AppData.getCur_User().User_Favorites_Route_List.add(Cur_Route_Data.Route_Index);
+                    AppData.myRef.child("users").child(AppData.StringReplace(AppData.getCur_User().User_ID)).setValue(AppData.getCur_User());
+                }
+
+            }
+        });
     }
 
 }

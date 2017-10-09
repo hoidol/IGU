@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_White">
+    <include
+        layout="@layout/toolbar_layout2"
+        android:id="@+id/profile_Toolbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_Toolbar"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gray_stroke_bg"
+        android:id="@+id/feed_contents_Container">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/feed_contents_EditText"
+            android:hint="작성하기"
+            android:layout_toLeftOf="@+id/selected_ImageView"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@null"/>
+        <ImageView
+            android:id="@+id/selected_ImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
 
-</LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:id="@+id/search_route_Btn"
+        android:layout_marginTop="50.3dp"
+        android:text="루트태그"
+        android:textSize="16.7sp"
+        android:paddingLeft="25.3dp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/feed_contents_Container"
+        android:background="@drawable/gray_stroke_bg"/>
+
+</RelativeLayout>

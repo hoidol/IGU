@@ -53,7 +53,7 @@
             android:name=".Login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".route_detail.Route_Detail_Activity"
+            android:name=".Route_Detail.Route_Detail_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".InitSettingActivity"
@@ -84,11 +84,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".main_inbox.message.MessageActivity"
+            android:name=".main_Inbox.message.MessageActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ProfileActivity"
+            android:name=".main_Profile.ProfileActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".guide_mode.Route_Add_Activity.Guide_Route_Add_Activity"
             android:screenOrientation="portrait"></activity>

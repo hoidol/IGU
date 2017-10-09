@@ -1,8 +1,6 @@
 package com.iguideu.guide_mode.guide_home;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,16 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
-import com.iguideu.custom_view.SquareImageView;
-import com.iguideu.data.Feed_Data;
 import com.iguideu.data.Route_Data;
-import com.iguideu.route_detail.Route_Detail_Activity;
-import com.iguideu.tourist_mode.tourist_feed.FeedRecyclerAdapter;
-import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

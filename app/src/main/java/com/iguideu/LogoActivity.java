@@ -57,20 +57,14 @@ public class LogoActivity extends AppCompatActivity {
 ;
         AppData.SetFirebase();
 
+
         AppData.mAuth.signOut();
         if(AppData.getApp_AutoLogin() == false){
-            //
         }
 
-
-
         AppData.setApp_Mode(0);
-
         AppCheckPermission_LOCATION();
-
-
         // LOCATION -> STORAGE -> LOGIN 순서로 검사함
-
     }
 
 
@@ -178,7 +172,7 @@ public class LogoActivity extends AppCompatActivity {
                             Log.d(AppData.LOG_INDICATOR,"InitSettingActivity.class !! 이거 호출됨!!");
                             delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
                         }else{
-                            delay_startActivity(new Intent(LogoActivity.this, LoginActivity.class));
+                            delay_startActivity(new Intent(LogoActivity.this, MainActivity.class));
                         }
                     }
                 }else{

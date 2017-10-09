@@ -488,29 +488,16 @@ public class Guide_Route_Add_Fragment extends Fragment  {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
 
-                boolean IsExist[] = new boolean[Route_Locations.size()];
-                for (boolean exist:IsExist) {
-                    exist = false;
-                }
+                for(int i =0 ; i<Route_Locations.size();i++) {
+                    KeywordData data = dataSnapshot.child("keywords").child(Route_Locations.get(i).Route_Title).getValue(KeywordData.class);
 
-                for(int i =0 ; i<Route_Locations.size();i++){
-                    while (iterable.iterator().hasNext()) {
-                        DataSnapshot cur_Snapshot = iterable.iterator().next();
-                        String Keyword = cur_Snapshot.child("Keyword").getValue().toString();
-                        if (Keyword == Route_Locations.get(i).Route_Title) {
-                            int amount_Used = cur_Snapshot.child("Keyword_Amount_Used").getValue(Integer.class);
-                            ++amount_Used;
-                            AppData.myRef.child("keywords").child(Keyword).child("Keyword_Amount_Used").setValue(amount_Used);
-                            IsExist[i] = true;
-                        }
+                    if(data == null){
+                        data = new KeywordData(Route_Locations.get(i).Route_Title,1);
+                    }else{
+                        ++data.Keyword_Amount_Used;
                     }
-                    // 기존에 등록되었을 키워드가 없음.
-                    if(IsExist[i] == false){
-                        KeywordData keywordData = new KeywordData(Route_Locations.get(i).Route_Title,1);
-                        AppData.myRef.child("keywords").child(keywordData.Keyword).setValue(keywordData);
-                    }
+                    AppData.myRef.child("keywords").child(Route_Locations.get(i).Route_Title).setValue(data);
                 }
 
 

@@ -34,10 +34,10 @@
                 <com.iguideu.custom_view.SquareRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <Button
+                    <ImageView
                         android:layout_width="32.6dp"
                         android:layout_height="30.4dp"
-                        android:background="@mipmap/favorite_icon"
+                        android:id="@+id/favorite_ImageView"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="12.3dp"
                         android:layout_marginRight="15.8dp"/>

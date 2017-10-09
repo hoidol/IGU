@@ -1,4 +1,4 @@
-package com.iguideu.route_detail;
+package com.iguideu.Route_Detail;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.data.Route_Pin_Data;
-import com.iguideu.tourist_mode.tourist_feed.FeedRecyclerAdapter;
 
 import java.util.List;
 

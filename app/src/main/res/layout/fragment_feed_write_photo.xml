@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@color/Color_White">
+    <include
+        layout="@layout/toolbar_layout2"
+        android:id="@+id/toolbar"/>
     <com.steelkiwi.cropiwa.CropIwaView
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:adjustViewBounds="false"
-        android:scaleType="fitCenter"
+        android:layout_below="@+id/toolbar"
+        app:ci_dynamic_aspect_ratio="false"
+        app:ci_draw_grid="true"
+        app:ci_crop_shape="rectangle"
         android:id="@+id/feed_photo_ImageView"/>
 
     <android.support.v7.widget.RecyclerView

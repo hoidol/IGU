@@ -60,9 +60,10 @@ public class AppData  {
     public static List<Route_Data> Route_Data_List;
     public static List<Feed_Data> Feed_Data_List;
     public static List<User> Guider_Data_List;
-    public static List<Request_Data> Request_Data_List;
+    public static List<Request_Data> Request_Data_ForTourist_List;
+    public static List<Request_Data> Request_Data_ForGuide_List;
     public static ArrayList<Route_Pin_Data> PinPointData = new ArrayList<>();
-    public static List<ChattingRoom> ChattingRoom_Data_List;
+    public static ArrayList<ChattingRoom> ChattingRoom_Data_List;
     public static ArrayList<LatLng> AppPinPointData=new ArrayList<>();
     public static List<Route_Data> Attraction_Route_List;
     public static List<String> Attraction_Image_URL_List;

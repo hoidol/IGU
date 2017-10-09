@@ -1,6 +1,8 @@
 package com.iguideu.tourist_mode.tourist_tour.Rating_Route;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,12 +12,23 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.iguideu.R;
+import com.iguideu.data.AppData;
+import com.iguideu.data.ChattingRoom;
+import com.iguideu.data.Request_Data;
+import com.iguideu.data.Route_Data;
+import com.iguideu.data.User;
 import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoyoung on 2017-08-30.
@@ -23,26 +36,30 @@ import com.iguideu.tourist_mode.tourist_home.route.RouteRecyclerAdapter;
 
 public class RatingRouteMainFragment extends Fragment {
 
-    Context m_Context;
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
+
     RecyclerView recyclerView;
 
     ImageView[] Route_Rating_ImageViews = new ImageView[5];
     ImageView[] Guider_Rating_ImageViews = new ImageView[5];
+    Button complete_Btn;
 
     int Route_Rating_Value = 0;
     int Guider_Rating_Value = 0;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        this.m_Context = context;
-    }
-
+    String Route_Owner_Index;
+    String Request_Index;
+    String Route_Index;
     public RatingRouteMainFragment() {
         // Required empty public constructor
     }
 
+    public void set_Rating_Data(String Route_Owner_Index,String Request_Index,  String Route_Index){
+        this.Route_Owner_Index = Route_Owner_Index;
+        this.Request_Index = Request_Index;
+        this.Route_Index = Route_Index;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_rating_route_main, container, false);
@@ -55,22 +72,9 @@ public class RatingRouteMainFragment extends Fragment {
         setToolbar(view);
         setRating(view);
         setOnClickRating();
+        setCompleteBtn(view);
+
     }
-
-    void setRating(View view){
-        Route_Rating_ImageViews[0] = (ImageView)view.findViewById(R.id.rating_route_star_0);
-        Route_Rating_ImageViews[1] = (ImageView)view.findViewById(R.id.rating_route_star_1);
-        Route_Rating_ImageViews[2] = (ImageView)view.findViewById(R.id.rating_route_star_2);
-        Route_Rating_ImageViews[3] = (ImageView)view.findViewById(R.id.rating_route_star_3);
-        Route_Rating_ImageViews[4] = (ImageView)view.findViewById(R.id.rating_route_star_4);
-
-        Guider_Rating_ImageViews[0] = (ImageView)view.findViewById(R.id.rating_guider_star_0);
-        Guider_Rating_ImageViews[1] = (ImageView)view.findViewById(R.id.rating_guider_star_1);
-        Guider_Rating_ImageViews[2] = (ImageView)view.findViewById(R.id.rating_guider_star_2);
-        Guider_Rating_ImageViews[3] = (ImageView)view.findViewById(R.id.rating_guider_star_3);
-        Guider_Rating_ImageViews[4] = (ImageView)view.findViewById(R.id.rating_guider_star_4);
-    }
-
     void setToolbar(View view){
         TextView textView = (TextView)view.findViewById(R.id.toolbar_title_TextView);
         textView.setText("별점주기");
@@ -84,6 +88,19 @@ public class RatingRouteMainFragment extends Fragment {
                 getActivity().finish();
             }
         });
+    }
+    void setRating(View view){
+        Route_Rating_ImageViews[0] = (ImageView)view.findViewById(R.id.rating_route_star_0);
+        Route_Rating_ImageViews[1] = (ImageView)view.findViewById(R.id.rating_route_star_1);
+        Route_Rating_ImageViews[2] = (ImageView)view.findViewById(R.id.rating_route_star_2);
+        Route_Rating_ImageViews[3] = (ImageView)view.findViewById(R.id.rating_route_star_3);
+        Route_Rating_ImageViews[4] = (ImageView)view.findViewById(R.id.rating_route_star_4);
+
+        Guider_Rating_ImageViews[0] = (ImageView)view.findViewById(R.id.rating_guider_star_0);
+        Guider_Rating_ImageViews[1] = (ImageView)view.findViewById(R.id.rating_guider_star_1);
+        Guider_Rating_ImageViews[2] = (ImageView)view.findViewById(R.id.rating_guider_star_2);
+        Guider_Rating_ImageViews[3] = (ImageView)view.findViewById(R.id.rating_guider_star_3);
+        Guider_Rating_ImageViews[4] = (ImageView)view.findViewById(R.id.rating_guider_star_4);
     }
 
     int i, j;
@@ -128,5 +145,48 @@ public class RatingRouteMainFragment extends Fragment {
                 Guider_Rating_ImageViews[i].setBackground(getContext().getDrawable(R.mipmap.star_blank));
             }
         }
+    }
+
+    void setCompleteBtn(View view){
+        complete_Btn = (Button)view.findViewById(R.id.complete_Btn);
+        complete_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Route_Rating_Value == 0 || Guider_Rating_Value == 0){
+                    // 아무것도 안누름...
+                }else{
+
+                    ValueEventListener listener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Get Post object and use the values to update the USI
+                            User guider = dataSnapshot.child("users").child(Route_Owner_Index).getValue(User.class);
+                            Route_Data route = dataSnapshot.child("routes").child(Route_Index).getValue(Route_Data.class);
+                            Request_Data request = dataSnapshot.child("requests").child(Request_Index).getValue(Request_Data.class);
+
+                            int guider_Rate = (guider.User_Guide_Rating + Guider_Rating_Value) /5;
+                            int route_Rate = (route.Route_Rating_Num + Route_Rating_Value)/5;
+
+                            AppData.myRef.child("users").child(Route_Owner_Index).child("User_Guide_Rating").setValue(guider_Rate);
+                            AppData.myRef.child("routes").child(Route_Index).child("Route_Rating_Num").setValue(route_Rate);
+                            AppData.myRef.child("requests").child(Request_Index).child("Request_State").setValue(4);
+
+                            RatingRouteCompleteFragment fragment = new RatingRouteCompleteFragment();
+                            fm = getFragmentManager();
+                            fragmentTransaction = fm.beginTransaction();
+                            fragmentTransaction.replace(R.id.rating_route_FrameLayout,fragment);
+                            fragmentTransaction.commit();
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    };
+                    AppData.myRef.addListenerForSingleValueEvent(listener);
+
+                }
+            }
+        });
     }
 }

@@ -1,27 +1,20 @@
 package com.iguideu.tourist_mode.tourist_home.route;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
-import com.iguideu.route_detail.Route_Detail_Activity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,9 +24,11 @@ import java.util.List;
 public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAdapter.Route_Recycler_ViewHolder> {
 
     Context mContext;
+    List<Route_Data> list;
 
-    public RouteRecyclerAdapter(Context context){
+    public RouteRecyclerAdapter(Context context,List<Route_Data> list){
         this.mContext = context;
+        this.list = list;
     }
 
     @Override
@@ -45,7 +40,7 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
     @Override
     public void onBindViewHolder(Route_Recycler_ViewHolder holder, int position) {
 
-        Route_Data data = AppData.Route_Data_List.get(position);
+        Route_Data data = list.get(position);
         if(data == null)
             return;
 
@@ -71,7 +66,7 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
 
     @Override
     public int getItemCount() {
-        return AppData.Route_Data_List.size();
+        return list.size();
     }
 
     class Route_Recycler_ViewHolder extends RecyclerView.ViewHolder{

@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Color_White">
+    <include
+        layout="@layout/toolbar_layout2"
+        android:id="@+id/toolbar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="루트검색"
+        android:layout_marginBottom="16.7dp"
+        android:layout_marginTop="16.7dp"
+        android:layout_marginLeft="11.3dp"
+        android:textSize="16.7sp"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/search_route_Title"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_route_RecyclerView"
+        android:layout_below="@+id/search_route_Title"
+        >
 
-</LinearLayout>
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
