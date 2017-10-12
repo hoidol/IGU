@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class InboxFragment extends Fragment {
     RecyclerView recyclerView;
-
+    InboxRecyclerAdapter adapter;
 
     public InboxFragment() {
         // Required empty public constructor
@@ -41,7 +41,7 @@ public class InboxFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.inbox_RecyclerView);
 
-        InboxRecyclerAdapter adapter = new InboxRecyclerAdapter(getContext(),AppData.ChattingRoom_Data_List);
+        adapter= new InboxRecyclerAdapter(getContext(),AppData.ChattingRoom_Data_List);
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

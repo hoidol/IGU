@@ -25,11 +25,11 @@ import java.util.List;
 public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAdapter.Guide_Recycler_ViewHolder>{
 
     Context mContext;
-    FragmentManager fm;
+    List<User> list;
 
-    public GuideRecyclerAdapter(Context context){
+    public GuideRecyclerAdapter(Context context,List<User> list){
         this.mContext = context;
-        this.fm = fm;
+        this.list = list;
 
     }
 
@@ -42,7 +42,7 @@ public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAda
     @Override
     public void onBindViewHolder(Guide_Recycler_ViewHolder holder, int position) {
 
-        User data = AppData.Guider_Data_List.get(position);
+        User data = list.get(position);
 
         Picasso.with(mContext).load(data.User_Profile_URL).into(holder.profile_ImageView);
         holder.profile_Nick_TextView.setText(data.User_Nick);
@@ -53,7 +53,7 @@ public class GuideRecyclerAdapter extends  RecyclerView.Adapter<GuideRecyclerAda
 
     @Override
     public int getItemCount() {
-        return AppData.Guider_Data_List.size();
+        return list.size();
     }
 
     void setStar(GuideRecyclerAdapter.Guide_Recycler_ViewHolder holder, int cur_Rating){

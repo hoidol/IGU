@@ -141,6 +141,8 @@ public class SettingFragment extends Fragment {
             case R.id.setting_Logout:
                 AppData.setApp_Mode(0);
                 AppData.mAuth.signOut();
+                AppData.setCur_User(null);
+                getActivity().finish();
                 break;
 
         }

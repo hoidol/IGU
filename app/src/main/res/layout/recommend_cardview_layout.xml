@@ -6,7 +6,6 @@
     android:layout_height="149dp"
     android:layout_marginRight="16dp"
     app:cardElevation="0dp"
-
     >
 
     <RelativeLayout

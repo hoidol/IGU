@@ -56,31 +56,27 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         String time_Format = getTimeFormat(data.Writed_Time);
 
         if(OwnMessage == true){ //오른쪽
-
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
-            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            params.width =  mContext.getResources().getDimensionPixelSize(R.dimen.message_width);
-            message_contents_TextView.setLayoutParams(params);
+            RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
+            params1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            message_contents_TextView.setLayoutParams(params1);
             message_contents_TextView.setText(data.Contents);
 
-            params = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
-            params.addRule(RelativeLayout.LEFT_OF,R.id.message_contents_TextView);
-            message_time_TextView.setLayoutParams(params);
+            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
+            params2.addRule(RelativeLayout.LEFT_OF,R.id.message_contents_TextView);
+            message_time_TextView.setLayoutParams(params2);
             message_time_TextView.setText(time_Format);
-
         }else if(OwnMessage ==false){ //왼쪽
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
-            params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            params.width = mContext.getResources().getDimensionPixelSize(R.dimen.message_width);
-            message_contents_TextView.setLayoutParams(params);
+
+            RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
+            params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            message_contents_TextView.setLayoutParams(params1);
             message_contents_TextView.setText(data.Contents);
 
-            params = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
-            params.addRule(RelativeLayout.RIGHT_OF,R.id.message_contents_TextView);
-            message_time_TextView.setLayoutParams(params);
+            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
+            params2.addRule(RelativeLayout.RIGHT_OF,R.id.message_contents_TextView);
+            message_time_TextView.setLayoutParams(params2);
             message_time_TextView.setText(time_Format);
         }
-
     }
 
     String getTimeFormat(String Default_Time){

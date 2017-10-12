@@ -63,6 +63,7 @@ public class LogoActivity extends AppCompatActivity {
         }
 
         AppData.setApp_Mode(0);
+        setData();
         AppCheckPermission_LOCATION();
         // LOCATION -> STORAGE -> LOGIN 순서로 검사함
     }
@@ -78,7 +79,7 @@ public class LogoActivity extends AppCompatActivity {
                 finish();
             }
         };
-        myHandler.sendEmptyMessageDelayed(0,500);
+        myHandler.sendEmptyMessageDelayed(0,2000);
 
     }
 
@@ -176,6 +177,7 @@ public class LogoActivity extends AppCompatActivity {
                         }
                     }
                 }else{
+
                     delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
                 }
             }
@@ -183,7 +185,126 @@ public class LogoActivity extends AppCompatActivity {
         AppData.mAuth.addAuthStateListener(AppData.mAuthStateListener);
     }
 
+    void setData(){
+        setRouteData();
+        setFeedData();
+        setGuiderData();
+        setAttraction_Route();
+    }
 
+    void setRouteData(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(AppData.LOG_INDICATOR,"MainActivity - setRoute_Data() 호출!!!");
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
+                List<Route_Data> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    Route_Data route_data = cur_Snapshot.getValue(Route_Data.class);
+                    list.add(route_data);
+                }
+                AppData.Route_Data_List = list;
+                sort_Rating_Route();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void setFeedData(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("feeds").getChildren();
+
+                List<Feed_Data> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    Feed_Data feed_data =  cur_Snapshot.getValue(Feed_Data.class);
+                    list.add(feed_data);
+                }
+                AppData.Feed_Data_List= list;
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void setGuiderData(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("users").getChildren();
+
+                List<User> list = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    boolean IsGuider =  (boolean)cur_Snapshot.child("User_Guide").getValue();
+                    if(IsGuider == true){
+                        list.add(cur_Snapshot.getValue(User.class));
+                    }
+                }
+                AppData.Guider_Data_List = list;
+                sort_Rating_Guider();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void setAttraction_Route(){
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the USI
+                //키워드량 비교
+                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
+                List<KeywordData> KeywordData_List = new ArrayList<>();
+                while (iterable.iterator().hasNext()){
+                    DataSnapshot cur_Snapshot = iterable.iterator().next();
+                    KeywordData data =  cur_Snapshot.getValue(KeywordData.class);
+                    KeywordData_List.add(data);
+                }
+
+                Keyword_Descending data_descending = new Keyword_Descending();
+                Collections.sort(KeywordData_List,data_descending);
+
+                AppData.Attraction_Keyword_List = KeywordData_List;
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        AppData.myRef.addValueEventListener(listener);
+    }
+    void sort_Rating_Route(){
+        AppData.Recommend_Route_List = AppData.Route_Data_List;
+
+        if(AppData.Recommend_Route_List.size() == 0)
+            return;
+
+        Route_Data_Descending descending = new Route_Data_Descending();
+        Collections.sort(AppData.Recommend_Route_List,descending);
+    }
+    void sort_Rating_Guider(){
+        AppData.Recommend_Guider_List = AppData.Guider_Data_List;
+
+        if(AppData.Recommend_Guider_List.size() == 0)
+            return;
+
+        Guider_Descending descending = new Guider_Descending();
+        Collections.sort(AppData.Recommend_Guider_List,descending);
+
+
+    }
 }
 
 

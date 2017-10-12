@@ -2,6 +2,7 @@ package com.iguideu.data;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -15,10 +16,16 @@ import android.widget.EditText;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.iguideu.aboutSort.Guider_Descending;
+import com.iguideu.aboutSort.Keyword_Descending;
+import com.iguideu.aboutSort.Route_Data_Descending;
 
 /**
  * Created by Hoyoung on 2017-07-19.
@@ -45,6 +52,8 @@ public class AppData  {
     public static final int REQUEST_CODE_GALLERY = 1001;
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2001;
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
+    public static final int REQUEST_CODE_KEYWORD = 3001;
+    public static final int REQUEST_CODE_KEY_DATE = 3002;
 
     private static SharedPreferences preferences;
 
@@ -57,23 +66,19 @@ public class AppData  {
 
 
     // 데이터 관련
-    public static List<Route_Data> Route_Data_List;
-    public static List<Feed_Data> Feed_Data_List;
-    public static List<User> Guider_Data_List;
-    public static List<Request_Data> Request_Data_ForTourist_List;
-    public static List<Request_Data> Request_Data_ForGuide_List;
+    public static List<Route_Data> Route_Data_List = new ArrayList<>();
+    public static List<Feed_Data> Feed_Data_List= new ArrayList<>();
+    public static List<User> Guider_Data_List= new ArrayList<>();
+    public static List<Request_Data> Request_Data_ForTourist_List= new ArrayList<>();
+    public static List<Request_Data> Request_Data_ForGuide_List= new ArrayList<>();
     public static ArrayList<Route_Pin_Data> PinPointData = new ArrayList<>();
-    public static ArrayList<ChattingRoom> ChattingRoom_Data_List;
+    public static ArrayList<ChattingRoom> ChattingRoom_Data_List= new ArrayList<>();
     public static ArrayList<LatLng> AppPinPointData=new ArrayList<>();
-    public static List<Route_Data> Attraction_Route_List;
-    public static List<String> Attraction_Image_URL_List;
-    public static List<KeywordData> Attraction_Keyword_List;
+    public static List<KeywordData> Attraction_Keyword_List= new ArrayList<>();
 
-    public static List<Route_Data> Recommend_Route_List;
-    public static List<User> Recommend_Guider_List;
+    public static List<Route_Data> Recommend_Route_List= new ArrayList<>();
+    public static List<User> Recommend_Guider_List= new ArrayList<>();
     public static ArrayList<EditText> ListEditId=new ArrayList<>();
-    public static List<HistoryData> Tourist_History_List;
-    public static List<HistoryData> Guider_History_List;
 
     //Firebase 관련
     public static FirebaseAuth mAuth;
@@ -179,6 +184,8 @@ public class AppData  {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://iguideu-4befb.appspot.com/");
     }
+
+
 
 
 

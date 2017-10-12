@@ -48,8 +48,6 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
         holder.route_title_TextView.setText(data.Route_Main_Title);
 
         int cur_Rating = data.Route_Rating_Num;
-
-
         setStar(holder, cur_Rating);
 
     }
@@ -62,6 +60,11 @@ public class RouteRecyclerAdapter extends  RecyclerView.Adapter<RouteRecyclerAda
                 holder.rating_star_ImageView[i].setBackground(mContext.getDrawable(R.mipmap.star_blank));
             }
         }
+    }
+
+    public void setData(List<Route_Data> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @Override

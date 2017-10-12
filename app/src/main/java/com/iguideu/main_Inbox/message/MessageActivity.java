@@ -35,7 +35,7 @@ public class MessageActivity extends AppCompatActivity {
 
     User Cur_User;
     User Other_User;
-    ArrayList<ChattingData> Chatting_Data_list;
+    ArrayList<ChattingData> Chatting_Data_list =new ArrayList<>();
 
     String ChattingRoom_Index;
     RecyclerView recyclerView;
@@ -49,8 +49,19 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
-        setMessageData();
 
+        message_EditText = (EditText)findViewById(R.id.message_EditText);
+        message_send_Btn = (Button)findViewById(R.id.message_send_Btn);
+
+        recyclerView = (RecyclerView)findViewById(R.id.message_RecyclerView);
+        adapter = new MessageRecyclerAdapter(getApplicationContext(),Chatting_Data_list);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.getLayoutManager().scrollToPosition(Chatting_Data_list.size()-1);
+
+        setMessageData();
         setToobar();
     }
 
@@ -60,13 +71,12 @@ public class MessageActivity extends AppCompatActivity {
         Other_User_Id = receivedIntent.getStringExtra("Other_User_Id");
         //Chat_Data_list = (ArrayList<ChattingData>)receivedIntent.getSerializableExtra("Chat_Data_List");
 
-
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
                 Cur_User = AppData.getCur_User();
-                Other_User = dataSnapshot.child("users").child("User_ID").getValue(User.class);
+                Other_User = dataSnapshot.child("users").child(AppData.StringReplace(Other_User_Id)).getValue(User.class);
 
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
 
@@ -86,11 +96,12 @@ public class MessageActivity extends AppCompatActivity {
 
                 if(Chatting_Data_list == null){
                     ChattingRoom_Index = AppData.getCurTime()+AppData.StringReplace(Cur_User.User_ID);
-                    AppData.myRef.child("chattingrooms").child(ChattingRoom_Index).setValue(new ChattingRoom(ChattingRoom_Index, Cur_User, Other_User,AppData.getCurTime(),null,false));
                     Chatting_Data_list = new ArrayList<>();
+                    AppData.myRef.child("chattingrooms").child(ChattingRoom_Index).setValue(new ChattingRoom(ChattingRoom_Index, Cur_User, Other_User,AppData.getCurTime(),Chatting_Data_list,false));
                 }
+                adapter.setChatting_Data_List(Chatting_Data_list);
+                recyclerView.getLayoutManager().scrollToPosition(Chatting_Data_list.size()-1);
 
-                setRecycleView();
                 setSendMessage();
             }
 
@@ -114,33 +125,17 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-    void setRecycleView(){
 
-        recyclerView = (RecyclerView)findViewById(R.id.message_RecyclerView);
-
-        adapter = new MessageRecyclerAdapter(getApplicationContext(),Chatting_Data_list);
-        recyclerView.setAdapter(adapter);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        layoutManager.setStackFromEnd(true);
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.getLayoutManager().scrollToPosition(Chatting_Data_list.size()-1);
-    }
 
 
     void setSendMessage(){
-        message_EditText = (EditText)findViewById(R.id.message_EditText);
-        message_send_Btn = (Button)findViewById(R.id.message_send_Btn);
-
         message_send_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!message_EditText.getText().toString().equals("")){
-                    Chatting_Data_list.add(new ChattingData(Cur_User.User_ID,message_EditText.getText().toString(),AppData.getCurTime()));
-
+                String message = message_EditText.getText().toString();
+                if(!message.equals("")){
+                    Chatting_Data_list.add(new ChattingData(Cur_User.User_ID,message,AppData.getCurTime()));
                     AppData.myRef.child("chattingrooms").child(ChattingRoom_Index).child("Chatting_Datas").setValue(Chatting_Data_list);
-
                     adapter.setChatting_Data_List(Chatting_Data_list);
                     message_EditText.setText("");
                     recyclerView.getLayoutManager().scrollToPosition(Chatting_Data_list.size()-1);

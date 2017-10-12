@@ -88,6 +88,11 @@ public class Profile_Main_Fragment extends Fragment {
 
 
         send_Message_Btn = (Button)view.findViewById(R.id.send_Message_Btn);
+
+        if(Profile_User_Id.equals(AppData.getCur_User().User_ID)){
+            send_Message_Btn.setVisibility(View.GONE);
+        }
+
         send_Message_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,8 +112,6 @@ public class Profile_Main_Fragment extends Fragment {
                 setStar(rating_starts,cur_user.User_Guide_Rating);
 
                 show_route_Btn = (Button)view.findViewById(R.id.show_route_Btn);
-
-
                 show_route_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

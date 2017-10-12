@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,7 +19,11 @@ import com.iguideu.ClickListener.RecyclerItemClickListener;
 import com.iguideu.R;
 import com.iguideu.data.AppData;
 import com.iguideu.Route_Detail.Route_Detail_Activity;
+import com.iguideu.data.Route_Data;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-17.
@@ -29,7 +34,11 @@ public class RouteFragment extends Fragment {
     Context m_Context;
 
     String Searched_Keyword = "";
-    CalendarDay Searched_Date = null;
+    String Searched_Date = ""; //yyyy_mm_dd
+
+    RecyclerView recyclerView;
+    RouteRecyclerAdapter adapter;
+    List<Route_Data> Cur_Route_List;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -51,25 +60,56 @@ public class RouteFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(!Searched_Keyword.equals("")){
-            // 검색된 키워드가 있을때
-        }
 
-        if(Searched_Date != null){
-            // 검색한 날짜가 있을 때
-            Toast.makeText(getContext(),"Searched_Date.toString() : " + Searched_Date.toString(),Toast.LENGTH_SHORT).show();
-        }
+        recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
+        adapter = new RouteRecyclerAdapter(m_Context,Cur_Route_List);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
+                        intent.putExtra("Route_Index", Cur_Route_List.get(position).Route_Index);
+                        getContext().startActivity(intent);
+
+                    }
+                })
+        );
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+        recyclerView.setLayoutManager(layoutManager);
+        showRoute_Data();
 
         setSpinner(view);
-        setRecycler(view);
     }
 
     public void setFilterKeyword(String Keyword){
         Searched_Keyword = Keyword;
     }
 
-    public void setFilterDate(CalendarDay date){
+    public void setFilterDate(String date){
         Searched_Date = date;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    public void showRoute_Data(){
+        Cur_Route_List = AppData.Route_Data_List;
+        List <Route_Data> list = new ArrayList<>();
+
+        if(!Searched_Keyword.equals("")){
+            for(int i=0; i<Cur_Route_List.size();i++){
+                for(int j=0;j<Cur_Route_List.get(i).Route_Locations.size();j++){
+                    if(Cur_Route_List.get(i).Route_Locations.get(j).equals(Searched_Keyword)){
+                        list.add(Cur_Route_List.get(i));
+                    }
+                }
+            }
+            Cur_Route_List = list;
+        }
+
+        adapter.setData(Cur_Route_List);
     }
 
     void setSpinner(View view){
@@ -79,30 +119,7 @@ public class RouteFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-    }
-
-    void setRecycler(View view){
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
-
-
-        RouteRecyclerAdapter adapter = new RouteRecyclerAdapter(m_Context,AppData.Route_Data_List);
-
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getContext(), Route_Detail_Activity.class);
-                        intent.putExtra("Route_Index", AppData.Route_Data_List.get(position).Route_Index);
-                        getContext().startActivity(intent);
-
-                    }
-                })
-        );
-
-
-        recyclerView.setAdapter(adapter);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-        recyclerView.setLayoutManager(layoutManager);
-
 
     }
+
 }

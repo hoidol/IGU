@@ -16,11 +16,5 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginTop="8.7dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="일정"
-        android:textSize="20dp"
-        android:gravity="center_horizontal|center_vertical"/>
 
 </RelativeLayout>

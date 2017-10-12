@@ -1,5 +1,6 @@
 package com.iguideu;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Fragment;
@@ -29,6 +30,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iguideu.tourist_mode.HomeFragment;
 import com.iguideu.tourist_mode.tourist_tour.TourFragment;
@@ -60,12 +62,29 @@ public class MainActivity extends AppCompatActivity {
     TextView[] tab_TextView;
 
 
+    HomeFragment homeFragment;
+    Guide_HomeFragment guide_homeFragment;
+    TourFragment tourFragment;
+    Guide_ScheduleCheckFragment guide_scheduleCheckFragment;
+    FeedFragment feedFragment;
+    Guide_HistoryFragment guide_historyFragment;
+    InboxFragment inboxFragment;
+    SettingFragment settingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        homeFragment = new HomeFragment();
+        guide_homeFragment = new Guide_HomeFragment();
+        tourFragment = new TourFragment();
+        guide_scheduleCheckFragment = new Guide_ScheduleCheckFragment();
+        feedFragment = new FeedFragment();
+        guide_historyFragment = new Guide_HistoryFragment();
+        inboxFragment = new InboxFragment();
+        settingFragment = new SettingFragment();
 
+        setDatas();
         App_Mode = AppData.getApp_Mode();
         setTabLayout();
 
@@ -73,18 +92,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.main_Fragment,new HomeFragment());
         fragmentTransaction.commit();
-
-        setDatas();
     }
 
     void setTabLayout(){
 
         tabLayout = (TabLayout)findViewById(R.id.tabs);
-
-
         tabLayout.setBackgroundColor(Color.WHITE);
         tab_TextView = new TextView[5];
-
 
         tab_TextView[0] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
         tab_TextView[0].setText(TouristMode_Title[0]);
@@ -120,38 +134,37 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
                 Fragment fragment = null;
                 switch (tab.getPosition()){
                     case 0:
                         if(App_Mode == 0){
-                            fragment = new HomeFragment();
+                            fragment = homeFragment;
                             setTouristTabIcon(0);
                         }else if(App_Mode == 1){
-                            fragment = new Guide_HomeFragment();
+                            fragment = guide_homeFragment;
                             setGuideTabIcon(0);
                         }
                         break;
                     case 1:
                         if(App_Mode == 0) {
-                            fragment = new TourFragment();
+                            fragment = tourFragment;
                             setTouristTabIcon(1);
                         }else if(App_Mode == 1){
-                            fragment = new Guide_ScheduleCheckFragment();
+                            fragment = guide_scheduleCheckFragment;
                             setGuideTabIcon(1);
                         }
                         break;
                     case 2:
                         if(App_Mode == 0) {
-                            fragment = new FeedFragment();
+                            fragment = feedFragment;
                             setTouristTabIcon(2);
                         }else if(App_Mode == 1){
-                            fragment = new Guide_HistoryFragment();
+                            fragment = guide_historyFragment;
                             setGuideTabIcon(2);
                         }
                         break;
                     case 3:
-                        fragment = new InboxFragment();
+                        fragment = inboxFragment;
                         if(App_Mode == 0) {
                             setTouristTabIcon(3);
                         }else if(App_Mode == 1){
@@ -159,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case 4:
-                        fragment = new SettingFragment();
+                        fragment = settingFragment;
                         if(App_Mode == 0) {
                             setTouristTabIcon(4);
                         }else if(App_Mode == 1){
@@ -172,19 +185,15 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction = fm.beginTransaction();
                     fragmentTransaction.replace(R.id.main_Fragment, fragment);
                     fragmentTransaction.commit();
-
-
                 }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
     }
@@ -224,76 +233,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void changeMode(int mode){
-
         App_Mode = mode;
         if(App_Mode == 0) {
             setTouristTabIcon(4);
         }else if(App_Mode == 1){
             setGuideTabIcon(4);
         }
-
     }
+
 
     void setDatas(){
-        setRouteData();
-        setFeedData();
-        setGuiderData();
         setChattingRoom();
         setRequestData();
-       // setAttraction_Route();
-
-        setTouristHistoryData();
-        setGuiderHistoryData();
     }
 
-    void setRouteData(){
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(AppData.LOG_INDICATOR,"MainActivity - setRoute_Data() 호출!!!");
-                // Get Post object and use the values to update the USI
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
-                List<Route_Data> list = new ArrayList<>();
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-
-                    Route_Data route_data = cur_Snapshot.getValue(Route_Data.class);
-                    list.add(route_data);
-
-                }
-                AppData.Route_Data_List = list;
-                sort_Rating_Route();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        AppData.myRef.addValueEventListener(listener);
-    }
-    void setFeedData(){
-
-        List<Feed_Data> list = new ArrayList<>();
-         ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(AppData.LOG_INDICATOR,"MainActivity - setFeedData() 호출!!!");
-                // Get Post object and use the values to update the USI
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("feeds").getChildren();
-
-                List<Feed_Data> list = new ArrayList<>();
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    Feed_Data feed_data =  cur_Snapshot.getValue(Feed_Data.class);
-                    list.add(feed_data);
-                }
-                AppData.Feed_Data_List= list;
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        AppData.myRef.addValueEventListener(listener);
-    }
     void setChattingRoom(){
         final User Cur_User = AppData.getCur_User();
         ValueEventListener listener = new ValueEventListener() {
@@ -309,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                     User Sended_User =  cur_Snapshot.child("Sended_User").getValue(User.class);
                     User Received_User =  cur_Snapshot.child("Received_User").getValue(User.class);
 
-                    if(Cur_User.User_ID.equals(Sended_User.User_ID) || Cur_User.equals(Received_User.User_ID)){
+                    if(Cur_User.User_ID.equals(Sended_User.User_ID) || Cur_User.User_ID.equals(Received_User.User_ID)){
                         list.add(cur_Snapshot.getValue(ChattingRoom.class));
                     }
                 }
@@ -322,33 +275,6 @@ public class MainActivity extends AppCompatActivity {
         };
         AppData.myRef.addValueEventListener(listener);
     }
-
-    void setGuiderData(){
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the USI
-
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("users").getChildren();
-
-                List<User> list = new ArrayList<>();
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    boolean IsGuider =  (boolean)cur_Snapshot.child("User_Guide").getValue();
-                    if(IsGuider == true){
-                        list.add(cur_Snapshot.getValue(User.class));
-                    }
-                }
-                AppData.Guider_Data_List = list;
-                sort_Rating_Guider();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        AppData.myRef.addValueEventListener(listener);
-    }
-
     void setRequestData(){
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -381,86 +307,7 @@ public class MainActivity extends AppCompatActivity {
         AppData.myRef.addValueEventListener(listener);
     }
 
-    List<KeywordData> KeywordData_List = new ArrayList<>();
-    void setAttraction_Route(){
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the USI
 
-                //키워드량 비교
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("keywords").getChildren();
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    KeywordData data =  cur_Snapshot.getValue(KeywordData.class);
-                    KeywordData_List.add(data);
-                }
-
-                Keyword_Descending data_descending = new Keyword_Descending();
-                Collections.sort(KeywordData_List,data_descending);
-
-                AppData.Attraction_Keyword_List = KeywordData_List;
-
-                // 루트 가져오기
-                iterable = dataSnapshot.child("routes").getChildren();
-                int KeywordData_size = KeywordData_List.size();
-                KeywordData_size = ((KeywordData_size<=10)? KeywordData_size:10);
-
-                List<String> Attraction_Image_URL_List = new ArrayList<>();
-
-                for(int i = 0; i<KeywordData_size;i++){
-                    while (iterable.iterator().hasNext()){
-                        DataSnapshot cur_Snapshot = iterable.iterator().next();
-                        Route_Data data =  cur_Snapshot.getValue(Route_Data.class);
-
-                        boolean IsSearched = false;
-                        for(int j=0; j< data.Route_Locations.size();j++){
-                            if(data.Route_Locations.get(j).Route_Title.equals(KeywordData_List.get(i).Keyword)){
-                                Attraction_Image_URL_List.add(data.Route_Photo_URLs.get(0));
-                                IsSearched = true;
-                                break;
-                            }
-                        }
-
-                        if(IsSearched == true){
-                            break;
-                        }
-                    }
-                }
-
-               AppData.Attraction_Image_URL_List = Attraction_Image_URL_List;
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        AppData.myRef.addValueEventListener(listener);
-    }
-    void setTouristHistoryData(){
-
-    }
-    void setGuiderHistoryData(){
-
-    }
-    void sort_Rating_Route(){
-        AppData.Recommend_Route_List = AppData.Route_Data_List;
-
-        if(AppData.Recommend_Route_List == null)
-            return;
-
-        Route_Data_Descending descending = new Route_Data_Descending();
-        Collections.sort(AppData.Recommend_Route_List,descending);
-    }
-    void sort_Rating_Guider(){
-        AppData.Recommend_Guider_List = AppData.Guider_Data_List;
-
-        if(AppData.Recommend_Guider_List == null)
-            return;
-
-        Guider_Descending descending = new Guider_Descending();
-        Collections.sort(AppData.Recommend_Guider_List,descending);
-
-    }
 
 
 }

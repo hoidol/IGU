@@ -299,51 +299,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_below="@+id/route_detail_Content_Container"
-                android:layout_width="match_parent"
-                android:layout_height="160.6dp"
-                android:layout_marginTop="12.3dp"
-                android:layout_marginBottom="16.3dp"
-                android:id="@+id/feeds_of_route_Container">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="17.3dp"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/route_taged_feed_Static"
-                    android:text="태그된 피드"/>
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_below="@+id/route_taged_feed_Static"
-                    android:layout_marginTop="13.3dp"
-                    android:layout_marginLeft="26.7dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <com.iguideu.custom_view.SquareImageView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:background="#000000"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@mipmap/profile_image_test"/>
-                        <com.iguideu.custom_view.SquareImageView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:background="#000000"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@mipmap/profile_image_test"/>
-                        <com.iguideu.custom_view.SquareImageView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            android:background="#000000"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@mipmap/profile_image_test"/>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
     <Button

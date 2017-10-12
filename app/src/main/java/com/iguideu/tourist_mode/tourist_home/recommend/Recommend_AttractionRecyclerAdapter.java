@@ -2,15 +2,24 @@ package com.iguideu.tourist_mode.tourist_home.recommend;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.iguideu.R;
 import com.iguideu.custom_view.SquareImageView;
 import com.iguideu.data.AppData;
+import com.iguideu.data.KeywordData;
+import com.iguideu.data.Route_Data;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hoyoung on 2017-07-29.
@@ -20,10 +29,12 @@ public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<R
 
 
     Context mContext;
+    List<KeywordData> list;
 
 
-    public Recommend_AttractionRecyclerAdapter(Context context){
+    public Recommend_AttractionRecyclerAdapter(Context context,List<KeywordData> list){
         this.mContext = context;
+        this.list = list;
     }
 
     @Override
@@ -34,16 +45,20 @@ public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<R
 
     @Override
     public void onBindViewHolder(Recommend_Recycler_ViewHolder holder, int position) {
-        Picasso.with(mContext).load(AppData.Attraction_Image_URL_List.get(position)).into(holder.recommend_ImageView);
         holder.recommend_title_TextView.setText(AppData.Attraction_Keyword_List.get(position).Keyword);
-
 
     }
 
     @Override
     public int getItemCount() {
-        int List_size = AppData.Attraction_Keyword_List.size();
+        int List_size = list.size();
+        Log.d(AppData.LOG_INDICATOR,"추천 명소 출력 수 : " + List_size);
         return (List_size <= 10) ? List_size:10;
+    }
+
+    public void setData(List<KeywordData> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     class Recommend_Recycler_ViewHolder extends RecyclerView.ViewHolder{

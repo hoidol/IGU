@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iguideu.R;
 import com.iguideu.data.AppData;
@@ -24,6 +25,8 @@ import com.iguideu.search.SearchActivity;
 import com.iguideu.tourist_mode.tourist_home.guide.GuideFragment;
 import com.iguideu.tourist_mode.tourist_home.recommend.RecommendFragment;
 import com.iguideu.tourist_mode.tourist_home.route.RouteFragment;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Hoyoung on 2017-07-16.
@@ -46,6 +49,13 @@ public class HomeFragment extends Fragment {
     RelativeLayout search_keyword_Container;
     RelativeLayout search_date_Container;
 
+    TextView search_keyword_TextView;
+    TextView search_date_TextView;
+
+    public RecommendFragment recommendFragment;
+    public RouteFragment routeFragment;
+    public GuideFragment guideFragment;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -65,16 +75,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recommendFragment = new RecommendFragment();
+        routeFragment = new RouteFragment();
+        guideFragment = new GuideFragment();
 
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.add(R.id.home_FragmLayout,new RecommendFragment());
+        fragmentTransaction.add(R.id.home_FragmLayout,recommendFragment);
         fragmentTransaction.commit();
+
 
         setTabLayout(view);
         setSearchContainer(view);
-
-        Log.d(AppData.LOG_INDICATOR, AppData.getCurTime());
     }
 
 
@@ -97,12 +109,6 @@ public class HomeFragment extends Fragment {
         tab_TextView[2].setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[2]));
 
-
-   /*   tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.recommend_kr_word)));
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.route_kr_word)));
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.guide_kr_word)));*/
-
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -112,13 +118,13 @@ public class HomeFragment extends Fragment {
                 setTab_TextColor(position);
                 switch (position){
                     case 0:
-                        fragment = new RecommendFragment();
+                        fragment = recommendFragment;
                         break;
                     case 1:
-                        fragment = new RouteFragment();
+                        fragment = routeFragment;
                         break;
                     case 2:
-                        fragment = new GuideFragment();
+                        fragment = guideFragment;
                         break;
                 }
 
@@ -152,6 +158,8 @@ public class HomeFragment extends Fragment {
         search_keyword_Container = (RelativeLayout) view.findViewById(R.id.search_keyword_Container);
         search_date_Container = (RelativeLayout) view.findViewById(R.id.search_date_Container);
 
+        search_keyword_TextView = (TextView)view.findViewById(R.id.search_keyword_TextView);
+        search_date_TextView=(TextView)view.findViewById(R.id.search_date_TextView);
         home_AppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -184,7 +192,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SearchActivity.class);
                 intent.putExtra("search_index", 0);
-                startActivity(intent);
+                startActivityForResult(intent, AppData.REQUEST_CODE_KEYWORD);
             }
         });
 
@@ -193,7 +201,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SearchActivity.class);
                 intent.putExtra("search_index", 1);
-                startActivity(intent);
+                startActivityForResult(intent, AppData.REQUEST_CODE_KEY_DATE);
             }
         });
     }
@@ -212,4 +220,53 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case AppData.REQUEST_CODE_KEYWORD:
+                if (resultCode == RESULT_OK) {
+                    String keyword = data.getStringExtra("Keyword");
+                    if(keyword != null){
+                        search_keyword_TextView.setText(keyword);
+                        show_Searched_Keyword_Route(keyword);
+                    }else{
+                        show_Searched_Keyword_Route("");
+                        search_keyword_TextView.setText("키워드 검색");
+                    }
+
+                }
+                break;
+            case AppData.REQUEST_CODE_KEY_DATE:
+                if (resultCode == RESULT_OK) {
+                    String date = data.getStringExtra("Date");
+                    if(date != null){
+                        show_Searched_date_Route(date);
+                        search_date_TextView.setText(date);
+                    }else{
+                        show_Searched_date_Route("");
+                        search_keyword_TextView.setText("날짜 검색");
+                    }
+                }
+                break;
+        }
+    }
+
+
+    void show_Searched_Keyword_Route(String keyword){
+        tabLayout.getTabAt(1).select();
+        routeFragment.setFilterKeyword(keyword);
+        fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.home_FragmLayout, routeFragment);
+        fragmentTransaction.commit();
+    }
+
+    void show_Searched_date_Route(String date){
+        tabLayout.getTabAt(1).select();
+        routeFragment.setFilterDate(date);
+        fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.home_FragmLayout, routeFragment);
+        fragmentTransaction.commit();
+    }
 }

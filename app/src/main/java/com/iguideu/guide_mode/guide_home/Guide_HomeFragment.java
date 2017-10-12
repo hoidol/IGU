@@ -46,6 +46,8 @@ public class Guide_HomeFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mDataList.clear();
+
         add_route_Btn = (ImageButton)view.findViewById(R.id.add_route_Btn);
         add_route_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
