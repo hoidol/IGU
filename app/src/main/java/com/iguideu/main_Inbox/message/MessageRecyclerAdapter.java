@@ -18,7 +18,10 @@ import java.util.List;
  * Created by Hoyoung on 2017-09-03.
  */
 
-public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecyclerAdapter.Message_Recycler_ViewHolder>{
+public class MessageRecyclerAdapter extends RecyclerView.Adapter{
+
+    private static final int VIEW_TYPE_MESSAGE_SENT = 1;
+    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
     Context mContext;
     List<ChattingData> Chatting_Data_List;
@@ -28,23 +31,50 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         Chatting_Data_List= list;
     }
     @Override
-    public Message_Recycler_ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_layout, parent, false);
-        return new MessageRecyclerAdapter.Message_Recycler_ViewHolder(itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+
+        if (viewType == VIEW_TYPE_MESSAGE_SENT) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.message_sender_layout, parent, false);
+            return new SentMessageHolder(view);
+        } else if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.message_receiver_layout, parent, false);
+            return new ReceivedMessageHolder(view);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ChattingData message = Chatting_Data_List.get(position);
+
+        switch (holder.getItemViewType()) {
+            case VIEW_TYPE_MESSAGE_SENT:
+                ((SentMessageHolder) holder).bind(message);
+                break;
+            case VIEW_TYPE_MESSAGE_RECEIVED:
+                ((ReceivedMessageHolder) holder).bind(message);
+        }
     }
 
 
     @Override
-    public void onBindViewHolder(Message_Recycler_ViewHolder holder, int position) {
+    public int getItemViewType(int position) {
+        ChattingData message =  Chatting_Data_List.get(position);
 
-        ChattingData data = Chatting_Data_List.get(position);
-
-        if(AppData.getCur_User().User_ID.equals(data.Owner_ID)) { // 내꺼
-            setTextViewPosition(holder.message_contents_TextView,holder.message_time_TextView,data, true);
-        }else{
-            setTextViewPosition(holder.message_contents_TextView,holder.message_time_TextView,data, false);
+        if (message.Owner_ID.equals(AppData.getCur_User().User_ID)) {
+            // If the current user is the sender of the message
+            return VIEW_TYPE_MESSAGE_SENT;
+        } else {
+            // If some other user sent the message
+            return VIEW_TYPE_MESSAGE_RECEIVED;
         }
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -55,28 +85,6 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
 
         String time_Format = getTimeFormat(data.Writed_Time);
 
-        if(OwnMessage == true){ //오른쪽
-            RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
-            params1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            message_contents_TextView.setLayoutParams(params1);
-            message_contents_TextView.setText(data.Contents);
-
-            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
-            params2.addRule(RelativeLayout.LEFT_OF,R.id.message_contents_TextView);
-            message_time_TextView.setLayoutParams(params2);
-            message_time_TextView.setText(time_Format);
-        }else if(OwnMessage ==false){ //왼쪽
-
-            RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams)message_contents_TextView.getLayoutParams();
-            params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            message_contents_TextView.setLayoutParams(params1);
-            message_contents_TextView.setText(data.Contents);
-
-            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams)message_time_TextView.getLayoutParams();
-            params2.addRule(RelativeLayout.RIGHT_OF,R.id.message_contents_TextView);
-            message_time_TextView.setLayoutParams(params2);
-            message_time_TextView.setText(time_Format);
-        }
     }
 
     String getTimeFormat(String Default_Time){
@@ -93,16 +101,40 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         notifyDataSetChanged();
     }
 
-    class Message_Recycler_ViewHolder extends RecyclerView.ViewHolder{
+
+    private class SentMessageHolder extends RecyclerView.ViewHolder {
         public TextView message_contents_TextView;
         public TextView message_time_TextView;
 
 
-        public Message_Recycler_ViewHolder(View itemView) {
+        public SentMessageHolder(View itemView) {
             super(itemView);
             message_contents_TextView = (TextView)itemView.findViewById(R.id.message_contents_TextView);
             message_time_TextView = (TextView)itemView.findViewById(R.id.message_time_TextView);
 
+        }
+
+        void bind(ChattingData message) {
+            message_contents_TextView.setText(message.Contents);
+            message_time_TextView.setText(getTimeFormat(message.Writed_Time));
+        }
+    }
+
+    private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
+        public TextView message_contents_TextView;
+        public TextView message_time_TextView;
+
+
+        public ReceivedMessageHolder(View itemView) {
+            super(itemView);
+            message_contents_TextView = (TextView)itemView.findViewById(R.id.message_contents_TextView);
+            message_time_TextView = (TextView)itemView.findViewById(R.id.message_time_TextView);
+
+        }
+
+        void bind(ChattingData message) {
+            message_contents_TextView.setText(message.Contents);
+            message_time_TextView.setText(getTimeFormat(message.Writed_Time));
         }
     }
 }

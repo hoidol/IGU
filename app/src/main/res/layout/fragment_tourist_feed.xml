@@ -24,7 +24,7 @@
         android:id="@+id/add_feed_write_Btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@mipmap/group"
+        android:background="@mipmap/add_image"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="14dp"
