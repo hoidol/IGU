@@ -1,5 +1,6 @@
 package com.iguideu.tourist_mode.tourist_home.recommend;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.iguideu.ClickListener.RecyclerItemClickListener;
@@ -22,6 +24,7 @@ import com.iguideu.data.KeywordData;
 import com.iguideu.data.Route_Data;
 import com.iguideu.data.User;
 import com.iguideu.main_Profile.ProfileActivity;
+import com.iguideu.tourist_mode.HomeFragment;
 import com.iguideu.tourist_mode.tourist_home.route.RouteFragment;
 
 import java.util.ArrayList;
@@ -33,7 +36,21 @@ import java.util.List;
 
 public class RecommendFragment extends Fragment {
 
-    Context m_Context;
+    private ListItemSelectedListener selectedListener;
+
+    public void onListItemClick(int position) {
+        selectedListener.onListItemSelected(position);
+    }
+
+    public interface ListItemSelectedListener {
+        public void onListItemSelected(int index);
+    }
+
+
+    public void setHomeFragment(ListItemSelectedListener homeFragment){
+        this.selectedListener = (ListItemSelectedListener)homeFragment;
+    }
+
     View view;
     RecyclerView attraction_RecyclerView;
     RecyclerView route_RecyclerView;
@@ -49,13 +66,6 @@ public class RecommendFragment extends Fragment {
 
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        this.m_Context = context;
-    }
 
     public RecommendFragment() {
         // Required empty public constructor
@@ -74,15 +84,18 @@ public class RecommendFragment extends Fragment {
         //추천
         attraction_RecyclerView = (RecyclerView)view.findViewById(R.id.recommend_attraction_RecyclerView);
         Keyword_List = AppData.Attraction_Keyword_List;
-        Recommend_Attraction_adapter = new Recommend_AttractionRecyclerAdapter(m_Context,Keyword_List);
+        Recommend_Attraction_adapter = new Recommend_AttractionRecyclerAdapter(getContext(),Keyword_List);
         attraction_RecyclerView.setAdapter(Recommend_Attraction_adapter);
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         attraction_RecyclerView.setLayoutManager(layoutManager1);
         attraction_RecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 RouteFragment fragment = new RouteFragment();
-                fragment.setFilterKeyword(AppData.Attraction_Keyword_List.get(position).Keyword);
+                AppData.KeywordData = AppData.Attraction_Keyword_List.get(position).Keyword;
+                onListItemClick(1);
+                fm = getFragmentManager();
+
                 fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.home_FragmLayout, fragment);
                 fragmentTransaction.commit();
@@ -92,9 +105,9 @@ public class RecommendFragment extends Fragment {
         // 루트
         route_RecyclerView = (RecyclerView)view.findViewById(R.id.recommend_route_RecyclerView);
         Route_List = AppData.Recommend_Route_List;
-        Recommend_Route_adapter= new Recommend_RouteRecyclerAdapter(m_Context,Route_List);
+        Recommend_Route_adapter= new Recommend_RouteRecyclerAdapter(getContext(),Route_List);
         route_RecyclerView.setAdapter(Recommend_Route_adapter);
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         route_RecyclerView.setLayoutManager(layoutManager2);
 
         route_RecyclerView.addOnItemTouchListener(
@@ -110,9 +123,9 @@ public class RecommendFragment extends Fragment {
         // 가이드
         guide_RecyclerView = (RecyclerView)view.findViewById(R.id.recommend_guide_RecyclerView);
         Guide_List = AppData.Recommend_Guider_List;
-        Recommend_Guide_adapter = new Recommend_GuideRecyclerAdapter(m_Context,Guide_List);
+        Recommend_Guide_adapter = new Recommend_GuideRecyclerAdapter(getContext(),Guide_List);
         guide_RecyclerView.setAdapter(Recommend_Guide_adapter);
-        LinearLayoutManager layoutManager3 = new LinearLayoutManager(m_Context, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         guide_RecyclerView.setLayoutManager(layoutManager3);
 
         guide_RecyclerView.addOnItemTouchListener(

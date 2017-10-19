@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
+import com.iguideu.data.AppData;
 import com.iguideu.data.Route_Data;
 import com.squareup.picasso.Picasso;
 
@@ -40,25 +41,17 @@ public class Guide_HomeRecyclerAdapter extends  RecyclerView.Adapter<Guide_HomeR
 
     @Override
     public void onBindViewHolder(Guide_Home_Recycler_ViewHolder holder, final int position) {
-        Route_Data data = Route_Data_List.get(position);
+        final Route_Data data = Route_Data_List.get(position);
 
         Picasso.with(mContext).load(data.Route_Photo_URLs.get(0)).into(holder.profile_ImageView);
         holder.route_title_TextView.setText(data.Route_Main_Title);
         int cur_Rating = data.Route_Rating_Num;
 
-/*        List<String> list = AppData.getCur_User().getUser_Route_Favorites();
-
-        holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.no_favorite_icon));
-
-        for(int i =0; i < list.size(); i++){
-            if(data.getRoute_Index() == list.get(i)){
-                holder.route_Favorite_Btn.setBackground(mContext.getDrawable(R.mipmap.favorite_icon));
-            }
-        }*/
         holder.route_delete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Route_Data_List.remove(position);
+                AppData.myRef.child("routes").child(data.Route_Index).removeValue();
                 notifyDataSetChanged();
             }
         });

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,6 @@ import java.util.List;
 public class RouteFragment extends Fragment {
 
     Context m_Context;
-
-    String Searched_Keyword = "";
     String Searched_Date = ""; //yyyy_mm_dd
 
     RecyclerView recyclerView;
@@ -59,8 +58,6 @@ public class RouteFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         recyclerView = (RecyclerView)view.findViewById(R.id.route_RecyclerView);
         adapter = new RouteRecyclerAdapter(m_Context,Cur_Route_List);
         recyclerView.setAdapter(adapter);
@@ -81,9 +78,6 @@ public class RouteFragment extends Fragment {
         setSpinner(view);
     }
 
-    public void setFilterKeyword(String Keyword){
-        Searched_Keyword = Keyword;
-    }
 
     public void setFilterDate(String date){
         Searched_Date = date;
@@ -96,18 +90,20 @@ public class RouteFragment extends Fragment {
 
     public void showRoute_Data(){
         Cur_Route_List = AppData.Route_Data_List;
-        List <Route_Data> list = new ArrayList<>();
 
-        if(!Searched_Keyword.equals("")){
+
+        if(!AppData.KeywordData.equals("")){
+            List <Route_Data> list = new ArrayList<>();
             for(int i=0; i<Cur_Route_List.size();i++){
                 for(int j=0;j<Cur_Route_List.get(i).Route_Locations.size();j++){
-                    if(Cur_Route_List.get(i).Route_Locations.get(j).equals(Searched_Keyword)){
+                    if(Cur_Route_List.get(i).Route_Locations.get(j).Route_Title.equals(AppData.KeywordData)){
                         list.add(Cur_Route_List.get(i));
                     }
                 }
             }
             Cur_Route_List = list;
         }
+
 
         adapter.setData(Cur_Route_List);
     }

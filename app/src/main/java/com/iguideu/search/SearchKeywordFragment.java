@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,6 +69,8 @@ public class SearchKeywordFragment extends Fragment {
         setToolbar(view);
         setRecycler(view);
         keyword_EditText = (EditText)view.findViewById(R.id.search_keyword_EditText);
+        keyword_EditText.setText(AppData.KeywordData);
+        Searched_Keyword = AppData.KeywordData;
         keyword_EditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,11 +123,16 @@ public class SearchKeywordFragment extends Fragment {
         complete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppData.KeywordData = "";
                 if(!Searched_Keyword.equals("")){
                     // 검색하려고함
+                    /*
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("Keyword", Searched_Keyword);
+                    Log.d(AppData.LOG_INDICATOR,"SearchKeyword Test 검색된 키워드 : " +Searched_Keyword );
                     getActivity().setResult(RESULT_OK, resultIntent);
+                    */
+                    AppData.KeywordData = Searched_Keyword;
                 }
                 getActivity().finish();
             }

@@ -38,26 +38,22 @@ public class InitSettingActivity extends AppCompatActivity {
                 Korean.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
                 Korean.setTextColor(getResources().getColor(R.color.Color_Base_Point));
                 AppData.setApp_Language("KR");
-                Log.d(AppData.LOG_INDICATOR,"현재 언어 : " + AppData.getApp_Language());
                 break;
             case R.id.init_btn_English:
                 InitImage();
                 English.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
                 English.setTextColor(getResources().getColor(R.color.Color_Base_Point));
                 AppData.setApp_Language("EN");
-                Log.d(AppData.LOG_INDICATOR,"현재 언어 : " + AppData.getApp_Language());
                 break;
 
             case R.id.init_btn_check:
 
                 if(AppData.getApp_Language().equals("NULL")){
-                    Log.d(AppData.LOG_INDICATOR,"언어선택하지 않음");
                 }else{
                     Log.d(AppData.LOG_INDICATOR,"현재 언어 : " + AppData.getApp_Language());
                     startActivity(new Intent(this,LoginActivity.class));
                     finish();
                 }
-
                 break;
 
         }

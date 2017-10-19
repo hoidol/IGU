@@ -47,7 +47,6 @@ public class Recommend_RouteRecyclerAdapter extends  RecyclerView.Adapter<Recomm
     @Override
     public int getItemCount() {
         int List_size = list.size();
-        Log.d(AppData.LOG_INDICATOR,"추천 루트 출력 수 : " + List_size);
         return (List_size <= 10) ? List_size:10;
     }
 

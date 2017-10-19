@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iguideu.tourist_mode.HomeFragment;
+import com.iguideu.tourist_mode.tourist_home.recommend.RecommendFragment;
 import com.iguideu.tourist_mode.tourist_tour.TourFragment;
 import com.iguideu.tourist_mode.tourist_feed.FeedFragment;
 import com.iguideu.main_Inbox.InboxFragment;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecommendFragment.ListItemSelectedListener{
     TabLayout tabLayout;
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         homeFragment = new HomeFragment();
+        homeFragment.setHomeFragment(homeFragment);
         guide_homeFragment = new Guide_HomeFragment();
         tourFragment = new TourFragment();
         guide_scheduleCheckFragment = new Guide_ScheduleCheckFragment();
@@ -252,7 +254,6 @@ public class MainActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(AppData.LOG_INDICATOR,"MainActivity - setChattingRoom() 호출!!!");
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
 
@@ -307,7 +308,8 @@ public class MainActivity extends AppCompatActivity {
         AppData.myRef.addValueEventListener(listener);
     }
 
-
-
+    public void onListItemSelected(int index) {
+        homeFragment.setTabAt(index);
+    }
 
 }

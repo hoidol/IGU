@@ -58,8 +58,8 @@ public class LogoActivity extends AppCompatActivity {
         AppData.SetFirebase();
 
 
-        AppData.mAuth.signOut();
         if(AppData.getApp_AutoLogin() == false){
+            AppData.mAuth.signOut();
         }
 
         AppData.setApp_Mode(0);
@@ -74,12 +74,11 @@ public class LogoActivity extends AppCompatActivity {
         Handler myHandler=new Handler(){
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                AppData.mAuthStateListener = null;
                 startActivity(intent);
                 finish();
             }
         };
-        myHandler.sendEmptyMessageDelayed(0,2000);
+        myHandler.sendEmptyMessageDelayed(0,500);
 
     }
 
@@ -140,9 +139,6 @@ public class LogoActivity extends AppCompatActivity {
 
     void CheckUserLogin(){
 
-        if(AppData.mAuthStateListener != null)
-            return;
-
         AppData.mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -156,7 +152,6 @@ public class LogoActivity extends AppCompatActivity {
                                 // Get Post object and use the values to update the UI
                                 User cur_user = dataSnapshot.child("users").child(AppData.StringReplace(user.getEmail())).getValue(User.class);
                                 AppData.setCur_User(cur_user);
-
                                 delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
                             }
 
@@ -166,11 +161,9 @@ public class LogoActivity extends AppCompatActivity {
                                 // ...
                             }
                         };
-
                         AppData.myRef.addListenerForSingleValueEvent(postListener);
                     }else{
                         if(AppData.getApp_Language().equals("NULL")){
-                            Log.d(AppData.LOG_INDICATOR,"InitSettingActivity.class !! 이거 호출됨!!");
                             delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
                         }else{
                             delay_startActivity(new Intent(LogoActivity.this, MainActivity.class));
@@ -196,7 +189,6 @@ public class LogoActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(AppData.LOG_INDICATOR,"MainActivity - setRoute_Data() 호출!!!");
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("routes").getChildren();
                 List<Route_Data> list = new ArrayList<>();

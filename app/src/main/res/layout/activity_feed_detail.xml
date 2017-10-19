@@ -14,7 +14,8 @@
         >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,19 +62,17 @@
                 android:text="Korean Spicy Fried Checken!! Yammy :D "/>
 
         </RelativeLayout>
-
     </ScrollView>
     <Button
         android:layout_width="match_parent"
         android:layout_height="51.8dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/IGU_Point_Color"
+        android:background="@drawable/main_btn_bg"
         android:text="여행 정보 보기"
         android:textSize="18.3sp"
-        android:textColor="@color/Color_White"
+        android:textColor="@color/IGU_Point_Color"
+        android:layout_marginLeft="18.3dp"
+        android:layout_marginRight="18.3dp"
+        android:layout_marginBottom="14.5dp"
         android:id="@+id/feed_detail_Btn"/>
-
-
-
-
 </RelativeLayout>

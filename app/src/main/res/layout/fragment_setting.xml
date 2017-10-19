@@ -17,7 +17,8 @@
             android:layout_marginTop="32.7dp"
             android:id="@+id/profile_Change_Btn"
             android:layout_centerHorizontal="true"
-            android:background="@mipmap/nonprofileimage"/>
+            android:background="@color/Color_White"
+            />
         <TextView
             android:id="@+id/profile_Name_Text"
             android:layout_below="@+id/profile_Change_Btn"

@@ -8,7 +8,7 @@
     <include
         layout="@layout/toolbar_layout2"
         android:id="@+id/toolbar"/>
-    <com.steelkiwi.cropiwa.CropIwaView
+    <com.iguideu.custom_view.SquareImageView
         android:layout_width="match_parent"
         android:layout_height="360dp"
         android:layout_below="@+id/toolbar"

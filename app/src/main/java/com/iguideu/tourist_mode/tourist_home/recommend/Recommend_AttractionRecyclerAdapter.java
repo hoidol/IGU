@@ -52,7 +52,6 @@ public class Recommend_AttractionRecyclerAdapter extends  RecyclerView.Adapter<R
     @Override
     public int getItemCount() {
         int List_size = list.size();
-        Log.d(AppData.LOG_INDICATOR,"추천 명소 출력 수 : " + List_size);
         return (List_size <= 10) ? List_size:10;
     }
 

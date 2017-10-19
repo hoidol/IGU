@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -32,14 +33,12 @@ import static android.app.Activity.RESULT_OK;
  * Created by Hoyoung on 2017-07-16.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecommendFragment.ListItemSelectedListener{
 
 
     TabLayout tabLayout;
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
-
-    Context m_Context;
 
     TextView[] tab_TextView = new TextView[3];
 
@@ -52,15 +51,13 @@ public class HomeFragment extends Fragment {
     TextView search_keyword_TextView;
     TextView search_date_TextView;
 
+    public HomeFragment Cur_Fragment;
     public RecommendFragment recommendFragment;
     public RouteFragment routeFragment;
     public GuideFragment guideFragment;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        this.m_Context = context;
+    public void setHomeFragment(HomeFragment homeFragment){
+        Cur_Fragment = homeFragment;
     }
 
     public HomeFragment() {
@@ -79,6 +76,7 @@ public class HomeFragment extends Fragment {
         routeFragment = new RouteFragment();
         guideFragment = new GuideFragment();
 
+        recommendFragment.setHomeFragment(this);
         fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.home_FragmLayout,recommendFragment);
@@ -220,43 +218,22 @@ public class HomeFragment extends Fragment {
 
     }
 
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case AppData.REQUEST_CODE_KEYWORD:
-                if (resultCode == RESULT_OK) {
-                    String keyword = data.getStringExtra("Keyword");
-                    if(keyword != null){
-                        search_keyword_TextView.setText(keyword);
-                        show_Searched_Keyword_Route(keyword);
-                    }else{
-                        show_Searched_Keyword_Route("");
-                        search_keyword_TextView.setText("키워드 검색");
-                    }
-
-                }
-                break;
-            case AppData.REQUEST_CODE_KEY_DATE:
-                if (resultCode == RESULT_OK) {
-                    String date = data.getStringExtra("Date");
-                    if(date != null){
-                        show_Searched_date_Route(date);
-                        search_date_TextView.setText(date);
-                    }else{
-                        show_Searched_date_Route("");
-                        search_keyword_TextView.setText("날짜 검색");
-                    }
-                }
-                break;
+    public void onResume() {
+        super.onResume();
+        String keyword = AppData.KeywordData;
+        if(!keyword.equals("")){
+            search_keyword_TextView.setText(keyword);
+            show_Searched_Keyword_Route(keyword);
+        }else{
+            search_keyword_TextView.setText("키워드 검색");
         }
     }
 
 
     void show_Searched_Keyword_Route(String keyword){
         tabLayout.getTabAt(1).select();
-        routeFragment.setFilterKeyword(keyword);
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.home_FragmLayout, routeFragment);
         fragmentTransaction.commit();
@@ -264,9 +241,19 @@ public class HomeFragment extends Fragment {
 
     void show_Searched_date_Route(String date){
         tabLayout.getTabAt(1).select();
-        routeFragment.setFilterDate(date);
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.home_FragmLayout, routeFragment);
         fragmentTransaction.commit();
+    }
+
+    public void setTabAt(int index){
+        tabLayout.getTabAt(index).select();
+    }
+
+    @Override
+    public void onListItemSelected(int index) {
+        tabLayout.getTabAt(index).select();
+        String keyword = AppData.KeywordData;
+        search_keyword_TextView.setText(keyword);
     }
 }

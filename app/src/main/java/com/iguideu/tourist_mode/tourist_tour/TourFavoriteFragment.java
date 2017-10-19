@@ -65,7 +65,6 @@ public class TourFavoriteFragment  extends Fragment {
                     String route_Index = AppData.getCur_User().User_Favorites_Route_List.get(i);
                     if(!route_Index.equals("-1")) {
                         Route_Data temp = dataSnapshot.child("routes").child(route_Index).getValue(Route_Data.class);
-                        Log.d(AppData.LOG_INDICATOR,"현재 루트 인덱스 : "+temp.Route_Index);
                         list.add(temp);
                     }
                 }

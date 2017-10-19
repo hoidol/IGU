@@ -40,14 +40,15 @@ public class Recommend_GuideRecyclerAdapter extends  RecyclerView.Adapter<Recomm
     @Override
     public void onBindViewHolder(Recommend_Recycler_ViewHolder holder, int position) {
         User data = list.get(position);
+        holder.recommend_ImageView.setBackground(mContext.getResources().getDrawable(R.color.Color_White));
         Picasso.with(mContext).load(data.User_Profile_URL).into(holder.recommend_ImageView);
+
         holder.recommend_title_TextView.setText(data.User_Nick);
     }
 
     @Override
     public int getItemCount() {
         int List_size = list.size();
-        Log.d(AppData.LOG_INDICATOR,"추천 가이드 출력 수 : " + List_size);
         return (List_size <= 10) ? List_size:10;
     }
 

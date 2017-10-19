@@ -4,6 +4,7 @@ package com.iguideu.Feed_Write;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,32 +60,33 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
         File imgFile = new File(Path);
 
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = 16;
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),o2);
             holder.photo_picker_ImageView.setImageBitmap(myBitmap);
             Photo_Bitmap_List.add(myBitmap);
+        }else {
+            return;
         }
 
         if(position == 0 && Photo_Bitmap_List.size() >0){
             selected_Checker_ImageView = holder.photo_picker_Checker;
             selected_Checker_ImageView.setBackground(ContextCompat.getDrawable(mContext,R.mipmap.checked_icon));
-
             Selected_ImageView.setImage(Photo_Bitmap_List.get(selected_index));
         }
 
         holder.photo_picker_ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(selected_Checker_ImageView != null){
                     selected_Checker_ImageView.setBackground(ContextCompat.getDrawable(mContext,R.mipmap.nonchecked_icon));
                 }
-
                 selected_index = position;
                 selected_Checker_ImageView = holder.photo_picker_Checker;
                 selected_Checker_ImageView.setBackground(ContextCompat.getDrawable(mContext,R.mipmap.checked_icon));
 
                 Selected_ImageView.setImage(Photo_Bitmap_List.get(selected_index));
-
+                Selected_ImageView.invalidate();
             }
         });
 
@@ -94,7 +96,7 @@ public class PhotoPicker_RecyclerAdapter extends  RecyclerView.Adapter<PhotoPick
     @Override
     public int getItemCount() {
         int Photo_Count = PhotoPath.size();
-        return ( Photo_Count> 10)? 10:Photo_Count ;
+        return PhotoPath.size() ;
     }
 
     public int getSelected_Index(){

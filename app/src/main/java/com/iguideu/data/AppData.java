@@ -62,7 +62,7 @@ public class AppData  {
     private static Boolean app_AutoLogin = false; // Default = 자동 로그인 안함
     private static int app_Mode = 0; // 0 - Tourist 모드[디폴트] 1 - Guide 모드
     private static Boolean app_Alarm = true; // 알람 설정 true - 알람 울림[디폴트] false - 알람 안울림
-    //private static Boolean app_OnAuth = false; // 자동 로그인과 로그아웃 차이를 확실히하기
+    public static String KeywordData = "";
 
 
     // 데이터 관련
@@ -156,6 +156,7 @@ public class AppData  {
 
         AppData.app_Alarm = app_Alarm;
     }
+
     public static SharedPreferences getPreferences() {
         return preferences;
     }
@@ -173,9 +174,6 @@ public class AppData  {
         return match.find();
     }
 
-    void SetAppData(){
-
-    }
 
     public static void SetFirebase(){
         mAuth = FirebaseAuth.getInstance();
