@@ -81,8 +81,9 @@ public class SignUpProgress4 extends Fragment {
                 } else if(!edit_pg4_pass.getText().toString().equals(edit_pg4_pass_check.getText().toString())){
                     // 비밀번호와 확인 번호가 다름
                     shakeUI(pg4_text,false,"비밀번호가 다릅니다");
-
-                }else {
+                }else if(edit_pg4_pass.getText().length() < 8){
+                    shakeUI(pg4_text,false,"8자 이상으로 입력하세요");
+                } else{
                     shakeUI(pg4_text,true,null);
 
                     fm = getFragmentManager();

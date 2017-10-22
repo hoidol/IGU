@@ -34,7 +34,7 @@
     <string name="LoginProgress1_MainText">이름을 입력하세요.</string>
     <string name="LoginProgress2_MainText">연락처를 입력하세요.</string>
     <string name="LoginProgress3_MainText">이메일을 입력하세요.</string>
-    <string name="LoginProgress4_MainText">비밀번호를 입력하세요.</string>
+    <string name="LoginProgress4_MainText">비밀번호를 입력하세요. </string>
     <string name="LoginProgress5_MainText">프로필 사진을 입력하세요.</string>
     <string name="LoginProgress6_MainText">W E L C O M E !</string>
     <string name="LoginProgress_Next">다 음</string>
@@ -48,7 +48,7 @@
     <string name="LoginProgress3_Email">이메일</string>
 
     <!--LoginProgress4 Text-->
-    <string name="LoginProgress4_Pass">비밀번호</string>
+    <string name="LoginProgress4_Pass">8자 이상</string>
     <string name="LoginProgress4_Pass_Check">재입력</string>
 
     <!-- About Inbox -->

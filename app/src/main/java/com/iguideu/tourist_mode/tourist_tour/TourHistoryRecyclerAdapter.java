@@ -15,7 +15,10 @@ import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Request_Data;
+import com.iguideu.main_Inbox.message.MessageActivity;
+import com.iguideu.main_Profile.ProfileActivity;
 import com.iguideu.tourist_mode.tourist_tour.Rating_Route.RatingRouteActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,6 +46,15 @@ public class TourHistoryRecyclerAdapter extends  RecyclerView.Adapter<TourHistor
     public void onBindViewHolder(TourHistory_Recycler_ViewHolder holder, int position) {
         final Request_Data data = list.get(position);
 
+        Picasso.with(mContext).load(data.Guider_Profile_URL).into(holder.profile_ImageView);
+        holder.profile_ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProfileActivity.class);
+                intent.putExtra("User_ID",data.Guider_User_ID);
+                mContext.startActivity(intent);
+            }
+        });
         holder.history_title_TextView.setText(data.Route_Title);
         String[] date = data.Request_Date.split("_");//yyyy_MM_dd_HH_mm_ss
         holder.history_date_TextView.setText(date[0]+"년 " + date[1]+"월 "+ date[2]+"일");

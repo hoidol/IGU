@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
 
 
     void setDatas(){
+        Log.d(AppData.LOG_INDICATOR,"호출 타이밍 체크 setDatas() ");
         setChattingRoom();
         setRequestData();
     }
@@ -255,6 +256,9 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
+                if(AppData.getCur_User() == null){
+                    return;
+                }
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
                 User Cur_User = AppData.getCur_User();
                 ArrayList<ChattingRoom> list = new ArrayList<>();
@@ -281,6 +285,9 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
+                if(AppData.getCur_User() == null){
+                    return;
+                }
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("requests").getChildren();
 
                 List<Request_Data> list_ForGuide = new ArrayList<>();
@@ -288,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
                     Request_Data cur_request_data =  cur_Snapshot.getValue(Request_Data.class);
+
 
                     if(AppData.getCur_User().User_ID.equals(cur_request_data.Guider_User_ID)){
                         list_ForGuide.add(cur_request_data);

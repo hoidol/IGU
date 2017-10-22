@@ -169,7 +169,8 @@ public class AppData  {
         return str;
     }
     public static boolean isEmailPattern(String email){
-        Pattern pattern= Pattern.compile("\\w+[@]\\w+\\.\\w+");
+        String regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern pattern= Pattern.compile(regex); //"\\w+[@]\\w+\\.\\w+"
         Matcher match=pattern.matcher(email);
         return match.find();
     }

@@ -3,6 +3,7 @@ package com.iguideu.Login;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +51,15 @@ public class LoginActivity2 extends AppCompatActivity {
         id=(EditText)findViewById(R.id.edit_login_id);
         pass=(EditText)findViewById(R.id.edit_login_pass);
         error=(TextView)findViewById(R.id.login2_error);
-        AppData.setApp_AutoLogin(false);
+
+        if(AppData.getApp_AutoLogin())
+        {
+            AutoCheck=true;
+            LoginPrefrence.setBackground(getResources().getDrawable(R.drawable.main_btn_bg));
+        }else{
+            AutoCheck=false;
+            LoginPrefrence.setBackground(getResources().getDrawable(R.drawable.base_btn));
+        }
     }
 
 
@@ -65,14 +77,13 @@ public class LoginActivity2 extends AppCompatActivity {
                 }
                     break;
             case R.id.btn_login_pref_check:
-                if(AutoCheck==false)
+                if(AutoCheck)
                 {
-                    AutoCheck=true;
-
-                    LoginPrefrence.setBackground(getResources().getDrawable(R.color.Color_Login_AutoLogin_CheckBox));
-                }else{
                     AutoCheck=false;
-                    LoginPrefrence.setBackground(getResources().getDrawable(R.mipmap.checkboxblank));
+                    LoginPrefrence.setBackground(getResources().getDrawable(R.drawable.base_btn));
+                }else{
+                    AutoCheck=true;
+                    LoginPrefrence.setBackground(getResources().getDrawable(R.drawable.main_btn_bg));
                 }
                 AppData.setApp_AutoLogin(AutoCheck);
                 break;
@@ -98,9 +109,14 @@ public class LoginActivity2 extends AppCompatActivity {
                     if(cur_User.User_Password.equals(User_Pass)){
                         shakeUI(error, true, null);
                         AppData.setCur_User(cur_User);
-                        Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
-                        startActivity(intent);
-                        finish();
+
+                        AppData.mAuth.signInWithEmailAndPassword(cur_User.User_ID, cur_User.User_Password)
+                                .addOnCompleteListener(LoginActivity2.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        finish();
+                                    }
+                                });
                     }else{
                         shakeUI(error, false, "아이디/비밀번호 확인해주세요.");
                     }

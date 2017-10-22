@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,8 +87,15 @@ public class SignUpProgress3 extends Fragment {
                     shakeUI(pg3_text, false,"이메일 양식으로 입력하세요");
                 }
                 else {
-                    String email = edit_pg3_email.getText().toString();
-                    checkID(email);
+                    String[] id_splits = id.split("\\.");
+                    Log.d(AppData.LOG_INDICATOR,"아이디 : " + id);
+                    if(id_splits[1].equals("com") || id_splits[1].equals("net") || id_splits[1].equals("co")){
+                        String email = edit_pg3_email.getText().toString();
+                        checkID(email);
+                    }else{
+                        shakeUI(pg3_text, false,"이메일을 다시 입력하세요");
+                    }
+
                     break;
                 }
         }

@@ -1,6 +1,7 @@
 package com.iguideu.guide_mode.guide_schedule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.iguideu.R;
 import com.iguideu.custom_view.RoundedImageView;
 import com.iguideu.data.AppData;
 import com.iguideu.data.Request_Data;
+import com.iguideu.main_Profile.ProfileActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,12 +39,20 @@ public class ScheduleCheckRecyclerAdapter extends RecyclerView.Adapter<ScheduleC
 
     @Override
     public void onBindViewHolder(ScheduleCheck_Recycler_ViewHolder holder, int position) {
-        Request_Data data = list.get(position);
+        final Request_Data data = list.get(position);
 
 
         String[] request_Dates = data.Request_Date.split("_");
 
         Picasso.with(mContext).load(data.Tourist_User_Profile_URL).into(holder.profile_imageView);
+        holder.profile_imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProfileActivity.class);
+                intent.putExtra("User_ID",data.Tourist_User_ID);
+                mContext.startActivity(intent);
+            }
+        });
 
         holder.profile_Name_TextView.setText(data.Tourist_User_Name);
         holder.route_Date_TextView.setText(request_Dates[0] +"년 "+request_Dates[1]+"월 "+ request_Dates[2]+"일");
