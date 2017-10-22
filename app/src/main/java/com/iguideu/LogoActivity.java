@@ -61,11 +61,11 @@ public class LogoActivity extends AppCompatActivity {
         if(AppData.getApp_AutoLogin() == false){
             AppData.mAuth.signOut();
         }
-
         AppData.setApp_Mode(0);
         setData();
         AppCheckPermission_LOCATION();
         // LOCATION -> STORAGE -> LOGIN 순서로 검사함
+
     }
 
 

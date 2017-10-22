@@ -217,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
     }
 
     void setGuideTabIcon(int position){
+
+
         for(int i= 0; i< 5;i++){
             if(position == i){
                 tab_TextView[i].setCompoundDrawablesWithIntrinsicBounds(0, activity_tab_GuideMode_icons[i], 0, 0);
@@ -230,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }
         }
+
+
     }
 
 
