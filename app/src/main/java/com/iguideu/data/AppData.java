@@ -96,7 +96,7 @@ public class AppData  {
         String Data_Format = sdf.format(cur_Date);
         return Data_Format;
     }
-    public static String getCurTime(String dateFormat){
+    public static String getCurTime(String dateFormat){ // "yyyy_MM_dd_HH_mm_ss"
         Date cur_Date = new Date();
 
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat); //년 월 일 시 분 초

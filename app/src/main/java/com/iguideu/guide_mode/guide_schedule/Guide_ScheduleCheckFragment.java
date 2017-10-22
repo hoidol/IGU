@@ -54,7 +54,7 @@ public class Guide_ScheduleCheckFragment extends Fragment {
 
         setRecyclerData();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.VERTICAL, true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(m_Context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.addOnItemTouchListener(

@@ -37,10 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="51.8dp"
         android:id="@+id/route_detail_Btn_2"
-        android:layout_alignParentBottom="true"
-        android:background="@color/IGU_Point_Color"
-        android:text="예약하기"
+        android:background="@drawable/main_btn_bg"
+        android:text="가이드 요청하기"
         android:textSize="18.3sp"
-        android:textColor="@color/Color_White"/>
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="14dp"
+        android:textColor="@color/IGU_Point_Color"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

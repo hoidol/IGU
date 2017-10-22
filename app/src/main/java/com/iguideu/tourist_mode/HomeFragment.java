@@ -44,12 +44,10 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
 
     AppBarLayout home_AppBarLayout;
     RelativeLayout init_route_search_Container;
-    RelativeLayout exten_route_search_Container;
     RelativeLayout search_keyword_Container;
-    RelativeLayout search_date_Container;
 
     TextView search_keyword_TextView;
-    TextView search_date_TextView;
+
 
     public HomeFragment Cur_Fragment;
     public RecommendFragment recommendFragment;
@@ -151,38 +149,7 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
 
         home_AppBarLayout = (AppBarLayout) view.findViewById(R.id.home_AppBarLayout);
         init_route_search_Container = (RelativeLayout)view.findViewById(R.id.init_route_search_Container);
-        exten_route_search_Container = (RelativeLayout)view.findViewById(R.id.exten_route_search_Container);
-
         search_keyword_Container = (RelativeLayout) view.findViewById(R.id.search_keyword_Container);
-        search_date_Container = (RelativeLayout) view.findViewById(R.id.search_date_Container);
-
-        search_keyword_TextView = (TextView)view.findViewById(R.id.search_keyword_TextView);
-        search_date_TextView=(TextView)view.findViewById(R.id.search_date_TextView);
-        home_AppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset == 0)
-                {
-                    // Collapsed
-                    // 열려있을 때 (내렸을 때) - 처음 상태임
-                }
-                else
-                {
-                    // Not collapsed
-                    //닫혀 있을 떄 위로 올렷을 때
-                    init_route_search_Container.setVisibility(View.VISIBLE);
-                    exten_route_search_Container.setVisibility(View.GONE);
-                }
-            }
-        });
-
-        init_route_search_Container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                init_route_search_Container.setVisibility(View.GONE);
-                exten_route_search_Container.setVisibility(View.VISIBLE);
-            }
-        });
 
 
         search_keyword_Container.setOnClickListener(new View.OnClickListener() {
@@ -194,14 +161,6 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
             }
         });
 
-        search_date_Container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SearchActivity.class);
-                intent.putExtra("search_index", 1);
-                startActivityForResult(intent, AppData.REQUEST_CODE_KEY_DATE);
-            }
-        });
     }
 
     void setTab_TextColor(int position){

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,24 +72,51 @@ public class Route_Detail_Fragment_2 extends Fragment{
             public void onClick(View v) {
                 if(cur_Selected_Date != null){
                     //요청 만들기
+                    String[] cur_Dates = AppData.getCurTime("yyyy_MM_dd").split("_");
+                    String[] selected_Dates = cur_Selected_Date.split("_");
 
-                    String Request_Index = AppData.getCurTime() + AppData.StringReplace(AppData.getCur_User().User_ID);
+                    int cur_year = Integer.parseInt(cur_Dates[0]);
+                    int cur_month = Integer.parseInt(cur_Dates[1]);
+                    int cur_day = Integer.parseInt(cur_Dates[2]);
 
-                    Request_Data request_data = new Request_Data(Request_Index, Cur_Route_Data.Route_Index ,AppData.getCurTime(),Cur_Route_Data.Route_Main_Title,Cur_Route_Data.User_ID,Cur_Route_Data.User_Profile_URL,AppData.getCur_User().User_ID, AppData.getCur_User().User_Profile_URL,AppData.getCur_User().User_Name,cur_Selected_Date.toString(),0);
-                    AppData.myRef.child("requests").child(Request_Index).setValue(request_data);
+                    int selected_year = Integer.parseInt(selected_Dates[0]);
+                    int selected_month = Integer.parseInt(selected_Dates[1]);
+                    int selected_day = Integer.parseInt(selected_Dates[2]);
 
-                    setNextFragment();
+
+                    Log.d(AppData.LOG_INDICATOR,"현재 날짜 " +AppData.getCurTime("yyyy_MM_dd"));
+                    Log.d(AppData.LOG_INDICATOR,"선택된 날짜 " + cur_Selected_Date);
+
+                    if(cur_year<selected_year){
+                        send_Request_data();
+                    }else if(cur_year == selected_year){
+                        if(cur_month<selected_month){
+                            send_Request_data();
+                        }else if(cur_month== selected_month){
+                            if(cur_day<selected_day){
+                                send_Request_data();
+                            }
+                        }
+                    }
                 }else{
                     // 날짜를 선택해주세요.
                 }
 
             }
         });
-
         setToolbar(view);
         setCalendarView(view);
-
     }
+
+    void send_Request_data(){
+        String Request_Index = AppData.getCurTime() + AppData.StringReplace(AppData.getCur_User().User_ID);
+
+        Request_Data request_data = new Request_Data(Request_Index, Cur_Route_Data.Route_Index ,AppData.getCurTime(),Cur_Route_Data.Route_Main_Title,Cur_Route_Data.User_ID,Cur_Route_Data.User_Profile_URL,AppData.getCur_User().User_ID, AppData.getCur_User().User_Profile_URL,AppData.getCur_User().User_Name,cur_Selected_Date.toString(),0);
+        AppData.myRef.child("requests").child(Request_Index).setValue(request_data);
+
+        setNextFragment();
+    }
+
     void setCalendarView(View view){
         MaterialCalendarView calendarView = (MaterialCalendarView)view.findViewById(R.id.route_detail_CalendarView);
 
@@ -101,7 +129,7 @@ public class Route_Detail_Fragment_2 extends Fragment{
 
                 cur_Selected_Date = year+"_"+month+"_"+day; // "yyyy_MM_dd_"
 
-                Toast.makeText(getContext(),date.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),cur_Selected_Date,Toast.LENGTH_LONG).show();
                 final CheckRouteDialog check_dialog = new CheckRouteDialog(getContext());
                 check_dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override

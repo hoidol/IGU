@@ -473,7 +473,8 @@ public class Guide_Route_Add_Fragment extends Fragment  {
 
                                 AppData.myRef.child("routes").child(Route_Index).setValue(route_data); //★
 
-
+                                AppData.PinPointData.clear();
+                                AppData.AppPinPointData.clear();
                                 saveKeyWord(Route_Locations); // 키워드 데이터 저장
 
                             }

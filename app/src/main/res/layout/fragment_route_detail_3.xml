@@ -12,16 +12,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/route_detail_Cur_Time_TextView"
-            android:text="2017년 8월 31일"
-            android:textSize="18.3sp"
-            android:textColor="@color/Color_All_Primary_Text"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/route_detail_Cur_Time_TextView"
             android:id="@+id/route_detail_Complete_Commnet_Text"
             android:text="@string/complete_comment_kr"
             android:textSize="18.3sp"

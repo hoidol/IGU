@@ -42,42 +42,10 @@
                         android:background="@mipmap/seachboxdetail"
                         android:gravity="center_vertical"
                         android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true">
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/search_keyword_Container">
                         <ImageView
                             android:id="@+id/search_icon"
-                            android:layout_width="24.9dp"
-                            android:layout_height="24.9dp"
-                            android:layout_marginLeft="18.3dp"
-                            app:srcCompat="@mipmap/search_icon" />
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="match_parent"
-                            android:layout_height="24.9dp"
-                            android:layout_marginLeft="13.4dp"
-                            android:layout_toRightOf="@+id/search_icon"
-                            android:gravity="center_vertical"
-                            android:text="@string/toolbar_inf_kr_word"
-                            android:textSize="11.7sp" />
-                    </RelativeLayout>.
-                </RelativeLayout>
-
-                <!-- 검색 확장 O -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="141dp"
-                    android:id="@+id/exten_route_search_Container"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:layout_width="338dp"
-                        android:layout_height="53dp"
-                        android:background="@mipmap/seachboxdetail"
-                        android:gravity="center_vertical"
-                        android:id="@+id/search_keyword_Container"
-                        >
-                        <ImageView
-                            android:id="@+id/search_keyword_Image"
                             android:layout_width="24.9dp"
                             android:layout_height="24.9dp"
                             android:layout_marginLeft="18.3dp"
@@ -87,41 +55,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="24.9dp"
                             android:layout_marginLeft="13.4dp"
-                            android:layout_toRightOf="@+id/search_keyword_Image"
+                            android:layout_toRightOf="@+id/search_icon"
                             android:gravity="center_vertical"
-                            android:text="키워드 검색"
-                            android:textSize="11.7sp" />
-                    </RelativeLayout>.
-
-                    <RelativeLayout
-                        android:layout_width="338dp"
-                        android:layout_height="53dp"
-                        android:background="@mipmap/seachboxdetail"
-                        android:gravity="center_vertical"
-                        android:id="@+id/search_date_Container"
-                        android:layout_below="@id/search_keyword_Container"
-                        android:layout_marginTop="10dp">
-                        <ImageView
-                            android:id="@+id/search_date_Image"
-                            android:layout_width="24.9dp"
-                            android:layout_height="24.9dp"
-                            android:layout_marginLeft="18.3dp"
-                            app:srcCompat="@mipmap/search_icon" />
-                        <TextView
-                            android:id="@+id/search_date_TextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="24.9dp"
-                            android:layout_marginLeft="13.4dp"
-                            android:layout_toRightOf="@+id/search_date_Image"
-                            android:gravity="center_vertical"
-                            android:text="날짜 검색"
+                            android:text="@string/toolbar_inf_kr_word"
                             android:textSize="11.7sp" />
                     </RelativeLayout>.
                 </RelativeLayout>
-
-
-
-
 
             </RelativeLayout>
 

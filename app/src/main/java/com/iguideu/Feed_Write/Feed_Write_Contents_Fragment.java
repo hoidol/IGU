@@ -103,10 +103,7 @@ public class Feed_Write_Contents_Fragment extends Fragment{
         toolbar2_Close_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fm = getFragmentManager();
-                fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.remove(Cur_Fragment);
-                fragmentTransaction.commit();
+                getActivity().finish();
             }
         });
 
@@ -116,12 +113,8 @@ public class Feed_Write_Contents_Fragment extends Fragment{
             public void onClick(View v) {
                 String Feed_Contents = feed_contents_EditText.getText().toString();
                 if(!Feed_Contents.equals("")){
-
                     SaveFeedData(Feed_Contents);
-
-
                 }
-
             }
         });
     }

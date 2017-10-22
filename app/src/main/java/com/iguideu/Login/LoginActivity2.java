@@ -28,15 +28,10 @@ import com.iguideu.Signup.SignUpActivity;
 public class LoginActivity2 extends AppCompatActivity {
 
     Button LoginPrefrence;
-    User user;
+
     boolean AutoCheck=false;
     EditText id,pass;
     TextView error;
-
-    FirebaseAuth mAuth;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-
 
 
     @Override
@@ -53,15 +48,8 @@ public class LoginActivity2 extends AppCompatActivity {
         pass=(EditText)findViewById(R.id.edit_login_pass);
         error=(TextView)findViewById(R.id.login2_error);
         AppData.setApp_AutoLogin(false);
-
-        setFirebase();
     }
 
-    void setFirebase(){
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-    }
 
     public void Login2Click(View v)
     {
@@ -104,31 +92,20 @@ public class LoginActivity2 extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("users").getChildren();
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    String id =  cur_Snapshot.child("User_ID").getValue().toString();
-                    String pass = cur_Snapshot.child("User_Password").getValue().toString();
+                User cur_User =dataSnapshot.child("users").child(AppData.StringReplace(User_Id)).getValue(User.class);
 
-                    if(id == null || pass == null)
-                        return;
-
-                    if(id.equals(User_Id)){
-                        //아이디가 존재함
-                        if(pass.equals(User_Pass)){
-                            User cur_User = cur_Snapshot.getValue(User.class);
-                            AppData.setCur_User(cur_User);
-                            Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                            shakeUI(error, true, null);
-                        }else{
-                            shakeUI(error, false, "아이디/비밀번호 확인해주세요.");
-                        }
-                        break;
-
+                if(cur_User != null){
+                    if(cur_User.User_Password.equals(User_Pass)){
+                        shakeUI(error, true, null);
+                        AppData.setCur_User(cur_User);
+                        Intent intent = new Intent(LoginActivity2.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }else{
                         shakeUI(error, false, "아이디/비밀번호 확인해주세요.");
                     }
+                }else{
+                    shakeUI(error, false, "아이디/비밀번호 확인해주세요.");
                 }
             }
 

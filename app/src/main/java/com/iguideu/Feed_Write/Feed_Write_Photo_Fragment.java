@@ -117,7 +117,7 @@ public class Feed_Write_Photo_Fragment extends Fragment {
 
                     fm = getFragmentManager();
                     fragmentTransaction = fm.beginTransaction();
-                    fragmentTransaction.add(R.id.feed_write_Fragment,fragment);
+                    fragmentTransaction.replace(R.id.feed_write_Fragment,fragment);
                     fragmentTransaction.commit();
                 }
             }

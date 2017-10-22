@@ -3,7 +3,7 @@
     <string name="recommend_kr_word">추천</string>
     <string name="route_kr_word">루트</string>
     <string name="guide_kr_word">가이드</string>
-    <string name="toolbar_inf_kr_word">키워드 날짜로 검색하기</string>
+    <string name="toolbar_inf_kr_word">키워드로 검색하기</string>
     <string name="landmark_kr_word">명소</string>
     <string name="favorite_route_kr">인기 루트</string>
     <string name="favorite_guide_kr">인기 가이드</string>
@@ -55,7 +55,7 @@
     <string name="inbox_title_kr">메시지함</string>
 
     <!-- route detail 3 -->
-    <string name="complete_comment_kr">가이드님에게 가이드 요청을 하였습니다. \n 가이드님께서 연락하실거에요 :)</string>
+    <string name="complete_comment_kr">가이드님에게 요청을 하였습니다. \n 가이드님께서 연락하실거에요 :)</string>
 
     <!-- Dialog check -->
     <string name="dialog_check_comment_kr">로 \n 설정해드릴까요?"</string>

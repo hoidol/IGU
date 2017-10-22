@@ -5,11 +5,11 @@
      android:background="@color/Color_Layout_Background">
 
 <ImageView
-    android:layout_width="97.33dp"
-    android:layout_height="65.33dp"
+    android:layout_width="180dp"
+    android:layout_height="26.3dp"
     android:layout_marginTop="263.33dp"
     android:layout_marginLeft="238.67dp"
-    android:src="@mipmap/bag_xx"
+    android:src="@mipmap/splash_icon"
     android:id="@+id/logo_icon"
     android:layout_centerInParent="true"/>
 

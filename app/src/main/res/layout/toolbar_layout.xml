@@ -19,6 +19,7 @@
             android:layout_height="24.7dp"
             android:id="@+id/toolbar_title_TextView"
             android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/IGU_Point_Color"
             android:textSize="18dp"/>
 
     </RelativeLayout>

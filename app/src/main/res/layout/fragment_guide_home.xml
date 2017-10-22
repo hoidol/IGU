@@ -9,7 +9,7 @@
         android:layout_height="67dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@mipmap/add"/>
+        android:background="@mipmap/add_image"/>
 
 
     <android.support.v7.widget.RecyclerView

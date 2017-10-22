@@ -17,6 +17,7 @@
         android:backgroundTint="@color/Main_Tab_Background"
         android:layout_width="match_parent"
         android:layout_height="51.7dp"
+        android:background="@color/Color_White"
         app:tabIndicatorColor="#ffffffff"
-        android:layout_alignParentBottom="true"></android.support.design.widget.TabLayout>
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

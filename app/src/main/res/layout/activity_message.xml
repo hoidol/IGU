@@ -7,7 +7,9 @@
 
     <include
         layout="@layout/toolbar_layout"
-        android:id="@+id/message_Toolbar"/>
+        android:id="@+id/message_Toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -48,9 +50,9 @@
             android:text="send"
             android:layout_marginRight="13dp"
             android:layout_marginLeft="11.7dp"
-            android:background="@color/IGU_Point_Color"
+            android:background="@drawable/main_btn_bg"
             android:layout_alignParentRight="true"
-            android:textColor="@color/Color_White"
+            android:textColor="@color/IGU_Point_Color"
             android:textSize="11.7sp"/>
     </RelativeLayout>
     

@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:id="@+id/schedulecheck_RecyclerView"
         android:layout_below="@+id/schedulecheck_toolbar">
-
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

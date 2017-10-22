@@ -250,13 +250,13 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
     }
 
     void setChattingRoom(){
-        final User Cur_User = AppData.getCur_User();
+
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
-
+                User Cur_User = AppData.getCur_User();
                 ArrayList<ChattingRoom> list = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
