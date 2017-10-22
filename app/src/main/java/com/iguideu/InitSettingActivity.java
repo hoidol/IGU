@@ -37,13 +37,13 @@ public class InitSettingActivity extends AppCompatActivity {
                 InitImage();
                 Korean.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
                 Korean.setTextColor(getResources().getColor(R.color.Color_Base_Point));
-                AppData.setApp_Language("KR");
+                AppData.setApp_Language("kr");
                 break;
             case R.id.init_btn_English:
                 InitImage();
                 English.setBackground(getResources().getDrawable(R.drawable.base_btn_click));
                 English.setTextColor(getResources().getColor(R.color.Color_Base_Point));
-                AppData.setApp_Language("EN");
+                AppData.setApp_Language("en");
                 break;
 
             case R.id.init_btn_check:

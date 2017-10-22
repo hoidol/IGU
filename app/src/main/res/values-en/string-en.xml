@@ -1,0 +1,176 @@
+<resources>
+    <string name="app_name">IGuideU</string>
+    <string name="recommend_kr_word">recommend</string>
+    <string name="route_kr_word">route</string>
+    <string name="guide_kr_word">guide</string>
+    <string name="toolbar_inf_kr_word">Search by keyword</string>
+    <string name="landmark_kr_word">attraction</string>
+    <string name="favorite_route_kr">popular route</string>
+    <string name="favorite_guide_kr">popular guider</string>
+    <string name="setting_change_guide_kr">Switch to Guide Mode</string>
+    <string name="setting_change_tourist_kr">Switch to tourist Mode</string>
+    <string name="setting_language_kr">language</string>
+    <string name="setting_envir_kr">Setting</string>
+    <string name="setting_logout_kr">Sign out</string>
+
+    <!--About Route_Detail -->
+    <string name="route_Detail_taged_route_kr">Tagged feeds</string>
+
+    <!--Login2Activity Text-->
+    <string name="Login2_xml_email">e-mail</string>
+    <string name="Login2_xml_pass">password</string>
+    <string name="Login2_xml_find_pass">find password</string>
+    <string name="Login2_xml_Sign_Up">sign up</string>
+    <string name="Login2_xml_Login_In_Btn">login</string>
+    <string name="Login2_xml_Auto_Login">Auto-Login</string>
+    <string name="Login2_xml_Error">The information entered does not match.</string>
+
+    <!--InitSetting Text-->
+    <string name="InitSetting_KR">한 국 어</string>
+    <string name="InitSetting_EN">ENGLISH</string>
+    <string name="InitSetting_Check">확 인</string>
+
+    <!--LoginProgress Text-->
+    <string name="LoginProgress1_MainText">Please enter your name.</string>
+    <string name="LoginProgress2_MainText">Please enter your Phone number.</string>
+    <string name="LoginProgress3_MainText">Please enter your email.</string>
+    <string name="LoginProgress4_MainText">Please enter your password.</string>
+    <string name="LoginProgress5_MainText">Please enter your profile.</string>
+    <string name="LoginProgress6_MainText">W E L C O M E !</string>
+    <string name="LoginProgress_Next">Next</string>
+    <string name="LoginProgress_Check">Check</string>
+
+    <!--LoginProgress1 Text-->
+    <string name="LoginProgress1_First_Name">first name</string>
+    <string name="LoginProgress1_Last_Name">last name</string>
+
+    <!--LoginProgress3 Text-->
+    <string name="LoginProgress3_Email">email</string>
+
+    <!--LoginProgress4 Text-->
+    <string name="LoginProgress4_Pass">pass</string>
+    <string name="LoginProgress4_Pass_Check">Re-enter pass</string>
+
+    <!-- About Inbox -->
+    <string name="inbox_title_kr">Message box</string>
+
+    <!-- route detail 3 -->
+    <string name="complete_comment_kr">asked the guide. \n The guide will contact you. :)</string>
+
+    <!-- Dialog check -->
+    <string name="dialog_check_comment_kr">로 \n 설정해드릴까요?"</string>
+    <string name="dialog_check_kr">Check</string>
+    <string name="title_activity_maps">Map</string>
+    <!-- schedule -->
+    <string name="dialog_check_schedule_comment_kr">Do you want to disable the reservation?</string>
+
+    <!--Tourist Home-->
+
+    <!--Inbox-->
+    <string name="inbox_title_TextView">Message box</string>
+
+    <!--Profile Main-->
+    <string name="profile_ImageView">nick name</string>
+    <string name="show_route_Btn">Route</string>
+    <string name="send_Message_Btn">Send to Message</string>
+
+    <!--Rating Route Main-->
+    <string name="route_rating_comment">How was your trip?</string>
+    <string name="guider_rating_comment">How was your guider?</string>
+    <string name="complete_Btn">Check</string>
+
+    <!--Rating Route Complete-->
+    <string name="rating_complete">Successfully registered registration.</string>
+
+    <!--Route Detail 1-->
+    <string name="route_profile_name">nick name</string>
+    <string name="route_guide_possibility_Static">Guide availability</string>
+    <string name="route_guide_time_Static">The time required</string>
+    <string name="route_guide_guestNum_Static">Guide customer</string>
+    <string name="route_Map_Static">Introduce a route</string>
+    <string name="route_detail_Btn_1">Ask for a guide.</string>
+
+    <!--Route Detail 2-->
+    <string name="route_detail_Btn_2">Ask for a guide.</string>
+
+    <!--Route Detail 3-->
+    <string name="route_detail_Complete_Commnet_Text">asked the guide. \n The guide will contact you. :)</string>
+    <string name="route_detail_Btn_3">Check</string>
+
+    <!--Search Keyword-->
+    <string name="search_keyword_EditText">Where are you going?</string>
+    <string name="auto_search_comment">Automatically search for comments.</string>
+
+    <!--setting-->
+    <string name="profile_Change_Text">profile setting</string>
+
+    <!--setting envir-->
+    <string name="setting_alarm_title">notification</string>
+    <string name="push_alert">push alert</string>
+
+    <!--Sign Up Guider check-->
+    <string name="signup_guider_check_comment">Do you want to register as a guider?</string>
+    <string name="signup_Yes_Btn">Yes</string>
+    <string name="signup_No_Btn">No</string>
+
+    <!--Sign Up Guider Complete-->
+    <string name="add_guider_complete">successfully signed up as a guide.</string>
+
+    <!--Sign Up Guider-->
+    <string name="nick_Comment">Please enter your nick name.</string>
+    <string name="signup_nick_Btn">Next</string>
+
+    <!--Guide Route Add-->
+    <string name="edit_route_add_title">Title</string>
+    <string name="text_route_add_image_upload">Photo upload</string>
+    <string name="text_route_add_guide_able">Guide availability</string>
+    <string name="text_route_add_guide_time">The time required</string>
+    <string name="text_route_add_posible_people">Guide customer</string>
+    <string name="text_route_add_route_info">Introduce a route</string>
+    <string name="btn_route_add_save">Save</string>
+
+    <!--Guide Home-->
+    <string name="route_delete_Btn">delete</string>
+    <!--Guide List Item-->
+    <string name="route_add_item_list_delete_Btn">delete</string>
+    <string name="edit_route_add_place_detail">details</string>
+    <string name="edit_route_add_place_name">title</string>
+
+    <!--Tourist Home Recommend-->
+
+    <string name="landmark_Text">attraction</string>
+    <string name="favorite_Route_Text">popular route</string>
+    <string name="favorite_guide_Text">popular guider</string>
+
+    <!--Tourist Tour-->
+    <string name="Tour_History_Btn">Schedule</string>
+    <string name="Tour_Favorite_Btn">like</string>
+
+
+    <!-- Toolbar Layout 2-->
+    <string name="toolbar2_Close_Btn">close</string>
+
+    <!--Feed Detail-->
+    <string name="feed_detail_Btn">Travel Information</string>
+
+    <!--Login-->
+    <string name="login_btn_login">Login / Sign Up</string>
+
+    <!--Route Add Map-->
+    <string name="btn_route_add_check">Add</string>
+    <string name="btn_route_add_saved">Save</string>
+
+    <!--Dialog Accept-->
+    <string name="dialog_Y_Btn">Agree</string>
+    <string name="dialog_N_Btn">Refuse</string>
+
+    <!--Dialog Check-->
+    <string name="dialog_check_Btn">Check</string>
+
+    <!-- Feed Write -->
+    <string name="complete_feed_write">Successfully registered.</string>
+    <string name="feed_contents_EditText">Enter contents.</string>
+    <string name="search_route_Btn">Route Tag</string>
+    <string name="search_route_Title">Route Search</string>
+
+</resources>

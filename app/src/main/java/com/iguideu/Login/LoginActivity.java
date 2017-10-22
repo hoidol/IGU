@@ -1,6 +1,7 @@
 package com.iguideu.Login;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +42,7 @@ import com.iguideu.data.User;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Hoyoung on 2017-07-14.
@@ -49,6 +51,7 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     Button Login,GoogleLogin;
+    String InitType;
 
 
 
@@ -62,6 +65,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Login=(Button)findViewById(R.id.login_btn_login);
         GoogleLogin=(Button)findViewById(R.id.login_btn_google);
 
+        InitType=AppData.getApp_Language();
+        if(InitType=="kr" || InitType==null) {
+            changeConfigulation("kr");
+        }
+        if(InitType=="en")
+        {
+            changeConfigulation(InitType);
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -71,7 +82,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
 
     }
-
+    public void changeConfigulation(String type) {
+        Locale mLocale = new Locale(type);
+        Configuration config = new Configuration();
+        config.locale = mLocale;
+        getResources().updateConfiguration(config, null);
+    }
 
     public void LoginClick(View v)
     {

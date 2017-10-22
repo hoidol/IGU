@@ -7,6 +7,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
         android:text="등록되었습니다."
+        android:id="@+id/complete_feed_write"
         android:textSize="18.3sp"
         android:textColor="@color/Color_All_Primary_Text"/>
 

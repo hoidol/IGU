@@ -13,7 +13,7 @@
             android:layout_width="213.3dp"
             android:layout_height="49.9dp"
             android:background="@drawable/base_btn"
-            android:text="로그인 / 회원가입"
+            android:text="@string/login_btn_login"
             android:textSize="16.7sp"
             android:textColor="@color/Color_White"
             android:textAlignment="center"

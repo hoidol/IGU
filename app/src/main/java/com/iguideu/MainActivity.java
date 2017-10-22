@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
 
 
     String[] TouristMode_Title = {"홈","여행","피드","메세지", "프로필"};
+    String[] TouristMode_TItle_en={"Home","History","Feed","Message","Profile"};
     String[] GuideMode_Title = {"홈","스케줄","히스토리","메세지", "프로필"};
 
 
@@ -103,31 +104,61 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tab_TextView = new TextView[5];
 
         tab_TextView[0] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        tab_TextView[0].setText(TouristMode_Title[0]);
+        if(AppData.getApp_Language()=="en")
+        {
+            tab_TextView[0].setText(TouristMode_TItle_en[0]);
+        }
+        if(AppData.getApp_Language()=="kr"){
+            tab_TextView[0].setText(TouristMode_Title[0]);
+        }
         tab_TextView[0].setTextColor(getResources().getColor(R.color.Color_Black));
         tab_TextView[0].setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.home_icon, 0, 0);
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[0]));
 
         tab_TextView[1] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        tab_TextView[1].setText(TouristMode_Title[1]);
+        if(AppData.getApp_Language()=="en")
+        {
+            tab_TextView[1].setText(TouristMode_TItle_en[1]);
+        }
+        if(AppData.getApp_Language()=="kr"){
+            tab_TextView[1].setText(TouristMode_Title[1]);
+        }
         tab_TextView[1].setTextColor(getResources().getColor(R.color.Color_Gray));
         tab_TextView[1].setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.tour_no_icon, 0, 0);
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[1]));
 
         tab_TextView[2] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        tab_TextView[2].setText(TouristMode_Title[2]);
+        if(AppData.getApp_Language()=="en")
+        {
+            tab_TextView[2].setText(TouristMode_TItle_en[2]);
+        }
+        if(AppData.getApp_Language()=="kr"){
+            tab_TextView[2].setText(TouristMode_Title[2]);
+        }
         tab_TextView[2].setTextColor(getResources().getColor(R.color.Color_Gray));
         tab_TextView[2].setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.feed_no_icon, 0, 0);
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[2]));
 
         tab_TextView[3] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        tab_TextView[3].setText(TouristMode_Title[3]);
+        if(AppData.getApp_Language()=="en")
+        {
+            tab_TextView[3].setText(TouristMode_TItle_en[3]);
+        }
+        if(AppData.getApp_Language()=="kr"){
+            tab_TextView[3].setText(TouristMode_Title[3]);
+        }
         tab_TextView[3].setTextColor(getResources().getColor(R.color.Color_Gray));
         tab_TextView[3].setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.chatting_no_icon, 0, 0);
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[3]));
 
         tab_TextView[4] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        tab_TextView[4].setText(TouristMode_Title[4]);
+        if(AppData.getApp_Language()=="en")
+        {
+            tab_TextView[4].setText(TouristMode_TItle_en[4]);
+        }
+        if(AppData.getApp_Language()=="kr"){
+            tab_TextView[4].setText(TouristMode_Title[4]);
+        }
         tab_TextView[4].setTextColor(getResources().getColor(R.color.Color_Gray));
         tab_TextView[4].setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.profile_no_icon, 0, 0);
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[4]));

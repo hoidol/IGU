@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -35,6 +36,7 @@ import com.iguideu.data.User;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Hoyoung on 2017-07-14.
@@ -44,11 +46,12 @@ public class LogoActivity extends AppCompatActivity {
 
     ImageView imageView;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
         imageView=(ImageView)findViewById(R.id.logo_icon);
+
+
 
         //SharedPreferences AppData에 저장
         SharedPreferences preferences = getSharedPreferences("AppData", MODE_PRIVATE);
@@ -81,6 +84,8 @@ public class LogoActivity extends AppCompatActivity {
         myHandler.sendEmptyMessageDelayed(0,500);
 
     }
+
+
 
     void AppCheckPermission_LOCATION(){
         if (ContextCompat.checkSelfPermission(getApplicationContext(),

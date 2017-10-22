@@ -68,7 +68,7 @@
         android:layout_height="51.8dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/main_btn_bg"
-        android:text="여행 정보 보기"
+        android:text="@string/feed_detail_Btn"
         android:textSize="18.3sp"
         android:textColor="@color/IGU_Point_Color"
         android:layout_marginLeft="18.3dp"
