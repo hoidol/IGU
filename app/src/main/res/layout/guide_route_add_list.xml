@@ -51,7 +51,7 @@
 </RelativeLayout>
     <LinearLayout
         android:id="@+id/route_add_item_list_right"
-        android:layout_width="142dp"
+        android:layout_width="71dp"
         android:layout_height="60dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -59,7 +59,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_weight="1"
             android:clickable="true"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="@dimen/sp_16_7"
@@ -67,17 +66,7 @@
             android:background="@drawable/route_add_list_item_btn"
             android:text="삭제"
             android:id="@+id/route_add_item_list_delete_Btn"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal|center_vertical"
-            android:textSize="@dimen/sp_16_7"
-            android:textColor="@color/Color_White"
-            android:background="@drawable/route_add_list_item_btn"
-            android:text="수정"
-            android:id="@+id/route_add_item_list_edit_Btn"/>
+
     </LinearLayout>
     </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
 </RelativeLayout>

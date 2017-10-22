@@ -100,7 +100,7 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
 
         public ImageView Marker;
         public EditText Route_Title,Route_Detail;
-        public Button Route_delete,Route_Edit;
+        public Button Route_delete;
 
         public  ViewHolder(View v)
         {
@@ -109,7 +109,6 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
             Route_Title=(EditText)v.findViewById(R.id.edit_route_add_place_name);
             Route_Detail=(EditText)v.findViewById(R.id.edit_route_add_place_detail);
             Route_delete=(Button)v.findViewById(R.id.route_add_item_list_delete_Btn);
-            Route_Edit=(Button)v.findViewById(R.id.route_add_item_list_edit_Btn);
         }
     }
 }
