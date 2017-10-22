@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -49,8 +50,8 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Route_Pin_Data itemData = AppData.PinPointData.get(position);
+    public void onBindViewHolder(ViewHolder holder,final int position) {
+         final Route_Pin_Data itemData = AppData.PinPointData.get(position);
 
         switch(position)
         {
@@ -71,6 +72,14 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
                 break;
         }
 
+        holder.Route_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppData.PinPointData.remove(position);
+                AppData.AppPinPointData.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         holder.Route_Title.setHint(itemData.Route_Title);
         holder.Route_Detail.setHint(itemData.Route_Content);
 
@@ -91,6 +100,7 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
 
         public ImageView Marker;
         public EditText Route_Title,Route_Detail;
+        public Button Route_delete,Route_Edit;
 
         public  ViewHolder(View v)
         {
@@ -98,7 +108,8 @@ public class RouteAddListAdapter extends RecyclerView.Adapter<RouteAddListAdapte
             Marker=(ImageView)v.findViewById(R.id.custom_list_marker);
             Route_Title=(EditText)v.findViewById(R.id.edit_route_add_place_name);
             Route_Detail=(EditText)v.findViewById(R.id.edit_route_add_place_detail);
-
+            Route_delete=(Button)v.findViewById(R.id.route_add_item_list_delete_Btn);
+            Route_Edit=(Button)v.findViewById(R.id.route_add_item_list_edit_Btn);
         }
     }
 }

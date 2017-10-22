@@ -47,7 +47,7 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
         RouteAddBtn=(Button)findViewById(R.id.btn_route_add_check);
         markerResource=(ImageView)findViewById(R.id.marker_resource);
 
-        if(AppData.AppPinPointData.size()>0)
+        if(AppData.PinPointData.size()>0)
         {
             MarkerCount=AppData.AppPinPointData.size();
             setMarkerResource(MarkerCount);
@@ -57,7 +57,7 @@ public class RouteAddMapActivity extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap)
     {
         gmap=googleMap;
-        if(AppData.AppPinPointData.size()>0)
+        if(AppData.PinPointData.size()>0)
         {
             LatLng BasePoint = AppData.AppPinPointData.get(0);
             gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(BasePoint,13));

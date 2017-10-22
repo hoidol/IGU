@@ -146,7 +146,7 @@
                 android:orientation="horizontal"
                 android:layout_below="@id/text_route_add_guide_time"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="20.3dp"
+                android:paddingLeft="10.3dp"
                 android:id="@+id/layout_route_add_time_spinner"
                 android:gravity="center_vertical"
                 >
@@ -164,7 +164,7 @@
                     android:backgroundTint="@color/Color_Route_Add_Text_Normal"
                     android:id="@+id/spinner_route_add_start_time"
                     android:entries="@array/route_add_spinner_time"
-                    android:layout_marginLeft="30.3dp"
+                    android:layout_marginLeft="20.3dp"
                     android:textAlignment="center"
                     />
                 <TextView
