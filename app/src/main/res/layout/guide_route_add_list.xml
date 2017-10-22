@@ -3,9 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="13.3dp"
     android:paddingBottom="13.3dp">
-
+    <com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout
+        android:id="@+id/es"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentView="@+id/route_add_item_list"
+        app:rightMenuView="@+id/route_add_item_list_right">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/route_add_item_list">
     <ImageView
         android:layout_width="18.7dp"
         android:layout_height="18.7dp"
@@ -25,30 +35,6 @@
         android:backgroundTint="@color/Color_EditText_Line"
         android:id="@+id/edit_route_add_place_name"
         />
-    <Button
-        android:layout_width="71dp"
-        android:layout_height="36.8dp"
-        android:text="수 정"
-        android:textColor="@color/Color_White"
-        android:textSize="16.7sp"
-        android:background="@color/Color_BTN_Background"
-        android:layout_toRightOf="@id/edit_route_add_place_name"
-        android:id="@+id/btn_route_add_list_eidt"
-        android:visibility="invisible"
-        android:onClick="RouteListEditClick"
-        android:layout_marginLeft="72.3dp"/>
-
-    <Button
-        android:layout_width="71dp"
-        android:layout_height="36dp"
-        android:text="삭 제"
-        android:textColor="@color/Color_BTN_Background"
-        android:textSize="16.7sp"
-        android:background="@color/Backgorund_InVisible"
-        android:onClick="RouteListEditClick"
-        android:visibility="invisible"
-        android:layout_toRightOf="@id/btn_route_add_list_eidt"
-        android:id="@+id/btn_route_add_list_remove"/>
 
     <EditText
         android:layout_width="293dp"
@@ -62,4 +48,25 @@
         android:layout_marginTop="15.3dp"
         android:backgroundTint="@color/Color_EditText_Line"
         android:layout_marginLeft="32dp"/>
+</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/route_add_item_list_right"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:clickable="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="@dimen/sp_16_7"
+            android:textColor="@color/Color_White"
+            android:background="@drawable/route_add_list_item_btn"
+            android:text="삭제"
+            android:id="@+id/route_add_item_list_delete_Btn"/>
+
+    </LinearLayout>
+    </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
 </RelativeLayout>
