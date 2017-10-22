@@ -3,6 +3,7 @@ package com.iguideu.guide_mode.guide_schedule;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.iguideu.data.AppData;
 import com.iguideu.data.Request_Data;
 import com.iguideu.dialog.CheckAcceptDialog;
 import com.iguideu.dialog.CheckYOrNDialog;
+import com.iguideu.main_Inbox.message.MessageActivity;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
@@ -95,6 +97,9 @@ public class Guide_ScheduleCheckFragment extends Fragment {
                                     @Override
                                     public void onClick(View v) {
                                         //메시지 보내기
+                                        Intent intent = new Intent(getContext(), MessageActivity.class);
+                                        intent.putExtra("Other_User_Id",data.Tourist_User_ID);
+                                        getContext().startActivity(intent);
                                         check_dialog.hide();
                                     }
                                 });
