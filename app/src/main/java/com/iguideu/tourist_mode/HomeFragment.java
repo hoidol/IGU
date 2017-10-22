@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        search_keyword_TextView = (TextView)view.findViewById(R.id.search_keyword_TextView);
         recommendFragment = new RecommendFragment();
         routeFragment = new RouteFragment();
         guideFragment = new GuideFragment();
