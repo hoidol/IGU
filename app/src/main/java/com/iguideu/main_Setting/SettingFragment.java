@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -66,6 +67,7 @@ public class SettingFragment extends Fragment {
 
     RoundedImageView profile_Change_Btn;
 
+    TextView profile_Name_Text;
     Button toGuide_Btn;
     Button Language_Btn;
     Button Envir_Btn;
@@ -94,7 +96,8 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        profile_Name_Text = (TextView)view.findViewById(R.id.profile_Name_Text);
+        profile_Name_Text.setText(AppData.getCur_User().User_Name);
         profile_Change_Btn = (RoundedImageView)view.findViewById(R.id.profile_Change_Btn);
         Picasso.with(getContext()).load(AppData.getCur_User().User_Profile_URL).into(profile_Change_Btn);
         profile_Change_Btn.setOnClickListener(new View.OnClickListener() {

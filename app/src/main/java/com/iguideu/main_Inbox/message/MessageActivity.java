@@ -31,7 +31,7 @@ import java.util.Iterator;
 
 public class MessageActivity extends AppCompatActivity {
 
-    String Other_User_Id;
+    String Other_User_ID;
 
     User Cur_User;
     User Other_User;
@@ -49,7 +49,7 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
-
+        Cur_User = AppData.getCur_User();
         message_EditText = (EditText)findViewById(R.id.message_EditText);
         message_send_Btn = (Button)findViewById(R.id.message_send_Btn);
 
@@ -66,39 +66,33 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     void setMessageData(){
-        Intent receivedIntent = getIntent();
 
-        Other_User_Id = receivedIntent.getStringExtra("Other_User_Id");
-        //Chat_Data_list = (ArrayList<ChattingData>)receivedIntent.getSerializableExtra("Chat_Data_List");
+        Intent receivedIntent = getIntent();
+        Other_User_ID = receivedIntent.getStringExtra("Other_User_Id");
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                Cur_User = AppData.getCur_User();
-                Other_User = dataSnapshot.child("users").child(AppData.StringReplace(Other_User_Id)).getValue(User.class);
 
-                Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
-
-                while (iterable.iterator().hasNext()){
-                    DataSnapshot cur_Snapshot = iterable.iterator().next();
-                    User temp_Sended_User =  cur_Snapshot.child("Sended_User").getValue(User.class);
-                    User temp_Received_User = cur_Snapshot.child("Received_User").getValue(User.class);
-
-                    if(Cur_User.User_ID.equals(temp_Sended_User.User_ID) || Cur_User.User_ID.equals(temp_Received_User.User_ID)){
-                        ChattingRoom_Index = cur_Snapshot.child("ChattingRoom_Index").getValue().toString();
-                        GenericTypeIndicator<ArrayList<ChattingData>> t = new GenericTypeIndicator<ArrayList<ChattingData>>() {};
-                        Chatting_Data_list = cur_Snapshot.child("Chatting_Datas").getValue(t);
+                Other_User = dataSnapshot.child("users").child(AppData.StringReplace(Other_User_ID)).getValue(User.class);
+                Chatting_Data_list = new ArrayList<>();
+                boolean IsCreated = false;
+                for(int i =0; i<AppData.ChattingRoom_Data_List.size();i++){
+                    ChattingRoom cur_room = AppData.ChattingRoom_Data_List.get(i);
+                    if(Cur_User.User_ID.equals(cur_room.Sended_User.User_ID) && Other_User_ID.equals(cur_room.Received_User.User_ID) ||
+                            Cur_User.User_ID.equals(cur_room.Received_User.User_ID) && Other_User_ID.equals(cur_room.Sended_User.User_ID) ){
+                        ChattingRoom_Index = cur_room.ChattingRoom_Index;
+                        Chatting_Data_list = cur_room.Chatting_Datas;
+                        IsCreated = true;
                         break;
                     }
-
                 }
 
-                if(Chatting_Data_list == null){
+                if(!IsCreated){
                     ChattingRoom_Index = AppData.getCurTime()+AppData.StringReplace(Cur_User.User_ID);
-                    Chatting_Data_list = new ArrayList<>();
                     AppData.myRef.child("chattingrooms").child(ChattingRoom_Index).setValue(new ChattingRoom(ChattingRoom_Index, Cur_User, Other_User,AppData.getCurTime(),Chatting_Data_list,false));
                 }
+
                 adapter.setChatting_Data_List(Chatting_Data_list);
                 recyclerView.getLayoutManager().scrollToPosition(Chatting_Data_list.size()-1);
 
@@ -110,12 +104,11 @@ public class MessageActivity extends AppCompatActivity {
             }
         };
         AppData.myRef.addListenerForSingleValueEvent(listener);
-
     }
 
     void setToobar(){
         TextView toolbar_title_TextView = (TextView)findViewById(R.id.toolbar_title_TextView);
-        toolbar_title_TextView.setText("상대방");
+        toolbar_title_TextView.setText("대화방");
 
         ImageButton toolbar_back_ImagmeView = (ImageButton)findViewById(R.id.toolbar_back_ImagmeView);
         toolbar_back_ImagmeView.setOnClickListener(new View.OnClickListener() {

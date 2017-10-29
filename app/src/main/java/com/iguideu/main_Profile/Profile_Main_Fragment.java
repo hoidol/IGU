@@ -93,6 +93,8 @@ public class Profile_Main_Fragment extends Fragment {
             send_Message_Btn.setVisibility(View.GONE);
         }
 
+
+
         send_Message_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,24 +113,26 @@ public class Profile_Main_Fragment extends Fragment {
                 Picasso.with(getContext()).load(cur_user.User_Profile_URL).into(profile_ImageView);
                 setStar(rating_starts,cur_user.User_Guide_Rating);
 
+
+
                 show_route_Btn = (Button)view.findViewById(R.id.show_route_Btn);
+                if(cur_user.User_Guide){
+                    show_route_Btn.setVisibility(View.VISIBLE);
+                }else{
+                    show_route_Btn.setVisibility(View.GONE);
+                }
                 show_route_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        if(cur_user.User_Guide){
-                            show_route_Btn.setVisibility(View.VISIBLE);
-                            Profile_Route_List_Fragment fragment = new Profile_Route_List_Fragment();
-                            fragment.set_Profile_User_Id(Profile_User_Id);
-                            fragment.set_Profile_Main_Fragment(fragment);
-                            fm = getFragmentManager();
-                            fragmentTransaction = fm.beginTransaction();
-                            fragmentTransaction.add(R.id.profile_FrameLayout,fragment);
-                            fragmentTransaction.commit();
-                        }else{
-                            show_route_Btn.setVisibility(View.GONE);
-                        }
+                        Profile_Route_List_Fragment fragment = new Profile_Route_List_Fragment();
+                        fragment.set_Profile_User_Id(Profile_User_Id);
+                        fragment.set_Profile_Main_Fragment(fragment);
 
+                        fm = getFragmentManager();
+                        fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.add(R.id.profile_FrameLayout,fragment);
+                        fragmentTransaction.commit();
                     }
                 });
             }

@@ -74,18 +74,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter{
         }
     }
 
-
-
     @Override
     public int getItemCount() {
         return Chatting_Data_List.size();
     }
 
-    void setTextViewPosition(TextView message_contents_TextView,TextView message_time_TextView,ChattingData data, boolean OwnMessage){
-
-        String time_Format = getTimeFormat(data.Writed_Time);
-
-    }
 
     String getTimeFormat(String Default_Time){
         String[] Time = Default_Time.split("_");

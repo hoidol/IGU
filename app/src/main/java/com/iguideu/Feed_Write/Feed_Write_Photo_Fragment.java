@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -249,8 +250,8 @@ public class Feed_Write_Photo_Fragment extends Fragment {
 
                     }
                 });
-                com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage("file:/" + photoInfo.getPhotoPath(), feed_photo_ImageView, options);
-
+                //com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage("file:/" + photoInfo.getPhotoPath(), feed_photo_ImageView, options);
+                SaveURL();
 
 
             }
@@ -286,11 +287,15 @@ public class Feed_Write_Photo_Fragment extends Fragment {
     }
 
     void SaveURL(){
-        feed_photo_ImageView.setDrawingCacheEnabled(true);
+        String imgpath = photoInfo.getPhotoPath();
+        Bitmap bm = BitmapFactory.decodeFile(imgpath);
+        feed_photo_ImageView.setImageBitmap(bm);
+        myBitmap = bm;
+       /* feed_photo_ImageView.setDrawingCacheEnabled(true);
         feed_photo_ImageView.buildDrawingCache();
         myBitmap = feed_photo_ImageView.getDrawingCache();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);*/
     }
 
 

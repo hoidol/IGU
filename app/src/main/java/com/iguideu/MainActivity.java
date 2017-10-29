@@ -291,11 +291,12 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the USI
-                if(AppData.getCur_User() == null){
+                User Cur_User = AppData.getCur_User();
+                if(Cur_User == null){
                     return;
                 }
                 Iterable<DataSnapshot> iterable = dataSnapshot.child("chattingrooms").getChildren();
-                User Cur_User = AppData.getCur_User();
+
                 ArrayList<ChattingRoom> list = new ArrayList<>();
                 while (iterable.iterator().hasNext()){
                     DataSnapshot cur_Snapshot = iterable.iterator().next();
