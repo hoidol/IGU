@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:background="#ffffff"
                     android:id="@+id/history_state_Btn"
-                    android:text="별점주기"
+                    android:text="@string/history_state_Btn"
                     android:textColor="#2f2f2f"
                     android:textSize="16.7sp" />
             </RelativeLayout>

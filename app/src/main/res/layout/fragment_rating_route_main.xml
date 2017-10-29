@@ -12,7 +12,7 @@
         android:layout_below="@id/rating_route_Toolbar"
         android:gravity="center"
         android:id="@+id/route_rating_comment"
-        android:text="여행어떠셨나요?"
+        android:text="@string/route_rating_comment"
         android:textSize="18.3sp"/>
 
     <LinearLayout
@@ -68,7 +68,7 @@
         android:layout_below="@id/rating_route_Container"
         android:gravity="center"
         android:id="@+id/guider_rating_comment"
-        android:text="가이드님은 어떠셨나요?"
+        android:text="@string/guider_rating_comment"
         android:textSize="18.3sp"/>
 
     <LinearLayout
@@ -121,7 +121,7 @@
         android:layout_height="51.8dp"
         android:id="@+id/complete_Btn"
         android:background="@drawable/main_btn_bg"
-        android:text="확인"
+        android:text="@string/complete_Btn"
         android:textSize="18.3sp"
         android:textColor="@color/IGU_Point_Color"
         android:layout_marginLeft="18dp"

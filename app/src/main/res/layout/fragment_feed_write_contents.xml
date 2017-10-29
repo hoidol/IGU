@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/feed_contents_EditText"
-            android:hint="작성하기"
+            android:hint="@string/feed_contents_editText"
+            android:paddingLeft="25.3dp"
             android:layout_toLeftOf="@+id/selected_ImageView"
             android:layout_centerVertical="true"
             android:layout_marginLeft="3dp"
@@ -37,12 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:id="@+id/search_route_Btn"
-        android:layout_marginTop="50.3dp"
-        android:text="루트태그"
+        android:layout_marginTop="49dp"
+        android:text="@string/search_route_Btn"
         android:textSize="16.7sp"
         android:paddingLeft="25.3dp"
         android:gravity="center_vertical"
+        android:background="@drawable/gray_stroke_bg"
         android:layout_below="@+id/feed_contents_Container"
-        android:background="@drawable/gray_stroke_bg"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

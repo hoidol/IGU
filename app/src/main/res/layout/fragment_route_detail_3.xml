@@ -29,7 +29,7 @@
         android:id="@+id/route_detail_Btn_3"
         android:layout_alignParentBottom="true"
         android:background="@color/IGU_Point_Color"
-        android:text="확인"
+        android:text="@string/route_detail_Btn_3"
         android:textSize="18.3sp"
         android:textColor="@color/Color_White"/>
 

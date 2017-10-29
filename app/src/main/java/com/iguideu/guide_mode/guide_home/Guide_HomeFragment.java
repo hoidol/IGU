@@ -75,7 +75,9 @@ public class Guide_HomeFragment extends Fragment{
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent = new Intent(getContext(), Guide_Route_Add_Activity.class);
+                intent.putExtra("Route_Index",mDataList.get(position).Route_Index);
+                startActivity(intent);
             }
         }));
 

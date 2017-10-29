@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:text="닉네임을 설정하세요."
+        android:text="@string/nick_Comment"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="172dp"
         android:gravity="center_horizontal"
@@ -38,7 +38,7 @@
         android:layout_height="51.8dp"
         android:id="@+id/signup_nick_Btn"
         android:background="@drawable/base_btn"
-        android:text="다음"
+        android:text="@string/signup_nick_Btn"
         android:textColor="@color/Color_White"
         android:textSize="18.3sp"
         android:layout_alignParentBottom="true"

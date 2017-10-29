@@ -81,7 +81,6 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
         fragmentTransaction.add(R.id.home_FragmLayout,recommendFragment);
         fragmentTransaction.commit();
 
-
         setTabLayout(view);
         setSearchContainer(view);
     }

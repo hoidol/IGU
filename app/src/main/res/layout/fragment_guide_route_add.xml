@@ -21,7 +21,7 @@
             <EditText
                 android:layout_width="344.7dp"
                 android:layout_height="wrap_content"
-                android:hint="제 목"
+                android:hint="@string/edit_route_add_title"
                 android:textSize="16.7sp"
                 android:id="@+id/edit_route_add_title"
                 android:textColorHint="@color/Color_All_Primary_Text"
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="사진업로드 ( 최대 5장 )"
+                android:text="@string/text_route_add_image_upload"
                 android:textColor="@color/Color_Route_Add_Activity_Text"
                 android:textSize="16.7sp"
                 android:id="@+id/text_route_add_image_upload"
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가이드 여부"
+                android:text="@string/text_route_add_guide_able"
                 android:textColor="@color/Color_Route_Add_Activity_Text"
                 android:textSize="16.7sp"
                 android:id="@+id/text_route_add_guide_able"
@@ -133,7 +133,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여행 시간"
+                android:text="@string/text_route_add_guide_time"
                 android:textColor="@color/Color_Route_Add_Activity_Text"
                 android:textSize="16.7sp"
                 android:id="@+id/text_route_add_guide_time"
@@ -188,7 +188,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="수용 가능 인원"
+                android:text="@string/text_route_add_posible_people"
                 android:textColor="@color/Color_Route_Add_Activity_Text"
                 android:textSize="16.7sp"
                 android:id="@+id/text_route_add_posible_people"
@@ -210,7 +210,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여행루트 소개"
+                android:text="@string/text_route_add_route_info"
                 android:textColor="@color/Color_Route_Add_Activity_Text"
                 android:textSize="16.7sp"
                 android:id="@+id/text_route_add_route_info"
@@ -243,7 +243,7 @@
         android:layout_height="match_parent"
         android:layout_weight="9.3"
         android:background="@color/Color_BTN_Background"
-        android:text="저 장"
+        android:text="@string/btn_route_add_save"
         android:layout_alignParentBottom="true"
         android:textColor="#ffffff"
         android:textSize="18.3sp"

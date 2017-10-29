@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-
+        AppData.setApp_AutoLogin(true);
         AppData.mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                         List<String> Favorite_list = new ArrayList<>();
                                         Favorite_list.add("-1");
                                         User user_inf = new User(acct.getEmail(), "google",acct.getDisplayName(),acct.getPhotoUrl().toString(),false,"",0,Favorite_list);
-
+                                        Log.d(AppData.LOG_INDICATOR,"호출 타이밍 체크 setDatas() ");
                                         AppData.myRef.child("users").child(user_key).setValue(user_inf);
                                         AppData.setCur_User(user_inf);
                                     }
@@ -179,9 +179,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 }
                             };
                             AppData.myRef.addListenerForSingleValueEvent(listener);
-                            AppData.setApp_AutoLogin(true);
-
-
                         }else{
 
                         }

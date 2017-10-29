@@ -34,7 +34,7 @@
     <string name="LoginProgress1_MainText">이름을 입력하세요.</string>
     <string name="LoginProgress2_MainText">연락처를 입력하세요.</string>
     <string name="LoginProgress3_MainText">이메일을 입력하세요.</string>
-    <string name="LoginProgress4_MainText">비밀번호를 입력하세요.</string>
+    <string name="LoginProgress4_MainText">비밀번호를 입력하세요. </string>
     <string name="LoginProgress5_MainText">프로필 사진을 입력하세요.</string>
     <string name="LoginProgress6_MainText">W E L C O M E !</string>
     <string name="LoginProgress_Next">다 음</string>
@@ -48,7 +48,7 @@
     <string name="LoginProgress3_Email">이메일</string>
 
     <!--LoginProgress4 Text-->
-    <string name="LoginProgress4_Pass">비밀번호</string>
+    <string name="LoginProgress4_Pass">8자 이상</string>
     <string name="LoginProgress4_Pass_Check">재입력</string>
 
     <!-- About Inbox -->
@@ -64,4 +64,118 @@
 
     <!-- schedule -->
     <string name="dialog_check_schedule_comment_kr">예약 비활성화할까요?</string>
-</resources>
+
+
+    <string name="feed_contents_editText">작성하기.</string><!--이것-->
+
+
+        <!--Tourist Home-->
+
+        <!--Inbox-->
+        <string name="inbox_title_TextView">메시지함</string>
+
+        <!--Profile Main-->
+        <string name="profile_ImageView">닉네임</string>
+        <string name="show_route_Btn">여행 루트</string>
+        <string name="send_Message_Btn">메시지 보내기</string>
+
+        <!--Rating Route Main-->
+        <string name="route_rating_comment">여행어떠셨나요?</string>
+        <string name="guider_rating_comment">가이드님은 어떠셨나요?</string>
+        <string name="complete_Btn">확인</string>
+
+        <!--Rating Route Complete-->
+        <string name="rating_complete">평점이 등록되었습니다.</string>
+
+        <!--Route Detail 1-->
+        <string name="route_profile_name">닉네임</string>
+        <string name="route_guide_possibility_Static">가이드 여부</string>
+        <string name="route_guide_time_Static">여행시간</string>
+        <string name="route_guide_guestNum_Static">수용인원</string>
+        <string name="route_Map_Static">여행루트</string>
+        <string name="route_detail_Btn_1">가이드 요청하기</string>
+
+        <!--Route Detail 2-->
+        <string name="route_detail_Btn_2">가이드 요청하기</string>
+
+        <!--Route Detail 3-->
+        <string name="route_detail_Btn_3">확인</string>
+
+        <!--Search Keyword-->
+        <string name="search_keyword_EditText">어디로 가세요?</string>
+        <string name="auto_search_comment">코멘트 자동 검색</string>
+
+        <!--setting-->
+        <string name="profile_Change_Text">프로필 확인 및 수정</string>
+
+        <!--setting envir-->
+        <string name="setting_alarm_title">알람</string>
+        <string name="push_alert">푸쉬 알람</string>
+
+        <!--Sign Up Guider check-->
+        <string name="signup_guider_check_comment">가이드로 등록하시겠습니까?</string>
+        <string name="signup_Yes_Btn">가 입</string>
+        <string name="signup_No_Btn">취소</string>
+
+        <!--Sign Up Guider Complete-->
+        <string name="add_guider_complete">가이드가 등록되었습니다.</string>
+
+        <!--Sign Up Guider-->
+        <string name="nick_Comment">닉네임을 설정하세요.</string>
+        <string name="signup_nick_Btn">다음</string>
+
+        <!--Guide Route Add-->
+        <string name="edit_route_add_title">제 목</string>
+        <string name="text_route_add_image_upload">사진업로드 ( 최대 5장 )</string>
+        <string name="text_route_add_guide_able">가이드 여부</string>
+        <string name="text_route_add_guide_time">여행 시간</string>
+        <string name="text_route_add_posible_people">수용 가능 인원</string>
+        <string name="text_route_add_route_info">여행루트 소개</string>
+        <string name="btn_route_add_save">저 장</string>
+
+        <!--Guide Home-->
+        <string name="route_delete_Btn">삭제</string>
+        <!--Guide List Item-->
+        <string name="route_add_item_list_delete_Btn">삭제</string>
+        <string name="edit_route_add_place_detail">상세내용</string>
+        <string name="edit_route_add_place_name">장소 이름</string>
+
+        <!--Tourist Home Recommend-->
+        <string name="history_state_Btn">별점주기</string>
+        <string name="landmark_Text">명소</string>
+        <string name="favorite_Route_Text">인기 루트</string>
+        <string name="favorite_guide_Text">인기 가이드</string>
+
+        <!--Inbox Layout-->
+        <!--Tourist Tour-->
+        <string name="Tour_History_Btn">일정</string>
+        <string name="Tour_Favorite_Btn">좋아요</string>
+
+
+        <!-- Toolbar Layout 2-->
+        <string name="toolbar2_Close_Btn">닫기</string>
+
+        <!--Feed Detail-->
+        <string name="feed_detail_Btn">여행 상세정보.</string>
+
+        <!--Login-->
+        <string name="login_btn_login">로그인 / 회원가입</string>
+
+        <!--Route Add Map-->
+        <string name="btn_route_add_check">추가</string>
+        <string name="btn_route_add_saved">확인</string>
+
+        <!--Dialog Accept-->
+        <string name="dialog_Y_Btn">수락</string>
+        <string name="dialog_N_Btn">거절</string>
+
+        <!--Dialog Check-->
+        <string name="dialog_check_Btn_kr">확인</string>
+
+        <!-- Feed Write -->
+        <string name="complete_feed_write">성공적으로 등록되었습니다.</string>
+        <string name="search_route_Btn">루트태그</string>
+        <string name="search_route_Title">루트검색</string>
+
+    </resources>
+

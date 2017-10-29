@@ -86,12 +86,12 @@ public class RouteFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        showRoute_Data();
+
     }
 
     public void showRoute_Data(){
         Cur_Route_List = AppData.Route_Data_List;
-
-
         if(!AppData.KeywordData.equals("")){
             List <Route_Data> list = new ArrayList<>();
             for(int i=0; i<Cur_Route_List.size();i++){
@@ -103,8 +103,6 @@ public class RouteFragment extends Fragment {
             }
             Cur_Route_List = list;
         }
-
-
         adapter.setData(Cur_Route_List);
     }
 

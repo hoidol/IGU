@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15.3dp"
-                android:text="닉네임"
+                android:text="@string/profile_ImageView"
                 android:layout_below="@+id/profile_ImageView"
                 android:layout_centerHorizontal="true"
                 android:textSize="18.3sp"
@@ -103,8 +103,7 @@
             android:textColor="@color/IGU_Point_Color"
             android:textSize="18.3sp"
             android:layout_marginRight="13.7dp"
-
-            android:text="여행 루트"/>
+            android:text="@string/show_route_Btn"/>
 
         <Button
             android:id="@+id/send_Message_Btn"
@@ -114,7 +113,7 @@
             android:background="@drawable/main_btn_bg"
             android:textColor="@color/IGU_Point_Color"
             android:textSize="18.3sp"
-            android:text="메시지 보내기"/>
+            android:text="@string/send_Message_Btn"/>
 
 
 

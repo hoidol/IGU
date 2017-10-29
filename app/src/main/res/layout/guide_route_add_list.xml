@@ -26,7 +26,7 @@
     <EditText
         android:layout_width="100.3dp"
         android:layout_height="40.7dp"
-        android:hint="장소 이름"
+        android:hint="@string/edit_route_add_place_name"
         android:textSize="16.7sp"
         android:textColorHint="@color/colorAccent"
         android:layout_toRightOf="@id/custom_list_marker"
@@ -40,7 +40,7 @@
         android:layout_width="293dp"
         android:layout_height="34.7dp"
         android:inputType="text"
-        android:hint="상세내용"
+        android:hint="@string/edit_route_add_place_detail"
         android:textColorHint="@color/colorAccent"
         android:textSize="11.7sp"
         android:layout_below="@id/edit_route_add_place_name"
@@ -64,7 +64,7 @@
             android:textSize="@dimen/sp_16_7"
             android:textColor="@color/Color_White"
             android:background="@drawable/route_add_list_item_btn"
-            android:text="삭제"
+            android:text="@string/route_add_item_list_delete_Btn"
             android:id="@+id/route_add_item_list_delete_Btn"/>
 
     </LinearLayout>

@@ -101,7 +101,7 @@
                 android:textSize="@dimen/sp_16_7"
                 android:textColor="@color/Color_White"
                 android:background="@color/IGU_Point_Color"
-                android:text="삭제"
+                android:text="@string/route_delete_Btn"
                 android:id="@+id/route_delete_Btn"/>
         </RelativeLayout>
 

@@ -3,13 +3,20 @@ package com.iguideu.Signup;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -23,7 +30,6 @@ import java.util.List;
 public class SignUpProgress6 extends Fragment {
 
     Context context;
-    Activity activity;
     Button btn_pg6_next;
 
     User cur_User;
@@ -38,11 +44,7 @@ public class SignUpProgress6 extends Fragment {
         this.context=context;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.activity = (SignUpActivity) activity;
-    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,7 +81,6 @@ public class SignUpProgress6 extends Fragment {
                 User user_inf = new User(cur_User.User_ID, cur_User.User_Password,cur_User.User_Name,cur_User.User_Profile_URL,false,null,0,Favorite_list);
 
                 AppData.myRef.child("users").child(user_key).setValue(user_inf);
-                AppData.setCur_User(user_inf);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -94,7 +95,19 @@ public class SignUpProgress6 extends Fragment {
         switch (v.getId())
         {
             case R.id.btn_pg6_next:
-                activity.finish();
+                Log.d(AppData.LOG_INDICATOR,"왜 그런거지 " + cur_User.User_ID + " 비번 " + cur_User.User_Password);
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(cur_User.User_ID,cur_User.User_Password )
+                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    getActivity().finish();
+                                }else{
+                                    Toast.makeText(getActivity(),"Why 안돼?",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
                 break;
 
         }

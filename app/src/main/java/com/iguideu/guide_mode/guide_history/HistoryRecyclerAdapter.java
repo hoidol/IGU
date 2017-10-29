@@ -18,6 +18,7 @@ import com.iguideu.data.AppData;
 import com.iguideu.data.Feed_Data;
 import com.iguideu.data.Request_Data;
 import com.iguideu.data.Route_Data;
+import com.iguideu.main_Profile.ProfileActivity;
 import com.iguideu.tourist_mode.tourist_feed.FeedRecyclerAdapter;
 import com.iguideu.tourist_mode.tourist_tour.Rating_Route.RatingRouteActivity;
 import com.squareup.picasso.Picasso;
@@ -46,11 +47,19 @@ public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecycle
 
     @Override
     public void onBindViewHolder(History_Recycler_ViewHolder holder, int position) {
-        Request_Data data = list.get(position);
+        final Request_Data data = list.get(position);
 
         String[] request_Dates = data.Request_Date.split("_");
 
         Picasso.with(mContext).load(data.Tourist_User_Profile_URL).into(holder.profile_ImageView);
+        holder.profile_ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProfileActivity.class);
+                intent.putExtra("User_ID",data.Tourist_User_ID);
+                mContext.startActivity(intent);
+            }
+        });
 
         holder.history_title_TextView.setText(data.Route_Title);
         holder.history_date_TextView.setText(request_Dates[0] +"년 "+request_Dates[1]+"월 "+ request_Dates[2]+"일");

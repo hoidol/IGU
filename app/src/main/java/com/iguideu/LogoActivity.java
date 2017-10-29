@@ -64,11 +64,11 @@ public class LogoActivity extends AppCompatActivity {
         if(AppData.getApp_AutoLogin() == false){
             AppData.mAuth.signOut();
         }
-
         AppData.setApp_Mode(0);
         setData();
         AppCheckPermission_LOCATION();
         // LOCATION -> STORAGE -> LOGIN 순서로 검사함
+
     }
 
 
@@ -147,6 +147,7 @@ public class LogoActivity extends AppCompatActivity {
         AppData.mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
                     //Main으로
@@ -157,6 +158,7 @@ public class LogoActivity extends AppCompatActivity {
                                 // Get Post object and use the values to update the UI
                                 User cur_user = dataSnapshot.child("users").child(AppData.StringReplace(user.getEmail())).getValue(User.class);
                                 AppData.setCur_User(cur_user);
+                                Log.d(AppData.LOG_INDICATOR,"이게 호출되야지 내 생각이 맞음" + user.getEmail());
                                 delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
                             }
 
@@ -168,15 +170,15 @@ public class LogoActivity extends AppCompatActivity {
                         };
                         AppData.myRef.addListenerForSingleValueEvent(postListener);
                     }else{
-                        if(AppData.getApp_Language().equals("NULL")){
-                            delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
-                        }else{
-                            delay_startActivity(new Intent(LogoActivity.this, MainActivity.class));
-                        }
+                        AppData.mAuth.signOut();
                     }
                 }else{
+                    if(AppData.getApp_Language().equals("NULL")){
+                        delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
+                    }else{
+                        delay_startActivity(new Intent(LogoActivity.this,LoginActivity.class));
+                    }
 
-                    delay_startActivity(new Intent(LogoActivity.this,InitSettingActivity.class));
                 }
             }
         };

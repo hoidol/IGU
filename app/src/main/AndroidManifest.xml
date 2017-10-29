@@ -40,15 +40,7 @@
             android:name=".Login.LoginActivity2"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".LogoActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".Login.LoginActivity"
             android:screenOrientation="portrait" />
@@ -90,8 +82,18 @@
         <activity
             android:name=".main_Profile.ProfileActivity"
             android:screenOrientation="portrait" />
+
         <activity android:name=".guide_mode.Route_Add_Activity.Guide_Route_Add_Activity"
             android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".LogoActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Signup_Guider.SignUpGuiderActivity"
             android:screenOrientation="portrait"/>
     </application>

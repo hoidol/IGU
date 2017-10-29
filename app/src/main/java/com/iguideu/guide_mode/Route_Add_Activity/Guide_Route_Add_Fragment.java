@@ -82,7 +82,6 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     public static final int RESULT_FAIL=1;
 
     Button b_Yes,b_No,b_Add,b_Save,b_AddPicture;
-    String s_Result;
 
     RecyclerView recyclerView;
     RouteAddListAdapter listAdapter;
@@ -100,10 +99,14 @@ public class Guide_Route_Add_Fragment extends Fragment  {
     ArrayList<RouteAdapterItem> routeAdapterItems = new ArrayList<>();
     ArrayList<RouteAddListAdapter.ViewHolder> RouteView=new ArrayList<>();
 
+    Route_Data Cur_Route_Data;
     boolean IsFirstGuide = false;
 
     public void SetIsFirstGuide(boolean IsFirstGuide){
         this.IsFirstGuide =IsFirstGuide;
+    }
+    public void SetCur_Route_Data(Route_Data route_data){
+        Cur_Route_Data = route_data;
     }
 
     @Override
@@ -157,11 +160,13 @@ public class Guide_Route_Add_Fragment extends Fragment  {
         StartTime=(Spinner)view.findViewById(R.id.spinner_route_add_start_time);
         EndTime=(Spinner)view.findViewById(R.id.spinner_route_add_finish_time);
         Member=(Spinner)view.findViewById(R.id.spinner_route_add_people);
+
         route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_1));
         route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_2));
         route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_3));
         route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_4));
         route_image.add((ImageView)view.findViewById(R.id.btn_route_add_image_5));
+
         b_Add=(Button)view.findViewById(R.id.btn_route_add);
         b_Save=(Button)view.findViewById(R.id.btn_route_add_save);
 

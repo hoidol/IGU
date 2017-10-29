@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="루트검색"
+        android:text="@string/search_route_Title"
         android:layout_marginBottom="16.7dp"
         android:layout_marginTop="16.7dp"
         android:layout_marginLeft="11.3dp"

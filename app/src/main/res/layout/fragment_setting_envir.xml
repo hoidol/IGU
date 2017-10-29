@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="27.7dp"
         android:layout_marginTop="48dp"
-        android:text="알람"
+        android:text="@string/setting_alarm_title"
         android:textSize="11.7sp"
         android:textColor="@color/Color_All_Primary_Text"
         android:id="@+id/setting_alarm_title"
@@ -33,7 +33,7 @@
             android:textSize="16.7dp"
             android:textColor="@color/Color_All_Primary_Text"
             android:gravity="center_vertical"
-            android:text="푸쉬 알람"/>
+            android:text="@string/push_alert"/>
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

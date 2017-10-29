@@ -14,7 +14,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:hint="어디로 가세요?"
+            android:hint="@string/search_keyword_EditText"
             android:textSize="16.7sp"
             android:backgroundTint="@color/Color_White"
             android:id="@+id/search_keyword_EditText"
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="코멘트 자동 검색"
+            android:text="@string/auto_search_comment"
             android:id="@+id/auto_search_comment"
             android:textColor="@color/Color_White"
             android:layout_below="@+id/search_keyword_EditText"

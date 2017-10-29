@@ -129,7 +129,7 @@
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
                     android:textStyle="bold"
-                    android:text="닉네임"
+                    android:text="@string/route_profile_name"
                     android:layout_marginTop="7.2dp"
                     android:layout_below="@+id/route_profile_image"
                     android:id="@+id/route_profile_name"/>
@@ -146,7 +146,7 @@
                     android:layout_height="17.3dp"
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
-                    android:text="가이드 여부"
+                    android:text="@string/route_guide_possibility_Static"
                     android:textStyle="bold"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view1"
@@ -176,7 +176,7 @@
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
                     android:textStyle="bold"
-                    android:text="여행시간"
+                    android:text="@string/route_guide_time_Static"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view2"
                     android:id="@+id/route_guide_time_Static"/>
@@ -205,7 +205,7 @@
                     android:gravity="center_horizontal"
                     android:textSize="11.7dp"
                     android:textStyle="bold"
-                    android:text="수용인원"
+                    android:text="@string/route_guide_guestNum_Static"
                     android:layout_marginTop="12.3dp"
                     android:layout_below="@+id/horizontal_view3"
                     android:id="@+id/route_guide_guestNum_Static"/>
@@ -247,7 +247,7 @@
                     android:layout_marginBottom="13.3dp"
                     android:gravity="center_horizontal"
                     android:id="@+id/route_Map_Static"
-                    android:text="여행루트"/>
+                    android:text="@string/route_Map_Static"/>
 
                 <!-- 맵 -->
                 <RelativeLayout
@@ -306,7 +306,7 @@
         android:layout_height="51.8dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/main_btn_bg"
-        android:text="가이드 요청하기"
+        android:text="@string/route_detail_Btn_1"
         android:textSize="18.3sp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"

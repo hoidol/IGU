@@ -196,6 +196,7 @@ public class SettingFragment extends Fragment {
                 AppData.setApp_Mode(0);
                 AppData.mAuth.signOut();
                 AppData.setCur_User(null);
+                AppData.setApp_AutoLogin(false);
                 getActivity().finish();
                 break;
 

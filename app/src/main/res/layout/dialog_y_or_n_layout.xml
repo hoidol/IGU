@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/IGU_Point_Color"
                 android:layout_weight="1"
-                android:text="예"
+                android:text="@string/dialog_Y_Btn"
                 android:textSize="18.3dp"
                 android:textColor="@color/Color_White"
                 android:id="@+id/dialog_Y_Btn"/>
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/IGU_Point_Color"
                 android:layout_weight="1"
-                android:text="아니요"
+                android:text="@string/dialog_N_Btn"
                 android:textSize="18.3dp"
                 android:textColor="@color/Color_White"
                 android:id="@+id/dialog_N_Btn"/>

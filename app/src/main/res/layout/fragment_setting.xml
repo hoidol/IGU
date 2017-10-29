@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="17.3dp"
             android:gravity="center_horizontal"
-            android:text="프로필 확인 및 수정"
+            android:text="@string/profile_Change_Text"
             android:textSize="11.7sp"
             android:textColor="#b0b2b2"
             />
