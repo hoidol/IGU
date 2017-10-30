@@ -1,6 +1,7 @@
 package com.iguideu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Fragment;
@@ -41,6 +42,7 @@ import com.iguideu.main_Inbox.InboxFragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements RecommendFragment.ListItemSelectedListener{
     TabLayout tabLayout;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
     String[] TouristMode_Title = {"홈","여행","피드","메세지", "프로필"};
     String[] TouristMode_TItle_en={"Home","History","Feed","Message","Profile"};
     String[] GuideMode_Title = {"홈","스케줄","히스토리","메세지", "프로필"};
+    String[] GuideMode_TItle_en={"Home","Schedule","History","Message","Profile"};
 
 
     TextView[] tab_TextView;
@@ -89,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
 
         setDatas();
         App_Mode = AppData.getApp_Mode();
+        if(AppData.getApp_Language().equals("NULL")){
+            AppData.setApp_Language("kr");
+        }
+        changeConfigulation(AppData.getApp_Language());
         setTabLayout();
 
         fm = getFragmentManager();
@@ -104,11 +111,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tab_TextView = new TextView[5];
 
         tab_TextView[0] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        if(AppData.getApp_Language()=="en")
+        if(AppData.getApp_Language().equals("en"))
         {
             tab_TextView[0].setText(TouristMode_TItle_en[0]);
-        }
-        if(AppData.getApp_Language()=="kr"){
+        }else{
             tab_TextView[0].setText(TouristMode_Title[0]);
         }
         tab_TextView[0].setTextColor(getResources().getColor(R.color.Color_Black));
@@ -116,11 +122,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[0]));
 
         tab_TextView[1] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        if(AppData.getApp_Language()=="en")
+        if(AppData.getApp_Language().equals("en"))
         {
             tab_TextView[1].setText(TouristMode_TItle_en[1]);
-        }
-        if(AppData.getApp_Language()=="kr"){
+        }else{
             tab_TextView[1].setText(TouristMode_Title[1]);
         }
         tab_TextView[1].setTextColor(getResources().getColor(R.color.Color_Gray));
@@ -128,11 +133,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[1]));
 
         tab_TextView[2] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        if(AppData.getApp_Language()=="en")
+        if(AppData.getApp_Language().equals("en"))
         {
             tab_TextView[2].setText(TouristMode_TItle_en[2]);
-        }
-        if(AppData.getApp_Language()=="kr"){
+        }else{
             tab_TextView[2].setText(TouristMode_Title[2]);
         }
         tab_TextView[2].setTextColor(getResources().getColor(R.color.Color_Gray));
@@ -140,11 +144,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[2]));
 
         tab_TextView[3] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        if(AppData.getApp_Language()=="en")
+        if(AppData.getApp_Language().equals("en"))
         {
             tab_TextView[3].setText(TouristMode_TItle_en[3]);
-        }
-        if(AppData.getApp_Language()=="kr"){
+        }else{
             tab_TextView[3].setText(TouristMode_Title[3]);
         }
         tab_TextView[3].setTextColor(getResources().getColor(R.color.Color_Gray));
@@ -152,11 +155,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[3]));
 
         tab_TextView[4] = (TextView) LayoutInflater.from(this).inflate(R.layout.main_custom_tab, null);
-        if(AppData.getApp_Language()=="en")
+        if(AppData.getApp_Language().equals("en"))
         {
             tab_TextView[4].setText(TouristMode_TItle_en[4]);
-        }
-        if(AppData.getApp_Language()=="kr"){
+        }else{
             tab_TextView[4].setText(TouristMode_Title[4]);
         }
         tab_TextView[4].setTextColor(getResources().getColor(R.color.Color_Gray));
@@ -231,35 +233,52 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         });
     }
 
-    void setTouristTabIcon(int position){
+    public void setTouristTabIcon(int position){
         for(int i= 0; i< 5;i++){
             if(position == i){
                 tab_TextView[i].setCompoundDrawablesWithIntrinsicBounds(0, activity_tab_TouristMode_icons[i], 0, 0);
                 tab_TextView[i].setTextColor(getResources().getColor(R.color.Color_Black));
-                tab_TextView[i].setText(TouristMode_Title[i]);
+                if(AppData.getApp_Language().equals("en")){
+                    tab_TextView[i].setText(TouristMode_TItle_en[i]);
+                }else{
+                    tab_TextView[i].setText(TouristMode_Title[i]);
+                }
+
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }else {
                 tab_TextView[i].setCompoundDrawablesWithIntrinsicBounds(0, inactivity_tab_TouristMode_icons[i], 0, 0);
                 tab_TextView[i].setTextColor(getResources().getColor(R.color.Color_Gray));
-                tab_TextView[i].setText(TouristMode_Title[i]);
+                if(AppData.getApp_Language().equals("en")){
+                    tab_TextView[i].setText(TouristMode_TItle_en[i]);
+                }else{
+                    tab_TextView[i].setText(TouristMode_Title[i]);
+                }
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }
         }
     }
 
-    void setGuideTabIcon(int position){
+    public void setGuideTabIcon(int position){
 
 
         for(int i= 0; i< 5;i++){
             if(position == i){
                 tab_TextView[i].setCompoundDrawablesWithIntrinsicBounds(0, activity_tab_GuideMode_icons[i], 0, 0);
                 tab_TextView[i].setTextColor(getResources().getColor(R.color.Color_Black));
-                tab_TextView[i].setText(GuideMode_Title[i]);
+                if(AppData.getApp_Language().equals("kr")){
+                    tab_TextView[i].setText(GuideMode_Title[i]);
+                }else{
+                    tab_TextView[i].setText(GuideMode_TItle_en[i]);
+                }
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }else {
                 tab_TextView[i].setCompoundDrawablesWithIntrinsicBounds(0, inactivity_tab_GuideMode_icons[i], 0, 0);
                 tab_TextView[i].setTextColor(getResources().getColor(R.color.Color_Gray));
-                tab_TextView[i].setText(GuideMode_Title[i]);
+                if(AppData.getApp_Language().equals("kr")){
+                    tab_TextView[i].setText(GuideMode_Title[i]);
+                }else{
+                    tab_TextView[i].setText(GuideMode_TItle_en[i]);
+                }
                 tabLayout.getTabAt(i).setCustomView(tab_TextView[i]);
             }
         }
@@ -356,4 +375,10 @@ public class MainActivity extends AppCompatActivity implements RecommendFragment
         homeFragment.setTabAt(index);
     }
 
+    public void changeConfigulation(String type) {
+        Locale mLocale = new Locale(type);
+        Configuration config = new Configuration();
+        config.locale = mLocale;
+        getResources().updateConfiguration(config, null);
+    }
 }

@@ -108,10 +108,6 @@ public class AppData  {
         return app_Language;
     }
     public static void setApp_Language(String language){
-        if(AppData.preferences == null){
-            Log.d(AppData.LOG_INDICATOR,"이거 없다고??");
-        }
-
         SharedPreferences.Editor editor = AppData.preferences.edit();
 
 

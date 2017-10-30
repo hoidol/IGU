@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -154,11 +155,12 @@ public class SignUpProgress5 extends Fragment {
 
         String user_key = AppData.StringReplace(cur_User.User_ID);
         StorageReference mountainsRef = AppData.storageRef.child("users").child(user_key).child("profile_image.jpg");
-        add_profile_Btn.setDrawingCacheEnabled(true);
-        add_profile_Btn.buildDrawingCache();
-        Bitmap bitmap = add_profile_Btn.getDrawingCache();
+
+        String imgpath = photoInfo.getPhotoPath();
+        Bitmap bm = BitmapFactory.decodeFile(imgpath);
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = mountainsRef.putBytes(data);

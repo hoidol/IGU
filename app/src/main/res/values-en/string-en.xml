@@ -51,6 +51,20 @@
     <string name="LoginProgress4_Pass">pass</string>
     <string name="LoginProgress4_Pass_Check">Re-enter pass</string>
 
+    <!--MainActivity -->
+    <string name="Tourist_Home_Tap">Home</string>
+    <string name="Tourist_Tour_Tap">Tour</string>
+    <string name="Tourist_Feed_Tap">Feed</string>
+    <string name="Tourist_Inbox_Tap">Message</string>
+    <string name="Tourist_Setting_Tap">Profile</string>
+
+
+    <string name="Guide_Home_Tap">Home</string>
+    <string name="Guide_Schedule_Tap">Schedule</string>
+    <string name="Guide_History_Tap">History</string>
+    <string name="Guide_Inbox_Tap">Message</string>
+    <string name="Guide_Setting_Tap">Profile</string>
+
     <!-- About Inbox -->
     <string name="inbox_title_kr">Message box</string>
 

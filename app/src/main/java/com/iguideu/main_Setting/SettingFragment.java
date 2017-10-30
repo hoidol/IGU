@@ -82,10 +82,7 @@ public class SettingFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         mainActivity = (MainActivity)activity;
-
-
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

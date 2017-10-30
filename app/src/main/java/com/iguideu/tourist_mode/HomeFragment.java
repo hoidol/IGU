@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
     public RouteFragment routeFragment;
     public GuideFragment guideFragment;
 
+    String[] Home_Taps ={"추천", "루트","가이드"};
+    String[] Home_Taps_en ={"Rec", "Route","Guide"};
     public void setHomeFragment(HomeFragment homeFragment){
         Cur_Fragment = homeFragment;
     }
@@ -91,17 +93,29 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
         tabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
 
         tab_TextView[0] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.home_custom_tab, null);
-        tab_TextView[0].setText("추천");
+        if(AppData.getApp_Language().equals("en")){
+            tab_TextView[0].setText(Home_Taps_en[0]);
+        }else{
+            tab_TextView[0].setText(Home_Taps[0]);
+        }
         tab_TextView[0].setTextColor(getResources().getColor(R.color.IGU_Point_Color));
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[0]));
 
         tab_TextView[1] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.home_custom_tab, null);
-        tab_TextView[1].setText("루트");
+        if(AppData.getApp_Language().equals("en")){
+            tab_TextView[1].setText(Home_Taps_en[1]);
+        }else{
+            tab_TextView[1].setText(Home_Taps[1]);
+        }
         tab_TextView[1].setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[1]));
 
         tab_TextView[2] = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.home_custom_tab, null);
-        tab_TextView[2].setText("가이드");
+        if(AppData.getApp_Language().equals("en")){
+            tab_TextView[2].setText(Home_Taps_en[2]);
+        }else{
+            tab_TextView[2].setText(Home_Taps[2]);
+        }
         tab_TextView[2].setTextColor(getResources().getColor(R.color.Color_Init_Btn_Focus_none_Text));
         tabLayout.addTab(tabLayout.newTab().setCustomView(tab_TextView[2]));
 
@@ -186,7 +200,7 @@ public class HomeFragment extends Fragment implements RecommendFragment.ListItem
             search_keyword_TextView.setText(keyword);
             show_Searched_Keyword_Route(keyword);
         }else{
-            search_keyword_TextView.setText("키워드 검색");
+            search_keyword_TextView.setText(getResources().getString(R.string.toolbar_inf_kr_word));
         }
     }
 

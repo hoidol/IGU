@@ -1,8 +1,10 @@
 package com.iguideu.main_Setting;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,7 +17,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.iguideu.MainActivity;
 import com.iguideu.R;
+import com.iguideu.data.AppData;
+
+import java.util.List;
+import java.util.Locale;
+
+import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 /**
  * Created by Hoyoung on 2017-08-10.
@@ -31,6 +40,14 @@ public class SettingLanguageFragment extends Fragment {
 
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
+
+    MainActivity mainActivity;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = (MainActivity)activity;
+    }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -48,7 +65,11 @@ public class SettingLanguageFragment extends Fragment {
 
     void setToolbar(View view){
         toolbar_title_TextView = (TextView)view.findViewById(R.id.toolbar_title_TextView);
-        toolbar_title_TextView.setText("언어");
+        if(AppData.getApp_Language().equals("kr")){
+            toolbar_title_TextView.setText("언어");
+        }else{
+            toolbar_title_TextView.setText("Language");
+        }
         toolbar_title_TextView.setTextColor(getResources().getColor(R.color.Color_All_Primary_Text));
         toolbar_title_TextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.Setting_Title));
 
@@ -73,6 +94,15 @@ public class SettingLanguageFragment extends Fragment {
         setting_KR_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppData.setApp_Language("kr");
+                changeConfigulation("kr");
+                toolbar_title_TextView.setText("언어");
+
+                if(AppData.getApp_Mode() ==0){
+                    mainActivity.setTouristTabIcon(4);
+                }else{
+                    mainActivity.setGuideTabIcon(4);
+                }
                 Snackbar.make(getView(),"한글버전",Snackbar.LENGTH_SHORT).setAction("",null).show();
             }
         });
@@ -80,10 +110,26 @@ public class SettingLanguageFragment extends Fragment {
         setting_EN_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(getView(),"영어버전",Snackbar.LENGTH_SHORT).setAction("",null).show();
+                AppData.setApp_Language("en");
+                changeConfigulation("en");
+                toolbar_title_TextView.setText("Language");
+                if(AppData.getApp_Mode() ==0){
+                    mainActivity.setTouristTabIcon(4);
+                }else{
+                    mainActivity.setGuideTabIcon(4);
+                }
+                Snackbar.make(getView(),"English Version",Snackbar.LENGTH_SHORT).setAction("",null).show();
+
             }
         });
 
+    }
+
+    public void changeConfigulation(String type) {
+        Locale mLocale = new Locale(type);
+        Configuration config = new Configuration();
+        config.locale = mLocale;
+        getResources().updateConfiguration(config, null);
     }
 
     void setTouchEvent(final Button btn){

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +46,8 @@ public class RatingRouteMainFragment extends Fragment {
     ImageView[] Guider_Rating_ImageViews = new ImageView[5];
     Button complete_Btn;
 
-    int Route_Rating_Value = 0;
-    int Guider_Rating_Value = 0;
+    int Route_Rating_Value = 5;
+    int Guider_Rating_Value = 5;
 
     String Route_Owner_Index;
     String Request_Index;
@@ -77,7 +78,11 @@ public class RatingRouteMainFragment extends Fragment {
     }
     void setToolbar(View view){
         TextView textView = (TextView)view.findViewById(R.id.toolbar_title_TextView);
-        textView.setText("별점주기");
+        if(AppData.getApp_Language().equals("en")){
+            textView.setText("Rating");
+        }else{
+            textView.setText("별점주기");
+        }
         textView.setTextColor(Color.BLACK);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.history_Title));
 
@@ -101,30 +106,84 @@ public class RatingRouteMainFragment extends Fragment {
         Guider_Rating_ImageViews[2] = (ImageView)view.findViewById(R.id.rating_guider_star_2);
         Guider_Rating_ImageViews[3] = (ImageView)view.findViewById(R.id.rating_guider_star_3);
         Guider_Rating_ImageViews[4] = (ImageView)view.findViewById(R.id.rating_guider_star_4);
+        setRouteStar(5);
+        setGuiderStar(5);
     }
 
     int i, j;
 
     void setOnClickRating(){
-        for(i = 0; i < Route_Rating_ImageViews.length; i++){
-            Route_Rating_ImageViews[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Route_Rating_Value = i + 1;
-                    setRouteStar(Route_Rating_Value);
-                }
-            });
-        }
+        Route_Rating_ImageViews[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Rating_Value =  1;
+                setRouteStar(Route_Rating_Value);
+            }
+        });
+        Route_Rating_ImageViews[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Rating_Value = 2;
+                setRouteStar(Route_Rating_Value);
+            }
+        });
+        Route_Rating_ImageViews[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Rating_Value = 3;
+                setRouteStar(Route_Rating_Value);
+            }
+        });
+        Route_Rating_ImageViews[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Rating_Value = 4;
+                setRouteStar(Route_Rating_Value);
+            }
+        });
+        Route_Rating_ImageViews[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Route_Rating_Value = 5;
+                setRouteStar(Route_Rating_Value);
+            }
+        });
 
-        for(j = 0; j < Route_Rating_ImageViews.length; j++){
-            Guider_Rating_ImageViews[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Guider_Rating_Value = i + 1;
-                    setGuiderStar(Guider_Rating_Value);
-                }
-            });
-        }
+        Guider_Rating_ImageViews[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guider_Rating_Value = 1;
+                setGuiderStar(Guider_Rating_Value);
+            }
+        });
+        Guider_Rating_ImageViews[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guider_Rating_Value = 2;
+                setGuiderStar(Guider_Rating_Value);
+            }
+        });
+        Guider_Rating_ImageViews[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guider_Rating_Value = 3;
+                setGuiderStar(Guider_Rating_Value);
+            }
+        });
+        Guider_Rating_ImageViews[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guider_Rating_Value = 4;
+                setGuiderStar(Guider_Rating_Value);
+            }
+        });
+        Guider_Rating_ImageViews[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guider_Rating_Value = 5;
+                setGuiderStar(Guider_Rating_Value);
+            }
+        });
     }
 
     void setRouteStar(int cur_Rating){
@@ -162,10 +221,9 @@ public class RatingRouteMainFragment extends Fragment {
                             // Get Post object and use the values to update the USI
                             User guider = dataSnapshot.child("users").child(Route_Owner_Index).getValue(User.class);
                             Route_Data route = dataSnapshot.child("routes").child(Route_Index).getValue(Route_Data.class);
-                            Request_Data request = dataSnapshot.child("requests").child(Request_Index).getValue(Request_Data.class);
 
-                            int guider_Rate = (guider.User_Guide_Rating + Guider_Rating_Value) /5;
-                            int route_Rate = (route.Route_Rating_Num + Route_Rating_Value)/5;
+                            int guider_Rate = Guider_Rating_Value; // 원래 점수 + 받은 점수 / 평가받은 수
+                            int route_Rate = Route_Rating_Value; // 원래 점수 + 받은 점수 / 평가받은 수
 
                             AppData.myRef.child("users").child(Route_Owner_Index).child("User_Guide_Rating").setValue(guider_Rate);
                             AppData.myRef.child("routes").child(Route_Index).child("Route_Rating_Num").setValue(route_Rate);

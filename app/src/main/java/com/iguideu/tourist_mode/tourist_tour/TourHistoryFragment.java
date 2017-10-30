@@ -65,8 +65,6 @@ public class TourHistoryFragment  extends Fragment {
 
     void setRecycler(View view){
         recyclerView=(RecyclerView)view.findViewById(R.id.tour_history_RecyclerView);
-
-
         //조건
         for(int i =0;i<AppData.Request_Data_ForTourist_List.size();i++){
             Request_Data data = AppData.Request_Data_ForTourist_List.get(i);
@@ -81,14 +79,39 @@ public class TourHistoryFragment  extends Fragment {
             int cur_month = Integer.parseInt(cur_Dates[1]);
             int cur_day = Integer.parseInt(cur_Dates[2]);
 
-            if(data.Request_State == 0){
+            if(data.Request_State == 0){ //시간이 시간 대기는 삭제
                 if(request_year<cur_year){
+                    AppData.myRef.child("requests").child(data.Request_Index).removeValue();
                     continue;
                 }else{
                     if(request_month<cur_month){
+                        AppData.myRef.child("requests").child(data.Request_Index).removeValue();
                         continue;
                     }else{
                         if(request_day<cur_day){
+                            AppData.myRef.child("requests").child(data.Request_Index).removeValue();
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            if(data.Request_State == 1){
+                data.Request_State = 3;
+                AppData.myRef.child("requests").child(data.Request_Index).child("Request_State").setValue(3);
+            }
+
+            if(data.Request_State == 2){ // 시간 지난 거절은 삭제
+                if(request_year<cur_year){
+                    AppData.myRef.child("requests").child(data.Request_Index).removeValue();
+                    continue;
+                }else{
+                    if(request_month<cur_month){
+                        AppData.myRef.child("requests").child(data.Request_Index).removeValue();
+                        continue;
+                    }else{
+                        if(request_day<cur_day){
+                            AppData.myRef.child("requests").child(data.Request_Index).removeValue();
                             continue;
                         }
                     }
@@ -97,7 +120,7 @@ public class TourHistoryFragment  extends Fragment {
             Tour_Request_Data_List.add(data);
         }
 
-        adapter = new TourHistoryRecyclerAdapter(m_Context,Tour_Request_Data_List);
+        adapter = new TourHistoryRecyclerAdapter(getContext(),Tour_Request_Data_List);
 
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
