@@ -155,8 +155,13 @@ public class LogoActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 // Get Post object and use the values to update the UI
                                 User cur_user = dataSnapshot.child("users").child(AppData.StringReplace(user.getEmail())).getValue(User.class);
-                                AppData.setCur_User(cur_user);
-                                delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
+
+                                if(cur_user !=null){
+                                    AppData.setCur_User(cur_user);
+                                    delay_startActivity(new Intent(LogoActivity.this,MainActivity.class));
+                                }else{
+                                    AppData.mAuth.signOut();
+                                }
                             }
 
                             @Override

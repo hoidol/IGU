@@ -1,9 +1,11 @@
 package com.iguideu.Login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -107,6 +109,7 @@ public class LoginActivity2 extends AppCompatActivity {
 
                 if(cur_User != null){
                     if(cur_User.User_Password.equals(User_Pass)){
+                        showProgressDialog();
                         shakeUI(error, true, null);
                         AppData.setCur_User(cur_User);
 
@@ -114,6 +117,7 @@ public class LoginActivity2 extends AppCompatActivity {
                                 .addOnCompleteListener(LoginActivity2.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
+                                        hideProgressDialog();
                                         finish();
                                     }
                                 });
@@ -152,5 +156,38 @@ public class LoginActivity2 extends AppCompatActivity {
         myHandler.sendEmptyMessageDelayed(0,0);
     }
 
+    @VisibleForTesting
 
+    public ProgressDialog mProgressDialog;
+
+
+
+    public void showProgressDialog() {
+
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+
+        }
+        mProgressDialog.show();
+    }
+
+
+
+    public void hideProgressDialog() {
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+
+            mProgressDialog.dismiss();
+
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
+    }
 }

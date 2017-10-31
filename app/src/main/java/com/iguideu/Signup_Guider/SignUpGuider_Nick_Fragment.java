@@ -113,8 +113,13 @@ public class SignUpGuider_Nick_Fragment extends Fragment {
         textView.setTextColor(Color.WHITE);
 
         TextView button = (TextView)view.findViewById(R.id.toolbar2_Close_Btn);
-        button.setTextColor(getResources().getColor(R.color.Color_All_Primary_Text));
-        button.setText("닫기");
+        button.setTextColor(getResources().getColor(R.color.IGU_Point_Color));
+
+        if(AppData.getApp_Language().equals("en")){
+            button.setText("close");
+        }else{
+            button.setText("닫기");
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

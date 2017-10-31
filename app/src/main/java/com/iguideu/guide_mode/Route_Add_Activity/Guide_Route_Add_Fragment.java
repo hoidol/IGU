@@ -3,6 +3,7 @@ package com.iguideu.guide_mode.Route_Add_Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -200,7 +202,8 @@ public class Guide_Route_Add_Fragment extends Fragment  {
                       AppData.PinPointData.get(i).Route_Title = RouteView.get(i).Route_Title.getText().toString();
                       AppData.PinPointData.get(i).Route_Content = RouteView.get(i).Route_Detail.getText().toString();
                 }
-        PostRouteData();
+                showProgressDialog();
+                PostRouteData();
 
             }
         });
@@ -509,6 +512,7 @@ public class Guide_Route_Add_Fragment extends Fragment  {
 
 
                 //여기에 화면 넘어가는거 하기
+                hideProgressDialog();
                 fm=getFragmentManager();
                 fragmentTransaction = fm.beginTransaction();
 
@@ -538,6 +542,41 @@ public class Guide_Route_Add_Fragment extends Fragment  {
         if(listAdapter != null){
             listAdapter.notifyDataSetChanged();
         }
+    }
+
+    @VisibleForTesting
+
+    public ProgressDialog mProgressDialog;
+
+
+
+    public void showProgressDialog() {
+
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+
+        }
+        mProgressDialog.show();
+    }
+
+
+
+    public void hideProgressDialog() {
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+
+            mProgressDialog.dismiss();
+
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
     }
 }
 

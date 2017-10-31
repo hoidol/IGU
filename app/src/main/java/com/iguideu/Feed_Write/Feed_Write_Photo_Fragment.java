@@ -107,7 +107,11 @@ public class Feed_Write_Photo_Fragment extends Fragment {
         });
 
         TextView complete_Btn = (TextView)view.findViewById(R.id.complete_Btn);
-        complete_Btn.setText("다음");
+        if(AppData.getApp_Language().equals("en")){
+            complete_Btn.setText("Next");
+        }else{
+            complete_Btn.setText("다음");
+        }
         complete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

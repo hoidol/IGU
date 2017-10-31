@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,6 +135,7 @@ public class SignUpProgress5 extends Fragment {
                 break;
 
             case R.id.btn_pg5_next:
+                btn_pg5_next.setEnabled(false);
                 if(photoInfo != null){
                     uploadURL();
                 }else{
@@ -145,6 +148,7 @@ public class SignUpProgress5 extends Fragment {
 
                     fragmentTransaction.replace(R.id.sign_up_framelayout,fragment);
                     fragmentTransaction.commit();
+
                 }
 
                 break;
@@ -152,7 +156,7 @@ public class SignUpProgress5 extends Fragment {
     }
 
     void uploadURL(){
-
+        showProgressDialog();
         String user_key = AppData.StringReplace(cur_User.User_ID);
         StorageReference mountainsRef = AppData.storageRef.child("users").child(user_key).child("profile_image.jpg");
 
@@ -176,9 +180,10 @@ public class SignUpProgress5 extends Fragment {
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
 
+                cur_User.User_Profile_URL = downloadUrl.toString();
+                hideProgressDialog();
                 fm = getFragmentManager();
                 fragmentTransaction = fm.beginTransaction();
-                cur_User.User_Profile_URL = downloadUrl.toString();
 
                 SignUpProgress6 fragment = new SignUpProgress6();
                 fragment.set_Cur_User(cur_User);
@@ -305,5 +310,40 @@ public class SignUpProgress5 extends Fragment {
                 .setBitmapsConfig(Bitmap.Config.ARGB_8888)
                 .build();
         Fresco.initialize(context, config);
+    }
+
+    @VisibleForTesting
+
+    public ProgressDialog mProgressDialog;
+
+
+
+    public void showProgressDialog() {
+
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+
+        }
+        mProgressDialog.show();
+    }
+
+
+
+    public void hideProgressDialog() {
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+
+            mProgressDialog.dismiss();
+
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
     }
 }

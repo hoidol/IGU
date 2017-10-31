@@ -114,6 +114,7 @@ public class Profile_Main_Fragment extends Fragment {
                 setStar(rating_starts,cur_user.User_Guide_Rating);
 
 
+                profile_Nick_TextView.setText(cur_user.User_Name);
 
                 show_route_Btn = (Button)view.findViewById(R.id.show_route_Btn);
                 if(cur_user.User_Guide){

@@ -221,9 +221,18 @@ public class RatingRouteMainFragment extends Fragment {
                             // Get Post object and use the values to update the USI
                             User guider = dataSnapshot.child("users").child(Route_Owner_Index).getValue(User.class);
                             Route_Data route = dataSnapshot.child("routes").child(Route_Index).getValue(Route_Data.class);
-
-                            int guider_Rate = Guider_Rating_Value; // 원래 점수 + 받은 점수 / 평가받은 수
-                            int route_Rate = Route_Rating_Value; // 원래 점수 + 받은 점수 / 평가받은 수
+                            int guider_Rate =0;
+                            if(guider.User_Guide_Rating != 0){
+                                guider_Rate= guider.User_Guide_Rating + Guider_Rating_Value/2;
+                            }else{
+                                guider_Rate=  Guider_Rating_Value;
+                            }
+                            int route_Rate = 0;
+                            if(route.Route_Rating_Num != 0){
+                                route_Rate = route.Route_Rating_Num + Route_Rating_Value/2;
+                            }else{
+                                route_Rate = Route_Rating_Value;
+                            }
 
                             AppData.myRef.child("users").child(Route_Owner_Index).child("User_Guide_Rating").setValue(guider_Rate);
                             AppData.myRef.child("routes").child(Route_Index).child("Route_Rating_Num").setValue(route_Rate);

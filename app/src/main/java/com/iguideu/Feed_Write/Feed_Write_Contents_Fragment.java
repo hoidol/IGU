@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,7 +97,11 @@ public class Feed_Write_Contents_Fragment extends Fragment{
 
     void setToolbar(View view){
         TextView toolbar_title_TextView = (TextView)view.findViewById(R.id.toolbar2_title_TexView);
-        toolbar_title_TextView.setText("작성");
+        if(AppData.getApp_Language().equals("en")){
+            toolbar_title_TextView.setText("Write");
+        }else{
+            toolbar_title_TextView.setText("작성");
+        }
         toolbar_title_TextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.sp_16_7));
 
         TextView toolbar2_Close_Btn = (TextView)view.findViewById(R.id.toolbar2_Close_Btn);
@@ -113,6 +119,7 @@ public class Feed_Write_Contents_Fragment extends Fragment{
             public void onClick(View v) {
                 String Feed_Contents = feed_contents_EditText.getText().toString();
                 if(!Feed_Contents.equals("")){
+                    showProgressDialog();
                     SaveFeedData(Feed_Contents);
                 }
             }
@@ -151,7 +158,7 @@ public class Feed_Write_Contents_Fragment extends Fragment{
                 }
 
                 AppData.myRef.child("feeds").child(feed_Index).setValue(data);
-
+                hideProgressDialog();
                 Feed_Write_Complete_Fragment fragment = new Feed_Write_Complete_Fragment();
                 fm = getFragmentManager();
                 fragmentTransaction = fm.beginTransaction();
@@ -169,5 +176,38 @@ public class Feed_Write_Contents_Fragment extends Fragment{
             this.selected_Request_Data = selected_Request_Data;
             search_route_Btn.setText(this.selected_Request_Data.Route_Title);
         }
+    } @VisibleForTesting
+
+    public ProgressDialog mProgressDialog;
+
+
+
+    public void showProgressDialog() {
+
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+
+        }
+        mProgressDialog.show();
+    }
+
+
+
+    public void hideProgressDialog() {
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+
+            mProgressDialog.dismiss();
+
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
     }
 }
